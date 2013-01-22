@@ -1,4 +1,3 @@
-
 window.mozapps = {
   Models: {},
   Collections: {},
