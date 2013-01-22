@@ -26,8 +26,15 @@
     </div>
 
         <!-- Add your site or application content here -->
+       <!-- <script>
+            // Load ECMAScript5 shim if needed (Android 2.1, Firefox 3.5 and 3.6).
+            Object.defineProperty || document.write('<script src="vendor/es5-shim.min.js"><\/script>');
 
-        <!-- build:js scripts/scripts.js -->
+            // Load IndexedDB shim if needed.
+            window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB ||document.write('<script src="vendor/IndexedDBShim.min.js"><\/script>');
+        </script>
+        
+
         <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
         <script src="scripts/vendor/zepto.js"></script>
         <script src="scripts/vendor/lodash.min.js"></script>
@@ -35,7 +42,19 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/views/application-view.js"></script>
         <script src="scripts/models/application-model.js"></script>
-        <script src="scripts/routes/application-router.js"></script>
+        <script src="scripts/routes/application-router.js"></script> //-->
+<!-- build:js scripts/scripts.js -->
+
+
+        <!-- <script type="text/javascript" data-main="scripts/init.js" src="scripts/vendor/require.js"></script> //-->
         <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!--<script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script> //-->
     </body>
 </html>

@@ -8,6 +8,6 @@ window.mozapps = {
   }
 };
 
-$(document).ready(function(){
+document.ready(function(){
   mozapps.init();
 });
