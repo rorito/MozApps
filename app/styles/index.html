@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title></title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="main.css"/>
+  <!-- temp, for live refresh dev -->
+  <style>
+
+    /* !!!! ignore these rules as there just for layout of contact sheet */
+
+    h1.cs-ignore-label {
+      display: block;
+      height: 10px;
+      width: 100%;
+      margin-bottom: 3rem;
+      font-family: "OpenSansLight";
+      color: #fff;
+    }
+
+    h2.cs-ignore-label {
+      display: block;
+      height: 10px;
+      width: 100%;
+      margin-bottom: 3rem;
+      font-family: "OpenSansLight";
+      color: #ccc;
+    }
+
+  </style>
+</head>
+<body role="application">
+
+  <!-- represents application screens -->
+  <div id="templateList" role="window">
+
+    <h1 class="cs-ignore-label">Title bars:</h1>
+    <h2 class="cs-ignore-label">Default</h2>
+
+    <!-- title bar region -->
+    <section role="region">
+      <header class="theme-application">
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Mozillapps</h1>
+      </header>
+    </section>
+
+    <h2 class="cs-ignore-label">Organic</h2>
+
+    <section role="region" class="skin-organic">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Mozillapps</h1>
+      </header>
+    </section>
+
+    <h2 class="cs-ignore-label">Dark</h2>
+
+    <section role="region" class="skin-dark">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Mozillapps</h1>
+      </header>
+    </section>
+
+    <h2 class="cs-ignore-label">Aqua</h2>
+
+    <section role="region" class="skin-aqua">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-cart">info</span></a>
+        </menu>
+        <h1>Maria's Fine Crafts</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+
+    </section>
+
+    <!-- footer region -->
+    <section role="region">
+      <footer></footer>
+    </section>
+
+    <h1 class="cs-ignore-label">Buttons:</h1>
+    <h2 class="cs-ignore-label">Default</h2>
+
+  </div>
+
+  <!-- build:js scripts/scripts.js -->
+  <script src="../scripts/vendor/kinvey-js-0.9.13.min.js"></script>
+  <script src="../scripts/vendor/zepto.js"></script>
+  <script src="../scripts/vendor/lodash.min.js"></script>
+  <script src="../scripts/vendor/backbone-min.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/views/application-view.js"></script>
+  <script src="../scripts/models/application-model.js"></script>
+  <script src="../scripts/routes/application-router.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
