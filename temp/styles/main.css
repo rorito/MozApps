@@ -1,0 +1,121 @@
+@import url(gaia/fonts.css);
+@import url(gaia/widgets/headers.css);
+@import url(gaia/widgets/lists.css);
+@import url(gaia/widgets/drawer/style.css);
+/*
+* SASS source file for frog css
+*
+* This will be moved to another structure in the very near future.
+*
+* */
+/* scss imports */
+@font-face {
+  font-family: 'OpenSansLight';
+  font-weight: normal;
+  src: url(frog/fonts/OpenSans-Light-webfont.ttf) format("truetype");
+}
+
+/* frog addtions and overrides */
+/* line 2, ../../app/styles/frog/widgets/headers.scss */
+section[role="region"] > header:first-child .icon.icon-info {
+  background-image: url(frog/widgets/headers/images/icons/info.png);
+}
+
+/* using important override here as header seem to be broadly declared in gaia headers.css */
+/* line 4, ../../app/styles/frog/widgets/accordion.scss */
+section[data-type="accordion"] > .header {
+  height: auto !important;
+  padding: 1rem 0rem 1rem 2.1rem !important;
+  background: black !important;
+}
+
+/* line 10, ../../app/styles/frog/widgets/accordion.scss */
+section[data-type="accordion"] .title {
+  font-family: "OpenSansLight";
+  font-size: 2.2rem;
+  font-weight: normal;
+  line-height: 3rem;
+  color: white;
+}
+
+/* line 18, ../../app/styles/frog/widgets/accordion.scss */
+section[data-type="accordion"] > .list {
+  padding: 0px;
+  border-top: 1px solid #4c4c4c;
+}
+
+/* line 23, ../../app/styles/frog/widgets/accordion.scss */
+section[data-type="accordion"] > .list > li > .list-item {
+  padding: 1.3rem 4rem 1.3rem 3.5rem;
+  margin: 0;
+  font-family: "MozTTLight";
+  font-weight: normal;
+  font-size: 1.7rem;
+  border-bottom: 1px solid #4c4c4c;
+  box-shadow: 0 3px 4px black;
+  background: url(frog/widgets/accordion/images/arrow_left.png) no-repeat 97% 50%;
+}
+
+/* line 34, ../../app/styles/frog/widgets/accordion.scss */
+section[data-type="accordion"] > .list > li > .list-item.open {
+  background: url(frog/widgets/accordion/images/arrow_down.png) no-repeat 97% 50%;
+}
+
+/* start horizontal list */
+/* line 40, ../../app/styles/frog/widgets/accordion.scss */
+#templateList .body {
+  overflow: hidden;
+  width: 100%;
+  padding: 2rem 0 0.8rem 0;
+  background: #333;
+  border-bottom: 1px solid #4c4c4c;
+}
+
+/* line 48, ../../app/styles/frog/widgets/accordion.scss */
+#templateList .body > .horizontal-list {
+  display: flex;
+  flex-flow: row no-wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* line 55, ../../app/styles/frog/widgets/accordion.scss */
+.horizontal-list > .list-item {
+  width: 130px;
+  margin-right: 2.1rem;
+  font-family: "OpenSansLight";
+  font-size: 1.4rem;
+  font-weight: 100;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+/* line 65, ../../app/styles/frog/widgets/accordion.scss */
+.horizontal-list > .list-item > .template-thumbnail {
+  border: 1px solid #bababa;
+  box-shadow: 0px 0px 4px black;
+}
+
+/* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
+/* line 24, ../../app/styles/main.scss */
+html {
+  font-size: 62.5%;
+}
+
+/* line 26, ../../app/styles/main.scss */
+body {
+  background-color: black;
+  color: white;
+  margin: 0px;
+}
+
+/* line 32, ../../app/styles/main.scss */
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+/* line 36, ../../app/styles/main.scss */
+ul > li {
+  padding: 0;
+}

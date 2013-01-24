@@ -1,0 +1,5 @@
+/* frog addtions and overrides */
+/* line 2, ../../../../app/styles/frog/widgets/headers.scss */
+section[role="region"] > header:first-child .icon.icon-info {
+  background-image: url(frog/widgets/headers/images/icons/info.png);
+}

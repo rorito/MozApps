@@ -1,41 +1,78 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width"/>
-        <link rel="stylesheet" href="styles/main.css"/>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title></title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles/main.css"/>
+  <!-- temp, for live refresh dev -->
+</head>
+<body role="application">
 
-    </head>
-    <body>
-    <div class="container">
-        <div class="hero-unit">
-            <h1>Cheerio!</h1>
-            <p>You now have</p>
-            <ul>
-                <li>HTML5 Boilerplate</li>
-                <li>jQuery</li>
-                <li>Backbone.js</li>
-                <li>Lodash</li>
-                <li>Mocha</li>
+  <!-- represents application screens -->
+  <div id="templateList" role="window">
+
+    <!-- title bar region -->
+    <section role="region">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Mozillapps</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="accordion">
+      <div class="header">
+        <h2 class="title">Please choose an app template to get started.</h2>
+      </div>
+      <ul class="list">
+        <li>
+          <h3 class="list-item open">Featured Templates</h3>
+          <div class="body">
+            <ul class="horizontal-list">
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
             </ul>
-            <p>installed.</p>
-            <h3>Enjoy coding! - Yeoman</h3>
-        </div>
-    </div>
+          </div>
+        </li>
+        <li>
+          <h3 class="list-item">User Submitted Templates</h3>
+        </li>
+        <li>
+          <h3 class="list-item">Other Templates</h3>
+        </li>
+      </ul>
+    </section>
 
-        <!-- Add your site or application content here -->
+    <!-- footer region -->
+    <section role="region">
+      <footer></footer>
+    </section>
 
-        <!-- build:js scripts/scripts.js -->
-        <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
-        <script src="scripts/vendor/zepto.js"></script>
-        <script src="scripts/vendor/lodash.min.js"></script>
-        <script src="scripts/vendor/backbone-min.js"></script>
-        <script src="scripts/main.js"></script>
-        <script src="scripts/views/application-view.js"></script>
-        <script src="scripts/models/application-model.js"></script>
-        <script src="scripts/routes/application-router.js"></script>
-        <!-- endbuild -->
-    </body>
+  </div>
+
+  <!-- build:js scripts/scripts.js -->
+  <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
+  <script src="scripts/vendor/zepto.js"></script>
+  <script src="scripts/vendor/lodash.min.js"></script>
+  <script src="scripts/vendor/backbone-min.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/views/application-view.js"></script>
+  <script src="scripts/models/application-model.js"></script>
+  <script src="scripts/routes/application-router.js"></script>
+  <!-- endbuild -->
+</body>
 </html>
