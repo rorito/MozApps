@@ -13,12 +13,13 @@ $aqua_color: #05686d;
 /* scss imports */
 
 @import "gaia/fonts.css";
+@import "gaia/widgets/buttons.css";
 @import "gaia/widgets/headers.css";
 @import "gaia/widgets/lists.css";
 @import "gaia/widgets/drawer/style.css";
 
 @import "frog/fonts";
-@import "frog/screens/dark";
+@import "frog/widgets/buttons";
 @import "frog/widgets/headers";
 @import "frog/widgets/accordion";
 

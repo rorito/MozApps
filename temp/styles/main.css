@@ -1,4 +1,5 @@
 @import url(gaia/fonts.css);
+@import url(gaia/widgets/buttons.css);
 @import url(gaia/widgets/headers.css);
 @import url(gaia/widgets/lists.css);
 @import url(gaia/widgets/drawer/style.css);
@@ -14,6 +15,45 @@
   font-family: 'OpenSansLight';
   font-weight: normal;
   src: url(frog/fonts/OpenSans-Light-webfont.ttf) format("truetype");
+}
+
+/******************************************************************
+ * 
+ * BUTTON EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. not much here.
+ * 
+ */
+/* ----------------------------------
+ * BUTTONS: frog themes
+ * ---------------------------------- */
+/* line 15, ../../app/styles/frog/widgets/buttons.scss */
+section[role="region"].skin-aqua button.buy,
+section[role="region"].skin-aqua a[role="button"].buy {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 1.2rem;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #05686d;
+  border: none;
+  border-radius: 0.1rem;
+  font-size: 1.7rem;
+  font-family: "Open Sans", Sans-serif;
+  font-weight: 600;
+  line-height: 3rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: none;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 0 3px black;
 }
 
 /******************************************************************
@@ -158,25 +198,25 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 28, ../../app/styles/main.scss */
+/* line 29, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 30, ../../app/styles/main.scss */
+/* line 31, ../../app/styles/main.scss */
 body {
   background-color: black;
   color: white;
   margin: 0px;
 }
 
-/* line 36, ../../app/styles/main.scss */
+/* line 37, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 41, ../../app/styles/main.scss */
+/* line 42, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }

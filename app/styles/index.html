@@ -28,7 +28,15 @@
       width: 100%;
       margin-bottom: 3rem;
       font-family: "OpenSansLight";
-      color: #ccc;
+      color: #333;
+    }
+
+    section.sc-ignore-flex-container {
+      width: 90%;
+    }
+
+    section.sc-ignore-flex-container button {
+      margin: 1rem;
     }
 
   </style>
@@ -88,18 +96,36 @@
       </header>
     </section>
 
+    <!-- button examples -->
+
+    <h1 class="cs-ignore-label">Buttons:</h1>
+    <h2 class="cs-ignore-label">Default</h2>
+
+    <section class="sc-ignore-flex-container">
+      <button>Default</button>
+      <button Disabled>Disabled</button>
+      <button class="recommend">Recommend</button>
+      <button class="danger">Danger</button>
+    </section>
+
+    <h2 class="cs-ignore-label">Aqua</h2>
+
+    <section role="region" class="sc-ignore-flex-container skin-aqua">
+      <button class="buy ">$39.00</button>
+    </section>
+
     <!-- content region -->
     <section role="region" data-type="content">
 
+
     </section>
+
+
 
     <!-- footer region -->
     <section role="region">
       <footer></footer>
     </section>
-
-    <h1 class="cs-ignore-label">Buttons:</h1>
-    <h2 class="cs-ignore-label">Default</h2>
 
   </div>
 
