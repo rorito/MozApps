@@ -1,0 +1,62 @@
+/******************************************************************
+ * 
+ * HEADER EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. inconsistent font usage between PSD and Gaia headers, going with Gaia on that.
+ * 
+ */
+
+
+/* ----------------------------------
+ * HEADERS: frog icons
+ * ---------------------------------- */
+
+
+section[role="region"] > header:first-child .icon.icon-info {
+  background-image: url(frog/widgets/headers/images/icons/info.png);
+}
+
+section[role="region"] > header:first-child .icon.icon-cart {
+  background-image: url(frog/widgets/headers/images/icons/cart.png);
+}
+
+/* ----------------------------------
+ * HEADERS: frog themes
+ * ---------------------------------- */
+
+section[role="region"].skin-aqua > header:first-child,
+.skin-organic section[role="region"] > header:first-child {
+  background: $aqua_color;
+}
+
+section[role="region"].skin-aqua > header:first-child:after,
+.skin-organic section[role="region"] > header:first-child:after {
+  margin-top: -0.1rem;
+}
+
+/* Navigation links (back, cancel, etc) */
+section[role="region"].skin-aqua > header:first-child > a .icon:after,
+.skin-organic section[role="region"] > header:first-child > a .icon:after,
+section[role="region"].skin-aqua > header:first-child > button .icon:after,
+.skin-organic section[role="region"] > header > button .icon:after {
+  background: $aqua_color;
+}
+
+section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] a:last-child,
+.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
+section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] button:last-child,
+.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
+  background: none;
+}
+
+section[role="region"].skin-aqua > header,
+.skin-organic section[role="region"] > header {
+  background: $aqua_color;
+  color: #fff;
+}
+
+section[role="region"].skin-aqua > header:first-child > button,
+section[role="region"].skin-aqua > header:first-child > a {
+  background: none;
+}

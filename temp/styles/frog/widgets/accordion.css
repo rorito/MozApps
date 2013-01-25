@@ -40,16 +40,16 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 
 /* start horizontal list */
 /* line 40, ../../../../app/styles/frog/widgets/accordion.scss */
-#templateList .body {
-  overflow: hidden;
+#templateList .list-item-body {
   width: 100%;
   padding: 2rem 0 0.8rem 0;
   background: #333;
   border-bottom: 1px solid #4c4c4c;
 }
 
-/* line 48, ../../../../app/styles/frog/widgets/accordion.scss */
-#templateList .body > .horizontal-list {
+/* line 47, ../../../../app/styles/frog/widgets/accordion.scss */
+#templateList .list-item-body > .horizontal-list {
+  width: 1000px;
   display: flex;
   flex-flow: row no-wrap;
   align-items: stretch;

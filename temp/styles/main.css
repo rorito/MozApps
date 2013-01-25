@@ -28,7 +28,7 @@
 /* ----------------------------------
  * BUTTONS: frog themes
  * ---------------------------------- */
-/* line 15, ../../app/styles/frog/widgets/buttons.scss */
+/* line 15, ../../app/styles/frog/widgets/_buttons.scss */
 section[role="region"].skin-aqua button.buy,
 section[role="region"].skin-aqua a[role="button"].buy {
   width: auto;
@@ -58,6 +58,22 @@ section[role="region"].skin-aqua a[role="button"].buy {
 
 /******************************************************************
  * 
+ * CONTAINER EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. inconsistent font usage between PSD and Gaia headers, going with Gaia on that.
+ * 
+ */
+/* ----------------------------------
+ * CONTAINER: frog themed
+ * ---------------------------------- */
+/* line 15, ../../app/styles/frog/widgets/_containers.scss */
+.skin-aqua.fade {
+  background: -moz-linear-gradient(top, black 0%, black 30%, #05686d 100%);
+}
+
+/******************************************************************
+ * 
  * HEADER EXTENSIONS AND OVERRIDES
  *
  * Notes:
@@ -67,12 +83,12 @@ section[role="region"].skin-aqua a[role="button"].buy {
 /* ----------------------------------
  * HEADERS: frog icons
  * ---------------------------------- */
-/* line 16, ../../app/styles/frog/widgets/headers.scss */
+/* line 16, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"] > header:first-child .icon.icon-info {
   background-image: url(frog/widgets/headers/images/icons/info.png);
 }
 
-/* line 20, ../../app/styles/frog/widgets/headers.scss */
+/* line 20, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"] > header:first-child .icon.icon-cart {
   background-image: url(frog/widgets/headers/images/icons/cart.png);
 }
@@ -80,20 +96,20 @@ section[role="region"] > header:first-child .icon.icon-cart {
 /* ----------------------------------
  * HEADERS: frog themes
  * ---------------------------------- */
-/* line 29, ../../app/styles/frog/widgets/headers.scss */
+/* line 29, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header:first-child,
 .skin-organic section[role="region"] > header:first-child {
   background: #05686d;
 }
 
-/* line 34, ../../app/styles/frog/widgets/headers.scss */
+/* line 34, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header:first-child:after,
 .skin-organic section[role="region"] > header:first-child:after {
   margin-top: -0.1rem;
 }
 
 /* Navigation links (back, cancel, etc) */
-/* line 42, ../../app/styles/frog/widgets/headers.scss */
+/* line 42, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header:first-child > a .icon:after,
 .skin-organic section[role="region"] > header:first-child > a .icon:after,
 section[role="region"].skin-aqua > header:first-child > button .icon:after,
@@ -101,7 +117,7 @@ section[role="region"].skin-aqua > header:first-child > button .icon:after,
   background: #05686d;
 }
 
-/* line 49, ../../app/styles/frog/widgets/headers.scss */
+/* line 49, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] a:last-child,
 .skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
 section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] button:last-child,
@@ -109,28 +125,28 @@ section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] butto
   background: none;
 }
 
-/* line 54, ../../app/styles/frog/widgets/headers.scss */
+/* line 54, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header,
 .skin-organic section[role="region"] > header {
   background: #05686d;
   color: #fff;
 }
 
-/* line 60, ../../app/styles/frog/widgets/headers.scss */
+/* line 60, ../../app/styles/frog/widgets/_headers.scss */
 section[role="region"].skin-aqua > header:first-child > button,
 section[role="region"].skin-aqua > header:first-child > a {
   background: none;
 }
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
-/* line 4, ../../app/styles/frog/widgets/accordion.scss */
+/* line 4, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .header {
   height: auto !important;
   padding: 1rem 0rem 1rem 2.1rem !important;
   background: black !important;
 }
 
-/* line 10, ../../app/styles/frog/widgets/accordion.scss */
+/* line 10, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] .title {
   font-family: "OpenSansLight";
   font-size: 2.2rem;
@@ -139,13 +155,13 @@ section[data-type="accordion"] .title {
   color: white;
 }
 
-/* line 18, ../../app/styles/frog/widgets/accordion.scss */
+/* line 18, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list {
   padding: 0px;
   border-top: 1px solid #4c4c4c;
 }
 
-/* line 23, ../../app/styles/frog/widgets/accordion.scss */
+/* line 23, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li > .list-item {
   padding: 1.3rem 4rem 1.3rem 3.5rem;
   margin: 0;
@@ -157,30 +173,31 @@ section[data-type="accordion"] > .list > li > .list-item {
   background: url(frog/widgets/accordion/images/arrow_left.png) no-repeat 97% 50%;
 }
 
-/* line 34, ../../app/styles/frog/widgets/accordion.scss */
+/* line 34, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li > .list-item.open {
   background: url(frog/widgets/accordion/images/arrow_down.png) no-repeat 97% 50%;
 }
 
 /* start horizontal list */
-/* line 40, ../../app/styles/frog/widgets/accordion.scss */
-#templateList .body {
-  overflow: hidden;
+/* line 40, ../../app/styles/frog/widgets/_accordion.scss */
+#templateList .list-item-body {
+  overflow: scroll;
   width: 100%;
   padding: 2rem 0 0.8rem 0;
   background: #333;
   border-bottom: 1px solid #4c4c4c;
 }
 
-/* line 48, ../../app/styles/frog/widgets/accordion.scss */
-#templateList .body > .horizontal-list {
+/* line 48, ../../app/styles/frog/widgets/_accordion.scss */
+#templateList .list-item-body > .horizontal-list {
+  width: 600px;
   display: flex;
   flex-flow: row no-wrap;
   align-items: stretch;
   justify-content: flex-start;
 }
 
-/* line 55, ../../app/styles/frog/widgets/accordion.scss */
+/* line 56, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item {
   width: 130px;
   margin-right: 2.1rem;
@@ -191,32 +208,33 @@ section[data-type="accordion"] > .list > li > .list-item.open {
   text-align: center;
 }
 
-/* line 65, ../../app/styles/frog/widgets/accordion.scss */
+/* line 66, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail {
   border: 1px solid #bababa;
   box-shadow: 0px 0px 4px black;
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 29, ../../app/styles/main.scss */
+/* line 30, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 31, ../../app/styles/main.scss */
+/* line 32, ../../app/styles/main.scss */
 body {
+  margin: 0px;
+  font-family: "Open Sans", Sans-serif;
   background-color: black;
   color: white;
-  margin: 0px;
 }
 
-/* line 37, ../../app/styles/main.scss */
+/* line 39, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 42, ../../app/styles/main.scss */
+/* line 44, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }

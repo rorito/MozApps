@@ -19,9 +19,10 @@ $aqua_color: #05686d;
 @import "gaia/widgets/drawer/style.css";
 
 @import "frog/fonts";
-@import "frog/widgets/buttons";
-@import "frog/widgets/headers";
-@import "frog/widgets/accordion";
+@import "frog/widgets/_buttons";
+@import "frog/widgets/_containers";
+@import "frog/widgets/_headers";
+@import "frog/widgets/_accordion";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
@@ -29,9 +30,10 @@ $aqua_color: #05686d;
 html { font-size: 62.5%; }
 
 body {
+	margin: 0px;
+	font-family: 'Open Sans', Sans-serif;
 	background-color: black;
 	color: white;
-	margin: 0px;
 }
 
 ul {

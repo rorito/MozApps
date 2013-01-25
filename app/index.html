@@ -9,6 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
+
 </head>
 <body role="application">
 
@@ -34,7 +35,7 @@
       <ul class="list">
         <li>
           <h3 class="list-item open">Featured Templates</h3>
-          <div class="body">
+          <div id="iscroll" class="list-item-body">
             <ul class="horizontal-list">
               <li class="list-item">
                 <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
@@ -66,7 +67,8 @@
 
   <!-- build:js scripts/scripts.js -->
   <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
-  <script src="scripts/vendor/zepto.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0rc1/zepto.min.js"></script>
+  <script src="scripts/vendor/iscroll.js"></script>
   <script src="scripts/vendor/lodash.min.js"></script>
   <script src="scripts/vendor/backbone-min.js"></script>
   <script src="scripts/main.js"></script>
