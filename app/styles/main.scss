@@ -19,10 +19,13 @@ $aqua_color: #05686d;
 @import "gaia/widgets/drawer/style.css";
 
 @import "frog/fonts";
+@import "frog/widgets/_lists";
 @import "frog/widgets/_buttons";
 @import "frog/widgets/_containers";
 @import "frog/widgets/_headers";
 @import "frog/widgets/_accordion";
+
+@import "frog/screens/_template_details";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
@@ -43,4 +46,8 @@ ul {
 
 ul > li {
 	padding: 0;
+}
+
+.hidden {
+	display: none;
 }

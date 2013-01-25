@@ -4,8 +4,24 @@
  *
  * Notes:
  * 1. not much here.
+ * 2. need to add states!
  * 
  */
+
+/* ----------------------------------
+ * BUTTONS: frog actions
+ * ---------------------------------- */
+
+section[role="region"] button.previous, section[role="region"] button.next {
+	height: 4rem;
+	width: 4rem;
+	outline: none;
+	border: none;
+	background: transparent url(frog/widgets/buttons/images/arrow.png) no-repeat center center;
+}
+section[role="region"] button.next {
+	transform:rotate(180deg);
+}
 
 /* ----------------------------------
  * BUTTONS: frog themes

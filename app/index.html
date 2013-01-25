@@ -9,11 +9,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
+  <style>
+    #templateList {
+      display: none;
+    }
+  </style>
 
 </head>
 <body role="application">
 
-  <!-- represents application screens -->
+  <!-- represents application screen
+       TEMPLATE LIST -->
   <div id="templateList" role="window">
 
     <!-- title bar region -->
@@ -59,10 +65,66 @@
     </section>
 
     <!-- footer region -->
-    <section role="region">
+    <section role="region" data-type="footer">
       <footer></footer>
     </section>
+  </div>
 
+  <!-- represents application screen
+       TEMPLATE DETAIL -->
+  <div id="templateDetail" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Featured Templates</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <section role="region" data-type="header" class="template-detail-header">
+        <button class="previous"><span class="hidden"><</span></button>
+        <button class="next"><span class="hidden">></span></button>
+        <div id="templateNameList">
+          <ul>
+            <li>Small Store</li>
+            <li>Blog</li>
+            <li>Other</li>
+          </ul>
+        </div>
+        <p class="template-index">4 of 15</p>
+      </section>
+      <section role="region" data-type="detail" class="template-detail">
+        <img src="styles/temp/template_icon_large_store.png" alt="">
+        <div>
+          <p>Small Store features a customizable catalog of product photos and lightweight e-commerce services</p>
+          <button class="recommend">Choose</button>
+        </div>
+      </section>
+      <section role="region" data-type="list">
+        <header>Included Components</header>
+        <ul>
+          <li>
+            <p>Carousel</p>
+            <p>Displays a series of images</p>
+          </li>
+          <li>
+            <p>About me</p>
+            <p>Displays a series of images</p>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
   </div>
 
   <!-- build:js scripts/scripts.js -->
