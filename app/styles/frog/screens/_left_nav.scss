@@ -1,0 +1,21 @@
+/******************************************************************
+ * 
+ * SCREEN: LEFT NAV;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+#leftNav .inner > ul > li {
+	position: relative;
+}
+
+#leftNav .inner > ul > li > button {
+	position: absolute;
+	top: .2rem;
+	left: -1rem;
+	outline: none;
+	border: 0;
+	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}

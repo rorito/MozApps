@@ -597,13 +597,36 @@ section[data-type="icon-list"] > header {
   text-transform: none;
 }
 
+/******************************************************************
+ * 
+ * SCREEN: LEFT NAV;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* line 10, ../../app/styles/frog/screens/_left_nav.scss */
+#leftNav .inner > ul > li {
+  position: relative;
+}
+
+/* line 14, ../../app/styles/frog/screens/_left_nav.scss */
+#leftNav .inner > ul > li > button {
+  position: absolute;
+  top: .2rem;
+  left: -1rem;
+  outline: none;
+  border: 0;
+  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}
+
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 54, ../../app/styles/main.scss */
+/* line 55, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 56, ../../app/styles/main.scss */
+/* line 57, ../../app/styles/main.scss */
 body {
   margin: 0px;
   font-family: "Open Sans", Sans-serif;
@@ -611,24 +634,24 @@ body {
   color: white;
 }
 
-/* line 63, ../../app/styles/main.scss */
+/* line 64, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 68, ../../app/styles/main.scss */
+/* line 69, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 72, ../../app/styles/main.scss */
+/* line 73, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 79, ../../app/styles/main.scss */
+/* line 80, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -637,7 +660,7 @@ ul > li {
   /* 2 */
 }
 
-/* line 84, ../../app/styles/main.scss */
+/* line 85, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -646,7 +669,7 @@ ul > li {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 92, ../../app/styles/main.scss */
+/* line 93, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
