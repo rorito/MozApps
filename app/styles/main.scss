@@ -46,6 +46,7 @@ $aqua_color: #05686d;
 
 @import "frog/screens/_template_details";
 @import "frog/screens/_app_builder";
+@import "frog/screens/_app_builder_edit_icon";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
@@ -70,4 +71,24 @@ ul > li {
 
 .hidden {
 	display: none;
+}
+
+/* due to FF laking support of flex-wrap we need to use float */
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
 }

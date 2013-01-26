@@ -1,0 +1,53 @@
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER EDIT ICON;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+div.app-icon {
+	height: 56px;
+	width: 60px;
+	text-align: center;
+	border: 1px dotted rgba(255,255,255, .2);
+}
+
+#appBuilderEditIcon [data-type="content"] .template-icon {
+	position: relative;
+	display: flex;
+	padding: 2rem 3.4rem;
+	flex-flow: row no-wrap;
+	align-items: strech;
+	justify-content: flex-start;
+	border-top: 1px solid #525252;
+	background-color: #303030;
+	box-shadow:inset 0px 0px 5px rgba(0,0,0,.5);
+}
+
+#appBuilderEditIcon [data-type="content"] ol {
+
+}
+
+section[data-type="icon-list"] {
+	width: 80%;
+	margin: 1rem auto;
+	padding: 1rem 2rem;
+	border-radius: 1rem;
+	background: #5b5b5b;
+}
+
+section[data-type="icon-list"] > ul {
+	margin: 0;
+	padding: 0 1.2rem;
+}
+
+section[data-type="icon-list"] > ul > li {
+	margin: 1rem;
+	float: left;
+}
+
+section[data-type="icon-list"] > header {
+	@include list-header;
+}

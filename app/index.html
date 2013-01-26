@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail {
+    #templateList, #templateDetail, #appBuilderEditIcon {
       display: none;
     }
   </style>
@@ -190,6 +190,56 @@
               <button></button>
             </a>
           </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       APP BUILDER > EDIT ICON -->
+  <div id="appBuilderEditIcon" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Choose Your Icon</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <section role="region" data-type="detail" class="template-icon">
+        <div>
+          <div class="app-icon">
+            <img src="styles/temp/app_icon.png">
+            Funnel Cat
+          </div>
+        </div>
+        <div>
+          <ol>
+            <li>Choose icon below</li>
+            <li>Tap to edit icon name</li>
+          </ol>
+        </div>
+      </section>
+      <section role="region" data-type="icon-list">
+        icons
+        <ul class="cf">
+          <li><img src="styles/temp/app_icon_blue.png"></li>
+          <li><img src="styles/temp/app_icon_pink.png"></li>
+          <li><img src="styles/temp/app_icon_black.png"></li>
+          <li><img src="styles/temp/app_icon.png"></li>
+          <li><img src="styles/temp/app_icon_orange.png"></li>
+          <li><img src="styles/temp/app_icon_green.png"></li>
         </ul>
       </section>
     </section>

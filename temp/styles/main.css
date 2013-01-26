@@ -534,13 +534,76 @@ section[data-type="accordion"] > .list > li > .list-item.open {
   background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
 }
 
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER EDIT ICON;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* line 10, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+div.app-icon {
+  height: 56px;
+  width: 60px;
+  text-align: center;
+  border: 1px dotted rgba(255, 255, 255, 0.2);
+}
+
+/* line 17, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+#appBuilderEditIcon [data-type="content"] .template-icon {
+  position: relative;
+  display: flex;
+  padding: 2rem 3.4rem;
+  flex-flow: row no-wrap;
+  align-items: strech;
+  justify-content: flex-start;
+  border-top: 1px solid #525252;
+  background-color: #303030;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 33, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: #5b5b5b;
+}
+
+/* line 41, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > ul {
+  margin: 0;
+  padding: 0 1.2rem;
+}
+
+/* line 46, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > ul > li {
+  margin: 1rem;
+  float: left;
+}
+
+/* line 51, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > header {
+  height: auto !important;
+  padding: 0.3rem 3.4rem 0 3.4rem !important;
+  background: #5f5f5f !important;
+  background-image: none !important;
+  margin: 0 !important;
+  font-family: "OpenSans", Sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-transform: none;
+}
+
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 53, ../../app/styles/main.scss */
+/* line 54, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 55, ../../app/styles/main.scss */
+/* line 56, ../../app/styles/main.scss */
 body {
   margin: 0px;
   font-family: "Open Sans", Sans-serif;
@@ -548,18 +611,42 @@ body {
   color: white;
 }
 
-/* line 62, ../../app/styles/main.scss */
+/* line 63, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 67, ../../app/styles/main.scss */
+/* line 68, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 71, ../../app/styles/main.scss */
+/* line 72, ../../app/styles/main.scss */
 .hidden {
   display: none;
+}
+
+/* due to FF laking support of flex-wrap we need to use float */
+/* line 79, ../../app/styles/main.scss */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+/* line 84, ../../app/styles/main.scss */
+.cf:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+/* line 92, ../../app/styles/main.scss */
+.cf {
+  *zoom: 1;
 }
