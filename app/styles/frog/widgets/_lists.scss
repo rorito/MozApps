@@ -3,7 +3,7 @@
  * LIST EXTENSIONS AND OVERRIDES
  *
  * Notes:
- * 1.
+ * 1. Need to change the checkbox on the edit list as it's is editable (Duh).
  * 
  */
 
@@ -27,4 +27,70 @@
 
 [data-type="list"] li p {
 	color: white !important;
+}
+
+
+/* ----------------------------------
+ * EDIT LISTS: frog, "app builder settings"
+ * ---------------------------------- */
+
+
+/* Checkable content */
+[data-type="list"] li > label {
+  pointer-events: none;
+  position: absolute;
+  top: -.4rem;
+  bottom: 0;
+  right: 0;
+  left: -.8rem;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+[data-type="list"] li > label input {
+	opacity: 0;
+	height: 5rem;
+	width: 5rem;
+	background-color: transparent;
+}
+
+[data-type="list"] li > label input[type='checkbox']:checked + div {
+	background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
+}
+
+[data-type="list"] li > label input + div {
+	position: relative;
+	display: block;
+	height: 5rem;
+	width: 5rem;
+	left: 0;
+	top: -5rem;
+	margin-left: 0;
+}
+
+[data-type="list"] [data-type="edit"] li {
+  transform: none;
+  padding: 0 0 0 3.4rem;
+}
+
+[data-type="list"] [data-type="edit"] li > label {
+  pointer-events: auto;
+}
+
+[data-type="list"] [data-type="edit"] li > a:active:after {
+  display: none;
+}
+
+[data-type="list"] [data-type="edit"] li > a {
+	width: 100%;
+}
+
+[data-type="list"] [data-type="edit"] li > a > button {
+	position: relative;
+	top: -4rem;
+	outline: none;
+	border: 0;
+	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
 }

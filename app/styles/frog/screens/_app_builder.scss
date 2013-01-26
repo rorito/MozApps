@@ -13,6 +13,7 @@
 }
 
 #appBuilder [data-type="content"] .template-detail {
+	position: relative;
 	display: flex;
 	padding: 2rem 0;
 	flex-flow: row no-wrap;
@@ -53,4 +54,15 @@
 
 #appBuilder [data-type="content"] .template-detail .recommend {
 	margin: 0;
+}
+
+.preview {
+	position: absolute;
+	top: 2.2rem;
+	right: 2rem;
+	height: 8rem;
+	width: 2rem;
+	outline: none;
+	border: 0;
+	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
 }
