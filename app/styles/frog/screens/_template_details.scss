@@ -46,8 +46,7 @@
 
 #templateNameList > ul > li {
 	width: 320px;
-	font-size: 2.4rem;
-	font-weight: 100;
+	@include text-large;
 	line-height: 2.2em;
 	text-align: center;
 }

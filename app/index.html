@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList {
+    #templateList, #templateDetail {
       display: none;
     }
   </style>
@@ -126,6 +126,58 @@
       <footer></footer>
     </section>
   </div>
+
+
+<!-- represents application screen
+       APP BUILDER -->
+  <div id="appBuilder" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>App Builder</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <header>Your template</header>
+      <section role="region" data-type="detail" class="template-detail">
+        <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
+        <div>
+          <h1>Small Store</h1>
+          <button class="recommend">Publish</button>
+        </div>
+      </section>
+      <section role="region" data-type="list">
+        <header>Edit your app components</header>
+        <ul>
+          <li>
+            <p>Name your App</p>
+            <p>Personalize your app</p>
+          </li>
+          <li>
+            <p>Carousel</p>
+            <p>Displays a series of images</p>
+          </li>
+          <li>
+            <p>About me</p>
+            <p>Displays a series of images</p>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
 
   <!-- build:js scripts/scripts.js -->
   <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>

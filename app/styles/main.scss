@@ -9,6 +9,25 @@
 
 $aqua_color: #05686d;
 
+/* mixins */
+
+@mixin text-large {
+	font-size: 2.4rem;
+	font-weight: 100;
+}
+
+@mixin list-header {
+	height: auto !important;
+	padding: 0.3rem 3.4rem 0 3.4rem !important;
+	background: #5f5f5f !important;
+	background-image: none !important;
+	margin: 0 !important;
+	font-family: "OpenSans", Sans-serif;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	text-transform: none;
+}
+
 
 /* scss imports */
 
@@ -26,6 +45,7 @@ $aqua_color: #05686d;
 @import "frog/widgets/_accordion";
 
 @import "frog/screens/_template_details";
+@import "frog/screens/_app_builder";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
