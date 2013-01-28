@@ -1,0 +1,292 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title></title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="styles/main.css"/>
+  <!-- temp, for live refresh dev -->
+  <style>
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder {
+      display: none;
+    }
+  </style>
+
+</head>
+<body role="application">
+
+  <!-- represents application screen
+       TEMPLATE LIST -->
+  <div id="templateList" role="window">
+
+    <!-- title bar region -->
+    <section role="region">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Mozillapps</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="accordion">
+      <div class="header">
+        <h2 class="title">Please choose an app template to get started.</h2>
+      </div>
+      <ul class="list">
+        <li>
+          <h3 class="list-item open">Featured Templates</h3>
+          <div id="iscroll" class="list-item-body">
+            <ul class="horizontal-list">
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <h3 class="list-item">User Submitted Templates</h3>
+        </li>
+        <li>
+          <h3 class="list-item">Other Templates</h3>
+        </li>
+      </ul>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       TEMPLATE DETAIL -->
+  <div id="templateDetail" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Featured Templates</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <section role="region" data-type="header" class="template-detail-header">
+        <button class="previous"><span class="hidden"><</span></button>
+        <button class="next"><span class="hidden">></span></button>
+        <div id="templateNameList">
+          <ul>
+            <li>Small Store</li>
+            <li>Blog</li>
+            <li>Other</li>
+          </ul>
+        </div>
+        <p class="template-index">4 of 15</p>
+      </section>
+      <section role="region" data-type="detail" class="template-detail">
+        <img src="styles/temp/template_icon_large_store.png" alt="">
+        <div>
+          <p>Small Store features a customizable catalog of product photos and lightweight e-commerce services</p>
+          <button class="recommend">Choose</button>
+        </div>
+      </section>
+      <section role="region" data-type="list">
+        <header>Included Components</header>
+        <ul>
+          <li>
+            <p>Carousel</p>
+            <p>Displays a series of images</p>
+          </li>
+          <li>
+            <p>About me</p>
+            <p>Displays a series of images</p>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+
+<!-- represents application screen
+       APP BUILDER -->
+  <div id="appBuilder" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>App Builder</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <header>Your template</header>
+      <section role="region" data-type="detail" class="template-detail">
+        <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
+        <div>
+          <h1>Small Store</h1>
+          <button class="recommend">Publish</button>
+          <button class="preview"></button>
+        </div>
+      </section>
+      <section role="region" data-type="list">
+        <header>Edit your app components</header>
+        <ul data-type="edit">
+          <li>
+            <label class="danger">
+              <input type="checkbox" checked>
+              <div></div>
+            </label>
+            <a href="#">
+              <p>Name your App</p>
+              <p>Personalize your app</p>
+              <button></button>
+            </a>
+          </li>
+          <li>
+            <label class="danger">
+              <input type="checkbox" checked>
+              <div></div>
+            </label>
+            <a href="#">
+              <p>Carousel</p>
+              <p>Displays series of images</p>
+              <button></button>
+            </a>
+          </li>
+          <li>
+            <label class="danger">
+              <input type="checkbox" checked>
+              <div></div>
+            </label>
+            <a href="#">
+              <p>About me</p>
+              <p>Blah de da blah blah blah</p>
+              <button></button>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       APP BUILDER > EDIT ICON -->
+  <div id="appBuilderEditIcon" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Choose Your Icon</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <section role="region" data-type="detail" class="template-icon">
+        <div>
+          <div class="app-icon">
+            <img src="styles/temp/app_icon.png">
+            Funnel Cat
+          </div>
+        </div>
+        <div>
+          <ol>
+            <li>Choose icon below</li>
+            <li>Tap to edit icon name</li>
+          </ol>
+        </div>
+      </section>
+      <section role="region" data-type="icon-list">
+        icons
+        <ul class="cf">
+          <li><img src="styles/temp/app_icon_blue.png"></li>
+          <li><img src="styles/temp/app_icon_pink.png"></li>
+          <li><img src="styles/temp/app_icon_black.png"></li>
+          <li><img src="styles/temp/app_icon.png"></li>
+          <li><img src="styles/temp/app_icon_orange.png"></li>
+          <li><img src="styles/temp/app_icon_green.png"></li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       LEFT NAV -->
+
+  <nav id="leftNav">
+    <header>
+      <h1>Categories</h1>
+    </header>
+    <div class="inner">
+      <ul>
+        <li>
+          <a href="#">Jewelry</a>
+          <button></button>
+        </li>
+        <li>
+          <a href="#">Handbags</a>
+          <button></button>
+        </li>
+        <li>
+          <a href="#">Other Items</a>
+          <button></button>
+        </li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Contact Proprietor</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- build:js scripts/scripts.js -->
+  <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0rc1/zepto.min.js"></script>
+  <script src="scripts/vendor/iscroll.js"></script>
+  <script src="scripts/vendor/lodash.min.js"></script>
+  <script src="scripts/vendor/backbone-min.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/views/application-view.js"></script>
+  <script src="scripts/models/application-model.js"></script>
+  <script src="scripts/routes/application-router.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
