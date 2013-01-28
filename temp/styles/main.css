@@ -66,10 +66,10 @@
 [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -.4rem;
+  top: -0.4rem;
   bottom: 0;
   right: 0;
-  left: -.8rem;
+  left: -0.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -176,7 +176,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   border: none;
   border-radius: 0.1rem;
   font-size: 1.7rem;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   font-weight: 600;
   line-height: 3rem;
   color: #fff;
@@ -184,7 +184,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   text-shadow: none;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 3px #000;
 }
 
 /******************************************************************
@@ -300,7 +300,7 @@ section[data-type="accordion"] > .list > li > .list-item {
   font-weight: normal;
   font-size: 1.7rem;
   border-bottom: 1px solid #4c4c4c;
-  box-shadow: 0 3px 4px black;
+  box-shadow: 0 3px 4px #000;
   background: url(frog/widgets/accordion/images/arrow_left.png) no-repeat 97% 50%;
 }
 
@@ -314,7 +314,7 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 #templateList .list-item-body {
   overflow: scroll;
   width: 100%;
-  padding: 2rem 0 0.8rem 0;
+  padding: 2rem 0 .8rem 0;
   background: #333;
   border-bottom: 1px solid #4c4c4c;
 }
@@ -342,7 +342,7 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 /* line 66, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail {
   border: 1px solid #bababa;
-  box-shadow: 0px 0px 4px black;
+  box-shadow: 0px 0px 4px #000;
 }
 
 /******************************************************************
@@ -629,7 +629,7 @@ html {
 /* line 57, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   background-color: black;
   color: white;
 }
