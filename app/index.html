@@ -9,33 +9,86 @@
 
     </head>
     <body>
-    <div class="container">
-        <div class="hero-unit">
-            <h1>Cheerio!</h1>
-            <p>You now have</p>
-            <ul>
-                <li>HTML5 Boilerplate</li>
-                <li>jQuery</li>
-                <li>Backbone.js</li>
-                <li>Lodash</li>
-                <li>Mocha</li>
-            </ul>
-            <p>installed.</p>
-            <h3>Enjoy coding! - Yeoman</h3>
-        </div>
-    </div>
+        <div id="appContainer"></div>
+
+        <script id="templateListViewTemplate" type="text/x-handlebars-template">
+            <p>template list view</p>
+                <section id="templateListView"> 
+                  {{#if loading}}
+                    <h1>Loading...</h1>
+                  {{else}}
+                    <ul>
+                        {{#each mozTemplates}}
+                            <li><a href="#templates/{{this._id}}">{{this.name}}</a></li>
+                        {{/each}}
+                    </ul>
+                  {{/if}}
+            </section>
+        </script>
+
+        <script id="templateDetailViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                {{#if prevTemplateId}}
+                    <a href="#templates/{{prevTemplateId}}">Previous Template</a></br>
+                {{/if}}
+                {{#if nextTemplateId}}
+                    <a href="#templates/{{nextTemplateId}}">Next Template</a>
+                {{/if}}
+                
+                <p>Index: {{index}}</p>
+                <p>Count: {{count}}</p>
+                <p>{{name}}</p>
+                <p>{{description}}</p>
+                <img id="templateImage" src="{{templateImageUrl}}">
+                <a id="useButton" href="#apps/create/{{this._id}}">Use</a>
+                <section id="appComponentList">    
+                    <ul class="app_components">
+                        {{#each app_components}}
+                            <li><a href="">{{this.component_name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </section>
+            {{/if}}
+        </script>
+
+        <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <p>{{name}}</p>
+                <p>{{description}}</p>
+                <img id="templateImage" src="{{templateImageUrl}}">
+                <a id="useButton" href="#apps/create/{{this._id}}">Use</a>
+                <section id="appComponentList">    
+                    <ul class="app_components">
+                        {{#each app_components}}
+                            <li><a href="">{{this.component_name}}</a></li>
+                        {{/each}}
+                    </ul>
+                </section>
+
+                <a href="">Preview</a>
+                <a href="">Publish</a>
+            {{/if}}
+        </script>
 
         <!-- Add your site or application content here -->
 
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
-        <script src="scripts/vendor/zepto.js"></script>
+        <script src="scripts/vendor/zepto.min.js"></script>
+        <!-- <script src="scripts/vendor/deferred.min.js"></script> //-->
         <script src="scripts/vendor/lodash.min.js"></script>
         <script src="scripts/vendor/backbone-min.js"></script>
+        <script src="scripts/vendor/handlebars.js"></script>
+        <script src="scripts/vendor/Object.observe.poly.js"></script>
         <script src="scripts/main.js"></script>
-        <script src="scripts/views/application-view.js"></script>
+        <script src="scripts/views/views.js"></script>
         <script src="scripts/models/application-model.js"></script>
         <script src="scripts/routes/application-router.js"></script>
+
         <!-- endbuild -->
     </body>
 </html>

@@ -60,7 +60,6 @@
     }
   });
 
-  // Define the Book collection.
   var MozAppCollection = Kinvey.Collection.extend({
     entity: MozApp,
     constructor: function(query) {
@@ -90,6 +89,50 @@
   App.MozAppTemplateCollection = new MozAppTemplateCollection();
 }(window, window.Kinvey));
 
-// mozapps.Models.ApplicationModel = Backbone.Model.extend({
+// OnResetCollection = Backbone.Collection.extend({
+//   constructor: function(){
+//     var args = slice(arguments);
+//     Backbone.Collection.prototype.constructor.apply(this, args);
+ 
+//     this.onResetCallbacks = [];
+//     this.on("reset", this.collectionReset, this);
+//   },
+ 
+//   onReset: function(callback){
+//     this.onResetCallbacks.push(callback);
+//     this.collectionLoaded && this.fireResetCallbacks();
+//   },
+ 
+//   collectionReset: function(){
+//     if (!this.collectionLoaded) {
+//       this.collectionLoaded = true
+//     }
+//     this.fireResetCallbacks();
+//   },
+ 
+//   fireResetCallbacks: function(){
+//     var callback = this.onResetCallbacks.pop();
+//     if (callback){
+//       callback(this);
+//       this.fireResetCallbacks();
+//     }
+//   }
+// });
+
+// mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
+
+//   initialize: function() {
+//     var self = this;
+//     window.MozAppsKinvey.MozAppTemplateCollection.fetch({
+//         success: function(data) {
+//             console.log("kinvey fetch");
+//             self.reset(_.pluck(data,'attr'));
+//         },
+//         error: function(e) {
+//         },
+//         complete: function(data){
+//         }
+//     });
+//   }
 
 // });
