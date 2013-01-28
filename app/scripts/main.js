@@ -7,8 +7,15 @@ window.mozapps = window.mozapps || {
   Routers: { /*mozRouter : new ApplicationRouter() */ },
   Utils: {},
   currentPage: {},
+  dataComplete: {
+      templatesComplete: false,
+      appsComplete: false,
+      complete: false
+  },
+
   fetchKinveyData: function(){
     console.log("kinvey fetch - start");
+
     window.MozAppsKinvey.MozAppTemplateCollection.fetch({
         success: function(data) {
             console.log("kinvey template collection fetch - success");
@@ -16,6 +23,8 @@ window.mozapps = window.mozapps || {
         error: function(e) {
         },
         complete: function(data){
+          //mozapps.dataComplete.templatesComplete = true;
+          //TODO handle offline case and load fixture data
         }
     });
 
@@ -26,8 +35,15 @@ window.mozapps = window.mozapps || {
         error: function(e) {
         },
         complete: function(data){
+          //mozapps.dataComplete.appsComplete = true;
         }
     });
+
+      // Object.observe(mozapps.dataComplete, function(){
+      //   if(mozapps.dataComplete.templatesComplete && mozapps.dataComplete.appsComplete){
+      //     mozapps.dataComplete.complete = true;
+      //   }
+      // });
 
   },
   init: function() {
@@ -44,6 +60,9 @@ window.mozapps = window.mozapps || {
     mozapps.appBuilderView = new mozapps.Views.appBuilderView();
     mozapps.router = new mozapps.Routers.ApplicationRouter(); 
     Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+
+    //var myScroll = new iScroll('iscroll', { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false });
+
   }
 };
 
@@ -51,13 +70,6 @@ $(document).ready(function(){
   window.mozapps.init();
 });
 
-function isVis(ele) {
-    if(ele.css('display')!='hidden' && ele.css('visibility')!='hidden' && ele.height()>0) {
-        return(true);
-    } else {
-        return(false);
-    }
-}
 
 Handlebars.registerHelper("debug", function(optionalValue) { 
   console.log("Current Context"); 

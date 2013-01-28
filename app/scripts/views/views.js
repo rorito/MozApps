@@ -1,39 +1,37 @@
-//window.mozapps = window.mozapps || {};
+//TODO don't store kinveyData arrays in views, access arrays form window.MozAppKinvey, only store single record as model
 
 mozapps.Views.templatesListView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     template: Handlebars.compile($("#templateListViewTemplate").html()),
-    kinveyDataArray: [],
+    MozTemplateCollection: [],
+    mozAppsCollection: [],
+
     initialize: function() {       
         var self = this;
         //this.listenTo(this.collection, "reset", this.render);
 
         Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-            console.log("template list view - observe call back");
-            self.kinveyDataArray = _.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr');
+            console.log("mozapps.Views.templatesListView - render");
+            self.MozTemplateCollection = _.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr');
             self.render();
         });
 
-        // window.MozAppsKinvey.MozAppTemplateCollection.watch("list", function (id, oldval, newval) {
-        //     console.log("watch - template list view");
-        //     console.log(window.MozAppsKinvey.MozAppTemplateCollection.list);
-        //     this.collection = window.MozAppsKinvey.MozAppTemplateCollection.list;
-        //     //this.render();
-        //     return newval;
-        // });
+        Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
+            console.log("mozapps.Views.templatesListView - render");
+            self.MozAppsCollection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
+            self.render();
+        });
     },
     
     render: function(eventName) {
         if(mozapps.currentPage == this){
             console.log("template list view - render");
-            if(!this.kinveyDataArray || this.kinveyDataArray.length == 0){
+            if(!this.MozTemplateCollection || this.MozTemplateCollection.length == 0){
                 this.$el.html(this.template( { loading: true } ));    
             } else {
                 //note: if we switch back to using backbone models, need to call .toJSON() when passing to templates
-                this.$el.html(this.template( { mozTemplates: this.kinveyDataArray } ));
+                this.$el.html(this.template( { mozTemplates: this.MozTemplateCollection, myApps: this.mozAppsCollection } ));
             }
-        } else {
-            //console.log("tried to render template list view but not current page");
         }
         return this;
     }
@@ -147,12 +145,23 @@ mozapps.Views.appBuilderCreateView = Backbone.View.extend({
 mozapps.Views.appBuilderView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     template: Handlebars.compile($("#appBuilderViewTemplate").html()),
-    kinveyDataArray: [],
+    appID: "",
+    kinveyData: {},
     initialize: function() {       
         var self = this;
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
             console.log("app builder view - observe call back");
-            self.kinveyDataArray = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
+
+            self.kinveyData = _.find(_.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr'), function(elem){
+                return elem._id == self.appID;
+            });
+
+            if(!self.kinveyData){
+                //if we couldn't find the id in the app collection, handle error and navigate back to home
+                //TODO throw model error dialog
+                mozapps.router.navigate("#");
+            }
+
             self.render();
         });
     },
@@ -161,7 +170,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         if(mozapps.currentPage == this){
             console.log("app builder view - render");
         } else {
-            //console.log("tried to render app builder view but not current page");
+            console.log("tried to render app builder view but not current page");
         }
         return this;
     }

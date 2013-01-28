@@ -75,7 +75,6 @@ routes:{
     },
 
     slidePage: function(page) {
-
         var slideFrom,
             self = this;
         if (!this.currentPage) {
