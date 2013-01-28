@@ -1,0 +1,675 @@
+@import url(gaia/fonts.css);
+@import url(gaia/widgets/buttons.css);
+@import url(gaia/widgets/headers.css);
+@import url(gaia/widgets/lists.css);
+@import url(gaia/widgets/drawer/style.css);
+/*
+* SASS source file for frog css
+*
+* This will be moved to another structure in the very near future.
+*
+* */
+/* variables */
+/* mixins */
+/* scss imports */
+@font-face {
+  font-family: 'OpenSansLight';
+  font-weight: normal;
+  src: url(frog/fonts/OpenSans-Light-webfont.ttf) format("truetype");
+}
+
+/******************************************************************
+ * 
+ * LIST EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. Need to change the checkbox on the edit list as it's is editable (Duh).
+ * 
+ */
+/* ----------------------------------
+ * LISTS: frog
+ * ---------------------------------- */
+/* line 15, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] {
+  padding: 0 0;
+}
+
+/* line 19, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] > header {
+  height: auto !important;
+  padding: 0.3rem 3.4rem 0 3.4rem !important;
+  background: #5f5f5f !important;
+  background-image: none !important;
+  margin: 0 !important;
+  font-family: "OpenSans", Sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-transform: none;
+}
+
+/* line 23, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li {
+  padding: 0 3.4rem;
+  border-bottom: solid 1px #5f5f5f;
+}
+
+/* line 28, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li p {
+  color: white !important;
+}
+
+/* ----------------------------------
+ * EDIT LISTS: frog, "app builder settings"
+ * ---------------------------------- */
+/* Checkable content */
+/* line 39, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li > label {
+  pointer-events: none;
+  position: absolute;
+  top: -.4rem;
+  bottom: 0;
+  right: 0;
+  left: -.8rem;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+/* line 52, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li > label input {
+  opacity: 0;
+  height: 5rem;
+  width: 5rem;
+  background-color: transparent;
+}
+
+/* line 59, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li > label input[type='checkbox']:checked + div {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
+}
+
+/* line 63, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] li > label input + div {
+  position: relative;
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  left: 0;
+  top: -5rem;
+  margin-left: 0;
+}
+
+/* line 73, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li {
+  transform: none;
+  padding: 0 0 0 3.4rem;
+}
+
+/* line 78, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li > label {
+  pointer-events: auto;
+}
+
+/* line 82, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li > a:active:after {
+  display: none;
+}
+
+/* line 86, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li > a {
+  width: 100%;
+}
+
+/* line 90, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li > a > button {
+  position: relative;
+  top: -4rem;
+  outline: none;
+  border: 0;
+  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}
+
+/******************************************************************
+ * 
+ * BUTTON EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. not much here.
+ * 2. need to add states!
+ * 
+ */
+/* ----------------------------------
+ * BUTTONS: frog actions
+ * ---------------------------------- */
+/* line 15, ../../app/styles/frog/widgets/_buttons.scss */
+section[role="region"] button.previous, section[role="region"] button.next {
+  height: 4rem;
+  width: 4rem;
+  outline: none;
+  border: none;
+  background: transparent url(frog/widgets/buttons/images/arrow.png) no-repeat center center;
+}
+
+/* line 22, ../../app/styles/frog/widgets/_buttons.scss */
+section[role="region"] button.next {
+  transform: rotate(180deg);
+}
+
+/* ----------------------------------
+ * BUTTONS: frog themes
+ * ---------------------------------- */
+/* line 31, ../../app/styles/frog/widgets/_buttons.scss */
+section[role="region"].skin-aqua button.buy,
+section[role="region"].skin-aqua a[role="button"].buy {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 1.2rem;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #05686d;
+  border: none;
+  border-radius: 0.1rem;
+  font-size: 1.7rem;
+  font-family: "Open Sans", Sans-serif;
+  font-weight: 600;
+  line-height: 3rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: none;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 0 3px black;
+}
+
+/******************************************************************
+ * 
+ * CONTAINER EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. inconsistent font usage between PSD and Gaia headers, going with Gaia on that.
+ * 
+ */
+/* ----------------------------------
+ * CONTAINER: frog themed
+ * ---------------------------------- */
+/* line 15, ../../app/styles/frog/widgets/_containers.scss */
+.skin-aqua.fade {
+  background: -moz-linear-gradient(top, black 0%, black 30%, #05686d 100%);
+}
+
+/******************************************************************
+ * 
+ * HEADER EXTENSIONS AND OVERRIDES
+ *
+ * Notes:
+ * 1. inconsistent font usage between PSD and Gaia headers, going with Gaia on that.
+ * 
+ */
+/* ----------------------------------
+ * HEADERS: frog icons
+ * ---------------------------------- */
+/* line 16, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"] > header:first-child .icon.icon-info {
+  background-image: url(frog/widgets/headers/images/icons/info.png);
+}
+
+/* line 20, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"] > header:first-child .icon.icon-cart {
+  background-image: url(frog/widgets/headers/images/icons/cart.png);
+}
+
+/* ----------------------------------
+ * HEADERS: frog themes
+ * ---------------------------------- */
+/* line 29, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header:first-child,
+.skin-organic section[role="region"] > header:first-child {
+  background: #05686d;
+}
+
+/* line 34, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header:first-child:after,
+.skin-organic section[role="region"] > header:first-child:after {
+  margin-top: -0.1rem;
+}
+
+/* Navigation links (back, cancel, etc) */
+/* line 42, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header:first-child > a .icon:after,
+.skin-organic section[role="region"] > header:first-child > a .icon:after,
+section[role="region"].skin-aqua > header:first-child > button .icon:after,
+.skin-organic section[role="region"] > header > button .icon:after {
+  background: #05686d;
+}
+
+/* line 49, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] a:last-child,
+.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
+section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] button:last-child,
+.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
+  background: none;
+}
+
+/* line 54, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header,
+.skin-organic section[role="region"] > header {
+  background: #05686d;
+  color: #fff;
+}
+
+/* line 60, ../../app/styles/frog/widgets/_headers.scss */
+section[role="region"].skin-aqua > header:first-child > button,
+section[role="region"].skin-aqua > header:first-child > a {
+  background: none;
+}
+
+/* using important override here as header seem to be broadly declared in gaia headers.css */
+/* line 4, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] > .header {
+  height: auto !important;
+  padding: 1rem 0rem 1rem 2.1rem !important;
+  background: black !important;
+}
+
+/* line 10, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] .title {
+  font-family: "OpenSansLight";
+  font-size: 2.2rem;
+  font-weight: normal;
+  line-height: 3rem;
+  color: white;
+}
+
+/* line 18, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] > .list {
+  padding: 0px;
+  border-top: 1px solid #4c4c4c;
+}
+
+/* line 23, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] > .list > li > .list-item {
+  padding: 1.3rem 4rem 1.3rem 3.5rem;
+  margin: 0;
+  font-family: "MozTTLight";
+  font-weight: normal;
+  font-size: 1.7rem;
+  border-bottom: 1px solid #4c4c4c;
+  box-shadow: 0 3px 4px black;
+  background: url(frog/widgets/accordion/images/arrow_left.png) no-repeat 97% 50%;
+}
+
+/* line 34, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] > .list > li > .list-item.open {
+  background: url(frog/widgets/accordion/images/arrow_down.png) no-repeat 97% 50%;
+}
+
+/* start horizontal list */
+/* line 40, ../../app/styles/frog/widgets/_accordion.scss */
+#templateList .list-item-body {
+  overflow: scroll;
+  width: 100%;
+  padding: 2rem 0 0.8rem 0;
+  background: #333;
+  border-bottom: 1px solid #4c4c4c;
+}
+
+/* line 48, ../../app/styles/frog/widgets/_accordion.scss */
+#templateList .list-item-body > .horizontal-list {
+  width: 600px;
+  display: flex;
+  flex-flow: row no-wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* line 56, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item {
+  width: 130px;
+  margin-right: 2.1rem;
+  font-family: "OpenSansLight";
+  font-size: 1.4rem;
+  font-weight: 100;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+/* line 66, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item > .template-thumbnail {
+  border: 1px solid #bababa;
+  box-shadow: 0px 0px 4px black;
+}
+
+/******************************************************************
+ * 
+ * SCREEN: TEMPLATE DETAILS;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* nav button position */
+/* line 11, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #303030;
+}
+
+/* line 18, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] button.previous {
+  position: absolute;
+  top: .7rem;
+  left: 1rem;
+}
+
+/* line 24, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] button.next {
+  position: absolute;
+  top: .7rem;
+  right: 1rem;
+}
+
+/* template name carousel
+ * 
+ * Notes: we need to set some widths during carousel init
+ *
+ */
+/* line 36, ../../app/styles/frog/screens/_template_details.scss */
+#templateNameList {
+  width: 100%;
+}
+
+/* line 40, ../../app/styles/frog/screens/_template_details.scss */
+#templateNameList > ul {
+  display: flex;
+  flex-flow: row no-wrap;
+  width: 1000px;
+  padding: 0 !important;
+}
+
+/* line 47, ../../app/styles/frog/screens/_template_details.scss */
+#templateNameList > ul > li {
+  width: 320px;
+  font-size: 2.4rem;
+  font-weight: 100;
+  line-height: 2.2em;
+  text-align: center;
+}
+
+/* line 54, ../../app/styles/frog/screens/_template_details.scss */
+.template-index {
+  margin-top: -1.3rem;
+  text-align: center;
+}
+
+/* template detail */
+/* line 61, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail {
+  display: flex;
+  padding: 2rem 0;
+  flex-flow: row no-wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  border-top: 1px solid #525252;
+  background-color: #303030;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 72, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail > img {
+  margin: 0 1.5rem;
+}
+
+/* line 76, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 12rem;
+}
+
+/* line 84, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail > div > p {
+  flex: 1 1 auto;
+  margin: 0 0 2rem 0;
+  font-size: 1.3rem;
+}
+
+/* line 90, ../../app/styles/frog/screens/_template_details.scss */
+#templateDetail [data-type="content"] .template-detail .recommend {
+  margin: 0;
+}
+
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* template detail */
+/* line 11, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] header {
+  height: auto !important;
+  padding: 0.3rem 3.4rem 0 3.4rem !important;
+  background: #5f5f5f !important;
+  background-image: none !important;
+  margin: 0 !important;
+  font-family: "OpenSans", Sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-transform: none;
+}
+
+/* line 15, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail {
+  position: relative;
+  display: flex;
+  padding: 2rem 0;
+  flex-flow: row no-wrap;
+  align-items: strech;
+  justify-content: flex-start;
+  border-top: 1px solid #525252;
+  background-color: #303030;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 27, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail h1 {
+  font-size: 2.4rem;
+  font-weight: 100;
+}
+
+/* line 31, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
+  height: 9.4rem;
+  width: 6.2rem;
+  margin: 0 1.5rem;
+  border: 0.1rem solid #5b5b5b;
+}
+
+/* line 38, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail > div:first-child {
+  margin-left: 2rem;
+  flex: 0;
+}
+
+/* line 43, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 14rem;
+}
+
+/* line 51, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail > div > h1 {
+  margin: 0;
+}
+
+/* line 55, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail .recommend {
+  margin: 0;
+}
+
+/* line 59, ../../app/styles/frog/screens/_app_builder.scss */
+.preview {
+  position: absolute;
+  top: 2.2rem;
+  right: 2rem;
+  height: 8rem;
+  width: 2rem;
+  outline: none;
+  border: 0;
+  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}
+
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER EDIT ICON;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* line 10, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+div.app-icon {
+  height: 56px;
+  width: 60px;
+  text-align: center;
+  border: 1px dotted rgba(255, 255, 255, 0.2);
+}
+
+/* line 17, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+#appBuilderEditIcon [data-type="content"] .template-icon {
+  position: relative;
+  display: flex;
+  padding: 2rem 3.4rem;
+  flex-flow: row no-wrap;
+  align-items: strech;
+  justify-content: flex-start;
+  border-top: 1px solid #525252;
+  background-color: #303030;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 33, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: #5b5b5b;
+}
+
+/* line 41, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > ul {
+  margin: 0;
+  padding: 0 1.2rem;
+}
+
+/* line 46, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > ul > li {
+  margin: 1rem;
+  float: left;
+}
+
+/* line 51, ../../app/styles/frog/screens/_app_builder_edit_icon.scss */
+section[data-type="icon-list"] > header {
+  height: auto !important;
+  padding: 0.3rem 3.4rem 0 3.4rem !important;
+  background: #5f5f5f !important;
+  background-image: none !important;
+  margin: 0 !important;
+  font-family: "OpenSans", Sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-transform: none;
+}
+
+/******************************************************************
+ * 
+ * SCREEN: LEFT NAV;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+/* line 10, ../../app/styles/frog/screens/_left_nav.scss */
+#leftNav .inner > ul > li {
+  position: relative;
+}
+
+/* line 14, ../../app/styles/frog/screens/_left_nav.scss */
+#leftNav .inner > ul > li > button {
+  position: absolute;
+  top: .2rem;
+  left: -1rem;
+  outline: none;
+  border: 0;
+  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}
+
+/* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
+/* line 55, ../../app/styles/main.scss */
+html {
+  font-size: 62.5%;
+}
+
+/* line 57, ../../app/styles/main.scss */
+body {
+  margin: 0px;
+  font-family: "Open Sans", Sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* line 64, ../../app/styles/main.scss */
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+/* line 69, ../../app/styles/main.scss */
+ul > li {
+  padding: 0;
+}
+
+/* line 73, ../../app/styles/main.scss */
+.hidden {
+  display: none;
+}
+
+/* due to FF laking support of flex-wrap we need to use float */
+/* line 80, ../../app/styles/main.scss */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+/* line 85, ../../app/styles/main.scss */
+.cf:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+/* line 93, ../../app/styles/main.scss */
+.cf {
+  *zoom: 1;
+}

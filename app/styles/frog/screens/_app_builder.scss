@@ -1,0 +1,68 @@
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* template detail */
+#appBuilder [data-type="content"] header {
+	@include list-header;
+}
+
+#appBuilder [data-type="content"] .template-detail {
+	position: relative;
+	display: flex;
+	padding: 2rem 0;
+	flex-flow: row no-wrap;
+	align-items: strech;
+	justify-content: flex-start;
+	border-top: 1px solid #525252;
+	background-color: #303030;
+	box-shadow:inset 0px 0px 5px rgba(0,0,0,.5);
+}
+
+#appBuilder [data-type="content"] .template-detail h1 {
+	@include text-large;
+}
+
+#appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
+	height: 9.4rem;
+	width: 6.2rem;
+	margin: 0 1.5rem;
+	border: 0.1rem solid #5b5b5b;
+}
+
+#appBuilder [data-type="content"] .template-detail > div:first-child {
+	margin-left: 2rem;
+	flex: 0;
+}
+
+#appBuilder [data-type="content"] .template-detail > div {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	width: 14rem;
+}
+
+#appBuilder [data-type="content"] .template-detail > div > h1 {
+	margin: 0;
+}
+
+#appBuilder [data-type="content"] .template-detail .recommend {
+	margin: 0;
+}
+
+.preview {
+	position: absolute;
+	top: 2.2rem;
+	right: 2rem;
+	height: 8rem;
+	width: 2rem;
+	outline: none;
+	border: 0;
+	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+}

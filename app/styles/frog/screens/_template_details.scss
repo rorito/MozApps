@@ -1,0 +1,92 @@
+/******************************************************************
+ * 
+ * SCREEN: TEMPLATE DETAILS;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* nav button position */
+#templateDetail [data-type="content"] .template-detail-header {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: #303030;
+}
+
+#templateDetail [data-type="content"] button.previous {
+	position: absolute;
+	top: .7rem;
+	left: 1rem;
+}
+
+#templateDetail [data-type="content"] button.next {
+	position: absolute;
+	top: .7rem;
+	right: 1rem;
+}
+
+
+/* template name carousel
+ * 
+ * Notes: we need to set some widths during carousel init
+ *
+ */
+#templateNameList {
+	width: 100%;
+}
+
+#templateNameList > ul {
+	display: flex;
+	flex-flow: row no-wrap;
+	width: 1000px;
+	padding: 0 !important;
+}
+
+#templateNameList > ul > li {
+	width: 320px;
+	@include text-large;
+	line-height: 2.2em;
+	text-align: center;
+}
+
+.template-index {
+	margin-top: -1.3rem;
+	text-align: center;
+}
+
+/* template detail */
+
+#templateDetail [data-type="content"] .template-detail {
+	display: flex;
+	padding: 2rem 0;
+	flex-flow: row no-wrap;
+	align-items: stretch;
+	justify-content: flex-start;
+	border-top: 1px solid #525252;
+	background-color: #303030;
+	box-shadow:inset 0px 0px 5px rgba(0,0,0,.5);
+}
+
+#templateDetail [data-type="content"] .template-detail > img {
+	margin: 0 1.5rem;
+}
+
+#templateDetail [data-type="content"] .template-detail > div {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	width: 12rem;
+}
+
+#templateDetail [data-type="content"] .template-detail > div > p {
+	flex: 1 1 auto;
+	margin: 0 0 2rem 0;
+	font-size: 1.3rem;
+}
+
+#templateDetail [data-type="content"] .template-detail .recommend {
+	margin: 0;
+}
