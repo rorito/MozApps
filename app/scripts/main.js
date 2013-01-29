@@ -75,7 +75,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var count = 0;
   var tempImgUrl = "styles/temp/template_icon_store.png";
   for (var key in items) {
-    console.log("I am a key: " + key);
+    count++;
     out += "<li><input id='item-" + count + "' type='radio' name='radio'>"
     + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
     out += "<div class='list-item-body'><ul class='horizontal-list'>";

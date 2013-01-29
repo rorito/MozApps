@@ -32,10 +32,6 @@ section[data-type="accordion"] > .list > li > .list-item {
 	background: url(frog/widgets/accordion/images/arrow_left.png) no-repeat 97% 50%;
 }
 
-section[data-type="accordion"] > .list > li > .list-item.open {
-	background: url(frog/widgets/accordion/images/arrow_down.png) no-repeat  97% 50%;
-}
-
 /* start horizontal list */
  .horizontal-list {
  	margin: 2rem 0 .8rem 0;
@@ -93,5 +89,9 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 	display: block;
 	height: 20rem;
 	overflow: scroll;
+}
+
+.list > li > input[type="radio"]:checked+label.list-item {
+	background: url(frog/widgets/accordion/images/arrow_down.png) no-repeat  97% 50%;
 }
 
