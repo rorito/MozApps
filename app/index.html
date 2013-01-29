@@ -11,23 +11,50 @@
     <body>
         <div id="appContainer"></div>
 
+        <!-- START Template List -->
+
         <script id="templateListViewTemplate" type="text/x-handlebars-template">
-            <p>template list view</p>
-                <section id="templateListView"> 
+            <div id="templateList" role="window">
+
+                <!-- title bar region -->
+                <section role="region">
+                  <header>
+                    <button><span class="icon icon-menu">menu</span></button>
+                    <menu type="toolbar">
+                      <a href="#"><span class="icon icon-info">info</span></a>
+                    </menu>
+                    <h1>Mozillapps</h1>
+                  </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="accordion">
+                  <div class="header">
+                    <h2 class="title">Please choose an app template to get started.</h2>
+                  </div>
                   {{#if loading}}
                     <h1>Loading...</h1>
                   {{else}}
-                    <ul>
+                    <ul class="list">
                         {{#templateListViewHelper mozTemplates.categories}}
-                            {{this.name}}
+                            <li>{{this.name}}22</h3>
                         {{/templateListViewHelper}}
-                            
-                        
-                            <!-- <li><a href="#templates/{{this._id}}">{{this.name}}</a></li> //-->
                     </ul>
                   {{/if}}
-            </section>
+                </section>
+
+                <!-- footer region -->
+                <section role="region" data-type="footer">
+                  <footer></footer>
+                </section>
+              </div> 
         </script>
+
+         <!-- END Template List -->
+
+
+
+
 
         <script id="templateDetailViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}

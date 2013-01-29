@@ -72,17 +72,20 @@ $(document).ready(function(){
 
 Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var out = "";
+  var tempImgUrl = "styles/temp/template_icon_store.png";
   for (var key in items) {
-    out += key;
-    out += "<ul>";
+    console.log("I am a key: " + key);
+    out += "<li><h3 class='list-item'>"+ key + "</h3>";
+    out += "<div class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
-      console.log(element.name);
-      out += "<li><a href='#templates/" + element._id + "'>" + element.name + "</a></li>";  
+      //console.log(element.name);
+      out += "<li class='list-item'>" + 
+      "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
+      + element.name + "<span></li>";  
     });
-    out += "</ul>";
+    out += "</ul></div></li>";
   }
-
   return out;
 });
 
