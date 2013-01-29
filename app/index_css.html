@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder {
+    templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #leftNav {
       display: none;
     }
   </style>
@@ -39,7 +39,8 @@
       </div>
       <ul class="list">
         <li>
-          <h3 class="list-item open">Featured Templates</h3>
+          <input id="item-1" type="radio" name="radio">
+          <label for="item-1" class="list-item open">Featured Templates</label>
           <div id="iscroll" class="list-item-body">
             <ul class="horizontal-list">
               <li class="list-item">
@@ -55,10 +56,38 @@
           </div>
         </li>
         <li>
-          <h3 class="list-item">User Submitted Templates</h3>
+          <input id="item-2" type="radio" name="radio">
+          <label for="item-2" class="list-item">User Submitted Templates</label>
+          <div id="iscroll" class="list-item-body">
+            <ul class="horizontal-list">
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+            </ul>
+          </div>
         </li>
         <li>
-          <h3 class="list-item">Other Templates</h3>
+          <input id="item-3" type="radio" name="radio">
+          <label for="item-3" class="list-item">Other Templates</label>
+          <div id="iscroll" class="list-item-body">
+            <ul class="horizontal-list">
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+              <li class="list-item">
+                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>Small Store</span>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </section>
