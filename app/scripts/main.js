@@ -77,7 +77,6 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     out += "<ul>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
-      console.log(element.name);
       out += "<li><a href='#templates/" + element._id + "'>" + element.name + "</a></li>";  
     });
     out += "</ul>";
