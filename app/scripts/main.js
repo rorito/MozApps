@@ -7,18 +7,18 @@ window.mozapps = window.mozapps || {
   Routers: { /*mozRouter : new ApplicationRouter() */ },
   Utils: {},
   currentPage: {},
-  dataComplete: {
-      templatesComplete: false,
-      appsComplete: false,
-      complete: false
-  },
+  // dataComplete: {
+  //     templatesComplete: false,
+  //     appsComplete: false,
+  //     complete: false
+  // },
 
   fetchKinveyData: function(){
-    console.log("kinvey fetch - start");
+    //console.log("kinvey fetch - start");
 
     window.MozAppsKinvey.MozAppTemplateCollection.fetch({
         success: function(data) {
-            console.log("kinvey template collection fetch - success");
+            //console.log("kinvey template collection fetch - success");
         },
         error: function(e) {
         },
@@ -30,7 +30,7 @@ window.mozapps = window.mozapps || {
 
     window.MozAppsKinvey.MozAppCollection.fetch({
         success: function(data) {
-            console.log("kinvey app collection fetch - success");
+            //console.log("kinvey app collection fetch - success");
         },
         error: function(e) {
         },
@@ -68,6 +68,22 @@ window.mozapps = window.mozapps || {
 
 $(document).ready(function(){
   window.mozapps.init();
+});
+
+Handlebars.registerHelper('templateListViewHelper', function(items, options) {
+  var out = "";
+  for (var key in items) {
+    out += key;
+    out += "<ul>";
+    var templatesCategories = items[key];
+    templatesCategories.forEach(function(element, index, array){
+      console.log(element.name);
+      out += "<li><a href='#templates/" + element._id + "'>" + element.name + "</a></li>";  
+    });
+    out += "</ul>";
+  }
+
+  return out;
 });
 
 

@@ -18,9 +18,12 @@
                     <h1>Loading...</h1>
                   {{else}}
                     <ul>
-                        {{#each mozTemplates}}
-                            <li><a href="#templates/{{this._id}}">{{this.name}}</a></li>
-                        {{/each}}
+                        {{#templateListViewHelper mozTemplates.categories}}
+                            {{this.name}}
+                        {{/templateListViewHelper}}
+                            
+                        
+                            <!-- <li><a href="#templates/{{this._id}}">{{this.name}}</a></li> //-->
                     </ul>
                   {{/if}}
             </section>
@@ -59,8 +62,8 @@
             {{else}}
                 <p>{{name}}</p>
                 <p>{{description}}</p>
+                <p>{{templateID}}</p>
                 <img id="templateImage" src="{{templateImageUrl}}">
-                <a id="useButton" href="#apps/create/{{this._id}}">Use</a>
                 <section id="appComponentList">    
                     <ul class="app_components">
                         {{#each app_components}}

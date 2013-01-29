@@ -58,10 +58,10 @@ routes:{
     },
 
     appBuilder: function(id){
-        console.log("app builder");
+        console.log("app builder: " + id);
         var self = this;
         mozapps.currentPage = mozapps.appBuilderView;
-        mozapps.appID = id;
+        mozapps.appBuilderView.appID = id;
         self.slidePage(mozapps.appBuilderView.render());  
     },
 
@@ -69,8 +69,6 @@ routes:{
         var self = this;
         mozapps.currentPage = mozapps.appBuilderCreateView;
         mozapps.appBuilderCreateView.templateID = id;
-
-        //TODO will calling this new each time create more unbound Observers?
         mozapps.appBuilderCreateView.processAppCreation();
     },
 
