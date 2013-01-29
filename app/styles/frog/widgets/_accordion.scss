@@ -48,7 +48,7 @@ section[data-type="accordion"] > .list > li > .list-item.open {
 #templateList .list-item-body > .horizontal-list {
 	width: 600px;
 	display: flex;
-	flex-flow: row no-wrap;
+	flex-direction: row;
 	align-items: stretch;
 	justify-content: flex-start;
 }

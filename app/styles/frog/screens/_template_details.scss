@@ -39,7 +39,7 @@
 
 #templateNameList > ul {
 	display: flex;
-	flex-flow: row no-wrap;
+	flex-direction: row;
 	width: 1000px;
 	padding: 0 !important;
 }
@@ -61,7 +61,7 @@
 #templateDetail [data-type="content"] .template-detail {
 	display: flex;
 	padding: 2rem 0;
-	flex-flow: row no-wrap;
+	flex-direction: row;
 	align-items: stretch;
 	justify-content: flex-start;
 	border-top: 1px solid #525252;
