@@ -1,0 +1,29 @@
+/******************************************************************
+ * 
+ * SCREEN: PRODUCT DETAIL VIEW;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* product add image */
+#productDetailView [data-type="content"] header {
+	display:none;
+}
+
+#productDetailView [data-type="content"] section.box-padded {
+	padding:2rem 2rem 2rem 2rem;
+}
+
+#productDetailView [data-type="content"] p.box-unpadded {
+	margin:0 0 1.6rem 0;
+	padding:0;
+}
+
+#productDetailView [data-type="content"] h2 {
+	margin:1.2rem 0 0.3rem 0;
+	text-transform:uppercase;
+}
+
+
