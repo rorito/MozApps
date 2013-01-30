@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #leftNav {
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, productList, #leftNav{
       display: none;
     }
   </style>
@@ -268,6 +268,72 @@
           <li><img src="styles/temp/app_icon.png"></li>
           <li><img src="styles/temp/app_icon_orange.png"></li>
           <li><img src="styles/temp/app_icon_green.png"></li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       PRODUCT LIST -->
+  <div id="productList" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <!-- TODO: make this an add icon -->
+          <a href="#"><span class="icon icon-info">info</span></a>
+          <!-- TODO: make this an edit icon where the list is populated -->
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Product List</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <header>Products</header>
+      <section role="region" data-type="detail" class="template-detail">
+        <!-- uncomment out to show unpopulated view -->
+        <!--
+        <div class="product-empty">
+          <p>To add products, tap the + button</p>
+        </div>
+        -->
+        <!-- comment this out to hide populated view -->
+        <ul data-type="list">
+          <li>
+            <a href="#">
+              <figure>
+              <img src="styles/temp/product_list_thumb.png" />
+              </figure>
+              <figcaption>
+                <p>Nomadic One Necklace</p>
+                <p>This piece of jewelry is made from brass and braided</p>
+                <p>$29.99</p>
+              </figcaption>
+              <span class="preview-visual">preview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <figure>
+              <img src="styles/temp/product_list_thumb.png" />
+              </figure>
+              <figcaption>
+                <p>Nomadic One Necklace</p>
+                <p>This piece of jewelry is made from brass and braided</p>
+                <p>$29.99</p>
+              </figcaption>
+              <span class="preview-visual">preview</span>
+            </a>
+          </li>
         </ul>
       </section>
     </section>
