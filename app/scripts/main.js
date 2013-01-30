@@ -74,9 +74,13 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var out = "";
   var count = 0;
   var tempImgUrl = "styles/temp/template_icon_store.png";
+  var initItemString = " checked";
   for (var key in items) {
     count++;
-    out += "<li><input id='item-" + count + "' type='radio' name='radio'>"
+    if(count > 1) {
+      initItemString = "";
+    }
+    out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
     + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
     out += "<div class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
