@@ -7,7 +7,7 @@
  * 
  */
 
-/* product add image */
+/* product detail view mode */
 #productDetailView [data-type="content"] header {
 	display:none;
 }
@@ -23,7 +23,7 @@
 
 #productDetailView [data-type="content"] h2 {
 	margin:1.2rem 0 0.3rem 0;
-	text-transform:uppercase;
+	@include content-header;
 }
 
 
