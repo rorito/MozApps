@@ -16,6 +16,11 @@ $aqua_color: #05686d;
 	font-weight: 100;
 }
 
+@mixin text-medium {
+    font-size: 2.2rem;
+    font-weight: 100;
+}
+
 @mixin list-header {
 	height: auto !important;
 	padding: 0.3rem 3.4rem 0 3.4rem !important;
@@ -48,6 +53,8 @@ $aqua_color: #05686d;
 @import "frog/screens/_app_builder";
 @import "frog/screens/_app_builder_edit_icon";
 @import "frog/screens/_left_nav";
+@import "frog/screens/_product_list";
+@import "frog/screens/_product_add_image";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
