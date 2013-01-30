@@ -3,7 +3,7 @@ routes:{
         "":"templates",
         "templates/:id":"templateDetails",
         "apps/:id":"appBuilder",
-        "apps/create/:id":"appBuilderCreate",
+        //"apps/create/:id":"appBuilderCreate",
         "*path":  "templates"
     },
     initialize: function() {
@@ -42,34 +42,23 @@ routes:{
     },
 
     templates: function(){
-        var self = this;
-
-        mozapps.currentPage = mozapps.tmplListView;
-        self.slidePage(
+        mozapps.currentPage = mozapps.tmplListView.viewName;
+        this.slidePage(
             mozapps.tmplListView.render()
         );
     },
 
     templateDetails: function(id){
-        var self = this;
-        mozapps.currentPage = mozapps.tmplDetailView;
+        mozapps.currentPage = mozapps.tmplDetailView.viewName;
         mozapps.tmplDetailView.templateID = id;
-        self.slidePage(mozapps.tmplDetailView.render());
+        this.slidePage(mozapps.tmplDetailView.render());
     },
 
     appBuilder: function(id){
-        console.log("app builder: " + id);
-        var self = this;
-        mozapps.currentPage = mozapps.appBuilderView;
+        console.log("app builder route");
+        mozapps.currentPage = mozapps.appBuilderView.viewName;
         mozapps.appBuilderView.appID = id;
-        self.slidePage(mozapps.appBuilderView.render());  
-    },
-
-    appBuilderCreate: function(id){
-        var self = this;
-        mozapps.currentPage = mozapps.appBuilderCreateView;
-        mozapps.appBuilderCreateView.templateID = id;
-        mozapps.appBuilderCreateView.processAppCreation();
+        this.slidePage(mozapps.appBuilderView.render());  
     },
 
     slidePage: function(page) {

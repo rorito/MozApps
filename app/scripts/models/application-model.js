@@ -54,9 +54,6 @@
     // Shortcut to return attributes.
     getName: function() {
       return this.get('name');
-    },
-    getProperties: function() {
-      return this.get('properties');
     }
   });
 
@@ -119,20 +116,121 @@
 //   }
 // });
 
-// mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
+mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
+  initialize: function() {
+    var self = this;
 
-//   initialize: function() {
-//     var self = this;
-//     window.MozAppsKinvey.MozAppTemplateCollection.fetch({
-//         success: function(data) {
-//             console.log("kinvey fetch");
-//             self.reset(_.pluck(data,'attr'));
-//         },
-//         error: function(e) {
-//         },
-//         complete: function(data){
-//         }
-//     });
-//   }
+    //reload this backbone collection whenever the Kinvey Collection gets updated
+    Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
+      self.reset(_.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr'));
+    });
 
-// });
+    this.refreshData();
+  },
+  refreshData: function(){
+    var self = this;
+    window.MozAppsKinvey.MozAppTemplateCollection.fetch({
+        success: function(data) {
+            self.reset(_.pluck(data,'attr'));
+        },
+        error: function(e) {
+          console.log("kinvey fetch error");
+          if(self.length < 1){
+            //fetch failed and we don't have any records yet (there should always be templates), so we'll
+            // assume we started out offline and use fixture data until our first fetch
+            console.log("kinvey fetch failed - loading fixture data");
+            self.reset(window.mozapps.templateFixtureData);
+          }
+        },
+        complete: function(data){
+        }
+    });
+  }
+});
+
+window.mozapps.templateFixtureData = [
+  {
+    "_id": "50f53665e3fe9c210501223c",
+    "_acl": {
+      "creator": "kid_TP1JdLipB5"
+    },
+    "_kmd": {
+      "lmt": "2013-01-15T10:58:45.974Z"
+    },
+    "name": "Small Store",
+    "app_components": [
+      {
+        "component_name": "About",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Product List",
+        "properties": {
+          "product-ids": []
+        }
+      },
+      {
+        "component_name": "E-Commerce",
+        "properties": {
+          "paypal_user": "",
+          "paypal_key": "",
+          "shopify_user": "",
+          "shopify_key": ""
+        }
+      }
+    ],
+    "description": "description of small store template",
+    "categories": [
+      "Featured Templates",
+      "User Submitted Templates",
+      "Popular Templates"
+    ]
+  },
+  {
+    "_id": "50f53657e3fe9c210501223b",
+    "_acl": {
+      "creator": "kid_TP1JdLipB5"
+    },
+    "_kmd": {
+      "lmt": "2013-01-15T10:58:31.835Z"
+    },
+    "name": "Portfolio",
+    "app_components": [
+      {
+        "component_name": "About",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Product List",
+        "properties": {
+          "product-ids": []
+        }
+      },
+      {
+        "component_name": "E-Commerce",
+        "properties": {
+          "paypal_user": "",
+          "paypal_key": "",
+          "shopify_user": "",
+          "shopify_key": ""
+        }
+      }
+    ],
+    "description": "description of portfolio template",
+    "categories": [
+      "Featured Templates",
+      "User Submitted Templates",
+      "Popular Templates"
+    ]
+  }
+];

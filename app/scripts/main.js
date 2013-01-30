@@ -1,62 +1,40 @@
 //Deferred.installInto(Zepto);
 
+
+//TODO
+// 1. replace console.log
+// 2. add refresh button to main page
+
+
 window.mozapps = window.mozapps || {
   Models: {},
   Collections: {},
   Views: {},
-  Routers: { /*mozRouter : new ApplicationRouter() */ },
+  Routers: {},
   Utils: {},
   currentPage: {},
-  // dataComplete: {
-  //     templatesComplete: false,
-  //     appsComplete: false,
-  //     complete: false
-  // },
 
-  fetchKinveyData: function(){
-    //console.log("kinvey fetch - start");
-
-    window.MozAppsKinvey.MozAppTemplateCollection.fetch({
-        success: function(data) {
-            //console.log("kinvey template collection fetch - success");
-        },
-        error: function(e) {
-        },
-        complete: function(data){
-          //mozapps.dataComplete.templatesComplete = true;
-          //TODO handle offline case and load fixture data
-        }
-    });
-
+  fetchAppCollection: function(){
+    //Note: we're using a backbone collection for the template collection which is backed by a Kinvey Collection
+    // so that we can fall back to fixture data for the templates if we're offline on our first fetch attempt.
+    // With the My Apps collection, it's initial state is empty, so we don't need fixutre data. Even if we start
+    // with created apps on the server and an empty app, it is fine because when apps get created they get a GUID
+    // and the locally created app won't collide with ones on the server that will be eventually downloaded
     window.MozAppsKinvey.MozAppCollection.fetch({
         success: function(data) {
-            //console.log("kinvey app collection fetch - success");
         },
         error: function(e) {
         },
         complete: function(data){
-          //mozapps.dataComplete.appsComplete = true;
         }
     });
-
-      // Object.observe(mozapps.dataComplete, function(){
-      //   if(mozapps.dataComplete.templatesComplete && mozapps.dataComplete.appsComplete){
-      //     mozapps.dataComplete.complete = true;
-      //   }
-      // });
-
   },
   init: function() {
-    //mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
-
-    mozapps.fetchKinveyData();
-
-    //mozapps.tmplListView = new mozapps.Views.templatesListView({ collection: mozapps.tmplCollection });
-    //mozapps.tmplDetailView = new mozapps.Views.templateDetailView({ collection: mozapps.tmplCollection });
+    mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
+    mozapps.fetchAppCollection();
 
     mozapps.tmplListView = new mozapps.Views.templatesListView();
-    mozapps.tmplDetailView = new mozapps.Views.templateDetailView();
-    mozapps.appBuilderCreateView = new mozapps.Views.appBuilderCreateView();
+    mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
     mozapps.appBuilderView = new mozapps.Views.appBuilderView();
     mozapps.router = new mozapps.Routers.ApplicationRouter(); 
     Backbone.history.start(); //{ pushState: true, root: mozapps.root }

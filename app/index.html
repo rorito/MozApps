@@ -11,21 +11,6 @@
     <body>
         <div id="appContainer"></div>
 
-        <script id="templateListViewTemplate" type="text/x-handlebars-template">
-            <p>template list view</p>
-                <section id="templateListView"> 
-                  {{#if loading}}
-                    <h1>Loading...</h1>
-                  {{else}}
-                    <ul>
-                        {{#templateListViewHelper mozTemplates.categories}}
-                            {{this.name}}
-                        {{/templateListViewHelper}}
-                    </ul>
-                  {{/if}}
-            </section>
-        </script>
-
         <script id="templateDetailViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
@@ -42,11 +27,11 @@
                 <p>{{name}}</p>
                 <p>{{description}}</p>
                 <img id="templateImage" src="{{templateImageUrl}}">
-                <a id="useButton" href="#apps/create/{{this._id}}">Use</a>
+                <button id="useButton">Use</button>
                 <section id="appComponentList">    
                     <ul class="app_components">
                         {{#each app_components}}
-                            <li><a href="">{{this.component_name}}</a></li>
+                            <li>{{this.component_name}}</li>
                         {{/each}}
                     </ul>
                 </section>
@@ -57,9 +42,9 @@
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                <p>{{name}}</p>
-                <p>{{description}}</p>
-                <p>{{templateID}}</p>
+                <p>Name: {{name}}</p>
+                <p>Description: {{description}}</p>
+                <p>Template ID: {{templateID}}</p>
                 <img id="templateImage" src="{{templateImageUrl}}">
                 <section id="appComponentList">    
                     <ul class="app_components">
@@ -68,14 +53,42 @@
                         {{/each}}
                     </ul>
                 </section>
-
+                <br/><br/>
                 <a href="">Preview</a>
                 <a href="">Publish</a>
             {{/if}}
         </script>
 
-        <!-- Add your site or application content here -->
+        <script id="myAppsSubViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                {{#each myApps}}
+                    <li><a href="#apps/{{this._id}}">{{this._id}}</a></li>
+                {{/each}}
+            {{/if}}
+        </script>
 
+        <script id="templatesSubViewTemplate" type="text/x-handlebars-template">
+            <section id="templateListView"> 
+                  {{#if loading}}
+                    <h1>Loading...</h1>
+                  {{else}}
+                    <ul>
+                        {{#templateListViewHelper mozTemplates.categories}}
+                            {{this.name}}
+                        {{/templateListViewHelper}}
+                    </ul>
+                  {{/if}}
+            </section>
+        </script>
+
+        <!-- Add your site or application content here -->
+        <script>
+          // Load IndexedDB shim if needed.
+          window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB ||
+          document.write('<script src="scripts/vendor/IndexedDBShim.min.js"><\/script>');
+        </script>
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script>
         <script src="scripts/vendor/zepto.min.js"></script>

@@ -1,49 +1,42 @@
 //TODO don't store kinveyData arrays in views, access arrays form window.MozAppKinvey, only store single record as model
+//TODO figure out better Handlebars pre-render
 
-mozapps.Views.templatesListView = Backbone.View.extend({
-    //TODO pre-compile templates and make sure compile only happens during init
-    template: Handlebars.compile($("#templateListViewTemplate").html()),
-    MozTemplateCollection: [],
-    mozAppsCollection: [],
-
-    initialize: function() {       
+mozapps.Views.appSubView = Backbone.View.extend({
+    template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
+    initialize: function(){
         var self = this;
-        //this.listenTo(this.collection, "reset", this.render);
-
-        Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-            self.MozTemplateCollection = _.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr');
-            self.render();
-        });
-
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
-            self.MozAppsCollection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
+            self.collection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
             self.render();
         });
     },
-    
-    render: function(eventName) {
-        if(mozapps.currentPage == this){
-            if(!this.MozTemplateCollection || this.MozTemplateCollection.length == 0){
+    render: function(){
+        if(mozapps.currentPage == "templatesListView"){
+            if(!this.collection){
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                //note: if we switch back to using backbone models, need to call .toJSON() when passing to templates
+                this.$el.html(this.template( { myApps: this.collection } ));
+            }
+            this.delegateEvents();
+            return this;
+        }
+    }
+});
 
-                //hack use categories property in Template collection instead of having seperate category table and using their IDs
-                var tmplByCategory = {
-                    //"n": function() {
-                    //     var self = this;
-                    //     var n = "";
-                    //     Object.keys(self).forEach(function(k, v) {
-                    //         if (typeof self[k] == "object") {
-                    //             if(!n) n = self[k]["name"];
-                    //         }
-                    //     });
-                    //     return n;
-                    // }
-                };
-
+mozapps.Views.templateSubView = Backbone.View.extend({
+    template: Handlebars.compile($("#templatesSubViewTemplate").html()),
+    initialize: function(){
+        this.listenTo(this.collection, "reset", this.render);
+    },
+    render: function(){
+        if(mozapps.currentPage == "templatesListView"){
+            if(this.collection.length < 1){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                var tmplByCategory = {};
+                //hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 tmplByCategory.categories = [];
-                _.each(this.MozTemplateCollection, function(element, index, list){
+                _.each(this.collection.toJSON(), function(element, index, list){
                     _.each(element.categories, function(elem, idx, l){
                         if(!tmplByCategory.categories[elem.toString()]){
                             tmplByCategory.categories[elem.toString()] = [];
@@ -51,50 +44,87 @@ mozapps.Views.templatesListView = Backbone.View.extend({
                         tmplByCategory.categories[elem.toString()].push(this);
                     }, element);
                 });
-
-                this.$el.html(this.template( { mozTemplates: tmplByCategory, myApps: this.mozAppsCollection } ));
+                this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
+                this.delegateEvents();
+                return this;
             }
+        }
+    }
+});
+
+mozapps.Views.templatesListView = Backbone.View.extend({
+    //TODO pre-compile templates and make sure compile only happens during init
+    viewName: "templatesListView",
+    initialize: function() {
+        this.myTemplatesSubView = new mozapps.Views.templateSubView({collection: mozapps.tmplCollection});
+        this.myAppsSubView = new mozapps.Views.appSubView();
+    },
+    
+    render: function(eventName) {
+        if(mozapps.currentPage == "templatesListView"){
+            this.$el.html(this.template);
+
+            this.$el.append(this.myAppsSubView.$el);
+            this.$el.append(this.myTemplatesSubView.$el);
+
+            this.myAppsSubView.render();
+            this.myTemplatesSubView.render();
         }
         return this;
     }
 });
 
 mozapps.Views.templateDetailView = Backbone.View.extend({
+    viewName: "templateDetailView",
     template: Handlebars.compile($("#templateDetailViewTemplate").html()),
     templateID: "",
-    kinveyDataArray: [],
     initialize: function() {
         var self = this;  
-        //this.listenTo(this.collection, "reset", this.render);
+        this.listenTo(this.collection, "reset", this.render);
+    },
+    events: {
+        'click #useButton' : 'createApp',
+    },
+    createApp: function(){
+        var self = this;        
 
-        Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-            self.kinveyDataArray = _.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr');
-            self.render();
+        //TODO do we really need this check if the template ID being passed in via URL is valid?
+        // may be safe but also unnecessary
+        var tmpl = _.find(mozapps.tmplCollection.toJSON(), function(elem){
+            return elem._id = self.templateID;
         });
+        if(tmpl){
+            var newMozApp = new window.MozAppsKinvey.MozApp({
+                name:     '',
+                published: false,
+                version: "1.0",
+                app_components: tmpl.app_components,
+                templateID: self.templateID
+            }, 'apps');
 
-        // window.MozAppsKinvey.MozAppTemplateCollection.watch("list", function (id, oldval, newval) {
-        //     console.log("watch - template detail view");
-        //     console.log(window.MozAppsKinvey.MozAppTemplateCollection.list);
-        //     this.collection = window.MozAppsKinvey.MozAppTemplateCollection.list;
-        //     //this.render();
-        //     return newval;
-        // });
+            newMozApp.save({
+                success: function(newMozApp) {
+                    console.log("createapp - success");
+                    mozapps.fetchAppCollection();
+                    mozapps.router.navigate("#apps/" + newMozApp.attr._id, true);
+                },
+                error: function(e) {
+                    console.log("ERROR: createApp");
+                }
+            });
+        } else {
+            console.log("didn't find template in template collection");
+            //TODO throw up modal error dialog here
+        }
     },
     render: function(eventName) {
         var self = this;
-        if(mozapps.currentPage == this){
-            if(!this.kinveyDataArray || this.kinveyDataArray.length == 0){
+        if(mozapps.currentPage == "templateDetailView"){
+            if(!mozapps.tmplCollection || mozapps.tmplCollection.length < 1){
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                this.kinveyDataArray.forEach(function(element, index, array){
-                    //if(element.toJSON()._id == self.templateID){      //save this if we go back to BB collections
+                mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
                     if(element._id == self.templateID){
-                        /* //save this if we go back to BB collections
-                        if((index-1) > -1) { element.set("prevTemplateId", array[index-1].toJSON()._id); }
-                        if((index+1) <= array.length-1) { element.set("nextTemplateId",array[index+1].toJSON()._id); }
-                        element.set("index", index+1);
-                        element.set("count", array.length); */
-
                         if((index-1) > -1) { element.prevTemplateId = array[index-1]._id; }
                         if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1]._id; }
                         element.index = index+1;
@@ -102,90 +132,38 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
-                //this.$el.html(this.template(this.model.toJSON()));
                 this.$el.html(this.template(this.model));
             }
-        } else {
-            //console.log("tried to render template detail view but not current page");
         }
         return this;
     }
 });
 
-mozapps.Views.appBuilderCreateView = Backbone.View.extend({
-    //TODO check that we came previously from the template detail page, if not error
-    templateID: "",
-    kinveyDataArray: [],
-    initialize: function() {       
-        var self = this;
-        Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-            self.kinveyDataArray = _.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr');
-            self.processAppCreation();
-        });
-    },
-
-    processAppCreation : function(){
-        var self = this;        
-        if(mozapps.currentPage == this){
-            if(this.kinveyDataArray){
-                var tmpl = _.find(_.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr'), function(elem){
-                    return elem._id == self.templateID;
-                });
-                if(tmpl){
-                    var newMozApp = new Kinvey.Entity({
-                        name:     '',
-                        published: false,
-                        version: "1.0",
-                        app_components: tmpl.app_components,
-                        templateID: self.templateID
-                    }, 'apps');
-
-                    newMozApp.save({
-                        success: function(newMozApp) {
-                            mozapps.router.navigate("#apps/" + newMozApp.attr._id);
-                        },
-                        error: function(e) {
-                            // Failed to save myBirthdayParty.
-                            // e holds information about the nature of the error.
-                        }
-                    });
-                } else {
-                    console.log("didn't find template in template collection");
-                    //TODO throw up modal error dialog here
-                }
-            }
-        }
-    }
-});
-
 mozapps.Views.appBuilderView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
+    //TODO better handling if app_id isn't found
     template: Handlebars.compile($("#appBuilderViewTemplate").html()),
+    viewName: "appBuilderView",
     appID: "",
     initialize: function() {       
         var self = this;
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
+            console.log("appbuilder view callback");
+            self.appData = _.find(_.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr'), function(elem){
+                return elem._id == self.appID;
+            });
+            console.log(self.appData);
             self.render();
         });
     },
     
     render: function(eventName) {
-        var self = this;
-        if(mozapps.currentPage == this){
-            if(!this.appID){
-                //TODO loading not working
-                this.$el.html(this.template( { loading: true } ));    
+        if(mozapps.currentPage == "appBuilderView"){
+            if(!this.appData){
+                this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("app builder view - render");
-                    //TODO check if Entity.load() works offline
-                    var theApp = new Kinvey.Entity({}, 'apps');
-                    theApp.load(this.appID, {
-                        success: function(theApp) {
-                            self.$el.html(self.template(theApp.attr));
-                        },
-                        error: function(e) {
-                        }
-                    });
+                console.log("app builder - this.appData");
+                this.$el.html(this.template(this.appData));
             }
         }
         return this;
