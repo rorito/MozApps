@@ -7,6 +7,14 @@
 
 /* variables */
 
+
+$default_primary_color : white;
+$default_secondary_color: #eaeaea;
+$default_tertiary_color: #a5a5a5;
+$default_highlight_color: #00abc9;
+$default_border_color: #4c4c4c;
+$default_text_color: black;
+
 $aqua_color: #05686d;
 
 /* mixins */
@@ -14,6 +22,11 @@ $aqua_color: #05686d;
 @mixin text-large {
 	font-size: 2.4rem;
 	font-weight: 100;
+}
+
+@mixin text-medium {
+    font-size: 2.2rem;
+    font-weight: 100;
 }
 
 @mixin list-header {
@@ -48,6 +61,8 @@ $aqua_color: #05686d;
 @import "frog/screens/_app_builder";
 @import "frog/screens/_app_builder_edit_icon";
 @import "frog/screens/_left_nav";
+@import "frog/screens/_product_list";
+@import "frog/screens/_product_add_image";
 
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
@@ -57,8 +72,8 @@ html { font-size: 62.5%; }
 body {
 	margin: 0px;
 	font-family: 'Open Sans', Sans-serif;
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 }
 
 ul {

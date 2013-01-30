@@ -1,0 +1,52 @@
+/******************************************************************
+ * 
+ * SCREEN: PRODUCT ADD IMAGE;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* product add image */
+#productAddImage [data-type="content"] header {
+	display:none;
+}
+
+#productAddImage [data-type="content"] div p {
+	margin-top:20
+}
+
+/* fixed position buttons on bottom */
+#productAddImage [data-type="content"] div.chrome-fixed-bottom {
+	position:fixed;
+	bottom:0px;
+	width:100%;
+	background-color:#4d4d4d;
+}
+
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 0 !important;
+}
+
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li {
+	@include text-large;
+	line-height: 2.2em;
+	text-align: center;
+	display:block;
+	width:50%;
+	padding:0.6rem 0 0 0;
+}
+
+
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:first-child {
+	padding-left:1.6rem;
+	padding-right:0.6rem;
+}
+
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:last-child {
+	padding-left:0.6rem;
+	padding-right:1.6rem;
+}
