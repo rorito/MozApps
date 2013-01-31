@@ -373,16 +373,20 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list-item-body {
   height: 0px;
   transition: height 1s;
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
-/* line 99, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 101, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label + div.list-item-body {
   display: block;
   height: 20.5rem;
   overflow: scroll;
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
-/* line 105, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 109, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label.list-item {
   background: #eaeaea url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat 97% 50%;
 }

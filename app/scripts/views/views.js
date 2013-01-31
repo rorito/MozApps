@@ -56,16 +56,16 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
 
-                // setup iscroll objects and set viewport (UL) width
+                // set viewport (UL) width
                 _.each(this.$el.find('.list-item-body'), function(element){
-                    //this.iscrollObjects.push(new iScroll(element.id, { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
                     var elementObject = $(element).find('ul');
                     elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
-                    console.log("Accordion body width:" + elementObject.css('width'));
-                    // elementObject.find('img').on( 'dragstart', function() { return false; } );
+                    
                 }, this);
 
-                
+                // just a test
+                new FastClick(document.body);
+
                 return this;
             }
         }

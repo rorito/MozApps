@@ -94,12 +94,16 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list-item-body {
 	height: 0px;
 	transition: height 1s;
+	-moz-transform : translateZ(0); 
+	transform : translateZ(0);
 }
 
 .list > li > input[type="radio"]:checked+label+div.list-item-body {
 	display: block;
 	height: 20.5rem;
 	overflow: scroll;
+	-moz-transform : translateZ(0); 
+	transform : translateZ(0);
 }
 
 .list > li > input[type="radio"]:checked+label.list-item {
