@@ -73,11 +73,6 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   return out;
 });
 
-Handlebars.registerHelper('templateListViewHeaderHelper', function(items, options) {
-  var out = "htmly stuff";
-  return out;
-});
-
 
 Handlebars.registerHelper("debug", function(optionalValue) { 
   console.log("Current Context"); 
