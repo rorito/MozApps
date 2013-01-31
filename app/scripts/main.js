@@ -38,9 +38,6 @@ window.mozapps = window.mozapps || {
     mozapps.appBuilderView = new mozapps.Views.appBuilderView();
     mozapps.router = new mozapps.Routers.ApplicationRouter(); 
     Backbone.history.start(); //{ pushState: true, root: mozapps.root }
-
-    //var myScroll = new iScroll('iscroll', { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false });
-
   }
 };
 
@@ -60,7 +57,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     }
     out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
     + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
-    out += "<div class='list-item-body'><ul class='horizontal-list'>";
+    out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
       //console.log(element.name);

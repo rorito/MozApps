@@ -25,6 +25,7 @@ mozapps.Views.appSubView = Backbone.View.extend({
 
 mozapps.Views.templateSubView = Backbone.View.extend({
     template: Handlebars.compile($("#templatesSubViewTemplate").html()),
+    iscrollObjects: new Array(),
     initialize: function(){
         this.listenTo(this.collection, "reset", this.render);
     },
@@ -46,6 +47,13 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 });
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
+
+                // setup iscroll
+
+                _.each(this.$el.find('.list-item-body'), function(element){
+                    this.iscrollObjects.push(new iScroll(element.id, { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
+                }, this);
+                
                 return this;
             }
         }
