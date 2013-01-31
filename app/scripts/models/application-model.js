@@ -99,6 +99,7 @@ mozapps.Models.AppModel = Backbone.Model.extend({
 
 });
 
+//TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
   initialize: function() {
       var self = this;
@@ -109,6 +110,7 @@ mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
   }
 });
 
+//TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
   initialize: function() {
       var self = this;

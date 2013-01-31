@@ -6,10 +6,8 @@ mozapps.Views.appSubView = Backbone.View.extend({
     iscrollObjects: new Array(),
     initialize: function(){
         var self = this;
-        Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
-            self.collection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
-            self.render();
-        });
+
+        this.listenTo(this.collection, "change", this.render);
 
         // SK - this may be a hack?, problem with back button render
         this.render();
@@ -88,8 +86,8 @@ mozapps.Views.templatesListView = Backbone.View.extend({
         if(mozapps.currentPage == "templatesListView"){
             console.log("RENDER: templatesListView");
             this.$el.html(this.template);
-            this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList')});
-            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'),collection: mozapps.tmplCollection});
+            this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
+            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.tmplCollection});
         }
         return this;
     }
