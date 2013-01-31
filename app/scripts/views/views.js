@@ -20,9 +20,9 @@ mozapps.Views.appSubView = Backbone.View.extend({
             }
             this.delegateEvents();
 
-            // setup iscroll objects
+            // set viewport (UL) width
             _.each(this.$el.find('.list-item-body'), function(element){
-                // this.iscrollObjects.push(new iScroll(element.id, { bounce: false, hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
+                
             }, this);
 
             return this;
@@ -62,9 +62,6 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                     elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
                     
                 }, this);
-
-                // just a test
-                new FastClick(document.body);
 
                 return this;
             }

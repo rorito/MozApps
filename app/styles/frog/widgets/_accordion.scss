@@ -1,6 +1,12 @@
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 
+section[data-type="accordion"] {
+	-moz-transform : translateZ(0); 
+	transform : translateZ(0);
+}
+
+
 section[data-type="accordion"], img {
 	-moz-user-select: none;
 	user-drag: none;
@@ -41,7 +47,8 @@ section[data-type="accordion"] > .list > li > .list-item {
  }
 
 #templateList .list-item-body {
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	background: $default_tertiary_color;
 	box-shadow: inset 0 0 .2rem rgba(0,0,0,1);
 	border-bottom: 1px solid $default_border_color;
@@ -94,19 +101,14 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list-item-body {
 	height: 0px;
 	transition: height 1s;
-	-moz-transform : translateZ(0); 
-	transform : translateZ(0);
 }
 
 .list > li > input[type="radio"]:checked+label+div.list-item-body {
 	display: block;
 	height: 20.5rem;
 	overflow: scroll;
-	-moz-transform : translateZ(0); 
-	transform : translateZ(0);
 }
 
 .list > li > input[type="radio"]:checked+label.list-item {
 	background: $default_secondary_color url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat  97% 50%;
 }
-
