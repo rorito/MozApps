@@ -100,6 +100,11 @@ ul > li {
 	padding: 0;
 }
 
+a:link { color: $default_text_color; text-decoration: none; }
+a:visited { color: $default_text_color; text-decoration: none; }
+a:hover { color: $default_text_color; text-decoration: none; }
+a:active { color: $default_text_color; text-decoration: none; }
+
 .hidden {
 	display: none;
 }

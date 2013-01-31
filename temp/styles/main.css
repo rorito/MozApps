@@ -351,20 +351,40 @@ section[data-type="accordion"] > .list > li > .list-item {
   color: white;
 }
 
+/* line 77, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:link {
+  color: white;
+}
+
 /* line 78, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:visited {
+  color: white;
+}
+
+/* line 79, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:hover {
+  color: white;
+}
+
+/* line 80, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:active {
+  color: white;
+}
+
+/* line 83, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail {
   border: 1px solid #bababa;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -moz-box-sizing: border-box;
 }
 
-/* line 84, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 89, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail.selected {
   border: 4px solid #00abc9;
 }
 
 /* CSS powered interaction */
-/* line 90, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 95, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"] {
   opacity: 0;
   position: absolute;
@@ -376,20 +396,20 @@ section[data-type="accordion"] > .list > li > .list-item {
   background-color: red;
 }
 
-/* line 101, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 106, ../../app/styles/frog/widgets/_accordion.scss */
 .list-item-body {
   height: 0px;
   transition: height 1s;
 }
 
-/* line 106, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 111, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label + div.list-item-body {
   display: block;
   height: 20.5rem;
   overflow: scroll;
 }
 
-/* line 112, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 117, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label.list-item {
   background: #eaeaea url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat 97% 50%;
 }
@@ -1014,12 +1034,36 @@ ul > li {
 }
 
 /* line 103, ../../app/styles/main.scss */
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 104, ../../app/styles/main.scss */
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 105, ../../app/styles/main.scss */
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 106, ../../app/styles/main.scss */
+a:active {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 108, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 110, ../../app/styles/main.scss */
+/* line 115, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -1028,7 +1072,7 @@ ul > li {
   /* 2 */
 }
 
-/* line 115, ../../app/styles/main.scss */
+/* line 120, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -1037,13 +1081,13 @@ ul > li {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 123, ../../app/styles/main.scss */
+/* line 128, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
 
 /* rory temp stuff */
-/* line 129, ../../app/styles/main.scss */
+/* line 134, ../../app/styles/main.scss */
 #appContainer {
   position: absolute;
   width: 100%;
@@ -1052,7 +1096,7 @@ ul > li {
   overflow-y: auto;
 }
 
-/* line 137, ../../app/styles/main.scss */
+/* line 142, ../../app/styles/main.scss */
 .page {
   position: absolute;
   width: 100%;
@@ -1060,23 +1104,23 @@ ul > li {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 144, ../../app/styles/main.scss */
+/* line 149, ../../app/styles/main.scss */
 .stage-center {
   top: 0;
   left: 0;
 }
 
-/* line 149, ../../app/styles/main.scss */
+/* line 154, ../../app/styles/main.scss */
 .stage-left {
   left: -100%;
 }
 
-/* line 153, ../../app/styles/main.scss */
+/* line 158, ../../app/styles/main.scss */
 .stage-right {
   left: 100%;
 }
 
-/* line 157, ../../app/styles/main.scss */
+/* line 162, ../../app/styles/main.scss */
 .transition {
   -moz-transition-duration: .375s;
   -webkit-transition-duration: .375s;

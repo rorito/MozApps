@@ -74,6 +74,11 @@ section[data-type="accordion"] > .list > li > .list-item {
 	color: $default_primary_color;
 }
 
+.horizontal-list > .list-item a:link { color: $default_primary_color; }
+.horizontal-list > .list-item a:visited { color: $default_primary_color; }
+.horizontal-list > .list-item a:hover { color: $default_primary_color; }
+.horizontal-list > .list-item a:active { color: $default_primary_color; }
+
 
 .horizontal-list > .list-item > .template-thumbnail {
 	border: 1px solid #bababa;
