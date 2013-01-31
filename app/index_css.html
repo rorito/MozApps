@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, productListEdit, #productAddImage, #leftNav{
+    templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #leftNav{
       display: none;
     }
   </style>
@@ -34,10 +34,12 @@
 
     <!-- content region -->
     <section role="region" data-type="accordion">
-      <div class="header">
-        <h2 class="title">Please choose an app template to get started.</h2>
-      </div>
       <ul class="list">
+        <li>
+          <div class="header">
+            <h2 class="title">Please choose an app template to get started.</h2>
+          </div>
+        </li>
         <li>
           <input id="item-1" type="radio" name="radio">
           <label for="item-1" class="list-item open">Featured Templates</label>

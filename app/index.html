@@ -59,29 +59,75 @@
             {{/if}}
         </script>
 
+
+        <!-- start template list view -->
+
+
+        <script id="screenViewTemplate" type="text/x-handlebars-template">
+            <div id="templateList" role="window">
+
+                <!-- title bar region -->
+                <section role="region">
+                  <header>
+                    <button><span class="icon icon-menu">menu</span></button>
+                    <h1>Mozillapps</h1>
+                  </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="accordion">
+                    <ul id="appList" class="list">
+                
+                    </ul>
+                    <ul id="templatelist" class="list">
+
+                    </ul>
+                </section>
+
+                <!-- footer region -->
+                <section role="region" data-type="footer">
+                    <footer></footer>
+                </section>
+              </div> 
+        </script>
+
         <script id="myAppsSubViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                {{#each myApps}}
-                    <li><a href="#apps/{{this._id}}">{{this._id}}</a></li>
-                {{/each}}
+                {{#if myApps.length}}
+                    <li class="header">
+                        <h2 class="title">Please choose an app template to get started.</h2>
+                    </li>  
+                {{else}}
+                    <li>
+                    <input id="item-0" type="radio" name="radio">
+                      <label for="item-1" class="list-item open">My Apps</label>
+                      <div id="iscroll" class="list-item-body">
+                        <ul class="horizontal-list">
+                        {{#each myApps}}
+                            <li class="list-item">
+                                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span></span>
+                            </li>
+                        {{/each}}
+                        </ul>
+                      </div>
+                    </li>
+                {{/if}}
             {{/if}}
         </script>
 
         <script id="templatesSubViewTemplate" type="text/x-handlebars-template">
-            <section id="templateListView"> 
-                  {{#if loading}}
-                    <h1>Loading...</h1>
-                  {{else}}
-                    <ul>
-                        {{#templateListViewHelper mozTemplates.categories}}
-                            {{this.name}}
-                        {{/templateListViewHelper}}
-                    </ul>
-                  {{/if}}
-            </section>
+          {{#if loading}}
+            <!-- only want one loading message -->
+          {{else}}
+            {{#templateListViewHelper mozTemplates.categories}}
+                {{this.name}}
+            {{/templateListViewHelper}}
+          {{/if}}
         </script>
+
+        <!-- end template list view -->
 
         <!-- Add your site or application content here -->
         <script>

@@ -52,27 +52,23 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     }
 });
 
+
 mozapps.Views.templatesListView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     viewName: "templatesListView",
+    template: Handlebars.compile($("#screenViewTemplate").html()),
     initialize: function() {
-        this.myTemplatesSubView = new mozapps.Views.templateSubView({collection: mozapps.tmplCollection});
-        this.myAppsSubView = new mozapps.Views.appSubView();
     },
-    
     render: function(eventName) {
         if(mozapps.currentPage == "templatesListView"){
             this.$el.html(this.template);
-
-            this.$el.append(this.myAppsSubView.$el);
-            this.$el.append(this.myTemplatesSubView.$el);
-
-            this.myAppsSubView.render();
-            this.myTemplatesSubView.render();
+            this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList')});
+            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'),collection: mozapps.tmplCollection});
         }
         return this;
     }
 });
+
 
 mozapps.Views.templateDetailView = Backbone.View.extend({
     viewName: "templateDetailView",

@@ -1,7 +1,7 @@
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 
-section[data-type="accordion"] > .header {
+section[data-type="accordion"] > .list > li.header {
 	height: auto !important;
 	padding: 1rem 0rem 1rem 2.1rem !important;
 	background: $default_primary_color !important;
