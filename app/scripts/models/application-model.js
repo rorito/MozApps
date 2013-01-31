@@ -91,6 +91,14 @@
 }(window, window.Kinvey));
 
 
+mozapps.Models.TemplateModel = Backbone.Model.extend({
+
+});
+
+mozapps.Models.AppModel = Backbone.Model.extend({
+
+});
+
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
   initialize: function() {
       var self = this;

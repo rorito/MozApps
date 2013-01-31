@@ -33,7 +33,6 @@ window.mozapps = window.mozapps || {
     return deferred.promise();
   },
 
-<<<<<<< HEAD
   initTemplateDB: function(){
     var deferred = Deferred();
 
@@ -70,7 +69,6 @@ window.mozapps = window.mozapps || {
   init: function() {
   
     $.when(mozapps.initAppDB(), mozapps.initTemplateDB()).done(function(){
-      console.log("done");
 
       mozapps.tmplModel = new mozapps.Models.TemplateModel();
       mozapps.appModel = new mozapps.Models.AppModel();
