@@ -12,7 +12,6 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: #303030;
 }
 
 #templateDetail [data-type="content"] button.previous {
@@ -61,19 +60,20 @@
 #templateDetail [data-type="content"] .template-detail {
 	display: flex;
 	padding: 2rem 0;
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: flex-start;
+	/* flex-direction: row; */
+	/* align-items: stretch; */
+	/* justify-content: flex-start; */
 	border-top: 1px solid #525252;
-	background-color: #303030;
 	box-shadow:inset 0px 0px 5px rgba(0,0,0,.5);
 }
 
 #templateDetail [data-type="content"] .template-detail > img {
+	float: left;
 	margin: 0 1.5rem;
 }
 
 #templateDetail [data-type="content"] .template-detail > div {
+	float: left;
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;

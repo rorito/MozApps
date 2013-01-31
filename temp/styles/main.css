@@ -65,10 +65,10 @@
 [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -0.4rem;
+  top: -.4rem;
   bottom: 0;
   right: 0;
-  left: -0.8rem;
+  left: -.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -147,18 +147,24 @@ section[role="region"] button.previous, section[role="region"] button.next {
   width: 4rem;
   outline: none;
   border: none;
-  background: transparent url(frog/widgets/buttons/images/arrow.png) no-repeat center center;
 }
 
-/* line 22, ../../app/styles/frog/widgets/_buttons.scss */
+/* line 21, ../../app/styles/frog/widgets/_buttons.scss */
 section[role="region"] button.next {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
+  background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
+}
+
+/* line 26, ../../app/styles/frog/widgets/_buttons.scss */
+section[role="region"] button.previous {
+  transform: rotate(-90deg);
+  background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
 }
 
 /* ----------------------------------
  * BUTTONS: frog themes
  * ---------------------------------- */
-/* line 31, ../../app/styles/frog/widgets/_buttons.scss */
+/* line 36, ../../app/styles/frog/widgets/_buttons.scss */
 section[role="region"].skin-aqua button.buy,
 section[role="region"].skin-aqua a[role="button"].buy {
   width: auto;
@@ -175,7 +181,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   border: none;
   border-radius: 0.1rem;
   font-size: 1.7rem;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   font-weight: 600;
   line-height: 3rem;
   color: #fff;
@@ -183,7 +189,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   text-shadow: none;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px black;
 }
 
 /******************************************************************
@@ -317,7 +323,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* start horizontal list */
 /* line 45, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
-  margin: 2rem 0 .8rem 0;
+  margin: 2rem 0 0.8rem 0;
 }
 
 /* line 49, ../../app/styles/frog/widgets/_accordion.scss */
@@ -428,10 +434,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] input, textarea {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: inset 0 0 3px #ccc;
+  box-shadow: inset 0 0 3px #cccccc;
   font-family: "OpenSans", Sans-serif;
   font-size: 1.1rem;
 }
@@ -455,17 +461,16 @@ section[role="region"] textarea {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #303030;
 }
 
-/* line 18, ../../app/styles/frog/screens/_template_details.scss */
+/* line 17, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] button.previous {
   position: absolute;
   top: .7rem;
   left: 1rem;
 }
 
-/* line 24, ../../app/styles/frog/screens/_template_details.scss */
+/* line 23, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] button.next {
   position: absolute;
   top: .7rem;
@@ -477,12 +482,12 @@ section[role="region"] textarea {
  * Notes: we need to set some widths during carousel init
  *
  */
-/* line 36, ../../app/styles/frog/screens/_template_details.scss */
+/* line 35, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList {
   width: 100%;
 }
 
-/* line 40, ../../app/styles/frog/screens/_template_details.scss */
+/* line 39, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList > ul {
   display: flex;
   flex-direction: row;
@@ -490,7 +495,7 @@ section[role="region"] textarea {
   padding: 0 !important;
 }
 
-/* line 47, ../../app/styles/frog/screens/_template_details.scss */
+/* line 46, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList > ul > li {
   width: 320px;
   font-size: 2.4rem;
@@ -499,32 +504,33 @@ section[role="region"] textarea {
   text-align: center;
 }
 
-/* line 54, ../../app/styles/frog/screens/_template_details.scss */
+/* line 53, ../../app/styles/frog/screens/_template_details.scss */
 .template-index {
   margin-top: -1.3rem;
   text-align: center;
 }
 
 /* template detail */
-/* line 61, ../../app/styles/frog/screens/_template_details.scss */
+/* line 60, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail {
   display: flex;
   padding: 2rem 0;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
+  /* flex-direction: row; */
+  /* align-items: stretch; */
+  /* justify-content: flex-start; */
   border-top: 1px solid #525252;
-  background-color: #303030;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* line 72, ../../app/styles/frog/screens/_template_details.scss */
+/* line 70, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail > img {
+  float: left;
   margin: 0 1.5rem;
 }
 
-/* line 76, ../../app/styles/frog/screens/_template_details.scss */
+/* line 75, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail > div {
+  float: left;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -732,7 +738,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list.scss */
 #productList [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -800,7 +806,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -997,7 +1003,7 @@ section[data-type="icon-list"] > header {
 
 /* line 24, ../../app/styles/frog/screens/_product_detail_edit.scss */
 #productDetailEdit [data-type="content"] p.box-margin-top {
-  margin: 3.0rem 0 1.6rem 0;
+  margin: 3rem 0 1.6rem 0;
 }
 
 /* line 28, ../../app/styles/frog/screens/_product_detail_edit.scss */
@@ -1017,7 +1023,7 @@ html {
 /* line 87, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   background-color: white;
   color: black;
 }
