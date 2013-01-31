@@ -123,7 +123,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
       //console.log(element.name);
-      out += "<li class='list-item'><a href='#templates/" + element._id + "'>" + 
+      out += "<li class='list-item'><a href='#templates/" + element.id + "'>" + 
       "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
       + element.name + "</span></a></li>";  
     });

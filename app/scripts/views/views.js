@@ -121,7 +121,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         //TODO do we really need this check if the template ID being passed in via URL is valid?
         // may be safe but also unnecessary
         var tmpl = _.find(mozapps.tmplCollection.toJSON(), function(elem){
-            return elem._id = self.templateID;
+            return elem.id = self.templateID;
         });
         if(tmpl){
             mozapps.newMozApp = new window.MozAppsKinvey.MozApp({
@@ -160,9 +160,9 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 this.$el.html(this.template( { loading: true } ));    
             } else {
                 mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
-                    if(element._id == self.templateID){
-                        if((index-1) > -1) { element.prevTemplateId = array[index-1]._id; }
-                        if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1]._id; }
+                    if(element.id == self.templateID){
+                        if((index-1) > -1) { element.prevTemplateId = array[index-1].id; }
+                        if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1].id; }
                         element.index = index+1;
                         element.count = array.length;
                         self.model = element;
@@ -186,7 +186,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
             console.log("appbuilder view callback");
             self.appData = _.find(_.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr'), function(elem){
-                return elem._id == self.appID;
+                return elem.id == self.appID;
             });
             console.log(self.appData);
             self.render();
