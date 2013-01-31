@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, productDetailEdit, #leftNav{
       display: none;
     }
   </style>
@@ -445,6 +445,97 @@
             <li><button class="recommend">Next</button></li>
           </ul>
         </div>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       PRODUCT DETAIL VIEW -->
+  <div id="productDetailView" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <!-- TODO: make this an edit icon where the list is populated -->
+          <a href="#"><span class="icon icon-info">info</span></a>
+        </menu>
+        <h1>Nomadic One Necklace</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <header></header>
+      <section role="region" data-type="detail" class="template-detail box-padded">
+        <p class="box-unpadded">
+          <img src="styles/temp/product_list_thumb.png" />
+        </p>
+        <h2>Item Name</h2>
+        <p class="box-unpadded">
+          Nomadic One Necklace
+        </p>
+        <h2>Description</h2>
+        <p class="box-unpadded">
+          This piece of jewelry is made from brass and braided rope in New York.  Handmade by the designer and each one is completely unique.  Part of a series of work.
+        </p>
+        <h2>Price</h2>
+        <p class="box-unpadded">
+          $29.99
+        </p>
+      </section>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
+  <!-- represents application screen
+       PRODUCT DETAIL EDIT -->
+  <div id="productDetailEdit" role="window">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+      <header>
+        <button><span class="icon icon-back">back</span></button>
+        <menu type="toolbar">
+          <!-- TODO: skin this button properly -->
+          <button>Done</button>
+        </menu>
+        <h1>Nomadic One Necklace</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content">
+      <header></header>
+      <section role="region" data-type="detail" class="template-detail box-padded">
+        <p class="box-unpadded">
+          <img src="styles/temp/product_list_thumb.png" />
+        </p>
+        <h2>Item Name</h2>
+        <p class="box-unpadded">
+          <input type="text" value="Nomadic One Necklace" />
+        </p>
+        <h2>Description</h2>
+        <p class="box-unpadded">
+          <textarea>This piece of jewelry is made from brass and braided rope in New York.  Handmade by the designer and each one is completely unique.  Part of a series of work.</textarea>
+        </p>
+        <h2>Price</h2>
+        <p class="box-unpadded">
+          <input type="text" value="$29.99" />
+        </p>
+        <p class="box-margin-top box-unpadded">
+          <button>Delete</button>
+        </p>
       </section>
     </section>
 

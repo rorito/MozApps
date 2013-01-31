@@ -1,0 +1,33 @@
+/******************************************************************
+ * 
+ * SCREEN: PRODUCT DETAIL EDIT;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* product detail edit mode */
+#productDetailEdit [data-type="content"] header {
+	display:none;
+}
+
+#productDetailEdit [data-type="content"] section.box-padded {
+	padding:2rem 2rem 2rem 2rem;
+}
+
+#productDetailEdit [data-type="content"] p.box-unpadded {
+	margin:0 0 1.6rem 0;
+	padding:0;
+}
+
+#productDetailEdit [data-type="content"] p.box-margin-top {
+	margin:3.0rem 0 1.6rem 0;
+}
+
+#productDetailEdit [data-type="content"] h2 {
+	margin:1.2rem 0 0.3rem 0;
+	@include content-header;
+}
+
+
