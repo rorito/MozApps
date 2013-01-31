@@ -117,48 +117,42 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     createApp: function(){
         var self = this;        
+        console.log("createApp: " + this.templateID);
+        var tmpl = this.collection.get(this.templateID);
 
-        //TODO do we really need this check if the template ID being passed in via URL is valid?
-        // may be safe but also unnecessary
-        var tmpl = _.find(mozapps.tmplCollection.toJSON(), function(elem){
-            return elem.id = self.templateID;
-        });
         if(tmpl){
-            mozapps.newMozApp = new window.MozAppsKinvey.MozApp({
+            var newMozApp = new mozapps.Models.AppModel({
                 name:     '',
                 published: false,
                 version: "1.0",
                 app_components: tmpl.app_components,
                 templateID: self.templateID
-            }, 'apps');
+            });
 
-            mozapps.newMozApp.save({
+            newMozApp.save({
                 success: function(newMozApp) {
-                    console.log("createapp - success");
-                    //mozapps.fetchAppCollection();
-                    //mozapps.appCollection.add(newMozApp.attr);
-                    
+                    console.log("createapp - success");                    
+                    mozapps.appCollection.add(newMozApp);
                 },
                 error: function(e) {
                     console.log("ERROR: createApp");
                 },
                 complete: function(){
-                    console.log(mozapps.newMozApp.attr)
+                    console.log(mozapps.newMozApp);
                     //mozapps.router.navigate("#apps/" + mozapps.newMozApp.attr._id, true);
                 }
             });
+
+
         } else {
             console.log("didn't find template in template collection");
             //TODO throw up modal error dialog here
         }
     },
     render: function(eventName) {
-        console.log("RENDER: templateDetailView");
         var self = this;
-        if(mozapps.currentPage == "templateDetailView"){
-            if(!mozapps.tmplCollection || mozapps.tmplCollection.length < 1){
-                this.$el.html(this.template( { loading: true } ));    
-            } else {
+        if(mozapps.currentPage == "templateDetailView" && mozapps.tmplCollection.length > 0){
+            console.log("RENDER: templateDetailView");
                 mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
                     if(element.id == self.templateID){
                         if((index-1) > -1) { element.prevTemplateId = array[index-1].id; }
@@ -169,7 +163,6 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                     }
                 });
                 this.$el.html(this.template(this.model));
-            }
         }
         return this;
     }
@@ -182,15 +175,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     viewName: "appBuilderView",
     appID: "",
     initialize: function() {       
-        var self = this;
-        Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
-            console.log("appbuilder view callback");
-            self.appData = _.find(_.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr'), function(elem){
-                return elem.id == self.appID;
-            });
-            console.log(self.appData);
-            self.render();
-        });
+        this.listenTo(this.collection, "reset", this.render);
     },
     events: {
         'click button#back' : "back"
@@ -200,11 +185,13 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView"){
-            if(!this.appData){
+            this.model = this.collection.get(appID);
+
+            if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("app builder - this.appData");
-                this.$el.html(this.template(this.appData));
+                console.log("app builder - this.model");
+                this.$el.html(this.template(this.model));
             }
         }
         return this;
