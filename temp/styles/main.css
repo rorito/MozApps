@@ -270,13 +270,19 @@ section[role="region"].skin-aqua > header:first-child > a {
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 /* line 4, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"], img {
+  -moz-user-select: none;
+  user-drag: none;
+}
+
+/* line 9, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li.header {
   height: auto !important;
   padding: 1rem 0rem 1rem 2.1rem !important;
   background: white !important;
 }
 
-/* line 10, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 15, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] .title {
   font-family: "OpenSansLight";
   font-size: 2.2rem;
@@ -285,13 +291,13 @@ section[data-type="accordion"] .title {
   color: black;
 }
 
-/* line 18, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 23, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list {
   padding: 0px;
   border-top: 1px solid #4c4c4c;
 }
 
-/* line 23, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 28, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li > .list-item {
   display: block;
   padding: 1.3rem 4rem 1.3rem 3.5rem;
@@ -303,35 +309,33 @@ section[data-type="accordion"] > .list > li > .list-item {
 }
 
 /* start horizontal list */
-/* line 34, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 39, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
   margin: 2rem 0 0.8rem 0;
 }
 
-/* line 38, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 43, ../../app/styles/frog/widgets/_accordion.scss */
 #templateList .list-item-body {
   overflow: scroll;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
   background: #a5a5a5;
   box-shadow: inset 0 0 0.2rem black;
   border-bottom: 1px solid #4c4c4c;
 }
 
-/* line 48, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 50, ../../app/styles/frog/widgets/_accordion.scss */
 #templateList .list-item-body > .horizontal-list {
   width: 600px;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: stretch; */
+  /* justify-content: flex-start; */
 }
 
-/* line 56, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 58, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item {
   width: 130px;
   margin-right: 2.1rem;
+  float: left;
   font-family: "OpenSansLight";
   font-size: 1.4rem;
   font-weight: 600;
@@ -340,20 +344,20 @@ section[data-type="accordion"] > .list > li > .list-item {
   color: white;
 }
 
-/* line 68, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 71, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail {
   border: 1px solid #bababa;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -moz-box-sizing: border-box;
 }
 
-/* line 74, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 77, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail.selected {
   border: 4px solid #00abc9;
 }
 
 /* CSS powered interaction */
-/* line 80, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 83, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"] {
   opacity: 0;
   position: absolute;
@@ -365,20 +369,20 @@ section[data-type="accordion"] > .list > li > .list-item {
   background-color: red;
 }
 
-/* line 91, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 94, ../../app/styles/frog/widgets/_accordion.scss */
 .list-item-body {
   height: 0px;
   transition: height 1s;
 }
 
-/* line 96, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 99, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label + div.list-item-body {
   display: block;
   height: 20.5rem;
   overflow: scroll;
 }
 
-/* line 102, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 105, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label.list-item {
   background: #eaeaea url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat 97% 50%;
 }

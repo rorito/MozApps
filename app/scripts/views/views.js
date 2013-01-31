@@ -3,6 +3,7 @@
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
+    iscrollObjects: new Array(),
     initialize: function(){
         var self = this;
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
@@ -18,6 +19,12 @@ mozapps.Views.appSubView = Backbone.View.extend({
                 this.$el.html(this.template( { myApps: this.collection } ));
             }
             this.delegateEvents();
+
+            // setup iscroll objects
+            _.each(this.$el.find('.list-item-body'), function(element){
+                // this.iscrollObjects.push(new iScroll(element.id, { bounce: false, hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
+            }, this);
+
             return this;
         }
     }
@@ -34,6 +41,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
             if(this.collection.length < 1){
                 this.$el.html(this.template( { loading: true } ));
             } else {
+                console.log("RENDER TEMPLATES SUBVIEW WITH DATA")
                 var tmplByCategory = {};
                 //hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 tmplByCategory.categories = [];
@@ -48,11 +56,15 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
 
-                // setup iscroll
-
+                // setup iscroll objects and set viewport (UL) width
                 _.each(this.$el.find('.list-item-body'), function(element){
-                    this.iscrollObjects.push(new iScroll(element.id, { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
+                    //this.iscrollObjects.push(new iScroll(element.id, { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
+                    var elementObject = $(element).find('ul');
+                    elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+                    console.log("Accordion body width:" + elementObject.css('width'));
+                    // elementObject.find('img').on( 'dragstart', function() { return false; } );
                 }, this);
+
                 
                 return this;
             }

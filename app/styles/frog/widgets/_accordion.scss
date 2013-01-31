@@ -1,6 +1,11 @@
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 
+section[data-type="accordion"], img {
+	-moz-user-select: none;
+	user-drag: none;
+}
+
 section[data-type="accordion"] > .list > li.header {
 	height: auto !important;
 	padding: 1rem 0rem 1rem 2.1rem !important;
@@ -37,9 +42,6 @@ section[data-type="accordion"] > .list > li > .list-item {
 
 #templateList .list-item-body {
 	overflow: scroll;
-	width: 100%;
-	overflow-x: hidden;
-	overflow-y: hidden;
 	background: $default_tertiary_color;
 	box-shadow: inset 0 0 .2rem rgba(0,0,0,1);
 	border-bottom: 1px solid $default_border_color;
@@ -47,15 +49,16 @@ section[data-type="accordion"] > .list > li > .list-item {
 
 #templateList .list-item-body > .horizontal-list {
 	width: 600px;
-	display: flex;
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: flex-start;
+	/* display: flex; */
+	/* flex-direction: row; */
+	/* align-items: stretch; */
+	/* justify-content: flex-start; */
 }
 
 .horizontal-list > .list-item {
 	width: 130px;
 	margin-right: 2.1rem;
+	float: left;
 	font-family: "OpenSansLight";
 	font-size: 1.4rem;
 	font-weight: 600;
