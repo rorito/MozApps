@@ -94,7 +94,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
             return elem._id = self.templateID;
         });
         if(tmpl){
-            var newMozApp = new window.MozAppsKinvey.MozApp({
+            mozapps.newMozApp = new window.MozAppsKinvey.MozApp({
                 name:     '',
                 published: false,
                 version: "1.0",
@@ -102,14 +102,19 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 templateID: self.templateID
             }, 'apps');
 
-            newMozApp.save({
+            mozapps.newMozApp.save({
                 success: function(newMozApp) {
                     console.log("createapp - success");
-                    mozapps.fetchAppCollection();
-                    mozapps.router.navigate("#apps/" + newMozApp.attr._id, true);
+                    //mozapps.fetchAppCollection();
+                    //mozapps.appCollection.add(newMozApp.attr);
+                    
                 },
                 error: function(e) {
                     console.log("ERROR: createApp");
+                },
+                complete: function(){
+                    console.log(mozapps.newMozApp.attr)
+                    //mozapps.router.navigate("#apps/" + mozapps.newMozApp.attr._id, true);
                 }
             });
         } else {

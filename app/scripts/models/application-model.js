@@ -21,7 +21,8 @@
     // Override constructor to preset the collection and store.
     constructor: function(attributes) {
       Kinvey.Entity.prototype.constructor.call(this, attributes, 'apps', {
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
+        //store: Kinvey.Store.OFFLINE// Enable offline saving.
+        store: 'offline'
       });
     },
 
@@ -47,7 +48,8 @@
     // Override constructor to preset the collection and store.
     constructor: function(attributes) {
       Kinvey.Entity.prototype.constructor.call(this, attributes, 'templates', {
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
+        //store: Kinvey.Store.OFFLINE// Enable offline saving.
+        store: 'offline'
       });
     },
 
@@ -63,7 +65,8 @@
       // Override constructor to preset the collection and store.
       Kinvey.Collection.prototype.constructor.call(this, 'apps', {
         query: query,
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
+        //store: Kinvey.Store.OFFLINE// Enable offline saving.
+        store: 'offline'
       });
     }
   });
@@ -74,7 +77,8 @@
       // Override constructor to preset the collection and store.
       Kinvey.Collection.prototype.constructor.call(this, 'templates', {
         query: query,
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
+        //store: Kinvey.Store.OFFLINE// Enable offline saving.
+        store:'offline'
       });
     }
   });
@@ -86,69 +90,28 @@
   App.MozAppTemplateCollection = new MozAppTemplateCollection();
 }(window, window.Kinvey));
 
-// OnResetCollection = Backbone.Collection.extend({
-//   constructor: function(){
-//     var args = slice(arguments);
-//     Backbone.Collection.prototype.constructor.apply(this, args);
- 
-//     this.onResetCallbacks = [];
-//     this.on("reset", this.collectionReset, this);
-//   },
- 
-//   onReset: function(callback){
-//     this.onResetCallbacks.push(callback);
-//     this.collectionLoaded && this.fireResetCallbacks();
-//   },
- 
-//   collectionReset: function(){
-//     if (!this.collectionLoaded) {
-//       this.collectionLoaded = true
-//     }
-//     this.fireResetCallbacks();
-//   },
- 
-//   fireResetCallbacks: function(){
-//     var callback = this.onResetCallbacks.pop();
-//     if (callback){
-//       callback(this);
-//       this.fireResetCallbacks();
-//     }
-//   }
-// });
 
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
   initialize: function() {
-    var self = this;
-
-    //reload this backbone collection whenever the Kinvey Collection gets updated
-    Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-      self.reset(_.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr'));
-    });
-
-    this.refreshData();
-  },
-  refreshData: function(){
-    var self = this;
-    window.MozAppsKinvey.MozAppTemplateCollection.fetch({
-        success: function(data) {
-            self.reset(_.pluck(data,'attr'));
-        },
-        error: function(e) {
-          console.log("kinvey fetch error");
-          if(self.length < 1){
-            //fetch failed and we don't have any records yet (there should always be templates), so we'll
-            // assume we started out offline and use fixture data until our first fetch
-            console.log("kinvey fetch failed - loading fixture data");
-            self.reset(window.mozapps.templateFixtureData);
-          }
-        },
-        complete: function(data){
-        }
-    });
+      var self = this;
+      mozapps.templatesDB.getAll(function(data){
+        self.reset(data);
+        }, function(){
+      });
   }
 });
 
-window.mozapps.templateFixtureData = [
+mozapps.Collections.AppCollection = Backbone.Collection.extend({
+  initialize: function() {
+      var self = this;
+      mozapps.appsDB.getAll(function(data){
+        self.reset(data);
+        }, function(){
+      });
+  }
+});
+
+mozapps.templateFixtureData = [
   {
     "_id": "50f53665e3fe9c210501223c",
     "_acl": {

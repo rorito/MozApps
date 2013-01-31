@@ -1,4 +1,4 @@
-//Deferred.installInto(Zepto);
+Deferred.installInto(Zepto);
 
 
 //TODO
@@ -14,33 +14,75 @@ window.mozapps = window.mozapps || {
   Utils: {},
   currentPage: {},
 
-  fetchAppCollection: function(){
-    //Note: we're using a backbone collection for the template collection which is backed by a Kinvey Collection
-    // so that we can fall back to fixture data for the templates if we're offline on our first fetch attempt.
-    // With the My Apps collection, it's initial state is empty, so we don't need fixutre data. Even if we start
-    // with created apps on the server and an empty app, it is fine because when apps get created they get a GUID
-    // and the locally created app won't collide with ones on the server that will be eventually downloaded
-    window.MozAppsKinvey.MozAppCollection.fetch({
-        success: function(data) {
-        },
-        error: function(e) {
-        },
-        complete: function(data){
-        }
+  initAppDB: function(){
+    var deferred = Deferred();
+
+    mozapps.appsDB = new IDBStore({
+      dbVersion: 1,
+      storePrefix: 'mozapps-',
+      storeName: 'apps',
+      keyPath: 'id',
+      autoIncrement: true,
+      onStoreReady: function(){
+        console.log('App IDB ObjectStore ready!');
+        deferred.resolve();
+      },
+      onError: function(error){ alert("There was a problem opening the MozApps database. Please restart the app."); }
     });
+
+    return deferred.promise();
+  },
+
+  initTemplateDB: function(){
+    var deferred = Deferred();
+
+    mozapps.templatesDB = new IDBStore({
+      dbVersion: 1,
+      storePrefix: 'mozapps-',
+      storeName: 'templates',
+      keyPath: 'id',
+      autoIncrement: true,
+      onStoreReady: function(){
+        console.log('Templates IDB ObjectStore ready!');
+
+        //check to see if we need to load fixture data
+        mozapps.templatesDB.count(
+          function(data){
+            if(data < 1){
+              _.each(mozapps.templateFixtureData, function(element, index, list){
+                  mozapps.templatesDB.put(element, function(id){ }, function(error){  } );
+              });
+            }
+          },
+          function(error){
+            console.log(error);
+          }
+        );
+
+        deferred.resolve();
+      },
+      onError: function(error){ alert("There was a problem opening the MozApps database. Please restart the app."); } 
+    });
+
+    return deferred.promise();
   },
   init: function() {
-    mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
-    mozapps.fetchAppCollection();
+  
+    $.when(mozapps.initAppDB(), mozapps.initTemplateDB()).done(function(){
+      console.log("done");
 
-    mozapps.tmplListView = new mozapps.Views.templatesListView();
-    mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
-    mozapps.appBuilderView = new mozapps.Views.appBuilderView();
-    mozapps.router = new mozapps.Routers.ApplicationRouter(); 
-    Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+      mozapps.tmplModel = new mozapps.Models.TemplateModel();
+      mozapps.appModel = new mozapps.Models.AppModel();
+      
+      mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
+      mozapps.appCollection = new mozapps.Collections.AppCollection();
 
-    //var myScroll = new iScroll('iscroll', { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false });
-
+      mozapps.tmplListView = new mozapps.Views.templatesListView();
+      mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
+      mozapps.appBuilderView = new mozapps.Views.appBuilderView();
+      mozapps.router = new mozapps.Routers.ApplicationRouter(); 
+      Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+    });
   }
 };
 
