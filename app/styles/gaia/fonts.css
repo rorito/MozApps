@@ -1,4 +1,9 @@
 @font-face {  
   font-family: 'MozTTLight';  
   src: url( fonts/MozTT%20Light.ttf ) format("truetype");  
+} 
+
+@font-face {  
+  font-family: 'MozTTMedium';  
+  src: url( fonts/MozTT%20Medium.ttf ) format("truetype");  
 }  

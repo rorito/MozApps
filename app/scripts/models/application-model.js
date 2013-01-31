@@ -101,15 +101,21 @@ mozapps.Models.AppModel = Backbone.Model.extend({
 
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
-  initialize: function() {
-      var self = this;
+  resetCollectionData: function(){
+    var self = this;
       mozapps.templatesDB.getAll(function(data){
         self.reset(data);
         }, function(){
       });
-  }
+  },
+  initialize: function() {
+      var self = this;
+      this.listenTo(this, "change", this.resetCollectionData);
+      this.resetCollectionData();
+  } 
 });
 
+//TODO use UUIDs for id?
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
   initialize: function() {

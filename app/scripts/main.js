@@ -78,7 +78,7 @@ window.mozapps = window.mozapps || {
 
       mozapps.tmplListView = new mozapps.Views.templatesListView();
       mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
-      mozapps.appBuilderView = new mozapps.Views.appBuilderView();
+      mozapps.appBuilderView = new mozapps.Views.appBuilderView({collection: mozapps.appCollection});
       mozapps.router = new mozapps.Routers.ApplicationRouter(); 
       Backbone.history.start(); //{ pushState: true, root: mozapps.root }
     });
@@ -122,7 +122,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
-      //console.log(element.name);
+      console.log(element);
       out += "<li class='list-item'><a href='#templates/" + element.id + "'>" + 
       "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
       + element.name + "</span></a></li>";  

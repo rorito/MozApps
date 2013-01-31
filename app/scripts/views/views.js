@@ -144,7 +144,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 },
                 complete: function(){
                     console.log(mozapps.newMozApp.attr)
-                    mozapps.router.navigate("#apps/" + mozapps.newMozApp.attr._id, true);
+                    //mozapps.router.navigate("#apps/" + mozapps.newMozApp.attr._id, true);
                 }
             });
         } else {
@@ -181,8 +181,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     template: Handlebars.compile($("#appBuilderViewTemplate").html()),
     viewName: "appBuilderView",
     appID: "",
-    initialize: function() {
-        console.log("INIT : mozapps.Views.appBuilderView");     
+    initialize: function() {       
         var self = this;
         Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
             console.log("appbuilder view callback");
@@ -200,13 +199,11 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         window.history.back();
     },
     render: function(eventName) {
-        console.log("RENDER : mozapps.Views.appBuilderView"); 
         if(mozapps.currentPage == "appBuilderView"){
             if(!this.appData){
-                console.log(" -- without this.appData"); 
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log(" -- with this.appData");
+                console.log("app builder - this.appData");
                 this.$el.html(this.template(this.appData));
             }
         }
