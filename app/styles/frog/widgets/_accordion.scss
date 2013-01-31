@@ -1,7 +1,18 @@
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 
-section[data-type="accordion"] > .header {
+section[data-type="accordion"] {
+	-moz-transform : translateZ(0); 
+	transform : translateZ(0);
+}
+
+
+section[data-type="accordion"], img {
+	-moz-user-select: none;
+	user-drag: none;
+}
+
+section[data-type="accordion"] > .list > li.header {
 	height: auto !important;
 	padding: 1rem 0rem 1rem 2.1rem !important;
 	background: $default_primary_color !important;
@@ -36,9 +47,7 @@ section[data-type="accordion"] > .list > li > .list-item {
  }
 
 #templateList .list-item-body {
-	overflow: scroll;
-	width: 100%;
-	overflow-x: hidden;
+	overflow-x: scroll;
 	overflow-y: hidden;
 	background: $default_tertiary_color;
 	box-shadow: inset 0 0 .2rem rgba(0,0,0,1);
@@ -47,15 +56,16 @@ section[data-type="accordion"] > .list > li > .list-item {
 
 #templateList .list-item-body > .horizontal-list {
 	width: 600px;
-	display: flex;
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: flex-start;
+	/* display: flex; */
+	/* flex-direction: row; */
+	/* align-items: stretch; */
+	/* justify-content: flex-start; */
 }
 
 .horizontal-list > .list-item {
 	width: 130px;
 	margin-right: 2.1rem;
+	float: left;
 	font-family: "OpenSansLight";
 	font-size: 1.4rem;
 	font-weight: 600;
@@ -63,6 +73,11 @@ section[data-type="accordion"] > .list > li > .list-item {
 	text-align: center;
 	color: $default_primary_color;
 }
+
+.horizontal-list > .list-item a:link { color: $default_primary_color; }
+.horizontal-list > .list-item a:visited { color: $default_primary_color; }
+.horizontal-list > .list-item a:hover { color: $default_primary_color; }
+.horizontal-list > .list-item a:active { color: $default_primary_color; }
 
 
 .horizontal-list > .list-item > .template-thumbnail {
@@ -102,4 +117,3 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list > li > input[type="radio"]:checked+label.list-item {
 	background: $default_secondary_color url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat  97% 50%;
 }
-

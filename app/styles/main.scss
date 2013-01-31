@@ -29,6 +29,17 @@ $aqua_color: #05686d;
     font-weight: 100;
 }
 
+@mixin content-header {
+    color:#ccc;
+    text-transform:uppercase;
+    font-size:1.2rem;
+}
+
+@mixin input-text {
+    font-family: "OpenSans", Sans-serif;
+    font-size:1.1rem;
+}
+
 @mixin list-header {
 	height: auto !important;
 	padding: 0.3rem 3.4rem 0 3.4rem !important;
@@ -56,15 +67,18 @@ $aqua_color: #05686d;
 @import "frog/widgets/_containers";
 @import "frog/widgets/_headers";
 @import "frog/widgets/_accordion";
+@import "frog/widgets/_inputs";
 
 @import "frog/screens/_template_details";
 @import "frog/screens/_app_builder";
 @import "frog/screens/_app_builder_edit_icon";
 @import "frog/screens/_left_nav";
+/* TODO: consolidate product CSS */
 @import "frog/screens/_product_list";
 @import "frog/screens/_product_list_edit";
 @import "frog/screens/_product_add_image";
-
+@import "frog/screens/_product_detail_view";
+@import "frog/screens/_product_detail_edit";
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
 
@@ -85,6 +99,11 @@ ul {
 ul > li {
 	padding: 0;
 }
+
+a:link { color: $default_text_color; text-decoration: none; }
+a:visited { color: $default_text_color; text-decoration: none; }
+a:hover { color: $default_text_color; text-decoration: none; }
+a:active { color: $default_text_color; text-decoration: none; }
 
 .hidden {
 	display: none;

@@ -33,6 +33,7 @@ window.mozapps = window.mozapps || {
     return deferred.promise();
   },
 
+<<<<<<< HEAD
   initTemplateDB: function(){
     var deferred = Deferred();
 
@@ -87,21 +88,49 @@ window.mozapps = window.mozapps || {
 };
 
 $(document).ready(function(){
-  window.mozapps.init();
+
+  // TEMP INSTALL
+
+
+  /*
+  var request = navigator.mozApps.getSelf();
+  request.onsuccess = function() {
+    if (request.result) {
+      // we're installed
+    } else {
+      navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
+    }
+  };
+  request.onerror = function() {
+    alert('Error checking installation status: ' + this.error.message);
+  }; */
+
+   window.mozapps.init();
+
 });
 
 Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var out = "";
+  var count = 0;
+  var tempImgUrl = "styles/temp/template_icon_store.png";
+  var initItemString = " checked";
   for (var key in items) {
-    out += key;
-    out += "<ul>";
+    count++;
+    if(count > 1) {
+      initItemString = "";
+    }
+    out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
+    + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
+    out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
-      out += "<li><a href='#templates/" + element._id + "'>" + element.name + "</a></li>";  
+      //console.log(element.name);
+      out += "<li class='list-item'><a href='#templates/" + element._id + "'>" + 
+      "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
+      + element.name + "</span></a></li>";  
     });
-    out += "</ul>";
+    out += "</ul></div></li>";
   }
-
   return out;
 });
 

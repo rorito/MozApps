@@ -12,33 +12,69 @@
         <div id="appContainer"></div>
 
         <script id="templateDetailViewTemplate" type="text/x-handlebars-template">
+
+
+
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                {{#if prevTemplateId}}
-                    <a href="#templates/{{prevTemplateId}}">Previous Template</a></br>
-                {{/if}}
-                {{#if nextTemplateId}}
-                    <a href="#templates/{{nextTemplateId}}">Next Template</a>
-                {{/if}}
-                
-                <p>Index: {{index}}</p>
-                <p>Count: {{count}}</p>
-                <p>{{name}}</p>
-                <p>{{description}}</p>
-                <img id="templateImage" src="{{templateImageUrl}}">
-                <button id="useButton">Use</button>
-                <section id="appComponentList">    
-                    <ul class="app_components">
+
+              <div id="templateDetail" role="window">
+
+                <!-- title bar region -->
+                <section role="region" data-type="header">
+                  <header>
+                    <button id="back"><span class="icon icon-back">back</span></button>
+                    <h1>Featured Templates</h1>
+                  </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="content">
+                  <section role="region" data-type="header" class="template-detail-header">
+                    {{#if prevTemplateId}}
+                        <button class="previous" data-id="{{prevTemplateId}}"><span class="hidden"><</span></button>
+                    {{/if}}
+                    {{#if nextTemplateId}}
+                        <button class="next" data-id="{{nextTemplateId}}"><span class="hidden">></span></button>
+                    {{/if}}
+                    <div id="templateNameList">
+                      <ul>
+                        <li>{{name}}</li>
+                      </ul>
+                    </div>
+                    <p class="template-index">{{index}} of {{count}}</p>
+                  </section>
+                  <section role="region" data-type="detail" class="template-detail">
+                    <img src="styles/temp/template_icon_large_store.png" alt="">
+                    <div>
+                      <p>{{name}} {{description}}</p>
+                      <button id="useButton" class="recommend">Choose</button>
+                    </div>
+                  </section>
+                  <section role="region" data-type="list">
+                    <header>Included Components</header>
+                    <ul>
                         {{#each app_components}}
                             <li>{{this.component_name}}</li>
                         {{/each}}
                     </ul>
+                  </section>
                 </section>
+
+                <!-- footer region -->
+                <section role="region" data-type="footer">
+                  <footer></footer>
+                </section>
+              </div>
             {{/if}}
+
+
+
+
         </script>
 
-        <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
+        <script id="appBuilderViewTemplateREAL" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
@@ -59,29 +95,149 @@
             {{/if}}
         </script>
 
+        <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
+
+            <!-- represents application screen
+               APP BUILDER -->
+          <div id="appBuilder" role="window">
+
+            <!-- title bar region -->
+            <section role="region" data-type="header">
+              <header>
+                <button id="back"><span class="icon icon-back">back</span></button>
+                <h1>App Builder</h1>
+              </header>
+            </section>
+
+            <!-- content region -->
+            <section role="region" data-type="content">
+              <header>Your template</header>
+              <section role="region" data-type="detail" class="template-detail">
+                <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
+                <div>
+                  <h1>Small Store</h1>
+                  <button class="recommend">Publish</button>
+                  <button class="preview"></button>
+                </div>
+              </section>
+              <section role="region" data-type="list">
+                <header>Edit your app components</header>
+                <ul data-type="edit">
+                  <li>
+                    <label class="danger">
+                      <input type="checkbox" checked>
+                      <div></div>
+                    </label>
+                    <a href="#">
+                      <p>Name your App</p>
+                      <p>Personalize your app</p>
+                      <button></button>
+                    </a>
+                  </li>
+                  <li>
+                    <label class="danger">
+                      <input type="checkbox" checked>
+                      <div></div>
+                    </label>
+                    <a href="#">
+                      <p>Carousel</p>
+                      <p>Displays series of images</p>
+                      <button></button>
+                    </a>
+                  </li>
+                  <li>
+                    <label class="danger">
+                      <input type="checkbox" checked>
+                      <div></div>
+                    </label>
+                    <a href="#">
+                      <p>About me</p>
+                      <p>Blah de da blah blah blah</p>
+                      <button></button>
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            </section>
+
+            <!-- footer region -->
+            <section role="region" data-type="footer">
+              <footer></footer>
+            </section>
+          </div>
+
+
+        </script>
+
+
+        <!-- start template list view -->
+
+
+        <script id="screenViewTemplate" type="text/x-handlebars-template">
+            <div id="templateList" role="window">
+
+                <!-- title bar region -->
+                <section role="region">
+                  <header>
+                    <button><span class="icon icon-menu">menu</span></button>
+                    <h1>Mozillapps</h1>
+                  </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="accordion">
+                    <ul id="appList" class="list">
+                
+                    </ul>
+                    <ul id="templatelist" class="list">
+
+                    </ul>
+                </section>
+
+                <!-- footer region -->
+                <section role="region" data-type="footer">
+                    <footer></footer>
+                </section>
+              </div> 
+        </script>
+
         <script id="myAppsSubViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                {{#each myApps}}
-                    <li><a href="#apps/{{this._id}}">{{this._id}}</a></li>
-                {{/each}}
+                {{#if myApps.length}}
+                    <li class="header">
+                        <h2 class="title">Please choose an app template to get started.</h2>
+                    </li>  
+                {{else}}
+                    <li>
+                    <input id="item-0" type="radio" name="radio">
+                      <label for="item-1" class="list-item open">My Apps</label>
+                      <div id="myAppsBody" class="list-item-body">
+                        <ul class="horizontal-list">
+                        {{#each myApps}}
+                            <li class="list-item">
+                                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span></span>
+                            </li>
+                        {{/each}}
+                        </ul>
+                      </div>
+                    </li>
+                {{/if}}
             {{/if}}
         </script>
 
         <script id="templatesSubViewTemplate" type="text/x-handlebars-template">
-            <section id="templateListView"> 
-                  {{#if loading}}
-                    <h1>Loading...</h1>
-                  {{else}}
-                    <ul>
-                        {{#templateListViewHelper mozTemplates.categories}}
-                            {{this.name}}
-                        {{/templateListViewHelper}}
-                    </ul>
-                  {{/if}}
-            </section>
+          {{#if loading}}
+            <!-- only want one loading message -->
+          {{else}}
+            {{#templateListViewHelper mozTemplates.categories}}
+                {{this.name}}
+            {{/templateListViewHelper}}
+          {{/if}}
         </script>
+
+        <!-- end template list view -->
 
         <!-- Add your site or application content here -->
         
