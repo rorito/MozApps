@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, productDetailEdit, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, #leftNav{
       display: none;
     }
   </style>
@@ -292,7 +292,7 @@
           <!-- TODO: make this an add icon -->
           <a href="#"><span class="icon icon-info">info</span></a>
           <!-- TODO: make this an edit icon where the list is populated -->
-          <a href="#"><span class="icon icon-info">info</span></a>
+          <a href="#" id="link-add-product"><span class="">+</span></a>
         </menu>
         <h1>Product List</h1>
       </header>
@@ -303,12 +303,14 @@
       <header>Products</header>
       <section role="region" data-type="detail" class="template-detail">
         <!-- uncomment out to show unpopulated view -->
-        <!--
         <div class="product-empty">
           <p>To add products, tap the + button</p>
         </div>
-        -->
+        <!-- this is for testing phone image api -->
+        <div id="image-presenter">
+        </div>
         <!-- comment this out to hide populated view -->
+        <!--
         <ul data-type="list">
           <li>
             <a href="#">
@@ -337,6 +339,7 @@
             </a>
           </li>
         </ul>
+        -->
       </section>
     </section>
 
@@ -574,6 +577,7 @@
 
 
   <!-- build:js scripts/scripts.js -->
+  <script type="text/javascript" src="scripts/temp/sandbox.js"></script>
 
   <!-- endbuild -->
 </body>
