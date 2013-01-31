@@ -10,12 +10,16 @@ mozapps.Views.appSubView = Backbone.View.extend({
             self.collection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
             self.render();
         });
+
+        // SK - this may be a hack?, problem with back button render
+        this.render();
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
             if(!this.collection){
                 this.$el.html(this.template( { loading: true } ));    
             } else {
+                console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
                 this.$el.html(this.template( { myApps: this.collection } ));
             }
             this.delegateEvents();
@@ -34,14 +38,17 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     template: Handlebars.compile($("#templatesSubViewTemplate").html()),
     iscrollObjects: new Array(),
     initialize: function(){
+        console.log("XXX INIT");
         this.listenTo(this.collection, "reset", this.render);
+        // SK - this may be a hack?, problem with back button render
+        this.render();
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
             if(this.collection.length < 1){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("RENDER TEMPLATES SUBVIEW WITH DATA")
+                console.log("RENDER: templatesListView SubView: templatesSubViewTemplate");
                 var tmplByCategory = {};
                 //hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 tmplByCategory.categories = [];
@@ -77,7 +84,9 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     initialize: function() {
     },
     render: function(eventName) {
+        console.log("Current Page: " + mozapps.currentPage);
         if(mozapps.currentPage == "templatesListView"){
+            console.log("RENDER: templatesListView");
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList')});
             this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'),collection: mozapps.tmplCollection});
@@ -141,6 +150,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         }
     },
     render: function(eventName) {
+        console.log("RENDER: templateDetailView");
         var self = this;
         if(mozapps.currentPage == "templateDetailView"){
             if(!mozapps.tmplCollection || mozapps.tmplCollection.length < 1){
@@ -179,7 +189,12 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             self.render();
         });
     },
-    
+    events: {
+        'click button#back' : "back"
+    },
+    back : function() {
+        window.history.back();
+    },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView"){
             if(!this.appData){

@@ -46,7 +46,7 @@ $(document).ready(function(){
   // TEMP INSTALL
 
 
-  /* 
+  /*
   var request = navigator.mozApps.getSelf();
   request.onsuccess = function() {
     if (request.result) {
