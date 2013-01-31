@@ -97,6 +97,12 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     events: {
         'click #useButton' : 'createApp',
+        'click .previous' : 'move',
+        'click .next' : 'move'
+    },
+    move: function(event) {
+        var button = $(event.currentTarget);
+        window.location = "#templates/" + button.data('id');
     },
     createApp: function(){
         var self = this;        

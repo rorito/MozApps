@@ -12,30 +12,71 @@
         <div id="appContainer"></div>
 
         <script id="templateDetailViewTemplate" type="text/x-handlebars-template">
+
+
+
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                {{#if prevTemplateId}}
-                    <a href="#templates/{{prevTemplateId}}">Previous Template</a></br>
-                {{/if}}
-                {{#if nextTemplateId}}
-                    <a href="#templates/{{nextTemplateId}}">Next Template</a>
-                {{/if}}
-                
-                <p>Index: {{index}}</p>
-                <p>Count: {{count}}</p>
-                <p>{{name}}</p>
-                <p>{{description}}</p>
-                <img id="templateImage" src="{{templateImageUrl}}">
-                <button id="useButton">Use</button>
-                <section id="appComponentList">    
-                    <ul class="app_components">
+
+              <div id="templateDetail" role="window">
+
+                <!-- title bar region -->
+                <section role="region" data-type="header">
+                  <header>
+                    <button><span class="icon icon-back">back</span></button>
+                    <menu type="toolbar">
+                      <a href="#"><span class="icon icon-info">info</span></a>
+                    </menu>
+                    <h1>Featured Templates</h1>
+                  </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="content">
+                  <section role="region" data-type="header" class="template-detail-header">
+                    {{#if prevTemplateId}}
+                        <button class="previous" data-id="{{prevTemplateId}}"><span class="hidden"><</span></button>
+                    {{/if}}
+                    {{#if nextTemplateId}}
+                        <button class="next" data-id="{{nextTemplateId}}"><span class="hidden">></span></button>
+                    {{/if}}
+                    <div id="templateNameList">
+                      <ul>
+                        <li>{{name}}</li>
+                        <li>Blog</li>
+                        <li>Other</li>
+                      </ul>
+                    </div>
+                    <p class="template-index">{{index}} of {{count}}</p>
+                  </section>
+                  <section role="region" data-type="detail" class="template-detail">
+                    <img src="styles/temp/template_icon_large_store.png" alt="">
+                    <div>
+                      <p>{{name}} {{description}}</p>
+                      <button id="useButton" class="recommend">Choose</button>
+                    </div>
+                  </section>
+                  <section role="region" data-type="list">
+                    <header>Included Components</header>
+                    <ul>
                         {{#each app_components}}
                             <li>{{this.component_name}}</li>
                         {{/each}}
                     </ul>
+                  </section>
                 </section>
+
+                <!-- footer region -->
+                <section role="region" data-type="footer">
+                  <footer></footer>
+                </section>
+              </div>
             {{/if}}
+
+
+
+
         </script>
 
         <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
