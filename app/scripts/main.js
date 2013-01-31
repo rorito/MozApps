@@ -46,7 +46,7 @@ $(document).ready(function(){
   // TEMP INSTALL
 
 
-
+  /* 
   var request = navigator.mozApps.getSelf();
   request.onsuccess = function() {
     if (request.result) {
@@ -57,7 +57,7 @@ $(document).ready(function(){
   };
   request.onerror = function() {
     alert('Error checking installation status: ' + this.error.message);
-  };
+  }; */
 
    window.mozapps.init();
 
