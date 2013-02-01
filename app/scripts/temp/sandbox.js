@@ -13,7 +13,7 @@ var request = navigator.mozApps.getSelf();
   };
 */
 
-var isConsole = true;
+
 
 var PHOTO_WIDTH = 83;
 var PHOTO_HEIGHT = 83;
@@ -26,8 +26,9 @@ var linkAddProduct = document.querySelector("#link-add-product");
 if ("undefined" != typeof(linkAddProduct)) {
 	linkAddProduct.onclick = function(event) {
 
-        debugOut('click');
-		
+        window.utils.setIsConsole(false);
+        window.utils.debugOut('click');
+        
         thumb = document.querySelector("#thumbnail-photo");
         thumbContainer = document.querySelector("#image-presenter");
 
@@ -41,10 +42,8 @@ if ("undefined" != typeof(linkAddProduct)) {
         });     
 
         pick.onsuccess = function () { 
-            debugOut('start pick');
-            /*
-        	
-            */
+            window.utils.debugOut('start pick');
+            
             // XXX
               // this.result.blob is valid now, but it won't stay valid
               // (see https://bugzilla.mozilla.org/show_bug.cgi?id=806503)
@@ -62,7 +61,7 @@ if ("undefined" != typeof(linkAddProduct)) {
                             //checkDeviceStorage();
 
                             // not able to browse using media library
-                            browsePhotoDB();    
+                            //browsePhotoDB();    
 
                             currentPhoto = resized;
                          });
@@ -135,10 +134,10 @@ var savePhoto = function savePhoto(photo) {
     //alert(domRequest);
     //console.log(domRequest);
     domRequest.onsuccess = function() {
-        debugOut('save success');
+        window.utils.debugOut('save success');
     }
     domRequest.onerror = function() {
-        debugOut('save error');
+        window.utils.debugOut('save error: ' + this.error.name);
     }
 }
 
@@ -166,7 +165,7 @@ var checkDeviceStorage = function checkDeviceStorage() {
 }
 
 var browsePhotoDB = function browsePhotoDB() {
-    console.log("browsePhotoDB");
+    window.utils.debugOut("browsePhotoDB");
 
     //alert(metadataParsers.imageMetadataParser);
     
@@ -192,12 +191,12 @@ var browsePhotoDB = function browsePhotoDB() {
         else if (why === MediaDB.UNMOUNTED)
           alert('pluggedin');
         */
-        debugOut('photodb unavailable');
+        window.utils.debugOut('photodb unavailable');
     };
 
     photodb.onready = function() {
         //console.log('photodb ready');
-        debugOut('photodb ready')
+        window.utils.debugOut('photodb ready')
         
         /*
         photodb.getAll(function(records) {
@@ -208,9 +207,4 @@ var browsePhotoDB = function browsePhotoDB() {
     };
 
     //alert('end');    
-}
-
-var debugOut = function debugOut(msg) {
-    if (isConsole) { console.log (msg); }
-    else { alert(msg);}
 }
