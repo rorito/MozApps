@@ -17,10 +17,15 @@ section[role="region"] button.previous, section[role="region"] button.next {
 	width: 4rem;
 	outline: none;
 	border: none;
-	background: transparent url(frog/widgets/buttons/images/arrow.png) no-repeat center center;
 }
 section[role="region"] button.next {
-	transform:rotate(180deg);
+	transform:rotate(90deg);
+	background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
+}
+
+section[role="region"] button.previous {
+	transform:rotate(-90deg);
+	background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
 }
 
 /* ----------------------------------

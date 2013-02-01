@@ -38,7 +38,7 @@
                     </div>
                     <p class="template-index">{{index}} of {{count}}</p>
                   </section>
-                  <section role="region" data-type="detail" class="template-detail">
+                  <section role="region" data-type="detail" class="template-detail cf">
                     <img src="styles/temp/template_icon_large_store.png" alt="">
                     <div>
                       <p>{{name}} {{description}}</p>
@@ -49,7 +49,8 @@
                     <header>Included Components</header>
                     <ul>
                         {{#each app_components}}
-                            <li>{{this.component_name}}</li>
+                            <li><p>{{this.component_name}}</p>
+                            <p>{{this.properties.description}}</p></li>
                         {{/each}}
                     </ul>
                   </section>
@@ -84,76 +85,58 @@
         </script>
 
         <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                  <!-- represents application screen
+                     APP BUILDER -->
+                <div id="appBuilder" role="window">
 
-            <!-- represents application screen
-               APP BUILDER -->
-          <div id="appBuilder" role="window">
+                  <!-- title bar region -->
+                  <section role="region" data-type="header">
+                    <header>
+                      <button id="back"><span class="icon icon-back">back</span></button>
+                      <h1>App Builder</h1>
+                    </header>
+                  </section>
 
-            <!-- title bar region -->
-            <section role="region" data-type="header">
-              <header>
-                <button id="back"><span class="icon icon-back">back</span></button>
-                <h1>App Builder</h1>
-              </header>
-            </section>
+                  <!-- content region -->
+                  <section role="region" data-type="content">
+                    <header>Your template</header>
+                    <section role="region" data-type="detail" class="template-detail">
+                      <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
+                      <div>
+                        <h1>Small Store</h1>
+                        <button class="recommend">Publish</button>
+                        <button class="preview"></button>
+                      </div>
+                    </section>
+                    <section role="region" data-type="list">
+                      <header>Edit your app components</header>
+                      <ul data-type="edit">
+                        {{#each app_components}}
+                            <li>
+                              <label class="danger">
+                                <input type="checkbox" checked>
+                                <div></div>
+                              </label>
+                              <a href="#">
+                                <p>{{this.component_name}}</p>
+                                <p>{{this.properties.description}}</p>
+                                <button></button>
+                              </a>
+                            </li>
+                        {{/each}}
+                      </ul>
+                    </section>
+                  </section>
 
-            <!-- content region -->
-            <section role="region" data-type="content">
-              <header>Your template</header>
-              <section role="region" data-type="detail" class="template-detail">
-                <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
-                <div>
-                  <h1>Small Store</h1>
-                  <button class="recommend">Publish</button>
-                  <button class="preview"></button>
+                  <!-- footer region -->
+                  <section role="region" data-type="footer">
+                    <footer></footer>
+                  </section>
                 </div>
-              </section>
-              <section role="region" data-type="list">
-                <header>Edit your app components</header>
-                <ul data-type="edit">
-                  <li>
-                    <label class="danger">
-                      <input type="checkbox" checked>
-                      <div></div>
-                    </label>
-                    <a href="#">
-                      <p>Name your App</p>
-                      <p>Personalize your app</p>
-                      <button></button>
-                    </a>
-                  </li>
-                  <li>
-                    <label class="danger">
-                      <input type="checkbox" checked>
-                      <div></div>
-                    </label>
-                    <a href="#">
-                      <p>Carousel</p>
-                      <p>Displays series of images</p>
-                      <button></button>
-                    </a>
-                  </li>
-                  <li>
-                    <label class="danger">
-                      <input type="checkbox" checked>
-                      <div></div>
-                    </label>
-                    <a href="#">
-                      <p>About me</p>
-                      <p>Blah de da blah blah blah</p>
-                      <button></button>
-                    </a>
-                  </li>
-                </ul>
-              </section>
-            </section>
-
-            <!-- footer region -->
-            <section role="region" data-type="footer">
-              <footer></footer>
-            </section>
-          </div>
-
+            {{/if}}
 
         </script>
 
