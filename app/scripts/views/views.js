@@ -124,10 +124,9 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     createApp: function(){
         var self = this;        
         var tmpl = this.collection.get(this.templateID);
-
         if(tmpl){
             var newMozApp = {
-                id: uuid.v4(),
+                id: UUID.genV4().toString(),
                 name:     '',
                 published: false,
                 version: "1.0",

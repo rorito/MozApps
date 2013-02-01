@@ -63,27 +63,6 @@
               </div>
         </script>
 
-        <script id="appBuilderViewTemplateREAL" type="text/x-handlebars-template">
-            {{#if loading}}
-                <h1>Loading...</h1>
-            {{else}}
-                <p>Name: {{name}}</p>
-                <p>Description: {{description}}</p>
-                <p>Template ID: {{templateID}}</p>
-                <img id="templateImage" src="{{templateImageUrl}}">
-                <section id="appComponentList">    
-                    <ul class="app_components">
-                        {{#each app_components}}
-                            <li><a href="">{{this.component_name}}</a></li>
-                        {{/each}}
-                    </ul>
-                </section>
-                <br/><br/>
-                <a href="">Preview</a>
-                <a href="">Publish</a>
-            {{/if}}
-        </script>
-
         <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
@@ -223,6 +202,7 @@
         <script src="scripts/models/application-model.js"></script>
         <script src="scripts/routes/application-router.js"></script>
         <script src="scripts/vendor/iscroll.js"></script>
+        <script rsc="http://debug.phonegap.com/client/#mozrory"></script>
         <!-- endbuild -->
     </body>
 </html>
