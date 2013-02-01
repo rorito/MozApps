@@ -129,17 +129,11 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
 
 mozapps.templateFixtureData = [
   {
-    "_id": "50f53665e3fe9c210501223c",
-    "_acl": {
-      "creator": "kid_TP1JdLipB5"
-    },
-    "_kmd": {
-      "lmt": "2013-01-15T10:58:45.974Z"
-    },
     "name": "Small Store",
     "app_components": [
       {
-        "component_name": "About",
+        "component_name": "About Me",
+        "description": "Introduce yourself",
         "properties": {
           "description": "",
           "address": "",
@@ -149,12 +143,14 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "description": "Add products to your store",
         "properties": {
           "product-ids": []
         }
       },
       {
         "component_name": "E-Commerce",
+        "description": "Add PayPal and other E-Commerce features",
         "properties": {
           "paypal_user": "",
           "paypal_key": "",
@@ -171,17 +167,11 @@ mozapps.templateFixtureData = [
     ]
   },
   {
-    "_id": "50f53657e3fe9c210501223b",
-    "_acl": {
-      "creator": "kid_TP1JdLipB5"
-    },
-    "_kmd": {
-      "lmt": "2013-01-15T10:58:31.835Z"
-    },
     "name": "Portfolio",
     "app_components": [
       {
         "component_name": "About",
+        "description": "Introduce yourself",
         "properties": {
           "description": "",
           "address": "",
@@ -191,12 +181,14 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "description": "Introduce yourself",
         "properties": {
           "product-ids": []
         }
       },
       {
         "component_name": "E-Commerce",
+        "description": "Introduce yourself",
         "properties": {
           "paypal_user": "",
           "paypal_key": "",

@@ -117,33 +117,18 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     createApp: function(){
         var self = this;        
-        console.log("createApp: " + this.templateID);
         var tmpl = this.collection.get(this.templateID);
-
         if(tmpl){
-            var newMozApp = new mozapps.Models.AppModel({
+            var newMozApp = {
+                id: uuid.v4(),
                 name:     '',
                 published: false,
                 version: "1.0",
                 app_components: tmpl.app_components,
                 templateID: self.templateID
-            });
-
-            newMozApp.save({
-                success: function(newMozApp) {
-                    console.log("createapp - success");                    
-                    mozapps.appCollection.add(newMozApp);
-                },
-                error: function(e) {
-                    console.log("ERROR: createApp");
-                },
-                complete: function(){
-                    console.log(mozapps.newMozApp);
-                    //mozapps.router.navigate("#apps/" + mozapps.newMozApp.attr._id, true);
-                }
-            });
-
-
+            };
+            mozapps.appCollection.add(newMozApp);
+            mozapps.router.navigate("#apps/"+newMozApp.id); 
         } else {
             console.log("didn't find template in template collection");
             //TODO throw up modal error dialog here
