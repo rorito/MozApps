@@ -38,7 +38,6 @@ routes:{
     },
 
     appBuilder: function(id){
-        console.log("app builder route");
         mozapps.currentPage = mozapps.appBuilderView.viewName;
         mozapps.appBuilderView.appID = id;
         this.slidePage(mozapps.appBuilderView.render());  

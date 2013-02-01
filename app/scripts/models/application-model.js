@@ -1,166 +1,161 @@
-(function(window, Kinvey) {
-  // Export, so declarations can be accessed outside this files’ scope.
-  var App = window.MozAppsKinvey = {};
+// (function(window, Kinvey) {
+//   // Export, so declarations can be accessed outside this files’ scope.
+//   var App = window.MozAppsKinvey = {};
 
-  // Configure conflict policy prior to init, since that will trigger
-  // synchronization. Prioritize client over server.
-  Kinvey.Sync.configure({ conflict: Kinvey.Sync.clientAlwaysWins });
+//   // Configure conflict policy prior to init, since that will trigger
+//   // synchronization. Prioritize client over server.
+//   Kinvey.Sync.configure({ conflict: Kinvey.Sync.clientAlwaysWins });
 
-  // Configure.
-  Kinvey.init({
-    appKey: 'kid_TP1JdLipB5',
-    appSecret: '5e6cab36e3a948c7b1a30585fa308c16',
-    sync: true// Enable offline saving.
-  });
+//   // Configure.
+//   Kinvey.init({
+//     appKey: 'kid_TP1JdLipB5',
+//     appSecret: '5e6cab36e3a948c7b1a30585fa308c16',
+//     sync: true// Enable offline saving.
+//   });
 
-  /**
-   * Define application-domain entities and collections.
-   */
-  // Define the MozApp entity.
-  var MozApp = Kinvey.Entity.extend({
-    // Override constructor to preset the collection and store.
-    constructor: function(attributes) {
-      Kinvey.Entity.prototype.constructor.call(this, attributes, 'apps', {
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
-      });
-    },
+//   /**
+//    * Define application-domain entities and collections.
+//    */
+//   // Define the MozApp entity.
+//   var MozApp = Kinvey.Entity.extend({
+//     // Override constructor to preset the collection and store.
+//     constructor: function(attributes) {
+//       Kinvey.Entity.prototype.constructor.call(this, attributes, 'apps', {
+//         //store: Kinvey.Store.OFFLINE// Enable offline saving.
+//         store: 'offline'
+//       });
+//     },
 
-    // Shortcut to return attributes.
-    getName: function() {
-      return this.get('name');
-    },
-    getBaseTemplateName: function() {
-      return this.get('baseTemplateName');
-    },
-    getProperties: function() {
-      return this.get('properties');
-    },
-    isPublished: function() {
-      return this.get('published');
-    },
-    getVersion: function() {
-      return this.get('version');
-    }
-  });
-
-  var MozAppTemplate = Kinvey.Entity.extend({
-    // Override constructor to preset the collection and store.
-    constructor: function(attributes) {
-      Kinvey.Entity.prototype.constructor.call(this, attributes, 'templates', {
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
-      });
-    },
-
-    // Shortcut to return attributes.
-    getName: function() {
-      return this.get('name');
-    }
-  });
-
-  var MozAppCollection = Kinvey.Collection.extend({
-    entity: MozApp,
-    constructor: function(query) {
-      // Override constructor to preset the collection and store.
-      Kinvey.Collection.prototype.constructor.call(this, 'apps', {
-        query: query,
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
-      });
-    }
-  });
-
-  var MozAppTemplateCollection = Kinvey.Collection.extend({
-    entity: MozAppTemplate,
-    constructor: function(query) {
-      // Override constructor to preset the collection and store.
-      Kinvey.Collection.prototype.constructor.call(this, 'templates', {
-        query: query,
-        store: Kinvey.Store.OFFLINE// Enable offline saving.
-      });
-    }
-  });
-
-  // Export class declaration and collection instance.
-  App.MozApp = MozApp;
-  App.MozAppTemplate = MozAppTemplate;
-  App.MozAppCollection = new MozAppCollection();
-  App.MozAppTemplateCollection = new MozAppTemplateCollection();
-}(window, window.Kinvey));
-
-// OnResetCollection = Backbone.Collection.extend({
-//   constructor: function(){
-//     var args = slice(arguments);
-//     Backbone.Collection.prototype.constructor.apply(this, args);
- 
-//     this.onResetCallbacks = [];
-//     this.on("reset", this.collectionReset, this);
-//   },
- 
-//   onReset: function(callback){
-//     this.onResetCallbacks.push(callback);
-//     this.collectionLoaded && this.fireResetCallbacks();
-//   },
- 
-//   collectionReset: function(){
-//     if (!this.collectionLoaded) {
-//       this.collectionLoaded = true
+//     // Shortcut to return attributes.
+//     getName: function() {
+//       return this.get('name');
+//     },
+//     getBaseTemplateName: function() {
+//       return this.get('baseTemplateName');
+//     },
+//     getProperties: function() {
+//       return this.get('properties');
+//     },
+//     isPublished: function() {
+//       return this.get('published');
+//     },
+//     getVersion: function() {
+//       return this.get('version');
 //     }
-//     this.fireResetCallbacks();
-//   },
- 
-//   fireResetCallbacks: function(){
-//     var callback = this.onResetCallbacks.pop();
-//     if (callback){
-//       callback(this);
-//       this.fireResetCallbacks();
+//   });
+
+//   var MozAppTemplate = Kinvey.Entity.extend({
+//     // Override constructor to preset the collection and store.
+//     constructor: function(attributes) {
+//       Kinvey.Entity.prototype.constructor.call(this, attributes, 'templates', {
+//         //store: Kinvey.Store.OFFLINE// Enable offline saving.
+//         store: 'offline'
+//       });
+//     },
+
+//     // Shortcut to return attributes.
+//     getName: function() {
+//       return this.get('name');
 //     }
-//   }
+//   });
+
+//   var MozAppCollection = Kinvey.Collection.extend({
+//     entity: MozApp,
+//     constructor: function(query) {
+//       // Override constructor to preset the collection and store.
+//       Kinvey.Collection.prototype.constructor.call(this, 'apps', {
+//         query: query,
+//         //store: Kinvey.Store.OFFLINE// Enable offline saving.
+//         store: 'offline'
+//       });
+//     }
+//   });
+
+//   var MozAppTemplateCollection = Kinvey.Collection.extend({
+//     entity: MozAppTemplate,
+//     constructor: function(query) {
+//       // Override constructor to preset the collection and store.
+//       Kinvey.Collection.prototype.constructor.call(this, 'templates', {
+//         query: query,
+//         //store: Kinvey.Store.OFFLINE// Enable offline saving.
+//         store:'offline'
+//       });
+//     }
+//   });
+
+//   // Export class declaration and collection instance.
+//   App.MozApp = MozApp;
+//   App.MozAppTemplate = MozAppTemplate;
+//   App.MozAppCollection = new MozAppCollection();
+//   App.MozAppTemplateCollection = new MozAppTemplateCollection();
+// }(window, window.Kinvey));
+
+
+// mozapps.Models.TemplateModel = Backbone.Model.extend({
+
 // });
 
+// mozapps.Models.AppModel = Backbone.Model.extend({
+
+// });
+
+//TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
   initialize: function() {
-    var self = this;
-
-    //reload this backbone collection whenever the Kinvey Collection gets updated
-    Object.observe(window.MozAppsKinvey.MozAppTemplateCollection, function(){
-      self.reset(_.pluck(window.MozAppsKinvey.MozAppTemplateCollection.list,'attr'));
-    });
-
-    this.refreshData();
-  },
-  refreshData: function(){
-    var self = this;
-    window.MozAppsKinvey.MozAppTemplateCollection.fetch({
-        success: function(data) {
-            self.reset(_.pluck(data,'attr'));
-        },
-        error: function(e) {
-          console.log("kinvey fetch error");
-          if(self.length < 1){
-            //fetch failed and we don't have any records yet (there should always be templates), so we'll
-            // assume we started out offline and use fixture data until our first fetch
-            console.log("kinvey fetch failed - loading fixture data");
-            self.reset(window.mozapps.templateFixtureData);
-          }
-        },
-        complete: function(data){
-        }
-    });
+      var self = this;
+      
+      mozapps.templatesDB.getAll(function(data){
+        self.reset(data);
+        }, function(){
+      });
   }
 });
 
-window.mozapps.templateFixtureData = [
+//TODO use UUIDs for id?
+//TODO wire up events to save new models added to collection back to IDB
+//TODO handle multiple add to collection?
+mozapps.Collections.AppCollection = Backbone.Collection.extend({
+  initialize: function() {
+      var self = this;
+      
+      mozapps.appsDB.getAll(
+        function(data){
+          self.reset(data);
+        }, 
+        function(){
+        } 
+      );
+      this.listenTo(this, "add", this.addedToCollection);
+      this.listenTo(this, "remove", this.removedFromCollection);
+      this.listenTo(this, "reset", this.checkReset);
+  },
+  addedToCollection: function(data){
+    console.log("added to collection");
+
+    mozapps.appsDB.batch([ {type: "put", value: data.toJSON()} ], 
+      function(){ console.log("batch add apps IDB - success"); }, 
+      function(){ console.log("batch add apps IDB - fail"); }
+    );
+  },
+  removedFromCollection: function(data){
+    mozapps.appsDB.batch([ {type: "remove", value: data.toJSON()} ], 
+      function(){ console.log("batch remove apps IDB - success"); }, 
+      function(){ console.log("batch remove apps IDB - fail"); }
+    );
+  },
+  checkReset: function(data){
+    console.log("app collection reset");
+  } 
+});
+
+mozapps.templateFixtureData = [
   {
-    "_id": "50f53665e3fe9c210501223c",
-    "_acl": {
-      "creator": "kid_TP1JdLipB5"
-    },
-    "_kmd": {
-      "lmt": "2013-01-15T10:58:45.974Z"
-    },
+    "id": "0736dd0d-6f0d-4b6f-98bb-9307d61c2fc4",
     "name": "Small Store",
     "app_components": [
       {
-        "component_name": "About",
+        "component_name": "About Me",
+        "description": "Introduce yourself",
         "properties": {
           "description": "",
           "address": "",
@@ -170,12 +165,14 @@ window.mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "description": "Add products to your store",
         "properties": {
           "product-ids": []
         }
       },
       {
         "component_name": "E-Commerce",
+        "description": "Add PayPal and other E-Commerce features",
         "properties": {
           "paypal_user": "",
           "paypal_key": "",
@@ -192,17 +189,12 @@ window.mozapps.templateFixtureData = [
     ]
   },
   {
-    "_id": "50f53657e3fe9c210501223b",
-    "_acl": {
-      "creator": "kid_TP1JdLipB5"
-    },
-    "_kmd": {
-      "lmt": "2013-01-15T10:58:31.835Z"
-    },
+    "id": "124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Portfolio",
     "app_components": [
       {
         "component_name": "About",
+        "description": "Introduce yourself",
         "properties": {
           "description": "",
           "address": "",
@@ -212,12 +204,14 @@ window.mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "description": "Introduce yourself",
         "properties": {
           "product-ids": []
         }
       },
       {
         "component_name": "E-Commerce",
+        "description": "Introduce yourself",
         "properties": {
           "paypal_user": "",
           "paypal_key": "",

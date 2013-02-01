@@ -38,13 +38,16 @@
 [data-type="list"] > header {
   height: auto !important;
   padding: 0.3rem 3.4rem 0 3.4rem !important;
-  background: #5f5f5f !important;
+  background: transparent !important;
   background-image: none !important;
   margin: 0 !important;
-  font-family: "OpenSans", Sans-serif;
+  font-family: "MozTTMedium", Sans-serif !important;
+  font-weight: 100 !important;
   font-size: 1.4rem;
   line-height: 2rem;
   text-transform: none;
+  color: black !important;
+  box-shadow: none !important;
 }
 
 /* line 23, ../../app/styles/frog/widgets/_lists.scss */
@@ -65,10 +68,10 @@
 [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -.4rem;
+  top: -0.4rem;
   bottom: 0;
   right: 0;
-  left: -.8rem;
+  left: -0.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -102,31 +105,42 @@
 /* line 74, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li {
   transform: none;
-  padding: 0 0 0 3.4rem;
+  padding: 0 0 0 0rem;
 }
 
 /* line 79, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li p {
+  margin-left: 3.4rem;
+}
+
+/* line 83, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > label {
   pointer-events: auto;
 }
 
-/* line 83, ../../app/styles/frog/widgets/_lists.scss */
+/* line 87, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a:active:after {
   display: none;
 }
 
-/* line 87, ../../app/styles/frog/widgets/_lists.scss */
+/* line 91, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a {
   width: 100%;
 }
 
-/* line 91, ../../app/styles/frog/widgets/_lists.scss */
+/* line 95, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a > button {
   position: relative;
   top: -4rem;
+  width: 95%;
   outline: none;
   border: 0;
-  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+  background: transparent;
+}
+
+/* line 104, ../../app/styles/frog/widgets/_lists.scss */
+.complete {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
 
 /******************************************************************
@@ -147,18 +161,24 @@ section[role="region"] button.previous, section[role="region"] button.next {
   width: 4rem;
   outline: none;
   border: none;
-  background: transparent url(frog/widgets/buttons/images/arrow.png) no-repeat center center;
 }
 
-/* line 22, ../../app/styles/frog/widgets/_buttons.scss */
+/* line 21, ../../app/styles/frog/widgets/_buttons.scss */
 section[role="region"] button.next {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
+  background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
+}
+
+/* line 26, ../../app/styles/frog/widgets/_buttons.scss */
+section[role="region"] button.previous {
+  transform: rotate(-90deg);
+  background: transparent url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat center center;
 }
 
 /* ----------------------------------
  * BUTTONS: frog themes
  * ---------------------------------- */
-/* line 31, ../../app/styles/frog/widgets/_buttons.scss */
+/* line 36, ../../app/styles/frog/widgets/_buttons.scss */
 section[role="region"].skin-aqua button.buy,
 section[role="region"].skin-aqua a[role="button"].buy {
   width: auto;
@@ -175,7 +195,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   border: none;
   border-radius: 0.1rem;
   font-size: 1.7rem;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   font-weight: 600;
   line-height: 3rem;
   color: #fff;
@@ -183,7 +203,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   text-shadow: none;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 3px #000;
 }
 
 /******************************************************************
@@ -270,19 +290,25 @@ section[role="region"].skin-aqua > header:first-child > a {
 
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 /* line 4, ../../app/styles/frog/widgets/_accordion.scss */
+section[data-type="accordion"] {
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* line 10, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"], img {
   -moz-user-select: none;
   user-drag: none;
 }
 
-/* line 9, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 15, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li.header {
   height: auto !important;
   padding: 1rem 0rem 1rem 2.1rem !important;
   background: white !important;
 }
 
-/* line 15, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 21, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] .title {
   font-family: "OpenSansLight";
   font-size: 2.2rem;
@@ -291,13 +317,13 @@ section[data-type="accordion"] .title {
   color: black;
 }
 
-/* line 23, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 29, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list {
   padding: 0px;
   border-top: 1px solid #4c4c4c;
 }
 
-/* line 28, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 34, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] > .list > li > .list-item {
   display: block;
   padding: 1.3rem 4rem 1.3rem 3.5rem;
@@ -309,20 +335,21 @@ section[data-type="accordion"] > .list > li > .list-item {
 }
 
 /* start horizontal list */
-/* line 39, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 45, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
-  margin: 2rem 0 0.8rem 0;
+  margin: 2rem 0 .8rem 0;
 }
 
-/* line 43, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 49, ../../app/styles/frog/widgets/_accordion.scss */
 #templateList .list-item-body {
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   background: #a5a5a5;
   box-shadow: inset 0 0 0.2rem black;
   border-bottom: 1px solid #4c4c4c;
 }
 
-/* line 50, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 57, ../../app/styles/frog/widgets/_accordion.scss */
 #templateList .list-item-body > .horizontal-list {
   width: 600px;
   /* display: flex; */
@@ -331,7 +358,7 @@ section[data-type="accordion"] > .list > li > .list-item {
   /* justify-content: flex-start; */
 }
 
-/* line 58, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 65, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item {
   width: 130px;
   margin-right: 2.1rem;
@@ -344,20 +371,40 @@ section[data-type="accordion"] > .list > li > .list-item {
   color: white;
 }
 
-/* line 71, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 77, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:link {
+  color: white;
+}
+
+/* line 78, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:visited {
+  color: white;
+}
+
+/* line 79, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:hover {
+  color: white;
+}
+
+/* line 80, ../../app/styles/frog/widgets/_accordion.scss */
+.horizontal-list > .list-item a:active {
+  color: white;
+}
+
+/* line 83, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail {
   border: 1px solid #bababa;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   -moz-box-sizing: border-box;
 }
 
-/* line 77, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 89, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list > .list-item > .template-thumbnail.selected {
   border: 4px solid #00abc9;
 }
 
 /* CSS powered interaction */
-/* line 83, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 95, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"] {
   opacity: 0;
   position: absolute;
@@ -369,20 +416,20 @@ section[data-type="accordion"] > .list > li > .list-item {
   background-color: red;
 }
 
-/* line 94, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 106, ../../app/styles/frog/widgets/_accordion.scss */
 .list-item-body {
   height: 0px;
   transition: height 1s;
 }
 
-/* line 99, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 111, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label + div.list-item-body {
   display: block;
   height: 20.5rem;
   overflow: scroll;
 }
 
-/* line 105, ../../app/styles/frog/widgets/_accordion.scss */
+/* line 117, ../../app/styles/frog/widgets/_accordion.scss */
 .list > li > input[type="radio"]:checked + label.list-item {
   background: #eaeaea url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat 97% 50%;
 }
@@ -401,10 +448,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] input[type="text"], textarea {
   width: 100%;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: inset 0 0 3px #cccccc;
+  box-shadow: inset 0 0 3px #ccc;
   font-family: "OpenSans", Sans-serif;
   font-size: 1.1rem;
 }
@@ -428,17 +475,16 @@ section[role="region"] textarea {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #303030;
 }
 
-/* line 18, ../../app/styles/frog/screens/_template_details.scss */
+/* line 17, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] button.previous {
   position: absolute;
   top: .7rem;
   left: 1rem;
 }
 
-/* line 24, ../../app/styles/frog/screens/_template_details.scss */
+/* line 23, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] button.next {
   position: absolute;
   top: .7rem;
@@ -450,12 +496,12 @@ section[role="region"] textarea {
  * Notes: we need to set some widths during carousel init
  *
  */
-/* line 36, ../../app/styles/frog/screens/_template_details.scss */
+/* line 35, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList {
   width: 100%;
 }
 
-/* line 40, ../../app/styles/frog/screens/_template_details.scss */
+/* line 39, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList > ul {
   display: flex;
   flex-direction: row;
@@ -463,7 +509,7 @@ section[role="region"] textarea {
   padding: 0 !important;
 }
 
-/* line 47, ../../app/styles/frog/screens/_template_details.scss */
+/* line 46, ../../app/styles/frog/screens/_template_details.scss */
 #templateNameList > ul > li {
   width: 320px;
   font-size: 2.4rem;
@@ -472,9 +518,10 @@ section[role="region"] textarea {
   text-align: center;
 }
 
-/* line 54, ../../app/styles/frog/screens/_template_details.scss */
+/* line 53, ../../app/styles/frog/screens/_template_details.scss */
 .template-index {
   margin-top: -1.3rem;
+  font-weight: 800;
   text-align: center;
 }
 
@@ -483,21 +530,22 @@ section[role="region"] textarea {
 #templateDetail [data-type="content"] .template-detail {
   display: flex;
   padding: 2rem 0;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-  border-top: 1px solid #525252;
-  background-color: #303030;
+  /* flex-direction: row; */
+  /* align-items: stretch; */
+  /* justify-content: flex-start; */
+  background-color: #a6a6a6;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* line 72, ../../app/styles/frog/screens/_template_details.scss */
+/* line 71, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail > img {
+  float: left;
   margin: 0 1.5rem;
 }
 
 /* line 76, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail > div {
+  float: left;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -505,14 +553,14 @@ section[role="region"] textarea {
   width: 12rem;
 }
 
-/* line 84, ../../app/styles/frog/screens/_template_details.scss */
+/* line 85, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail > div > p {
   flex: 1 1 auto;
   margin: 0 0 2rem 0;
   font-size: 1.3rem;
 }
 
-/* line 90, ../../app/styles/frog/screens/_template_details.scss */
+/* line 91, ../../app/styles/frog/screens/_template_details.scss */
 #templateDetail [data-type="content"] .template-detail .recommend {
   margin: 0;
 }
@@ -530,16 +578,19 @@ section[role="region"] textarea {
 #appBuilder [data-type="content"] header {
   height: auto !important;
   padding: 0.3rem 3.4rem 0 3.4rem !important;
-  background: #5f5f5f !important;
+  background: #a6a6a6 !important;
   background-image: none !important;
   margin: 0 !important;
-  font-family: "OpenSans", Sans-serif;
+  font-family: "MozTTMedium", Sans-serif !important;
+  font-weight: 100 !important;
   font-size: 1.4rem;
   line-height: 2rem;
   text-transform: none;
+  color: white !important;
+  box-shadow: none !important;
 }
 
-/* line 15, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 26, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail {
   position: relative;
   display: flex;
@@ -547,17 +598,16 @@ section[role="region"] textarea {
   flex-direction: row;
   justify-content: flex-start;
   border-top: 1px solid #525252;
-  background-color: #303030;
-  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* line 26, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 36, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail h1 {
   font-size: 2.4rem;
   font-weight: 100;
 }
 
-/* line 30, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 40, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
   height: 9.4rem;
   width: 6.2rem;
@@ -565,13 +615,13 @@ section[role="region"] textarea {
   border: 0.1rem solid #5b5b5b;
 }
 
-/* line 37, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 47, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div:first-child {
   margin-left: 2rem;
   flex: 0;
 }
 
-/* line 42, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 52, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div {
   display: flex;
   flex-direction: column;
@@ -580,17 +630,17 @@ section[role="region"] textarea {
   width: 14rem;
 }
 
-/* line 50, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 60, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div > h1 {
   margin: 0;
 }
 
-/* line 54, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 64, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .recommend {
   margin: 0;
 }
 
-/* line 58, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 68, ../../app/styles/frog/screens/_app_builder.scss */
 .preview {
   position: absolute;
   top: 2.2rem;
@@ -599,7 +649,6 @@ section[role="region"] textarea {
   width: 2rem;
   outline: none;
   border: 0;
-  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
 }
 
 /******************************************************************
@@ -655,13 +704,16 @@ section[data-type="icon-list"] > ul > li {
 section[data-type="icon-list"] > header {
   height: auto !important;
   padding: 0.3rem 3.4rem 0 3.4rem !important;
-  background: #5f5f5f !important;
+  background: transparent !important;
   background-image: none !important;
   margin: 0 !important;
-  font-family: "OpenSans", Sans-serif;
+  font-family: "MozTTMedium", Sans-serif !important;
+  font-weight: 100 !important;
   font-size: 1.4rem;
   line-height: 2rem;
   text-transform: none;
+  color: black !important;
+  box-shadow: none !important;
 }
 
 /******************************************************************
@@ -705,7 +757,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list.scss */
 #productList [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2rem 20% 0 20%;
+  padding: 2.0rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -773,7 +825,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2rem 20% 0 20%;
+  padding: 2.0rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -976,7 +1028,7 @@ section[data-type="icon-list"] > header {
 
 /* line 24, ../../app/styles/frog/screens/_product_detail_edit.scss */
 #productDetailEdit [data-type="content"] p.box-margin-top {
-  margin: 3rem 0 1.6rem 0;
+  margin: 3.0rem 0 1.6rem 0;
 }
 
 /* line 28, ../../app/styles/frog/screens/_product_detail_edit.scss */
@@ -988,37 +1040,61 @@ section[data-type="icon-list"] > header {
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 85, ../../app/styles/main.scss */
+/* line 88, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 87, ../../app/styles/main.scss */
+/* line 90, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   background-color: white;
   color: black;
 }
 
-/* line 94, ../../app/styles/main.scss */
+/* line 97, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 99, ../../app/styles/main.scss */
+/* line 102, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 103, ../../app/styles/main.scss */
+/* line 106, ../../app/styles/main.scss */
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 107, ../../app/styles/main.scss */
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 108, ../../app/styles/main.scss */
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 109, ../../app/styles/main.scss */
+a:active {
+  color: black;
+  text-decoration: none;
+}
+
+/* line 111, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 110, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -1027,7 +1103,7 @@ ul > li {
   /* 2 */
 }
 
-/* line 115, ../../app/styles/main.scss */
+/* line 123, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -1036,13 +1112,13 @@ ul > li {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 123, ../../app/styles/main.scss */
+/* line 131, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
 
 /* rory temp stuff */
-/* line 129, ../../app/styles/main.scss */
+/* line 137, ../../app/styles/main.scss */
 #appContainer {
   position: absolute;
   width: 100%;
@@ -1051,7 +1127,7 @@ ul > li {
   overflow-y: auto;
 }
 
-/* line 137, ../../app/styles/main.scss */
+/* line 145, ../../app/styles/main.scss */
 .page {
   position: absolute;
   width: 100%;
@@ -1059,23 +1135,23 @@ ul > li {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 144, ../../app/styles/main.scss */
+/* line 152, ../../app/styles/main.scss */
 .stage-center {
   top: 0;
   left: 0;
 }
 
-/* line 149, ../../app/styles/main.scss */
+/* line 157, ../../app/styles/main.scss */
 .stage-left {
   left: -100%;
 }
 
-/* line 153, ../../app/styles/main.scss */
+/* line 161, ../../app/styles/main.scss */
 .stage-right {
   left: 100%;
 }
 
-/* line 157, ../../app/styles/main.scss */
+/* line 165, ../../app/styles/main.scss */
 .transition {
   -moz-transition-duration: .375s;
   -webkit-transition-duration: .375s;

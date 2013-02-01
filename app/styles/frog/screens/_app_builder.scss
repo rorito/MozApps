@@ -9,7 +9,18 @@
 
 /* template detail */
 #appBuilder [data-type="content"] header {
-	@include list-header;
+	height: auto !important;
+	padding: 0.3rem 3.4rem 0 3.4rem !important;
+	background: #a6a6a6 !important;
+	background-image: none !important;
+	margin: 0 !important;
+	font-family: "MozTTMedium", Sans-serif !important;
+    font-weight: 100 !important;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	text-transform: none;
+    color: $default_primary_color !important;
+    box-shadow: none !important;
 }
 
 #appBuilder [data-type="content"] .template-detail {
@@ -19,8 +30,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	border-top: 1px solid #525252;
-	background-color: #303030;
-	box-shadow:inset 0px 0px 5px rgba(0,0,0,.5);
+	box-shadow:inset 0px 0px 5px rgba(0,0,0,.2);
 }
 
 #appBuilder [data-type="content"] .template-detail h1 {
@@ -63,5 +73,4 @@
 	width: 2rem;
 	outline: none;
 	border: 0;
-	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
 }

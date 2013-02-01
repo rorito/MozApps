@@ -6,23 +6,29 @@ mozapps.Views.appSubView = Backbone.View.extend({
     iscrollObjects: new Array(),
     initialize: function(){
         var self = this;
-        Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
-            self.collection = _.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr');
-            self.render();
-        });
+
+        this.listenTo(this.collection, "reset", this.render);
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "remove", this.render);
+
+        // SK - this may be a hack?, problem with back button render
+        this.render();
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
+            //TODO fix the double render
+            //console.log("app subview - outer render");
             if(!this.collection){
+                console.log("app sub - loading");
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                this.$el.html(this.template( { myApps: this.collection } ));
+                console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
+                this.$el.html(this.template( { myApps: this.collection.toJSON() } ));
             }
             this.delegateEvents();
 
-            // setup iscroll objects
+            // set viewport (UL) width
             _.each(this.$el.find('.list-item-body'), function(element){
-                // this.iscrollObjects.push(new iScroll(element.id, { bounce: false, hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
             }, this);
 
             return this;
@@ -35,13 +41,20 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     iscrollObjects: new Array(),
     initialize: function(){
         this.listenTo(this.collection, "reset", this.render);
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "remove", this.render);
+
+        // SK - this may be a hack?, problem with back button render
+        this.render();
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
+            //console.log("template subview - outer render");
             if(this.collection.length < 1){
+                //console.log("template sub - loading");
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("RENDER TEMPLATES SUBVIEW WITH DATA")
+                //console.log("RENDER: templatesListView SubView: templatesSubViewTemplate");
                 var tmplByCategory = {};
                 //hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 tmplByCategory.categories = [];
@@ -56,23 +69,20 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
 
-                // setup iscroll objects and set viewport (UL) width
+                // set viewport (UL) width, SK TODO : refactor 
                 _.each(this.$el.find('.list-item-body'), function(element){
-                    //this.iscrollObjects.push(new iScroll(element.id, { hScroll: true, vScroll: false, hScrollbar: false, vScrollbar: false }));
                     var elementObject = $(element).find('ul');
                     elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
-                    console.log("Accordion body width:" + elementObject.css('width'));
-                    // elementObject.find('img').on( 'dragstart', function() { return false; } );
+                    
                 }, this);
 
-                
                 return this;
             }
         }
     }
 });
 
-
+//TODO - BUG - if you click back button to home screen, only one template shows in Featured
 mozapps.Views.templatesListView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     viewName: "templatesListView",
@@ -82,8 +92,8 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == "templatesListView"){
             this.$el.html(this.template);
-            this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList')});
-            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'),collection: mozapps.tmplCollection});
+            this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
+            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.tmplCollection});
         }
         return this;
     }
@@ -100,34 +110,33 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     events: {
         'click #useButton' : 'createApp',
+        'click .previous' : 'move',
+        'click .next' : 'move',
+        'click button#back' : "back"
+    },
+    move: function(event) {
+        var button = $(event.currentTarget);
+        window.location = "#templates/" + button.data('id');
+    },
+    back : function() {
+        window.history.back();
     },
     createApp: function(){
         var self = this;        
+        var tmpl = this.collection.get(this.templateID);
 
-        //TODO do we really need this check if the template ID being passed in via URL is valid?
-        // may be safe but also unnecessary
-        var tmpl = _.find(mozapps.tmplCollection.toJSON(), function(elem){
-            return elem._id = self.templateID;
-        });
         if(tmpl){
-            var newMozApp = new window.MozAppsKinvey.MozApp({
+            var newMozApp = {
+                id: uuid.v4(),
                 name:     '',
                 published: false,
                 version: "1.0",
-                app_components: tmpl.app_components,
+                app_components: tmpl.toJSON().app_components,
                 templateID: self.templateID
-            }, 'apps');
-
-            newMozApp.save({
-                success: function(newMozApp) {
-                    console.log("createapp - success");
-                    mozapps.fetchAppCollection();
-                    mozapps.router.navigate("#apps/" + newMozApp.attr._id, true);
-                },
-                error: function(e) {
-                    console.log("ERROR: createApp");
-                }
-            });
+            };
+            mozapps.appCollection.add(newMozApp);
+            console.log("app collection after add");
+            mozapps.router.navigate("#apps/"+newMozApp.id,true); 
         } else {
             console.log("didn't find template in template collection");
             //TODO throw up modal error dialog here
@@ -135,21 +144,18 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     render: function(eventName) {
         var self = this;
-        if(mozapps.currentPage == "templateDetailView"){
-            if(!mozapps.tmplCollection || mozapps.tmplCollection.length < 1){
-                this.$el.html(this.template( { loading: true } ));    
-            } else {
+        if(mozapps.currentPage == "templateDetailView" && mozapps.tmplCollection.length > 0){
                 mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
-                    if(element._id == self.templateID){
-                        if((index-1) > -1) { element.prevTemplateId = array[index-1]._id; }
-                        if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1]._id; }
+                    if(element.id == self.templateID){
+                        if((index-1) > -1) { element.prevTemplateId = array[index-1].id; }
+                        if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1].id; }
                         element.index = index+1;
                         element.count = array.length;
                         self.model = element;
                     }
                 });
-                this.$el.html(this.template(this.model));
-            }
+                //NOTE: don't need toJSON() here because we call it above when we iterate over the tmplCollection
+                this.$el.html(this.template(this.model)); 
         }
         return this;
     }
@@ -162,24 +168,21 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     viewName: "appBuilderView",
     appID: "",
     initialize: function() {       
-        var self = this;
-        Object.observe(window.MozAppsKinvey.MozAppCollection, function(){
-            console.log("appbuilder view callback");
-            self.appData = _.find(_.pluck(window.MozAppsKinvey.MozAppCollection.list,'attr'), function(elem){
-                return elem._id == self.appID;
-            });
-            console.log(self.appData);
-            self.render();
-        });
+        this.listenTo(this.collection, "reset", this.render);
     },
-    
+    events: {
+        'click button#back' : "back"
+    },
+    back : function() {
+        window.history.back();
+    },
     render: function(eventName) {
-        if(mozapps.currentPage == "appBuilderView"){
-            if(!this.appData){
+        if(mozapps.currentPage == "appBuilderView" && this.collection){
+            this.model = this.collection.get(this.appID);
+            if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("app builder - this.appData");
-                this.$el.html(this.template(this.appData));
+                this.$el.html(this.template(this.model.toJSON()));
             }
         }
         return this;

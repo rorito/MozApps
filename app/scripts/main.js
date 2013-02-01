@@ -1,4 +1,4 @@
-//Deferred.installInto(Zepto);
+Deferred.installInto(Zepto);
 
 
 //TODO
@@ -14,71 +14,98 @@ window.mozapps = window.mozapps || {
   Utils: {},
   currentPage: {},
 
-  fetchAppCollection: function(){
-    //Note: we're using a backbone collection for the template collection which is backed by a Kinvey Collection
-    // so that we can fall back to fixture data for the templates if we're offline on our first fetch attempt.
-    // With the My Apps collection, it's initial state is empty, so we don't need fixutre data. Even if we start
-    // with created apps on the server and an empty app, it is fine because when apps get created they get a GUID
-    // and the locally created app won't collide with ones on the server that will be eventually downloaded
-    window.MozAppsKinvey.MozAppCollection.fetch({
-        success: function(data) {
-        },
-        error: function(e) {
-        },
-        complete: function(data){
-        }
+  initAppDB: function(){
+    var deferred = Deferred();
+
+    mozapps.appsDB = new IDBStore({
+      dbVersion: 1,
+      storePrefix: 'mozapps-',
+      storeName: 'apps',
+      keyPath: 'id',
+      autoIncrement: true,
+      onStoreReady: function(){
+        console.log('App IDB ObjectStore ready!');
+        deferred.resolve();
+      },
+      onError: function(error){ alert("There was a problem opening the MozApps database. Please restart the app."); }
     });
+
+    return deferred.promise();
+  },
+
+  initTemplateDB: function(){
+    var deferred = Deferred();
+
+    mozapps.templatesDB = new IDBStore({
+      dbVersion: 1,
+      storePrefix: 'mozapps-',
+      storeName: 'templates',
+      keyPath: 'id',
+      autoIncrement: true,
+      onStoreReady: function(){
+        console.log('Templates IDB ObjectStore ready!');
+
+        //TODO - BUG after delete IDB, template list view doesn't render first time
+        mozapps.templatesDB.count(
+          function(data){
+            if(data < 1){
+              console.log("loading fixture data");
+              _.each(mozapps.templateFixtureData, function(element, index, list){
+                  mozapps.templatesDB.put(element, function(id){ }, function(error){  } );
+              });
+            }
+          },
+          function(error){
+            console.log(error);
+          }
+        );
+
+        deferred.resolve();
+      },
+      onError: function(error){ alert("There was a problem opening the MozApps database. Please restart the app."); } 
+    });
+
+    return deferred.promise();
   },
   init: function() {
-    mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
-    mozapps.fetchAppCollection();
+  
+    $.when(mozapps.initAppDB(), mozapps.initTemplateDB()).done(function(){
+      
+      mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
+      mozapps.appCollection = new mozapps.Collections.AppCollection();
 
-    mozapps.tmplListView = new mozapps.Views.templatesListView();
-    mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
-    mozapps.appBuilderView = new mozapps.Views.appBuilderView();
-    mozapps.router = new mozapps.Routers.ApplicationRouter(); 
-    Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+      mozapps.tmplListView = new mozapps.Views.templatesListView();
+      mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.tmplCollection});
+      mozapps.appBuilderView = new mozapps.Views.appBuilderView({collection: mozapps.appCollection});
+      mozapps.router = new mozapps.Routers.ApplicationRouter(); 
+      Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+    });
   }
 };
 
 $(document).ready(function(){
-  window.mozapps.init();
-});
 
-Handlebars.registerHelper('templateListViewHelper', function(items, options) {
-  var out = "";
-  var count = 0;
-  var tempImgUrl = "styles/temp/template_icon_store.png";
-  var initItemString = " checked";
-  for (var key in items) {
-    count++;
-    if(count > 1) {
-      initItemString = "";
-    }
-    out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
-    + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
-    out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
-    var templatesCategories = items[key];
-    templatesCategories.forEach(function(element, index, array){
-      //console.log(element.name);
-      out += "<li class='list-item'>" + 
-      "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
-      + element.name + "<span></li>";  
-    });
-    out += "</ul></div></li>";
-  }
-  return out;
+  // TEMP INSTALL
+  // var request = navigator.mozApps.getSelf();
+  // request.onsuccess = function() {
+  //   if (request.result) {
+  //     // we're installed
+  //   } else {
+  //     navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
+  //   }
+  // };
+  // request.onerror = function() {
+  //   alert('Error checking installation status: ' + this.error.message);
+  // };
+
+   window.mozapps.init();
+
 });
 
 
-Handlebars.registerHelper("debug", function(optionalValue) { 
-  console.log("Current Context"); 
-  console.log("===================="); 
-  console.log(this);   
-  if (optionalValue) {
-    console.log("Value"); 
-    console.log("===================="); 
-    console.log(optionalValue); 
-  } 
-});
 
+
+
+        // Object.observe(mozapps.tmplCollection, function(){
+        //     console.log("templateCollection - observe call back");
+        // });
