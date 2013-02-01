@@ -69,7 +69,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
 
-                // set viewport (UL) width
+                // set viewport (UL) width, SK TODO : refactor 
                 _.each(this.$el.find('.list-item-body'), function(element){
                     var elementObject = $(element).find('ul');
                     elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
