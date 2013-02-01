@@ -11,7 +11,7 @@
  * INPUTS: frog form inputs
  * ---------------------------------- */
 
-section[role="region"] input, textarea{
+section[role="region"] input[type="text"], textarea{
 	width:100%;
 	border:1px solid #ccc;
 	border-radius: 4px;
