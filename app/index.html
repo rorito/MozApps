@@ -50,7 +50,7 @@
                     <ul>
                         {{#each app_components}}
                             <li><p>{{this.component_name}}</p>
-                            <p>{{this.properties.description}}</p></li>
+                            <p>{{this.description}}</p></li>
                         {{/each}}
                     </ul>
                   </section>
@@ -102,17 +102,16 @@
 
                   <!-- content region -->
                   <section role="region" data-type="content">
-                    <header>Your template</header>
                     <section role="region" data-type="detail" class="template-detail">
                       <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
                       <div>
                         <h1>Small Store</h1>
-                        <button class="recommend">Publish</button>
-                        <button class="preview"></button>
+                        <button class="">Preview</button>
+                        <button class="" disabled="">Publish</button>
                       </div>
                     </section>
                     <section role="region" data-type="list">
-                      <header>Edit your app components</header>
+                      <header class="list-header">Edit your app components</header>
                       <ul data-type="edit">
                         {{#each app_components}}
                             <li>
