@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, productAddImage, #productDetailView, #productDetailEdit, #leftNav{
       display: none;
     }
   </style>
@@ -309,6 +309,9 @@
         <!-- this is for testing phone image api -->
         <div id="image-presenter">
         </div>
+        <p>
+          <img id="thumbnail-photo" alt="" style="background-image: url(); background-color: transparent;display:inline-block;padding:40px 40px;background-repeat:no-repeat;">
+        </p>
         <!-- comment this out to hide populated view -->
         <!--
         <ul data-type="list">
@@ -402,9 +405,10 @@
       </section>
       <section data-type="chrome">
         <div class="chrome-fixed-bottom">
-          <ul>
-            <li><button>Delete Selected</button></li>
-          </ul>
+          <!-- need this extra div to get even padding around the button -->
+          <div>
+            <button>Delete Selected</button>
+          </div>
         </div>
       </section>
     </section>
@@ -575,9 +579,20 @@
     </div>
   </nav>
 
+<!--
+  <script src="http://debug.phonegap.com/target/target-script-min.js#mozmoz"></script>
+  <script type="text/javascript" src="scripts/temp/mediadb.js"></script>
+  <script type="text/javascript" src="scripts/temp/MetadataParser.js"></script>
+  <script type="text/javascript" src="scripts/temp/sandbox.js"></script>
+ --> 
 
   <!-- build:js scripts/scripts.js -->
-  <script type="text/javascript" src="scripts/temp/sandbox.js"></script>
+  
+  <!--script type="text/javascript" src="scripts/temp/media/jpeg_metadata_parser.js"></script-->
+  
+  <!--script src="http://tools.code-eleven.com:8080/target/target-script-min.js#anonymous"></script-->
+
+  
 
   <!-- endbuild -->
 </body>

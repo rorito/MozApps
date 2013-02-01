@@ -399,7 +399,7 @@ section[data-type="accordion"] > .list > li > .list-item {
  * INPUTS: frog form inputs
  * ---------------------------------- */
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
-section[role="region"] input, textarea {
+section[role="region"] input[type="text"], textarea {
   width: 100%;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -786,13 +786,7 @@ section[data-type="icon-list"] > header {
   min-height: 8.4rem;
 }
 
-/*
-#productListEdit [data-type="list"] li > a {
-	height:auto;
-	min-height:8.3rem;
-}
-*/
-/* line 33, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 28, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > label {
   margin: 0;
   left: 0;
@@ -801,12 +795,23 @@ section[data-type="icon-list"] > header {
   top: 0;
 }
 
-/* line 41, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 37, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > label > input[type=checkbox] {
-  margin: 1.1rem 0.3rem 0.3rem 0rem;
+  /*margin:2.4rem 0.3rem 0.3rem 0rem;*/
+  height: 2.8rem;
+  width: 2.8rem;
 }
 
-/* line 45, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 43, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="list"] li > label > input[type=checkbox] + div {
+  height: 2.8rem;
+  width: 2.8rem;
+  position: absolute;
+  top: 3.0rem;
+  left: 0.8rem;
+}
+
+/* line 52, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figure {
   margin: 0;
   left: 4.4rem;
@@ -815,7 +820,7 @@ section[data-type="icon-list"] > header {
   top: 0;
 }
 
-/* line 53, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 60, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figcaption {
   padding: 0 2.2rem 0 13.8rem;
   position: relative;
@@ -824,31 +829,25 @@ section[data-type="icon-list"] > header {
 }
 
 /* fixed position buttons on bottom */
-/* line 64, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 69, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.chrome-fixed-bottom {
   position: fixed;
   bottom: 0px;
   width: 100%;
   background-color: #4d4d4d;
+  /*padding:0.6rem;*/
 }
 
-/* line 71, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 0 !important;
-}
-
+/* need this extra div to get even padding around the button */
 /* line 78, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul > li {
-  font-size: 2.4rem;
-  font-weight: 100;
-  line-height: 2.2em;
-  text-align: center;
+#productListEdit [data-type="content"] div.chrome-fixed-bottom > div {
+  padding: 0.6rem;
+}
+
+/* line 82, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="content"] div.chrome-fixed-bottom button {
+  margin: 0;
   display: block;
-  width: 100%;
-  padding: 0.6rem 1.6rem 0 1.6rem;
 }
 
 /******************************************************************
@@ -881,33 +880,40 @@ section[data-type="icon-list"] > header {
 
 /* line 27, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul {
+  /*
   display: flex;
   flex-direction: row;
+  */
   width: 100%;
   padding: 0 !important;
 }
 
-/* line 34, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 36, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li {
   font-size: 2.4rem;
   font-weight: 100;
-  line-height: 2.2em;
   text-align: center;
   display: block;
-  width: 50%;
-  padding: 0.6rem 0 0 0;
+  width: 47%;
+  padding: 0.6rem 0 0.6rem;
+  float: left;
 }
 
-/* line 44, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 45, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:first-child {
-  padding-left: 1.6rem;
-  padding-right: 0.6rem;
+  padding-left: 2%;
+  padding-right: 1%;
 }
 
-/* line 49, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 50, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:last-child {
-  padding-left: 0.6rem;
-  padding-right: 1.6rem;
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+/* line 55, ../../app/styles/frog/screens/_product_add_image.scss */
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li button {
+  margin: 0;
 }
 
 /******************************************************************

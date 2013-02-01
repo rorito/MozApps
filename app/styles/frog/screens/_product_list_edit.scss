@@ -24,12 +24,7 @@
 	position:relative;
 	min-height:8.4rem;
 }
-/*
-#productListEdit [data-type="list"] li > a {
-	height:auto;
-	min-height:8.3rem;
-}
-*/
+
 #productListEdit [data-type="list"] li > label {
 	margin:0;
 	left: 0;
@@ -38,9 +33,21 @@
     top: 0;
 }
 
+
 #productListEdit [data-type="list"] li > label > input[type=checkbox] {
-	margin:1.1rem 0.3rem 0.3rem 0rem;
+	/*margin:2.4rem 0.3rem 0.3rem 0rem;*/
+	height:2.8rem;
+	width:2.8rem;
 }
+
+#productListEdit [data-type="list"] li > label > input[type=checkbox] + div {
+	height:2.8rem;
+	width:2.8rem;
+	position:absolute;
+	top:3.0rem;
+	left:0.8rem;
+}
+
 
 #productListEdit [data-type="list"] li > figure {
 	margin:0;
@@ -58,28 +65,21 @@
 }
 
 
-
-
 /* fixed position buttons on bottom */
 #productListEdit [data-type="content"] div.chrome-fixed-bottom {
 	position:fixed;
 	bottom:0px;
 	width:100%;
 	background-color:#4d4d4d;
+	/*padding:0.6rem;*/
 }
 
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	padding: 0 !important;
+/* need this extra div to get even padding around the button */
+#productListEdit [data-type="content"] div.chrome-fixed-bottom > div {
+	padding:0.6rem;
 }
 
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul > li {
-	@include text-large;
-	line-height: 2.2em;
-	text-align: center;
+#productListEdit [data-type="content"] div.chrome-fixed-bottom  button {
+	margin:0;
 	display:block;
-	width:100%;
-	padding:0.6rem 1.6rem 0 1.6rem;
 }
