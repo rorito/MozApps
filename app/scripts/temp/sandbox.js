@@ -1,19 +1,11 @@
+// set to output alerts
+//window.utils.setIsConsole(false);
+//window.utils.debugOut('call install app');
+
+var MY_URL = "10.118.118.201:3501";
+
 // uncomment to install app on phone
-/*
-var request = navigator.mozApps.getSelf();
-  request.onsuccess = function() {
-    if (request.result) {
-      // we're installed
-    } else {
-        navigator.mozApps.install("");
-    }
-  };
-  request.onerror = function() {
-    alert('Error checking installation status: ' + this.error.message);
-  };
-*/
-
-
+//installApp();
 
 var PHOTO_WIDTH = 83;
 var PHOTO_HEIGHT = 83;
@@ -208,3 +200,25 @@ var browsePhotoDB = function browsePhotoDB() {
 
     //alert('end');    
 }
+
+// checks if installed app and will prompt to install
+function installApp() {
+
+    //window.utils.debugOut('install');
+    var request = navigator.mozApps.getSelf();
+    
+    request.onsuccess = function() {
+        //window.utils.debugOut(request.result);
+        if (request.result) {
+            // we're installed
+        } else {
+            window.utils.debugOut('try install');
+            navigator.mozApps.install("http://" + MY_URL + "/manifest.webapp");
+        }
+    };
+
+    request.onerror = function() {
+        alert('Error checking installation status: ' + this.error.message);
+    };
+}
+
