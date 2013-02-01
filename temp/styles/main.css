@@ -68,10 +68,10 @@
 [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -.4rem;
+  top: -0.4rem;
   bottom: 0;
   right: 0;
-  left: -.8rem;
+  left: -0.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -184,7 +184,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   border: none;
   border-radius: 0.1rem;
   font-size: 1.7rem;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   font-weight: 600;
   line-height: 3rem;
   color: #fff;
@@ -192,7 +192,7 @@ section[role="region"].skin-aqua a[role="button"].buy {
   text-shadow: none;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 3px #000;
 }
 
 /******************************************************************
@@ -326,7 +326,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* start horizontal list */
 /* line 45, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
-  margin: 2rem 0 0.8rem 0;
+  margin: 2rem 0 .8rem 0;
 }
 
 /* line 49, ../../app/styles/frog/widgets/_accordion.scss */
@@ -437,10 +437,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] input, textarea {
   width: 100%;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: inset 0 0 3px #cccccc;
+  box-shadow: inset 0 0 3px #ccc;
   font-family: "OpenSans", Sans-serif;
   font-size: 1.1rem;
 }
@@ -746,7 +746,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list.scss */
 #productList [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2rem 20% 0 20%;
+  padding: 2.0rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -814,7 +814,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2rem 20% 0 20%;
+  padding: 2.0rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -1011,7 +1011,7 @@ section[data-type="icon-list"] > header {
 
 /* line 24, ../../app/styles/frog/screens/_product_detail_edit.scss */
 #productDetailEdit [data-type="content"] p.box-margin-top {
-  margin: 3rem 0 1.6rem 0;
+  margin: 3.0rem 0 1.6rem 0;
 }
 
 /* line 28, ../../app/styles/frog/screens/_product_detail_edit.scss */
@@ -1031,7 +1031,7 @@ html {
 /* line 90, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: "Open Sans", Sans-serif;
+  font-family: 'Open Sans', Sans-serif;
   background-color: white;
   color: black;
 }

@@ -154,7 +154,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
-                this.$el.html(this.template(this.model.toJSON()));
+                //NOTE: don't need toJSON() here because we call it above when we iterate over the tmplCollection
+                this.$el.html(this.template(this.model)); 
         }
         return this;
     }
