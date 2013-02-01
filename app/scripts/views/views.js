@@ -23,8 +23,7 @@ mozapps.Views.appSubView = Backbone.View.extend({
                 this.$el.html(this.template( { loading: true } ));    
             } else {
                 console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
-                console.log(this.collection.toJSON());
-                this.$el.html(this.template( { myApps: this.collection } ));
+                this.$el.html(this.template( { myApps: this.collection.toJSON() } ));
             }
             this.delegateEvents();
 
@@ -83,7 +82,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     }
 });
 
-
+//TODO - BUG - if you click back button to home screen, only one template shows in Featured
 mozapps.Views.templatesListView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     viewName: "templatesListView",
@@ -155,7 +154,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
-                this.$el.html(this.template(this.model));
+                //NOTE: don't need toJSON() here because we call it above when we iterate over the tmplCollection
+                this.$el.html(this.template(this.model)); 
         }
         return this;
     }
@@ -182,7 +182,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                this.$el.html(this.template(this.model));
+                this.$el.html(this.template(this.model.toJSON()));
             }
         }
         return this;
