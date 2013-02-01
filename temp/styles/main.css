@@ -60,80 +60,6 @@
 [data-type="list"] li p {
 	color: white !important;
 }*/
-/* ----------------------------------
- * EDIT LISTS: frog, "app builder settings"
- * ---------------------------------- */
-/* Checkable content */
-/* line 40, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label {
-  pointer-events: none;
-  position: absolute;
-  top: -.4rem;
-  bottom: 0;
-  right: 0;
-  left: -.8rem;
-  z-index: 1;
-  width: auto;
-  height: auto;
-  border: none;
-}
-
-/* line 53, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input {
-  opacity: 0;
-  height: 5rem;
-  width: 5rem;
-  background-color: transparent;
-}
-
-/* line 60, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input[type='checkbox']:checked + div {
-  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
-}
-
-/* line 64, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input + div {
-  position: relative;
-  display: block;
-  height: 5rem;
-  width: 5rem;
-  left: 0;
-  top: -5rem;
-  margin-left: 0;
-}
-
-/* line 74, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li {
-  width: 100%;
-  transform: none;
-  padding: 0 0 0 0rem;
-}
-
-/* line 80, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li p {
-  margin-left: 3.4rem;
-}
-
-/* line 84, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > label {
-  pointer-events: auto;
-}
-
-/* line 88, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > button {
-  position: relative;
-  top: -4rem;
-  width: 95%;
-  outline: none;
-  border: 0;
-  background: transparent;
-}
-
-/* line 97, ../../app/styles/frog/widgets/_lists.scss */
-.complete {
-  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
-}
-
 /******************************************************************
  * 
  * BUTTON EXTENSIONS AND OVERRIDES
@@ -584,55 +510,58 @@ section[role="region"] textarea {
 /* line 26, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail {
   position: relative;
-  display: flex;
-  padding: 2rem 0;
-  flex-direction: row;
-  justify-content: flex-start;
+  /* display: flex; */
+  padding: 2rem 2rem;
+  /* flex-direction: row; */
+  /* justify-content: flex-start; */
   border-top: 1px solid #525252;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* line 36, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail h1 {
-  font-size: 2.4rem;
+  font-family: "OpenSans", Sans-serif;
   font-weight: 100;
+  font-size: 1.9rem;
+  margin: 1rem 0;
 }
 
-/* line 40, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 43, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
   height: 9.4rem;
   width: 6.2rem;
-  margin: 0 1.5rem;
   border: 0.1rem solid #5b5b5b;
 }
 
-/* line 47, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 49, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div:first-child {
   margin-left: 2rem;
   flex: 0;
 }
 
-/* line 52, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 54, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  float: left;
   width: 14rem;
 }
 
-/* line 60, ../../app/styles/frog/screens/_app_builder.scss */
-#appBuilder [data-type="content"] .template-detail > div > h1 {
-  margin: 0;
+/* line 59, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail > div:nth-child(2) {
+  width: 10rem !important;
 }
 
-/* line 64, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 63, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .recommend {
   margin: 0;
 }
 
-/* line 68, ../../app/styles/frog/screens/_app_builder.scss */
-.preview {
+/* line 67, ../../app/styles/frog/screens/_app_builder.scss */
+.components-list {
+  broder-bottom: 1px solid black;
+}
+
+/* line 71, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder .preview {
   position: absolute;
   top: 2.2rem;
   right: 2rem;
@@ -640,6 +569,96 @@ section[role="region"] textarea {
   width: 2rem;
   outline: none;
   border: 0;
+}
+
+/* ----------------------------------
+ * COMPONENT LIST
+ * ---------------------------------- */
+/* Checkable content */
+/* line 89, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label {
+  pointer-events: none;
+  position: absolute;
+  top: -.4rem;
+  bottom: 0;
+  right: 0;
+  left: -.8rem;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+/* line 102, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input {
+  opacity: 0;
+  height: 5rem;
+  width: 5rem;
+  background-color: transparent;
+}
+
+/* line 109, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input[type='checkbox']:checked + div {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
+}
+
+/* line 113, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input + div {
+  position: relative;
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  left: 0;
+  top: -5rem;
+  margin-left: 0;
+}
+
+/* line 123, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li {
+  width: 100%;
+  transform: none;
+  padding: 0 0 0 0rem;
+  background-color: #eaeaea;
+}
+
+/* line 130, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p {
+  margin-left: 3.4rem;
+}
+
+/* line 134, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p:nth-child(1) {
+  font-size: 1.7rem;
+}
+
+/* line 138, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p:nth-child(2) {
+  font-size: 1.4rem;
+}
+
+/* line 142, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li > label {
+  pointer-events: auto;
+}
+
+/* line 146, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li > button {
+  position: relative;
+  top: -4rem;
+  width: 95%;
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+/* line 155, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li:last-child {
+  border-bottom: 1px solid black !important;
+}
+
+/* line 159, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder .complete {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
 
 /******************************************************************
