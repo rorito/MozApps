@@ -131,7 +131,7 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
   },
   addedToCollection: function(data){
     console.log("added to collection");
-    console.log(data.toJSON());
+
     mozapps.appsDB.batch([ {type: "put", value: data.toJSON()} ], 
       function(){ console.log("batch add apps IDB - success"); }, 
       function(){ console.log("batch add apps IDB - fail"); }
