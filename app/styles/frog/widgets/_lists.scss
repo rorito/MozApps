@@ -73,7 +73,11 @@
 
 [data-type="list"] [data-type="edit"] li {
   transform: none;
-  padding: 0 0 0 3.4rem;
+  padding: 0 0 0 0rem;
+}
+
+[data-type="list"] [data-type="edit"] li p {
+	margin-left: 3.4rem;
 }
 
 [data-type="list"] [data-type="edit"] li > label {
@@ -91,7 +95,12 @@
 [data-type="list"] [data-type="edit"] li > a > button {
 	position: relative;
 	top: -4rem;
+	width: 95%;
 	outline: none;
 	border: 0;
-	background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+	background: transparent;
+}
+
+.complete {
+	background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }

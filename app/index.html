@@ -91,7 +91,6 @@
                   <!-- represents application screen
                      APP BUILDER -->
                 <div id="appBuilder" role="window">
-
                   <!-- title bar region -->
                   <section role="region" data-type="header">
                     <header>
@@ -113,16 +112,12 @@
                     <section role="region" data-type="list">
                       <header class="list-header">Edit your app components</header>
                       <ul data-type="edit">
-                        {{#each app_components}}
+                        {{#each attributes.app_components}}
                             <li>
-                              <label class="danger">
-                                <input type="checkbox" checked>
-                                <div></div>
-                              </label>
                               <a href="#">
                                 <p>{{this.component_name}}</p>
-                                <p>{{this.properties.description}}</p>
-                                <button></button>
+                                <p>{{this.description}}</p>
+                                <button class="complete"></button>
                               </a>
                             </li>
                         {{/each}}

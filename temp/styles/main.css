@@ -105,31 +105,42 @@
 /* line 74, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li {
   transform: none;
-  padding: 0 0 0 3.4rem;
+  padding: 0 0 0 0rem;
 }
 
 /* line 79, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li p {
+  margin-left: 3.4rem;
+}
+
+/* line 83, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > label {
   pointer-events: auto;
 }
 
-/* line 83, ../../app/styles/frog/widgets/_lists.scss */
+/* line 87, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a:active:after {
   display: none;
 }
 
-/* line 87, ../../app/styles/frog/widgets/_lists.scss */
+/* line 91, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a {
   width: 100%;
 }
 
-/* line 91, ../../app/styles/frog/widgets/_lists.scss */
+/* line 95, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > a > button {
   position: relative;
   top: -4rem;
+  width: 95%;
   outline: none;
   border: 0;
-  background: transparent url(frog/widgets/buttons/images/greater.png) no-repeat center right;
+  background: transparent;
+}
+
+/* line 104, ../../app/styles/frog/widgets/_lists.scss */
+.complete {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
 
 /******************************************************************
@@ -567,7 +578,7 @@ section[role="region"] textarea {
 #appBuilder [data-type="content"] header {
   height: auto !important;
   padding: 0.3rem 3.4rem 0 3.4rem !important;
-  background: transparent !important;
+  background: #a6a6a6 !important;
   background-image: none !important;
   margin: 0 !important;
   font-family: "MozTTMedium", Sans-serif !important;
@@ -575,11 +586,11 @@ section[role="region"] textarea {
   font-size: 1.4rem;
   line-height: 2rem;
   text-transform: none;
-  color: black !important;
+  color: white !important;
   box-shadow: none !important;
 }
 
-/* line 15, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 26, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail {
   position: relative;
   display: flex;
@@ -590,13 +601,13 @@ section[role="region"] textarea {
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* line 25, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 36, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail h1 {
   font-size: 2.4rem;
   font-weight: 100;
 }
 
-/* line 29, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 40, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
   height: 9.4rem;
   width: 6.2rem;
@@ -604,13 +615,13 @@ section[role="region"] textarea {
   border: 0.1rem solid #5b5b5b;
 }
 
-/* line 36, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 47, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div:first-child {
   margin-left: 2rem;
   flex: 0;
 }
 
-/* line 41, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 52, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div {
   display: flex;
   flex-direction: column;
@@ -619,17 +630,17 @@ section[role="region"] textarea {
   width: 14rem;
 }
 
-/* line 49, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 60, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div > h1 {
   margin: 0;
 }
 
-/* line 53, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 64, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .recommend {
   margin: 0;
 }
 
-/* line 57, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 68, ../../app/styles/frog/screens/_app_builder.scss */
 .preview {
   position: absolute;
   top: 2.2rem;
