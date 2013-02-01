@@ -72,6 +72,7 @@
 }
 
 [data-type="list"] [data-type="edit"] li {
+	width: 100%;
   transform: none;
   padding: 0 0 0 0rem;
 }
@@ -84,15 +85,7 @@
   pointer-events: auto;
 }
 
-[data-type="list"] [data-type="edit"] li > a:active:after {
-  display: none;
-}
-
-[data-type="list"] [data-type="edit"] li > a {
-	width: 100%;
-}
-
-[data-type="list"] [data-type="edit"] li > a > button {
+[data-type="list"] [data-type="edit"] li > button {
 	position: relative;
 	top: -4rem;
 	width: 95%;

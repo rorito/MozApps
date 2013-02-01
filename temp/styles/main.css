@@ -104,32 +104,23 @@
 
 /* line 74, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li {
+  width: 100%;
   transform: none;
   padding: 0 0 0 0rem;
 }
 
-/* line 79, ../../app/styles/frog/widgets/_lists.scss */
+/* line 80, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li p {
   margin-left: 3.4rem;
 }
 
-/* line 83, ../../app/styles/frog/widgets/_lists.scss */
+/* line 84, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] [data-type="edit"] li > label {
   pointer-events: auto;
 }
 
-/* line 87, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a:active:after {
-  display: none;
-}
-
-/* line 91, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a {
-  width: 100%;
-}
-
-/* line 95, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a > button {
+/* line 88, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="list"] [data-type="edit"] li > button {
   position: relative;
   top: -4rem;
   width: 95%;
@@ -138,7 +129,7 @@
   background: transparent;
 }
 
-/* line 104, ../../app/styles/frog/widgets/_lists.scss */
+/* line 97, ../../app/styles/frog/widgets/_lists.scss */
 .complete {
   background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
