@@ -45,7 +45,7 @@ window.mozapps = window.mozapps || {
       onStoreReady: function(){
         console.log('Templates IDB ObjectStore ready!');
 
-        //check to see if we need to load fixture data
+        //TODO - BUG after delete IDB, template list view doesn't render first time
         mozapps.templatesDB.count(
           function(data){
             if(data < 1){
@@ -102,41 +102,7 @@ $(document).ready(function(){
 
 });
 
-Handlebars.registerHelper('templateListViewHelper', function(items, options) {
-  var out = "";
-  var count = 0;
-  var tempImgUrl = "styles/temp/template_icon_store.png";
-  var initItemString = " checked";
-  for (var key in items) {
-    count++;
-    if(count > 1) {
-      initItemString = "";
-    }
-    out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
-    + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
-    out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
-    var templatesCategories = items[key];
-    templatesCategories.forEach(function(element, index, array){
-      out += "<li class='list-item'><a href='#templates/" + element.id + "'>" + 
-      "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
-      + element.name + "</span></a></li>";  
-    });
-    out += "</ul></div></li>";
-  }
-  return out;
-});
 
-
-Handlebars.registerHelper("debug", function(optionalValue) { 
-  console.log("Current Context"); 
-  console.log("===================="); 
-  console.log(this);   
-  if (optionalValue) {
-    console.log("Value"); 
-    console.log("===================="); 
-    console.log(optionalValue); 
-  } 
-});
 
 
 

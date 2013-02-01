@@ -108,22 +108,12 @@ mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
         self.reset(data);
         }, function(){
       });
-
-      this.listenTo(this, "change", this.updateIDB);
-  },
-  updateIDB: function(){
-    var self = this;
-    console.log("updateIDB - templates");
-    console.log(self.toJSON());
-    mozapps.templatesDB.batch([ {type: "put", value: self.toJSON()} ], 
-      function(){ console.log("batch update templates IDB - success"); }, 
-      function(){ console.log("batch update templates IDB - fail"); }
-    );
-  } 
+  }
 });
 
 //TODO use UUIDs for id?
 //TODO wire up events to save new models added to collection back to IDB
+//TODO handle multiple add to collection?
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
   initialize: function() {
       var self = this;
@@ -135,17 +125,26 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
         function(){
         } 
       );
-
-      this.listenTo(this, "change", this.updateIDB);
+      this.listenTo(this, "add", this.addedToCollection);
+      this.listenTo(this, "remove", this.removedFromCollection);
+      this.listenTo(this, "reset", this.checkReset);
   },
-  updateIDB: function(){
-    var self = this;
-    console.log("updateIDB - apps");
-    console.log(self.toJSON());
-    mozapps.appsDB.batch([ {type: "put", value: self.toJSON()} ], 
-      function(){ console.log("batch update apps IDB - success"); }, 
-      function(){ console.log("batch update apps IDB - fail"); }
+  addedToCollection: function(data){
+    console.log("added to collection");
+    console.log(data.toJSON());
+    mozapps.appsDB.batch([ {type: "put", value: data.toJSON()} ], 
+      function(){ console.log("batch add apps IDB - success"); }, 
+      function(){ console.log("batch add apps IDB - fail"); }
     );
+  },
+  removedFromCollection: function(data){
+    mozapps.appsDB.batch([ {type: "remove", value: data.toJSON()} ], 
+      function(){ console.log("batch remove apps IDB - success"); }, 
+      function(){ console.log("batch remove apps IDB - fail"); }
+    );
+  },
+  checkReset: function(data){
+    console.log("app collection reset");
   } 
 });
 
