@@ -49,6 +49,7 @@ window.mozapps = window.mozapps || {
         mozapps.templatesDB.count(
           function(data){
             if(data < 1){
+              console.log("loading fixture data");
               _.each(mozapps.templateFixtureData, function(element, index, list){
                   mozapps.templatesDB.put(element, function(id){ }, function(error){  } );
               });
@@ -69,9 +70,6 @@ window.mozapps = window.mozapps || {
   init: function() {
   
     $.when(mozapps.initAppDB(), mozapps.initTemplateDB()).done(function(){
-
-      mozapps.tmplModel = new mozapps.Models.TemplateModel();
-      mozapps.appModel = new mozapps.Models.AppModel();
       
       mozapps.tmplCollection = new mozapps.Collections.TemplateCollection();
       mozapps.appCollection = new mozapps.Collections.AppCollection();
@@ -88,20 +86,17 @@ window.mozapps = window.mozapps || {
 $(document).ready(function(){
 
   // TEMP INSTALL
-
-
-  
-  var request = navigator.mozApps.getSelf();
-  request.onsuccess = function() {
-    if (request.result) {
-      // we're installed
-    } else {
-      navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
-    }
-  };
-  request.onerror = function() {
-    alert('Error checking installation status: ' + this.error.message);
-  };
+  // var request = navigator.mozApps.getSelf();
+  // request.onsuccess = function() {
+  //   if (request.result) {
+  //     // we're installed
+  //   } else {
+  //     navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
+  //   }
+  // };
+  // request.onerror = function() {
+  //   alert('Error checking installation status: ' + this.error.message);
+  // };
 
    window.mozapps.init();
 
@@ -122,7 +117,6 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
-      console.log(element);
       out += "<li class='list-item'><a href='#templates/" + element.id + "'>" + 
       "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
       + element.name + "</span></a></li>";  
@@ -144,3 +138,8 @@ Handlebars.registerHelper("debug", function(optionalValue) {
   } 
 });
 
+
+
+        // Object.observe(mozapps.tmplCollection, function(){
+        //     console.log("templateCollection - observe call back");
+        // });

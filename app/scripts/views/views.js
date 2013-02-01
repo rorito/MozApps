@@ -7,6 +7,7 @@ mozapps.Views.appSubView = Backbone.View.extend({
     initialize: function(){
         var self = this;
 
+        this.listenTo(this.collection, "reset", this.render);
         this.listenTo(this.collection, "change", this.render);
 
         // SK - this may be a hack?, problem with back button render
@@ -14,17 +15,19 @@ mozapps.Views.appSubView = Backbone.View.extend({
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
+            //TODO fix the double render
+            //console.log("app subview - outer render");
             if(!this.collection){
+                //console.log("app sub - loading");
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
+                //console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
                 this.$el.html(this.template( { myApps: this.collection } ));
             }
             this.delegateEvents();
 
             // set viewport (UL) width
             _.each(this.$el.find('.list-item-body'), function(element){
-                
             }, this);
 
             return this;
@@ -36,17 +39,20 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     template: Handlebars.compile($("#templatesSubViewTemplate").html()),
     iscrollObjects: new Array(),
     initialize: function(){
-        console.log("XXX INIT");
         this.listenTo(this.collection, "reset", this.render);
+        this.listenTo(this.collection, "change", this.render);
+
         // SK - this may be a hack?, problem with back button render
         this.render();
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
+            //console.log("template subview - outer render");
             if(this.collection.length < 1){
+                //console.log("template sub - loading");
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("RENDER: templatesListView SubView: templatesSubViewTemplate");
+                //console.log("RENDER: templatesListView SubView: templatesSubViewTemplate");
                 var tmplByCategory = {};
                 //hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 tmplByCategory.categories = [];
@@ -82,9 +88,7 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     initialize: function() {
     },
     render: function(eventName) {
-        console.log("Current Page: " + mozapps.currentPage);
         if(mozapps.currentPage == "templatesListView"){
-            console.log("RENDER: templatesListView");
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
             this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.tmplCollection});
@@ -128,7 +132,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 templateID: self.templateID
             };
             mozapps.appCollection.add(newMozApp);
-            mozapps.router.navigate("#apps/"+newMozApp.id); 
+            console.log(mozapps.appCollection.toJSON());
+            mozapps.router.navigate("#apps/"+newMozApp.id,true); 
         } else {
             console.log("didn't find template in template collection");
             //TODO throw up modal error dialog here
@@ -169,9 +174,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         window.history.back();
     },
     render: function(eventName) {
-        if(mozapps.currentPage == "appBuilderView"){
-            this.model = this.collection.get(appID);
-
+        if(mozapps.currentPage == "appBuilderView" && this.collection){
+            this.model = this.collection.get(this.appID);
+            console.log(this.model);
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
