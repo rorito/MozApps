@@ -175,7 +175,7 @@
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                {{#if myApps.length}}
+                {{#if_lt myApps.length compare=1}}
                     <li class="header">
                         <h2 class="title">Please choose an app template to get started.</h2>
                     </li>  
@@ -193,7 +193,7 @@
                         </ul>
                       </div>
                     </li>
-                {{/if}}
+                {{/if_lt}}
             {{/if}}
         </script>
 
@@ -220,6 +220,7 @@
         <script src="scripts/vendor/backbone-min.js"></script>
         <script src="scripts/vendor/idbstore.min.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
+        <script src="scripts/helpers/handlebars-helpers.js"></script>
         <script src="scripts/vendor/Object.observe.poly.js"></script>
         <script src="scripts/vendor/uuid.js"></script>        
         <script src="scripts/main.js"></script>

@@ -8,7 +8,8 @@ mozapps.Views.appSubView = Backbone.View.extend({
         var self = this;
 
         this.listenTo(this.collection, "reset", this.render);
-        this.listenTo(this.collection, "change", this.render);
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "remove", this.render);
 
         // SK - this may be a hack?, problem with back button render
         this.render();
@@ -18,10 +19,11 @@ mozapps.Views.appSubView = Backbone.View.extend({
             //TODO fix the double render
             //console.log("app subview - outer render");
             if(!this.collection){
-                //console.log("app sub - loading");
+                console.log("app sub - loading");
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                //console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
+                console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
+                console.log(this.collection.toJSON());
                 this.$el.html(this.template( { myApps: this.collection } ));
             }
             this.delegateEvents();
@@ -40,7 +42,8 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     iscrollObjects: new Array(),
     initialize: function(){
         this.listenTo(this.collection, "reset", this.render);
-        this.listenTo(this.collection, "change", this.render);
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "remove", this.render);
 
         // SK - this may be a hack?, problem with back button render
         this.render();
@@ -122,17 +125,18 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     createApp: function(){
         var self = this;        
         var tmpl = this.collection.get(this.templateID);
+
         if(tmpl){
             var newMozApp = {
                 id: uuid.v4(),
                 name:     '',
                 published: false,
                 version: "1.0",
-                app_components: tmpl.app_components,
+                app_components: tmpl.toJSON().app_components,
                 templateID: self.templateID
             };
             mozapps.appCollection.add(newMozApp);
-            console.log(mozapps.appCollection.toJSON());
+            console.log("app collection after add");
             mozapps.router.navigate("#apps/"+newMozApp.id,true); 
         } else {
             console.log("didn't find template in template collection");
@@ -142,7 +146,6 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     render: function(eventName) {
         var self = this;
         if(mozapps.currentPage == "templateDetailView" && mozapps.tmplCollection.length > 0){
-            console.log("RENDER: templateDetailView");
                 mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
                     if(element.id == self.templateID){
                         if((index-1) > -1) { element.prevTemplateId = array[index-1].id; }
@@ -176,11 +179,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
             this.model = this.collection.get(this.appID);
-            console.log(this.model);
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log("app builder - this.model");
                 this.$el.html(this.template(this.model));
             }
         }
