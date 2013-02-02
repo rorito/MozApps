@@ -7,6 +7,7 @@
 //TODO - should accordians toggle close?
 //TODO - accordian arrows should go right and down
 //TODO - app Collection fixture data (pre-set products, etc)
+//TODO - app name change should put focus in input once the view is animated on
 
 
 mozapps.Views.appSubView = Backbone.View.extend({

@@ -136,12 +136,23 @@ section[role="region"] button.previous {
  * CONTAINER: frog themed
  * ---------------------------------- */
 /* line 16, ../../app/styles/frog/widgets/_containers.scss */
+section[role="region"].outer-chrome {
+  background-color: #4d4d4d;
+  padding: 2%;
+}
+
+/* line 21, ../../app/styles/frog/widgets/_containers.scss */
+.outer-chrome button {
+  margin: 0;
+}
+
+/* line 25, ../../app/styles/frog/widgets/_containers.scss */
 div[role="window"].theme-01 {
   background-color: black;
   color: black;
 }
 
-/* line 21, ../../app/styles/frog/widgets/_containers.scss */
+/* line 30, ../../app/styles/frog/widgets/_containers.scss */
 .theme-01 .fade {
   background: -moz-linear-gradient(top, white 0%, white 40%, #afada5 100%);
 }
@@ -942,22 +953,17 @@ section[data-type="icon-list"] > header {
 
 /* fixed position buttons on bottom */
 /* line 69, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom {
+#productListEdit [data-type="content"] .chrome-fixed-bottom {
   position: fixed;
   bottom: 0px;
   width: 100%;
   background-color: #4d4d4d;
-  /*padding:0.6rem;*/
+  padding: 2%;
+  -moz-box-sizing: border-box;
 }
 
-/* need this extra div to get even padding around the button */
-/* line 78, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > div {
-  padding: 0.6rem;
-}
-
-/* line 82, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom button {
+/* line 79, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="content"] .chrome-fixed-bottom button {
   margin: 0;
   display: block;
 }
