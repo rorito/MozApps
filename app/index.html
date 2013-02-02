@@ -189,9 +189,12 @@
             </form>
         </script>
 
-        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
-            <form id="nameForm">
-                <input id="nameField">
+        <script id="appBuilderAboutTemplate" type="text/x-handlebars-template">
+            <form id="aboutForm">
+                <textarea rows="4" id="description">{{description}}</textarea>
+                <input id="address" value="{{address}}">
+                <input id="phone" value="{{phone}}">
+                <input id="email" value="{{email}}">
                 <input type="submit" value="Submit">
             </form>
         </script>

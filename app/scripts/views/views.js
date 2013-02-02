@@ -7,14 +7,12 @@
 //TODO - should accordians toggle close?
 //TODO - accordian arrows should go right and down
 //TODO - app Collection fixture data (pre-set products, etc)
-
+//TODO - handle #apps/undefined
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
     iscrollObjects: new Array(),
     initialize: function(){
-        var self = this;
-
         this.listenTo(this.collection, "reset", this.render);
         this.listenTo(this.collection, "add", this.render);
         this.listenTo(this.collection, "remove", this.render);
@@ -139,14 +137,14 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         var tmpl = this.collection.get(this.templateID);
 
         if(tmpl){
-            var newMozApp = {
+            var newMozApp = new mozapps.Models.AppModel({
                 id: UUID.genV4().toString(),
                 name: tmpl.toJSON().name,
                 published: false,
                 version: "1.0",
                 app_components: tmpl.toJSON().app_components,
                 templateID: self.templateID
-            };
+            });
             mozapps.appCollection.add(newMozApp);
             console.log("app collection after add");
             mozapps.router.navigate("#apps/"+newMozApp.id,true); 
@@ -235,7 +233,6 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     template: Handlebars.compile($("#appBuilderNameViewTemplate").html()),
     viewName: "appBuilderNameView",
     initialize: function(options) {
-        this.listenTo(this.model, "change", this.saveName);
     },
     events: {
         'click button#back' : "back",
@@ -244,16 +241,12 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     back : function() {
         window.history.back();
     },
-    saveName: function(data){
-        console.log("save name");
-    },
     changeName: function(event){
         event.preventDefault();
-        var self = this;
         
         //get the form value
         mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
-        mozapps.router.navigate("#apps/"+self.appID,true);
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -267,38 +260,56 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     }
 });
 
-/**
- * Function : dump()
- * Arguments: The data - array,hash(associative array),object
- *    The level - OPTIONAL
- * Returns  : The textual representation of the array.
- * This function was inspired by the print_r function of PHP.
- * This will accept some data as the argument and return a
- * text that will be a more readable version of the
- * array/hash/object that is given.
- * Docs: http://www.openjs.com/scripts/others/dump_function_php_print_r.php
- */
-function dump(arr,level) {
-    var dumped_text = "";
-    if(!level) level = 0;
-    
-    //The padding given at the beginning of the line.
-    var level_padding = "";
-    for(var j=0;j<level+1;j++) level_padding += "    ";
-    
-    if(typeof(arr) == 'object') { //Array/Hashes/Objects 
-        for(var item in arr) {
-            var value = arr[item];
-            
-            if(typeof(value) == 'object') { //If it is an array,
-                dumped_text += level_padding + "'" + item + "' ...\n";
-                dumped_text += dump(value,level+1);
+mozapps.Views.appBuilderAboutView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderAboutTemplate").html()),
+    viewName: "appBuilderAboutView",
+    events: {
+        'click button#back' : "back",
+        'submit form#aboutForm' : "saveAbout"  //TODO use preventDefault for buttons
+    },
+    back : function() {
+        window.history.back();
+    },
+    saveAbout: function(event){
+        var self = this;
+        event.preventDefault();
+
+        var aboutJSON = mozapps.appCollection.get(this.appID).toJSON();
+
+        aboutJSON.app_components.forEach(function(element, index, array){
+            if(element.component_id == "about"){
+                element.properties.description = $('#aboutForm #description').val();
+                element.properties.address = $('#aboutForm #address').val();
+                element.properties.phone = $('#aboutForm #phone').val();
+                element.properties.email = $('#aboutForm #email').val();
+            }
+        });
+
+        self.model.set(aboutJSON);
+
+        // //TODO fix this so that the model change event does the save instead of having to explicitly do it here
+        mozapps.appsDB.put(aboutJSON, 
+            function(){ console.log("saved about");},
+            function(){}
+        );
+
+        mozapps.router.navigate("#apps/"+self.appID,true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
             } else {
-                dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+                var about = _.find(this.model.toJSON().app_components, function(elem){
+                    return elem.component_id == "about";
+                });
+                this.$el.html(this.template(about.properties));
             }
         }
-    } else { //Stings/Chars/Numbers etc.
-        dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+        return this;
     }
-    return dumped_text;
-}
+});
+
+
+
+
