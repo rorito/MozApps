@@ -25,38 +25,38 @@ section[role="region"] > header:first-child .icon.icon-cart {
  * HEADERS: frog themes
  * ---------------------------------- */
 
-section[role="region"].skin-aqua > header:first-child,
+section[role="region"].theme-01 > header:first-child,
 .skin-organic section[role="region"] > header:first-child {
-  background: $aqua_color;
+  background: $theme_01_highlight_color;
 }
 
-section[role="region"].skin-aqua > header:first-child:after,
+section[role="region"].theme-01 > header:first-child:after,
 .skin-organic section[role="region"] > header:first-child:after {
   margin-top: -0.1rem;
 }
 
 /* Navigation links (back, cancel, etc) */
-section[role="region"].skin-aqua > header:first-child > a .icon:after,
+section[role="region"].theme-01 > header:first-child > a .icon:after,
 .skin-organic section[role="region"] > header:first-child > a .icon:after,
-section[role="region"].skin-aqua > header:first-child > button .icon:after,
+section[role="region"].theme-01 > header:first-child > button .icon:after,
 .skin-organic section[role="region"] > header > button .icon:after {
-  background: $aqua_color;
+  background: $theme_01_highlight_color;
 }
 
-section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] a:last-child,
+section[role="region"].theme-01 > header:first-child menu[type="toolbar"] a:last-child,
 .skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
-section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] button:last-child,
+section[role="region"].theme-01 > header:first-child menu[type="toolbar"] button:last-child,
 .skin-organic section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
   background: none;
 }
 
-section[role="region"].skin-aqua > header,
+section[role="region"].theme-01 > header,
 .skin-organic section[role="region"] > header {
-  background: $aqua_color;
+  background: $theme_01_highlight_color;
   color: #fff;
 }
 
-section[role="region"].skin-aqua > header:first-child > button,
-section[role="region"].skin-aqua > header:first-child > a {
+section[role="region"].theme-01 > header:first-child > button,
+section[role="region"].theme-01 > header:first-child > a {
   background: none;
 }

@@ -134,18 +134,18 @@ window.mozapps = window.mozapps || {
 
 $(document).ready(function(){
 
-  // TEMP INSTALL
-  // var request = navigator.mozApps.getSelf();
-  // request.onsuccess = function() {
-  //   if (request.result) {
-  //     // we're installed
-  //   } else {
-  //     navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
-  //   }
-  // };
-  // request.onerror = function() {
-  //   alert('Error checking installation status: ' + this.error.message);
-  // };
+    // TEMP INSTALL
+    var request = navigator.mozApps.getSelf();
+    request.onsuccess = function() {
+      if (request.result) {
+        // we're installed
+      } else {
+        navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
+      }
+    };
+    request.onerror = function() {
+      alert('Error checking installation status: ' + this.error.message);
+    };
 
    window.mozapps.init();
 

@@ -60,89 +60,6 @@
 [data-type="list"] li p {
 	color: white !important;
 }*/
-/* ----------------------------------
- * EDIT LISTS: frog, "app builder settings"
- * ---------------------------------- */
-/* Checkable content */
-/* line 40, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label {
-  pointer-events: none;
-  position: absolute;
-  top: -0.4rem;
-  bottom: 0;
-  right: 0;
-  left: -0.8rem;
-  z-index: 1;
-  width: auto;
-  height: auto;
-  border: none;
-}
-
-/* line 53, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input {
-  opacity: 0;
-  height: 5rem;
-  width: 5rem;
-  background-color: transparent;
-}
-
-/* line 60, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input[type='checkbox']:checked + div {
-  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
-}
-
-/* line 64, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] li > label input + div {
-  position: relative;
-  display: block;
-  height: 5rem;
-  width: 5rem;
-  left: 0;
-  top: -5rem;
-  margin-left: 0;
-}
-
-/* line 74, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li {
-  transform: none;
-  padding: 0 0 0 0rem;
-}
-
-/* line 79, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li p {
-  margin-left: 3.4rem;
-}
-
-/* line 83, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > label {
-  pointer-events: auto;
-}
-
-/* line 87, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a:active:after {
-  display: none;
-}
-
-/* line 91, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a {
-  width: 100%;
-}
-
-/* line 95, ../../app/styles/frog/widgets/_lists.scss */
-[data-type="list"] [data-type="edit"] li > a > button {
-  position: relative;
-  top: -4rem;
-  width: 95%;
-  outline: none;
-  border: 0;
-  background: transparent;
-}
-
-/* line 104, ../../app/styles/frog/widgets/_lists.scss */
-.complete {
-  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
-}
-
 /******************************************************************
  * 
  * BUTTON EXTENSIONS AND OVERRIDES
@@ -179,31 +96,31 @@ section[role="region"] button.previous {
  * BUTTONS: frog themes
  * ---------------------------------- */
 /* line 36, ../../app/styles/frog/widgets/_buttons.scss */
-section[role="region"].skin-aqua button.buy,
-section[role="region"].skin-aqua a[role="button"].buy {
+section[role="region"].theme-01 button.buy,
+section[role="region"].theme-01 a[role="button"].buy {
   width: auto;
   height: auto;
   margin: 0;
-  padding: 0 1.2rem;
+  padding: 0 .6rem;
   -moz-box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  background: #05686d;
+  background: #bf726b;
   border: none;
-  border-radius: 0.1rem;
+  border-radius: 0.2rem;
   font-size: 1.7rem;
   font-family: 'Open Sans', Sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 3rem;
   color: #fff;
   text-align: center;
   text-shadow: none;
   text-decoration: none;
   outline: none;
-  box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
 /******************************************************************
@@ -217,9 +134,15 @@ section[role="region"].skin-aqua a[role="button"].buy {
 /* ----------------------------------
  * CONTAINER: frog themed
  * ---------------------------------- */
-/* line 15, ../../app/styles/frog/widgets/_containers.scss */
-.skin-aqua.fade {
-  background: -moz-linear-gradient(top, black 0%, black 30%, #05686d 100%);
+/* line 16, ../../app/styles/frog/widgets/_containers.scss */
+div[role="window"].theme-01 {
+  background-color: black;
+  color: black;
+}
+
+/* line 21, ../../app/styles/frog/widgets/_containers.scss */
+.theme-01.fade {
+  background: -moz-linear-gradient(top, white 0%, white 40%, #afada5 100%);
 }
 
 /******************************************************************
@@ -247,44 +170,44 @@ section[role="region"] > header:first-child .icon.icon-cart {
  * HEADERS: frog themes
  * ---------------------------------- */
 /* line 29, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header:first-child,
+section[role="region"].theme-01 > header:first-child,
 .skin-organic section[role="region"] > header:first-child {
-  background: #05686d;
+  background: #bf726b;
 }
 
 /* line 34, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header:first-child:after,
+section[role="region"].theme-01 > header:first-child:after,
 .skin-organic section[role="region"] > header:first-child:after {
   margin-top: -0.1rem;
 }
 
 /* Navigation links (back, cancel, etc) */
 /* line 42, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header:first-child > a .icon:after,
+section[role="region"].theme-01 > header:first-child > a .icon:after,
 .skin-organic section[role="region"] > header:first-child > a .icon:after,
-section[role="region"].skin-aqua > header:first-child > button .icon:after,
+section[role="region"].theme-01 > header:first-child > button .icon:after,
 .skin-organic section[role="region"] > header > button .icon:after {
-  background: #05686d;
+  background: #bf726b;
 }
 
 /* line 49, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] a:last-child,
+section[role="region"].theme-01 > header:first-child menu[type="toolbar"] a:last-child,
 .skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
-section[role="region"].skin-aqua > header:first-child menu[type="toolbar"] button:last-child,
+section[role="region"].theme-01 > header:first-child menu[type="toolbar"] button:last-child,
 .skin-organic section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
   background: none;
 }
 
 /* line 54, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header,
+section[role="region"].theme-01 > header,
 .skin-organic section[role="region"] > header {
-  background: #05686d;
+  background: #bf726b;
   color: #fff;
 }
 
 /* line 60, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].skin-aqua > header:first-child > button,
-section[role="region"].skin-aqua > header:first-child > a {
+section[role="region"].theme-01 > header:first-child > button,
+section[role="region"].theme-01 > header:first-child > a {
   background: none;
 }
 
@@ -446,7 +369,7 @@ section[data-type="accordion"] > .list > li > .list-item {
  * INPUTS: frog form inputs
  * ---------------------------------- */
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
-section[role="region"] input, textarea {
+section[role="region"] input[type="text"], textarea {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -593,55 +516,58 @@ section[role="region"] textarea {
 /* line 26, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail {
   position: relative;
-  display: flex;
-  padding: 2rem 0;
-  flex-direction: row;
-  justify-content: flex-start;
+  /* display: flex; */
+  padding: 2rem 2rem;
+  /* flex-direction: row; */
+  /* justify-content: flex-start; */
   border-top: 1px solid #525252;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* line 36, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail h1 {
-  font-size: 2.4rem;
+  font-family: "OpenSans", Sans-serif;
   font-weight: 100;
+  font-size: 1.9rem;
+  margin: 1rem 0;
 }
 
-/* line 40, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 43, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
   height: 9.4rem;
   width: 6.2rem;
-  margin: 0 1.5rem;
   border: 0.1rem solid #5b5b5b;
 }
 
-/* line 47, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 49, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div:first-child {
   margin-left: 2rem;
   flex: 0;
 }
 
-/* line 52, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 54, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail > div {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  float: left;
   width: 14rem;
 }
 
-/* line 60, ../../app/styles/frog/screens/_app_builder.scss */
-#appBuilder [data-type="content"] .template-detail > div > h1 {
-  margin: 0;
+/* line 59, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="content"] .template-detail > div:nth-child(2) {
+  width: 10rem !important;
 }
 
-/* line 64, ../../app/styles/frog/screens/_app_builder.scss */
+/* line 63, ../../app/styles/frog/screens/_app_builder.scss */
 #appBuilder [data-type="content"] .template-detail .recommend {
   margin: 0;
 }
 
-/* line 68, ../../app/styles/frog/screens/_app_builder.scss */
-.preview {
+/* line 67, ../../app/styles/frog/screens/_app_builder.scss */
+.components-list {
+  broder-bottom: 1px solid black;
+}
+
+/* line 71, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder .preview {
   position: absolute;
   top: 2.2rem;
   right: 2rem;
@@ -649,6 +575,96 @@ section[role="region"] textarea {
   width: 2rem;
   outline: none;
   border: 0;
+}
+
+/* ----------------------------------
+ * COMPONENT LIST
+ * ---------------------------------- */
+/* Checkable content */
+/* line 89, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label {
+  pointer-events: none;
+  position: absolute;
+  top: -0.4rem;
+  bottom: 0;
+  right: 0;
+  left: -0.8rem;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+/* line 102, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input {
+  opacity: 0;
+  height: 5rem;
+  width: 5rem;
+  background-color: transparent;
+}
+
+/* line 109, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input[type='checkbox']:checked + div {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat center center;
+}
+
+/* line 113, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] li > label input + div {
+  position: relative;
+  display: block;
+  height: 5rem;
+  width: 5rem;
+  left: 0;
+  top: -5rem;
+  margin-left: 0;
+}
+
+/* line 123, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li {
+  width: 100%;
+  transform: none;
+  padding: 0 0 0 0rem;
+  background-color: #eaeaea;
+}
+
+/* line 130, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p {
+  margin-left: 3.4rem;
+}
+
+/* line 134, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p:nth-child(1) {
+  font-size: 1.7rem;
+}
+
+/* line 138, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li p:nth-child(2) {
+  font-size: 1.4rem;
+}
+
+/* line 142, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li > label {
+  pointer-events: auto;
+}
+
+/* line 146, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li > button {
+  position: relative;
+  top: -4rem;
+  width: 95%;
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+/* line 155, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder [data-type="list"] [data-type="edit"] li:last-child {
+  border-bottom: 1px solid black !important;
+}
+
+/* line 159, ../../app/styles/frog/screens/_app_builder.scss */
+#appBuilder .complete {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
 
 /******************************************************************
@@ -838,13 +854,7 @@ section[data-type="icon-list"] > header {
   min-height: 8.4rem;
 }
 
-/*
-#productListEdit [data-type="list"] li > a {
-	height:auto;
-	min-height:8.3rem;
-}
-*/
-/* line 33, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 28, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > label {
   margin: 0;
   left: 0;
@@ -853,12 +863,23 @@ section[data-type="icon-list"] > header {
   top: 0;
 }
 
-/* line 41, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 37, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > label > input[type=checkbox] {
-  margin: 1.1rem 0.3rem 0.3rem 0rem;
+  /*margin:2.4rem 0.3rem 0.3rem 0rem;*/
+  height: 2.8rem;
+  width: 2.8rem;
 }
 
-/* line 45, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 43, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="list"] li > label > input[type=checkbox] + div {
+  height: 2.8rem;
+  width: 2.8rem;
+  position: absolute;
+  top: 3.0rem;
+  left: 0.8rem;
+}
+
+/* line 52, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figure {
   margin: 0;
   left: 4.4rem;
@@ -867,7 +888,7 @@ section[data-type="icon-list"] > header {
   top: 0;
 }
 
-/* line 53, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 60, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figcaption {
   padding: 0 2.2rem 0 13.8rem;
   position: relative;
@@ -876,31 +897,25 @@ section[data-type="icon-list"] > header {
 }
 
 /* fixed position buttons on bottom */
-/* line 64, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 69, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.chrome-fixed-bottom {
   position: fixed;
   bottom: 0px;
   width: 100%;
   background-color: #4d4d4d;
+  /*padding:0.6rem;*/
 }
 
-/* line 71, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 0 !important;
-}
-
+/* need this extra div to get even padding around the button */
 /* line 78, ../../app/styles/frog/screens/_product_list_edit.scss */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > ul > li {
-  font-size: 2.4rem;
-  font-weight: 100;
-  line-height: 2.2em;
-  text-align: center;
+#productListEdit [data-type="content"] div.chrome-fixed-bottom > div {
+  padding: 0.6rem;
+}
+
+/* line 82, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="content"] div.chrome-fixed-bottom button {
+  margin: 0;
   display: block;
-  width: 100%;
-  padding: 0.6rem 1.6rem 0 1.6rem;
 }
 
 /******************************************************************
@@ -933,33 +948,40 @@ section[data-type="icon-list"] > header {
 
 /* line 27, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul {
+  /*
   display: flex;
   flex-direction: row;
+  */
   width: 100%;
   padding: 0 !important;
 }
 
-/* line 34, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 36, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li {
   font-size: 2.4rem;
   font-weight: 100;
-  line-height: 2.2em;
   text-align: center;
   display: block;
-  width: 50%;
-  padding: 0.6rem 0 0 0;
+  width: 47%;
+  padding: 0.6rem 0 0.6rem;
+  float: left;
 }
 
-/* line 44, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 45, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:first-child {
-  padding-left: 1.6rem;
-  padding-right: 0.6rem;
+  padding-left: 2%;
+  padding-right: 1%;
 }
 
-/* line 49, ../../app/styles/frog/screens/_product_add_image.scss */
+/* line 50, ../../app/styles/frog/screens/_product_add_image.scss */
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li:last-child {
-  padding-left: 0.6rem;
-  padding-right: 1.6rem;
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+/* line 55, ../../app/styles/frog/screens/_product_add_image.scss */
+#productAddImage [data-type="content"] div.chrome-fixed-bottom > ul > li button {
+  margin: 0;
 }
 
 /******************************************************************
@@ -1033,13 +1055,85 @@ section[data-type="icon-list"] > header {
   font-size: 1.2rem;
 }
 
+/* TODO: consolidate app template CSS */
+/* line 1, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView.theme-01 {
+  background-color: #cccccc;
+}
+
+/* line 5, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="content"] > header {
+  /* double override when using theme, using theme-01 as base */
+  height: auto !important;
+  padding: 1.1rem 3.4rem !important;
+  background: transparent !important;
+  background-image: none !important;
+  margin: 0 !important;
+  font-family: "MozTTLight", Sans-serif !important;
+  font-weight: 100 !important;
+  font-size: 2.4rem;
+  line-height: 2rem;
+  text-transform: none;
+  text-align: center;
+  color: black !important;
+  border-bottom: 0.1rem solid #4d4e4d !important;
+  box-shadow: none !important;
+}
+
+/* line 23, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="detail"] {
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* line 27, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="detail"] > div:nth-child(1) {
+  height: 20rem;
+}
+
+/* line 31, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="detail"] > div:nth-child(2) {
+  padding: 1rem 1rem;
+  font-family: "MozTTLight", Sans-serif;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+/* line 38, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="detail"] > div:nth-child(3) {
+  padding: 0 3.4rem 2rem 3.4rem;
+  text-align: center;
+}
+
+/* line 43, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="content"] > footer {
+  padding: 1.3rem 3.2rem;
+  font-size: 1.4rem;
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.5);
+  background-color: #cccccc;
+}
+
+/* line 50, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="content"] > footer h2:nth-child(1) {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* line 56, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView section[data-type="content"] > footer p:nth-child(2) {
+  font-size: 1.4rem;
+  font-weight: 100;
+  line-height: 1.8rem;
+  margin: 0;
+}
+
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 88, ../../app/styles/main.scss */
+/* line 100, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 90, ../../app/styles/main.scss */
+/* line 102, ../../app/styles/main.scss */
 body {
   margin: 0px;
   font-family: 'Open Sans', Sans-serif;
@@ -1047,48 +1141,54 @@ body {
   color: black;
 }
 
-/* line 97, ../../app/styles/main.scss */
+/* line 109, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 102, ../../app/styles/main.scss */
+/* line 114, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 106, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
+div[role="window"] {
+  height: 100%;
+  background-color: white;
+}
+
+/* line 123, ../../app/styles/main.scss */
 a:link {
   color: black;
   text-decoration: none;
 }
 
-/* line 107, ../../app/styles/main.scss */
+/* line 124, ../../app/styles/main.scss */
 a:visited {
   color: black;
   text-decoration: none;
 }
 
-/* line 108, ../../app/styles/main.scss */
+/* line 125, ../../app/styles/main.scss */
 a:hover {
   color: black;
   text-decoration: none;
 }
 
-/* line 109, ../../app/styles/main.scss */
+/* line 126, ../../app/styles/main.scss */
 a:active {
   color: black;
   text-decoration: none;
 }
 
-/* line 111, ../../app/styles/main.scss */
+/* line 128, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 118, ../../app/styles/main.scss */
+/* line 135, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -1097,7 +1197,7 @@ a:active {
   /* 2 */
 }
 
-/* line 123, ../../app/styles/main.scss */
+/* line 140, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -1106,13 +1206,13 @@ a:active {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 131, ../../app/styles/main.scss */
+/* line 148, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
 
 /* rory temp stuff */
-/* line 137, ../../app/styles/main.scss */
+/* line 154, ../../app/styles/main.scss */
 #appContainer {
   position: absolute;
   width: 100%;
@@ -1121,7 +1221,7 @@ a:active {
   overflow-y: auto;
 }
 
-/* line 145, ../../app/styles/main.scss */
+/* line 162, ../../app/styles/main.scss */
 .page {
   position: absolute;
   width: 100%;
@@ -1129,23 +1229,23 @@ a:active {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 152, ../../app/styles/main.scss */
+/* line 169, ../../app/styles/main.scss */
 .stage-center {
   top: 0;
   left: 0;
 }
 
-/* line 157, ../../app/styles/main.scss */
+/* line 174, ../../app/styles/main.scss */
 .stage-left {
   left: -100%;
 }
 
-/* line 161, ../../app/styles/main.scss */
+/* line 178, ../../app/styles/main.scss */
 .stage-right {
   left: 100%;
 }
 
-/* line 165, ../../app/styles/main.scss */
+/* line 182, ../../app/styles/main.scss */
 .transition {
   -moz-transition-duration: .375s;
   -webkit-transition-duration: .375s;

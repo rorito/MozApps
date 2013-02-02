@@ -79,6 +79,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                     var elementObject = $(element).find('ul');
                     //TODO BUG in setting the width of the accordian, selector not working
                     //try width = auto?
+                    //height of accordian rows hard coded in css
                     elementObject.css('width', (500 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
                     
                 }, this);
@@ -133,10 +134,9 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         var self = this;        
         var tmpl = this.collection.get(this.templateID);
 
-        //TODO review the UUID generation on the final phones
         if(tmpl){
             var newMozApp = {
-                id: uuid.v4(),
+                id: UUID.genV4().toString(),
                 name: tmpl.toJSON().name,
                 published: false,
                 version: "1.0",

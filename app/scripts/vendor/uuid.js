@@ -1,245 +1,311 @@
-//     uuid.js
-//
-//     Copyright (c) 2010-2012 Robert Kieffer
-//     MIT License - http://opensource.org/licenses/mit-license.php
+/**
+ * UUID.js: The RFC-compliant UUID generator for JavaScript.
+ *
+ * @fileOverview
+ * @author  LiosK
+ * @version 3.2
+ * @license The MIT License: Copyright (c) 2010-2012 LiosK.
+ */
 
-(function() {
-  var _global = this;
+/** @constructor */
+var UUID;
 
-  // Unique ID creation requires a high quality random # generator.  We feature
-  // detect to determine the best RNG source, normalizing to a function that
-  // returns 128-bits of randomness, since that's what's usually required
-  var _rng;
+UUID = (function(overwrittenUUID) {
 
-  // Node.js crypto-based RNG - http://nodejs.org/docs/v0.6.2/api/crypto.html
-  //
-  // Moderately fast, high quality
-  if (typeof(require) == 'function') {
-    try {
-      var _rb = require('crypto').randomBytes;
-      _rng = _rb && function() {return _rb(16);};
-    } catch(e) {}
-  }
+// Core Component {{{
 
-  if (!_rng && _global.crypto && crypto.getRandomValues) {
-    // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-    //
-    // Moderately fast, high quality
-    var _rnds8 = new Uint8Array(16);
-    _rng = function whatwgRNG() {
-      crypto.getRandomValues(_rnds8);
-      return _rnds8;
-    };
-  }
+/** @lends UUID */
+function UUID() {}
 
-  if (!_rng) {
-    // Math.random()-based (RNG)
-    //
-    // If all else fails, use Math.random().  It's fast, but is of unspecified
-    // quality.
-    var  _rnds = new Array(16);
-    _rng = function() {
-      for (var i = 0, r; i < 16; i++) {
-        if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-        _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-      }
+/**
+ * The simplest function to get an UUID string.
+ * @returns {string} A version 4 UUID string.
+ */
+UUID.generate = function() {
+  var rand = UUID._getRandomInt, hex = UUID._hexAligner;
+  return  hex(rand(32), 8)          // time_low
+        + "-"
+        + hex(rand(16), 4)          // time_mid
+        + "-"
+        + hex(0x4000 | rand(12), 4) // time_hi_and_version
+        + "-"
+        + hex(0x8000 | rand(14), 4) // clock_seq_hi_and_reserved clock_seq_low
+        + "-"
+        + hex(rand(48), 12);        // node
+};
 
-      return _rnds;
-    };
-  }
+/**
+ * Returns an unsigned x-bit random integer.
+ * @param {int} x A positive integer ranging from 0 to 53, inclusive.
+ * @returns {int} An unsigned x-bit random integer (0 <= f(x) < 2^x).
+ */
+UUID._getRandomInt = function(x) {
+  if (x <   0) return NaN;
+  if (x <= 30) return (0 | Math.random() * (1 <<      x));
+  if (x <= 53) return (0 | Math.random() * (1 <<     30))
+                    + (0 | Math.random() * (1 << x - 30)) * (1 << 30);
+  return NaN;
+};
 
-  // Buffer class to use
-  var BufferClass = typeof(Buffer) == 'function' ? Buffer : Array;
+/**
+ * Returns a function that converts an integer to a zero-filled string.
+ * @param {int} radix
+ * @returns {function(num&#44; length)}
+ */
+UUID._getIntAligner = function(radix) {
+  return function(num, length) {
+    var str = num.toString(radix), i = length - str.length, z = "0";
+    for (; i > 0; i >>>= 1, z += z) { if (i & 1) { str = z + str; } }
+    return str;
+  };
+};
 
-  // Maps for number <-> hex string conversion
-  var _byteToHex = [];
-  var _hexToByte = {};
-  for (var i = 0; i < 256; i++) {
-    _byteToHex[i] = (i + 0x100).toString(16).substr(1);
-    _hexToByte[_byteToHex[i]] = i;
-  }
+UUID._hexAligner = UUID._getIntAligner(16);
 
-  // **`parse()` - Parse a UUID into it's component bytes**
-  function parse(s, buf, offset) {
-    var i = (buf && offset) || 0, ii = 0;
+// }}}
 
-    buf = buf || [];
-    s.toLowerCase().replace(/[0-9a-f]{2}/g, function(oct) {
-      if (ii < 16) { // Don't overflow!
-        buf[i + ii++] = _hexToByte[oct];
-      }
-    });
+// UUID Object Component {{{
 
-    // Zero out remaining bytes if string was short
-    while (ii < 16) {
-      buf[i + ii++] = 0;
+/**
+ * Names of each UUID field.
+ * @type string[]
+ * @constant
+ * @since 3.0
+ */
+UUID.FIELD_NAMES = ["timeLow", "timeMid", "timeHiAndVersion",
+                    "clockSeqHiAndReserved", "clockSeqLow", "node"];
+
+/**
+ * Sizes of each UUID field.
+ * @type int[]
+ * @constant
+ * @since 3.0
+ */
+UUID.FIELD_SIZES = [32, 16, 16, 8, 8, 48];
+
+/**
+ * Generates a version 4 {@link UUID}.
+ * @returns {UUID} A version 4 {@link UUID} object.
+ * @since 3.0
+ */
+UUID.genV4 = function() {
+  var rand = UUID._getRandomInt;
+  return new UUID()._init(rand(32), rand(16), // time_low time_mid
+                          0x4000 | rand(12),  // time_hi_and_version
+                          0x80   | rand(6),   // clock_seq_hi_and_reserved
+                          rand(8), rand(48)); // clock_seq_low node
+};
+
+/**
+ * Converts hexadecimal UUID string to an {@link UUID} object.
+ * @param {string} strId UUID hexadecimal string representation ("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").
+ * @returns {UUID} {@link UUID} object or null.
+ * @since 3.0
+ */
+UUID.parse = function(strId) {
+  var r, p = /^\s*(urn:uuid:|\{)?([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{2})([0-9a-f]{2})-([0-9a-f]{12})(\})?\s*$/i;
+  if (r = p.exec(strId)) {
+    var l = r[1] || "", t = r[8] || "";
+    if (((l + t) === "") ||
+        (l === "{" && t === "}") ||
+        (l.toLowerCase() === "urn:uuid:" && t === "")) {
+      return new UUID()._init(parseInt(r[2], 16), parseInt(r[3], 16),
+                              parseInt(r[4], 16), parseInt(r[5], 16),
+                              parseInt(r[6], 16), parseInt(r[7], 16));
     }
+  }
+  return null;
+};
 
-    return buf;
+/**
+ * Initializes {@link UUID} object.
+ * @param {uint32} [timeLow=0] time_low field (octet 0-3).
+ * @param {uint16} [timeMid=0] time_mid field (octet 4-5).
+ * @param {uint16} [timeHiAndVersion=0] time_hi_and_version field (octet 6-7).
+ * @param {uint8} [clockSeqHiAndReserved=0] clock_seq_hi_and_reserved field (octet 8).
+ * @param {uint8} [clockSeqLow=0] clock_seq_low field (octet 9).
+ * @param {uint48} [node=0] node field (octet 10-15).
+ * @returns {UUID} this.
+ */
+UUID.prototype._init = function() {
+  var names = UUID.FIELD_NAMES, sizes = UUID.FIELD_SIZES;
+  var bin = UUID._binAligner, hex = UUID._hexAligner;
+
+  /**
+   * List of UUID field values (as integer values).
+   * @type int[]
+   */
+  this.intFields = new Array(6);
+
+  /**
+   * List of UUID field values (as binary bit string values).
+   * @type string[]
+   */
+  this.bitFields = new Array(6);
+
+  /**
+   * List of UUID field values (as hexadecimal string values).
+   * @type string[]
+   */
+  this.hexFields = new Array(6);
+
+  for (var i = 0; i < 6; i++) {
+    var intValue = parseInt(arguments[i] || 0);
+    this.intFields[i] = this.intFields[names[i]] = intValue;
+    this.bitFields[i] = this.bitFields[names[i]] = bin(intValue, sizes[i]);
+    this.hexFields[i] = this.hexFields[names[i]] = hex(intValue, sizes[i] / 4);
   }
 
-  // **`unparse()` - Convert UUID byte array (ala parse()) into a string**
-  function unparse(buf, offset) {
-    var i = offset || 0, bth = _byteToHex;
-    return  bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]];
+  /**
+   * UUID version number defined in RFC 4122.
+   * @type int
+   */
+  this.version = (this.intFields.timeHiAndVersion >> 12) & 0xF;
+
+  /**
+   * 128-bit binary bit string representation.
+   * @type string
+   */
+  this.bitString = this.bitFields.join("");
+
+  /**
+   * UUID hexadecimal string representation ("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").
+   * @type string
+   */
+  this.hexString = this.hexFields[0] + "-" + this.hexFields[1] + "-" + this.hexFields[2]
+                 + "-" + this.hexFields[3] + this.hexFields[4] + "-" + this.hexFields[5];
+
+  /**
+   * UUID string representation as a URN ("urn:uuid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").
+   * @type string
+   */
+  this.urn = "urn:uuid:" + this.hexString;
+
+  return this;
+};
+
+UUID._binAligner = UUID._getIntAligner(2);
+
+/**
+ * Returns UUID string representation.
+ * @returns {string} {@link UUID#hexString}.
+ */
+UUID.prototype.toString = function() { return this.hexString; };
+
+/**
+ * Tests if two {@link UUID} objects are equal.
+ * @param {UUID} uuid
+ * @returns {bool} True if two {@link UUID} objects are equal.
+ */
+UUID.prototype.equals = function(uuid) {
+  if (!(uuid instanceof UUID)) { return false; }
+  for (var i = 0; i < 6; i++) {
+    if (this.intFields[i] !== uuid.intFields[i]) { return false; }
   }
+  return true;
+};
 
-  // **`v1()` - Generate time-based UUID**
-  //
-  // Inspired by https://github.com/LiosK/UUID.js
-  // and http://docs.python.org/library/uuid.html
+// }}}
 
-  // random #'s we need to init node and clockseq
-  var _seedBytes = _rng();
+// UUID Version 1 Component {{{
 
-  // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-  var _nodeId = [
-    _seedBytes[0] | 0x01,
-    _seedBytes[1], _seedBytes[2], _seedBytes[3], _seedBytes[4], _seedBytes[5]
-  ];
-
-  // Per 4.2.2, randomize (14 bit) clockseq
-  var _clockseq = (_seedBytes[6] << 8 | _seedBytes[7]) & 0x3fff;
-
-  // Previous uuid creation time
-  var _lastMSecs = 0, _lastNSecs = 0;
-
-  // See https://github.com/broofa/node-uuid for API details
-  function v1(options, buf, offset) {
-    var i = buf && offset || 0;
-    var b = buf || [];
-
-    options = options || {};
-
-    var clockseq = options.clockseq != null ? options.clockseq : _clockseq;
-
-    // UUID timestamps are 100 nano-second units since the Gregorian epoch,
-    // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
-    // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
-    // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
-    var msecs = options.msecs != null ? options.msecs : new Date().getTime();
-
-    // Per 4.2.1.2, use count of uuid's generated during the current clock
-    // cycle to simulate higher resolution clock
-    var nsecs = options.nsecs != null ? options.nsecs : _lastNSecs + 1;
-
-    // Time since last uuid creation (in msecs)
-    var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
-
-    // Per 4.2.1.2, Bump clockseq on clock regression
-    if (dt < 0 && options.clockseq == null) {
-      clockseq = clockseq + 1 & 0x3fff;
-    }
-
-    // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
-    // time interval
-    if ((dt < 0 || msecs > _lastMSecs) && options.nsecs == null) {
-      nsecs = 0;
-    }
-
-    // Per 4.2.1.2 Throw error if too many uuids are requested
-    if (nsecs >= 10000) {
-      throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
-    }
-
-    _lastMSecs = msecs;
-    _lastNSecs = nsecs;
-    _clockseq = clockseq;
-
-    // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
-    msecs += 12219292800000;
-
-    // `time_low`
-    var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
-    b[i++] = tl >>> 24 & 0xff;
-    b[i++] = tl >>> 16 & 0xff;
-    b[i++] = tl >>> 8 & 0xff;
-    b[i++] = tl & 0xff;
-
-    // `time_mid`
-    var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
-    b[i++] = tmh >>> 8 & 0xff;
-    b[i++] = tmh & 0xff;
-
-    // `time_high_and_version`
-    b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
-    b[i++] = tmh >>> 16 & 0xff;
-
-    // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
-    b[i++] = clockseq >>> 8 | 0x80;
-
-    // `clock_seq_low`
-    b[i++] = clockseq & 0xff;
-
-    // `node`
-    var node = options.node || _nodeId;
-    for (var n = 0; n < 6; n++) {
-      b[i + n] = node[n];
-    }
-
-    return buf ? buf : unparse(b);
-  }
-
-  // **`v4()` - Generate random UUID**
-
-  // See https://github.com/broofa/node-uuid for API details
-  function v4(options, buf, offset) {
-    // Deprecated - 'format' argument, as supported in v1.2
-    var i = buf && offset || 0;
-
-    if (typeof(options) == 'string') {
-      buf = options == 'binary' ? new BufferClass(16) : null;
-      options = null;
-    }
-    options = options || {};
-
-    var rnds = options.random || (options.rng || _rng)();
-
-    // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-    rnds[6] = (rnds[6] & 0x0f) | 0x40;
-    rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-    // Copy bytes to buffer, if provided
-    if (buf) {
-      for (var ii = 0; ii < 16; ii++) {
-        buf[i + ii] = rnds[ii];
-      }
-    }
-
-    return buf || unparse(rnds);
-  }
-
-  // Export public API
-  var uuid = v4;
-  uuid.v1 = v1;
-  uuid.v4 = v4;
-  uuid.parse = parse;
-  uuid.unparse = unparse;
-  uuid.BufferClass = BufferClass;
-
-  if (_global.define && define.amd) {
-    // Publish as AMD module
-    define(function() {return uuid;});
-  } else if (typeof(module) != 'undefined' && module.exports) {
-    // Publish as node.js module
-    module.exports = uuid;
+/**
+ * Generates a version 1 {@link UUID}.
+ * @returns {UUID} A version 1 {@link UUID} object.
+ * @since 3.0
+ */
+UUID.genV1 = function() {
+  var now = new Date().getTime(), st = UUID._state;
+  if (now != st.timestamp) {
+    if (now < st.timestamp) { st.sequence++; }
+    st.timestamp = now;
+    st.tick = UUID._getRandomInt(4);
+  } else if (Math.random() < UUID._tsRatio && st.tick < 9984) {
+    // advance the timestamp fraction at a probability
+    // to compensate for the low timestamp resolution
+    st.tick += 1 + UUID._getRandomInt(4);
   } else {
-    // Publish as global (in browsers)
-    var _previousRoot = _global.uuid;
-
-    // **`noConflict()` - (browser only) to reset global 'uuid' var**
-    uuid.noConflict = function() {
-      _global.uuid = _previousRoot;
-      return uuid;
-    };
-
-    _global.uuid = uuid;
+    st.sequence++;
   }
-}).call(this);
+
+  // format time fields
+  var tf = UUID._getTimeFieldValues(st.timestamp);
+  var tl = tf.low + st.tick;
+  var thav = (tf.hi & 0xFFF) | 0x1000;  // set version '0001'
+
+  // format clock sequence
+  st.sequence &= 0x3FFF;
+  var cshar = (st.sequence >>> 8) | 0x80; // set variant '10'
+  var csl = st.sequence & 0xFF;
+
+  return new UUID()._init(tl, tf.mid, thav, cshar, csl, st.node);
+};
+
+/**
+ * Re-initializes version 1 UUID state.
+ * @since 3.0
+ */
+UUID.resetState = function() {
+  UUID._state = new UUID._state.constructor();
+};
+
+/**
+ * Probability to advance the timestamp fraction: the ratio of tick movements to sequence increments.
+ * @type float
+ */
+UUID._tsRatio = 1 / 4;
+
+/**
+ * Persistent state for UUID version 1.
+ * @type UUIDState
+ */
+UUID._state = new function UUIDState() {
+  var rand = UUID._getRandomInt;
+  this.timestamp = 0;
+  this.sequence = rand(14);
+  this.node = (rand(8) | 1) * 0x10000000000 + rand(40); // set multicast bit '1'
+  this.tick = rand(4);  // timestamp fraction smaller than a millisecond
+};
+
+/**
+ * @param {Date|int} time ECMAScript Date Object or milliseconds from 1970-01-01.
+ * @returns {object}
+ */
+UUID._getTimeFieldValues = function(time) {
+  var ts = time - Date.UTC(1582, 9, 15);
+  var hm = ((ts / 0x100000000) * 10000) & 0xFFFFFFF;
+  return  { low: ((ts & 0xFFFFFFF) * 10000) % 0x100000000,
+            mid: hm & 0xFFFF, hi: hm >>> 16, timestamp: ts };
+};
+
+// }}}
+
+// Misc. Component {{{
+
+/**
+ * Reinstalls {@link UUID.generate} method to emulate the interface of UUID.js version 2.x.
+ * @since 3.1
+ * @deprecated Version 2.x. compatible interface is not recommended.
+ */
+UUID.makeBackwardCompatible = function() {
+  var f = UUID.generate;
+  UUID.generate = function(o) {
+    return (o && o.version == 1) ? UUID.genV1().hexString : f.call(UUID);
+  };
+  UUID.makeBackwardCompatible = function() {};
+};
+
+/**
+ * Preserves the value of 'UUID' global variable set before the load of UUID.js.
+ * @since 3.2
+ * @type object
+ */
+UUID.overwrittenUUID = overwrittenUUID;
+
+// }}}
+
+return UUID;
+
+})(UUID);
+
+// vim: et ts=2 sw=2 fdm=marker fmr&

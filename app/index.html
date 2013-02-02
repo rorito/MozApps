@@ -65,27 +65,6 @@
               </div>
         </script>
 
-        <script id="appBuilderViewTemplateREAL" type="text/x-handlebars-template">
-            {{#if loading}}
-                <h1>Loading...</h1>
-            {{else}}
-                <p>Name: {{name}}</p>
-                <p>Description: {{description}}</p>
-                <p>Template ID: {{templateID}}</p>
-                <img id="templateImage" src="{{templateImageUrl}}">
-                <section id="appComponentList">    
-                    <ul class="app_components">
-                        {{#each app_components}}
-                            <li><a href="">{{this.component_name}}</a></li>
-                        {{/each}}
-                    </ul>
-                </section>
-                <br/><br/>
-                <a href="">Preview</a>
-                <a href="">Publish</a>
-            {{/if}}
-        </script>
-
         <script id="appBuilderViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
@@ -103,7 +82,8 @@
 
                   <!-- content region -->
                   <section role="region" data-type="content">
-                    <section role="region" data-type="detail" class="template-detail">
+                    <section role="region" data-type="detail" class="template-detail cf">
+                      <h1>{{name}}</h1>
                       <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
                       <div>
                         <h1>{{name}}</h1>
@@ -113,14 +93,12 @@
                     </section>
                     <section role="region" data-type="list">
                       <header class="list-header">Edit your app components</header>
-                      <ul data-type="edit">
+                      <ul data-type="edit" class="components-list">
                         {{#each app_components}}
                             <li>
-                              <a href="#">
                                 <p>{{this.component_name}}</p>
                                 <p>{{this.description}}</p>
                                 <button class="complete"></button>
-                              </a>
                             </li>
                         {{/each}}
                       </ul>
@@ -217,7 +195,6 @@
         
         <!-- build:js scripts/scripts.js -->
         <!--<script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script> //-->
-        <!-- <script src="http://debug.phonegap.com/target/target-script-min.js#mozrory"></script> //-->
         <!-- <script src="scripts/vendor/stacktrace.js"></script> //-->
         <script src="scripts/vendor/zepto.min.js"></script>
         <script src="scripts/vendor/deferred.min.js"></script>

@@ -11,7 +11,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     if(count > 1) {
       initItemString = "";
     }
-    console.log(key);
+
     out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
     + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
