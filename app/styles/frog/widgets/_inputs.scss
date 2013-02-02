@@ -11,12 +11,13 @@
  * INPUTS: frog form inputs
  * ---------------------------------- */
 
-section[role="region"] input[type="text"], textarea{
+section[role="region"] input[type="text"], section[role="region"] textarea{
 	width:100%;
 	border:1px solid #ccc;
 	border-radius: 4px;
 	padding:0.5rem;
 	box-shadow: inset 0 0 3px #ccc;
+	-moz-box-sizing:border-box;
 	@include input-text;
 }
 
@@ -24,3 +25,7 @@ section[role="region"] textarea{
 	overflow:hidden;
 }
 
+section[role="region"] label {
+	text-transform:uppercase;
+	@include label-text;	
+}

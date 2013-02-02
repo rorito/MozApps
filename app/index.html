@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="styles/main.css"/>
         <!-- TODO specific viewport args? //-->
         <!-- TODO disable pinch zoom //-->
-
+        
     </head>
     <body>
         <div id="appContainer"></div>
@@ -182,21 +182,52 @@
           {{/if}}
         </script>
 
-        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
-            <form id="nameForm">
-                <input id="nameField" value="{{name}}">
-                <input type="submit" value="Submit">
-            </form>
-        </script>
-
         <script id="appBuilderAboutTemplate" type="text/x-handlebars-template">
             <form id="aboutForm">
                 <textarea rows="4" id="description">{{description}}</textarea>
                 <input id="address" value="{{address}}">
                 <input id="phone" value="{{phone}}">
                 <input id="email" value="{{email}}">
-                <input type="submit" value="Submit">
+                <button id="aboutFormDone" value="Submit">
             </form>
+        </script>
+
+        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application screen APP BUILDER NAME -->
+                <div id="appBuilderName" role="window">
+                  <!-- title bar region -->
+                  <section role="region" data-type="header">
+                    <header>
+                        <button id="back"><span class="icon icon-back">back</span></button>
+                        <menu type="toolbar">
+                            <button id="nameFormDone">Done</button>
+                        </menu>
+                        <h1>Name Your App</h1>
+                    </header>
+                  </section>
+
+                  <!-- content region -->
+                  <section role="region" data-type="content" class="box-padded">
+                    
+                        <div class="grey-box">
+                        <form id="nameForm">
+                            <label for="nameField" class="list-header">App Name</label>
+                            <input id="nameField" name="nameField" type="text" value="{{name}}" />
+                            <!--input type="submit" value="Submit"-->
+                        </form>
+                        </div>
+                    
+                  </section>
+
+                  <!-- footer region -->
+                  <section role="region" data-type="footer">
+                    <footer></footer>
+                  </section>
+                </div>
+            {{/if}}
         </script>
 
         <!-- end template list view -->

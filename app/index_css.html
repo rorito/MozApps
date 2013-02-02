@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, appTmplProductDetailView, #leftNav{
       display: none;
     }
   </style>
@@ -403,13 +403,8 @@
           </li>
         </ul>
       </section>
-      <section data-type="chrome">
-        <div class="chrome-fixed-bottom">
-          <!-- need this extra div to get even padding around the button -->
-          <div>
-            <button>Delete Selected</button>
-          </div>
-        </div>
+      <section role="region" class="outer-chrome chrome-fixed-bottom">
+        <button>Delete Selected</button>
       </section>
     </section>
 
@@ -582,7 +577,9 @@
   <!-- represents application template screen, prefixed appTmpl
        APPLICATION PRODUCT DETAIL with PREVIEW -->
   <div id="appTmplProductDetailView" role="window" class="theme-01">
-
+    <section role="region" data-type="outer-chrome" class="outer-chrome">
+        <button>Back</button>
+    </section>
     <!-- title bar region -->
     <section role="region" data-type="header">
       <header>

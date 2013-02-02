@@ -41,6 +41,10 @@ $theme_01_window_background: #cccccc;
     font-size:1.2rem;
 }
 
+@mixin label-text {
+    color: $default_primary_color !important;
+}
+
 @mixin input-text {
     font-family: "OpenSans", Sans-serif;
     font-size:1.1rem;
@@ -85,6 +89,7 @@ $theme_01_window_background: #cccccc;
 @import "frog/screens/_template_details";
 @import "frog/screens/_app_builder";
 @import "frog/screens/_app_builder_edit_icon";
+@import "frog/screens/_app_builder_name";
 @import "frog/screens/_left_nav";
 /* TODO: consolidate product CSS */
 @import "frog/screens/_product_list";

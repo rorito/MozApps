@@ -8,6 +8,7 @@
 //TODO - accordian arrows should go right and down
 //TODO - app Collection fixture data (pre-set products, etc)
 //TODO - handle #apps/undefined
+//TODO - app name change should put focus in input once the view is animated on
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
@@ -236,7 +237,7 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     },
     events: {
         'click button#back' : "back",
-        'submit form#nameForm' : "changeName"  //TODO use preventDefault for buttons
+        'click button#nameFormDone': "changeName"
     },
     back : function() {
         window.history.back();
@@ -265,7 +266,7 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
     viewName: "appBuilderAboutView",
     events: {
         'click button#back' : "back",
-        'submit form#aboutForm' : "saveAbout"  //TODO use preventDefault for buttons
+        'click button#aboutFormDone' : "saveAbout"
     },
     back : function() {
         window.history.back();

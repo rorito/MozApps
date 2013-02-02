@@ -66,20 +66,17 @@
 
 
 /* fixed position buttons on bottom */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom {
+#productListEdit [data-type="content"] .chrome-fixed-bottom {
 	position:fixed;
 	bottom:0px;
 	width:100%;
 	background-color:#4d4d4d;
-	/*padding:0.6rem;*/
+	padding:2%;
+	-moz-box-sizing:border-box;
 }
 
-/* need this extra div to get even padding around the button */
-#productListEdit [data-type="content"] div.chrome-fixed-bottom > div {
-	padding:0.6rem;
-}
 
-#productListEdit [data-type="content"] div.chrome-fixed-bottom  button {
+#productListEdit [data-type="content"] .chrome-fixed-bottom  button {
 	margin:0;
 	display:block;
 }
