@@ -98,7 +98,7 @@
                             <li>
                                 <p>{{this.component_name}}</p>
                                 <p>{{this.description}}</p>
-                                <button class="complete"></button>
+                                <button id="{{component_id}}"class="complete"></button>
                             </li>
                         {{/each}}
                       </ul>
@@ -162,7 +162,7 @@
                         <ul class="horizontal-list">
                         {{#each myApps}}
                             <li class="list-item">
-                                <img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span></span>
+                                <a href="#apps/{{id}}"><img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>{{name}}</span></a>
                             </li>
                         {{/each}}
                         </ul>

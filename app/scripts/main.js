@@ -32,13 +32,9 @@ window.mozapps = window.mozapps || {
         // and then check for Array[0] or []
         mozapps.appsDB.count(
             function(count){
-                console.log(count);
                 if(count > 0){
                     mozapps.appsDB.getAll(
                         function(data){
-                            console.log("appsDB get all");
-                            console.log(data);
-                            console.log("=========")
                             mozapps.appCollection = new mozapps.Collections.AppCollection(data);
                             deferred.resolve();
                         }, 
@@ -86,15 +82,12 @@ window.mozapps = window.mozapps || {
                 if(data.length < 1){
                     console.log("loading fixture data");
                     _.each(mozapps.templateFixtureData, function(element, index, list){
-                        console.log("putting ")
-                        console.log(element);
                         mozapps.templatesDB.put(element, function(){}, function(){});
                     });
 
                     mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
                     deferred.resolve();
                 } else {
-                    console.log("templatesDB get all");
                     mozapps.templateCollection = new mozapps.Collections.TemplateCollection(data);
                     deferred.resolve();
                 }
@@ -118,9 +111,6 @@ window.mozapps = window.mozapps || {
     init: function() {
         $.when(mozapps.initAppDB(), mozapps.initTemplateDB())
         .done(function(){
-            console.log("***** when done");
-            console.log(mozapps.templateCollection.toJSON());
-            console.log(mozapps.appCollection.toJSON());
 
             mozapps.tmplListView = new mozapps.Views.templatesListView();
             mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.templateCollection});
@@ -135,17 +125,17 @@ window.mozapps = window.mozapps || {
 $(document).ready(function(){
 
     // TEMP INSTALL
-    var request = navigator.mozApps.getSelf();
-    request.onsuccess = function() {
-      if (request.result) {
-        // we're installed
-      } else {
-        navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
-      }
-    };
-    request.onerror = function() {
-      alert('Error checking installation status: ' + this.error.message);
-    };
+    // var request = navigator.mozApps.getSelf();
+    // request.onsuccess = function() {
+    //   if (request.result) {
+    //     // we're installed
+    //   } else {
+    //     navigator.mozApps.install("http://10.118.118.171:3501/manifest.webapp");
+    //   }
+    // };
+    // request.onerror = function() {
+    //   alert('Error checking installation status: ' + this.error.message);
+    // };
 
    window.mozapps.init();
 
