@@ -237,7 +237,8 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     },
     events: {
         'click button#back' : "back",
-        'submit form#nameForm' : "changeName"  //TODO use preventDefault for buttons
+        //'submit form#nameForm' : "changeName"  //TODO use preventDefault for buttons
+        'click button#nameFormDone': "changeName"
     },
     back : function() {
         window.history.back();
