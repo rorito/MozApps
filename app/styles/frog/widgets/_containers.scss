@@ -12,6 +12,12 @@
  * CONTAINER: frog themed
  * ---------------------------------- */
 
-.skin-aqua.fade {
-	background: -moz-linear-gradient(top, #000000 0%, #000000 30%, #05686d 100%);
+
+div[role="window"].theme-01 {
+    background-color: $theme_01_primary_color;
+    color: $theme_01_text_color;
+}
+
+.theme-01.fade {
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 40%, #afada5 100%);
 }

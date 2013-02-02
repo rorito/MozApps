@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, #leftNav{
       display: none;
     }
   </style>
@@ -578,6 +578,42 @@
       </ul>
     </div>
   </nav>
+
+  <!-- represents application template screen, prefixed appTmpl
+       APPLICATION PRODUCT DETAIL with PREVIEW -->
+  <div id="appTmplProductDetailView" role="window" class="theme-01">
+
+    <!-- title bar region -->
+    <section role="region" data-type="header" class="theme-01">
+      <header>
+        <button><span class="icon icon-menu">menu</span></button>
+        <menu type="toolbar">
+          <button><span class="icon icon-cart">cart</span></button>
+        </menu>
+        <h1>Maria's Fine Crafts</h1>
+      </header>
+    </section>
+
+    <!-- content region -->
+    <section role="region" data-type="content" class="theme-01 fade">
+      <section role="region" data-type="detail" class="template-detail box-padded">
+        <div class="carousel">
+          carousel
+        </div>
+        <div>Nomad One Necklace</div>
+        <div><button class="buy">$29.99</button></div>
+      </section>
+      <footer>
+        <h2>About Maria's Fine Crafts</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at orci est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at orci est.</p>
+      </footer>
+    </section>
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
 
   <script type="text/javascript" src="scripts/temp/utils.js"></script>
   <script type="text/javascript" src="scripts/temp/sandbox.js"></script>
