@@ -101,13 +101,14 @@
 
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
-  initialize: function() {
-      var self = this;
+  initialize: function(options) {
+      // var self = this;
       
-      mozapps.templatesDB.getAll(function(data){
-        self.reset(data);
-        }, function(){
-      });
+      // mozapps.templatesDB.getAll(function(data){
+      //   self.reset(data);
+      //   deferred.resolve();
+      //   }, function(){
+      // });
   }
 });
 
@@ -115,22 +116,16 @@ mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
 //TODO wire up events to save new models added to collection back to IDB
 //TODO handle multiple add to collection?
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
-  initialize: function() {
-      var self = this;
-      
-      mozapps.appsDB.getAll(
-        function(data){
-          self.reset(data);
-        }, 
-        function(){
-        } 
-      );
+  initialize: function(options) {
+      console.log("AppCollection init");
       this.listenTo(this, "add", this.addedToCollection);
       this.listenTo(this, "remove", this.removedFromCollection);
       this.listenTo(this, "reset", this.checkReset);
   },
   addedToCollection: function(data){
-    console.log("added to collection");
+    console.log("&&&& added to collection");
+
+//TODO test that these batch puts work with arrays of data
 
     mozapps.appsDB.batch([ {type: "put", value: data.toJSON()} ], 
       function(){ console.log("batch add apps IDB - success"); }, 
@@ -138,6 +133,7 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
     );
   },
   removedFromCollection: function(data){
+    console.log("removed from collection");
     mozapps.appsDB.batch([ {type: "remove", value: data.toJSON()} ], 
       function(){ console.log("batch remove apps IDB - success"); }, 
       function(){ console.log("batch remove apps IDB - fail"); }
@@ -155,6 +151,7 @@ mozapps.templateFixtureData = [
     "app_components": [
       {
         "component_name": "About Me",
+        "completed": false,
         "description": "Introduce yourself",
         "properties": {
           "description": "",
@@ -165,6 +162,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "completed": false,
         "description": "Add products to your store",
         "properties": {
           "product-ids": []
@@ -172,6 +170,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "E-Commerce",
+        "completed": false,
         "description": "Add PayPal and other E-Commerce features",
         "properties": {
           "paypal_user": "",
@@ -193,7 +192,8 @@ mozapps.templateFixtureData = [
     "name": "Portfolio",
     "app_components": [
       {
-        "component_name": "About",
+        "component_name": "About Me",
+        "completed": false,
         "description": "Introduce yourself",
         "properties": {
           "description": "",
@@ -204,6 +204,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "Product List",
+        "completed": false,
         "description": "Introduce yourself",
         "properties": {
           "product-ids": []
@@ -211,6 +212,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "E-Commerce",
+        "completed": false,
         "description": "Introduce yourself",
         "properties": {
           "paypal_user": "",

@@ -3,11 +3,15 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var count = 0;
   var tempImgUrl = "styles/temp/template_icon_store.png";
   var initItemString = " checked";
+  
+  console.log("items");
+  console.log(items);
   for (var key in items) {
     count++;
     if(count > 1) {
       initItemString = "";
     }
+
     out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
     + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";

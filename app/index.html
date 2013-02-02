@@ -6,6 +6,8 @@
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
         <link rel="stylesheet" href="styles/main.css"/>
+        <!-- TODO specific viewport args? //-->
+        <!-- TODO disable pinch zoom //-->
 
     </head>
     <body>
@@ -81,9 +83,10 @@
                   <!-- content region -->
                   <section role="region" data-type="content">
                     <section role="region" data-type="detail" class="template-detail cf">
-                      <h1>Small Store</h1>
+                      <h1>{{name}}</h1>
                       <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
                       <div>
+                        <h1>{{name}}</h1>
                         <button class="">Preview</button>
                         <button class="" disabled="">Publish</button>
                       </div>
@@ -179,13 +182,20 @@
           {{/if}}
         </script>
 
+        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
+            <form id="nameForm">
+                <input id="nameField">
+                <input type="submit" value="Submit">
+            </form>
+        </script>
+
         <!-- end template list view -->
 
         <!-- Add your site or application content here -->
         
         <!-- build:js scripts/scripts.js -->
         <!--<script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script> //-->
-        <script src="scripts/vendor/stacktrace.js"></script>
+        <!-- <script src="scripts/vendor/stacktrace.js"></script> //-->
         <script src="scripts/vendor/zepto.min.js"></script>
         <script src="scripts/vendor/deferred.min.js"></script>
         <script src="scripts/vendor/lodash.min.js"></script>
@@ -200,7 +210,6 @@
         <script src="scripts/models/application-model.js"></script>
         <script src="scripts/routes/application-router.js"></script>
         <script src="scripts/vendor/iscroll.js"></script>
-        <script rsc="http://debug.phonegap.com/client/#mozrory"></script>
         <!-- endbuild -->
     </body>
 </html>

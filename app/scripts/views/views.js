@@ -1,4 +1,5 @@
-//TODO don't store kinveyData arrays in views, access arrays form window.MozAppKinvey, only store single record as model
+//TODO - BUG - delete DB then doesn't load first time
+//TODO - BUG - UUID doesn't work on phone
 //TODO figure out better Handlebars pre-render
 
 mozapps.Views.appSubView = Backbone.View.extend({
@@ -44,7 +45,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
         this.listenTo(this.collection, "add", this.render);
         this.listenTo(this.collection, "remove", this.render);
 
-        // SK - this may be a hack?, problem with back button render
+        // TODO SK - this may be a hack?, problem with back button render
         this.render();
     },
     render: function(){
@@ -66,13 +67,20 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                         tmplByCategory.categories[elem.toString()].push(this);
                     }, element);
                 });
+
+                console.log("mozTemplates");
+                console.log(tmplByCategory);
+
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
 
                 // set viewport (UL) width, SK TODO : refactor 
                 _.each(this.$el.find('.list-item-body'), function(element){
                     var elementObject = $(element).find('ul');
-                    elementObject.css('width', (200 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+                    //TODO BUG in setting the width of the accordian, selector not working
+                    //try width = auto?
+                    //height of accordian rows hard coded in css
+                    elementObject.css('width', (500 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
                     
                 }, this);
 
@@ -90,10 +98,11 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     initialize: function() {
     },
     render: function(eventName) {
+        console.log("template list view");
         if(mozapps.currentPage == "templatesListView"){
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
-            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.tmplCollection});
+            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.templateCollection});
         }
         return this;
     }
@@ -104,8 +113,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     viewName: "templateDetailView",
     template: Handlebars.compile($("#templateDetailViewTemplate").html()),
     templateID: "",
+    collection: mozapps.templateCollection,
     initialize: function() {
-        var self = this;  
         this.listenTo(this.collection, "reset", this.render);
     },
     events: {
@@ -124,10 +133,11 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     createApp: function(){
         var self = this;        
         var tmpl = this.collection.get(this.templateID);
+
         if(tmpl){
             var newMozApp = {
                 id: UUID.genV4().toString(),
-                name:     '',
+                name: tmpl.toJSON().name,
                 published: false,
                 version: "1.0",
                 app_components: tmpl.toJSON().app_components,
@@ -143,8 +153,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     render: function(eventName) {
         var self = this;
-        if(mozapps.currentPage == "templateDetailView" && mozapps.tmplCollection.length > 0){
-                mozapps.tmplCollection.toJSON().forEach(function(element, index, array){
+        if(mozapps.currentPage == "templateDetailView" && mozapps.templateCollection.length > 0){
+                mozapps.templateCollection.toJSON().forEach(function(element, index, array){
                     if(element.id == self.templateID){
                         if((index-1) > -1) { element.prevTemplateId = array[index-1].id; }
                         if((index+1) <= array.length-1) { element.nextTemplateId = array[index+1].id; }
@@ -153,7 +163,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
-                //NOTE: don't need toJSON() here because we call it above when we iterate over the tmplCollection
+                //NOTE: don't need toJSON() here because we call it above when we iterate over the template
                 this.$el.html(this.template(this.model)); 
         }
         return this;
@@ -166,7 +176,11 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     template: Handlebars.compile($("#appBuilderViewTemplate").html()),
     viewName: "appBuilderView",
     appID: "",
-    initialize: function() {       
+    collection: [],
+    collection: mozapps.appCollection,
+    initialize: function(options) {
+        // console.log(mozapps.appCollection);
+        // console.log(this.collection);
         this.listenTo(this.collection, "reset", this.render);
     },
     events: {
@@ -178,6 +192,43 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
             this.model = this.collection.get(this.appID);
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        }
+        return this;
+    }
+});
+
+mozapps.Views.appBuilderNameView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderNameViewTemplate").html()),
+    viewName: "appBuilderNameView",
+    initialize: function(options) {
+        this.listenTo(this.model, "change", this.saveName);
+    },
+    events: {
+        'click button#back' : "back",
+        'submit form#nameForm' : "changeName"  //TODO use preventDefault for buttons
+    },
+    back : function() {
+        window.history.back();
+    },
+    saveName: function(data){
+        console.log("save name");
+        console.log(data);
+    },
+    changeName: function(event){
+        event.preventDefault();
+        var self = this;
+        
+        //get the form value
+        mozapps.appCollection.get(self.appID).set("name", $('#nameField').val());
+        mozapps.router.navigate("#apps/"+self.appID,true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
