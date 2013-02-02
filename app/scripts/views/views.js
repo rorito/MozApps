@@ -6,6 +6,8 @@
 //TODO - back from appbuilder to details or home?
 //TODO - should accordians toggle close?
 //TODO - accordian arrows should go right and down
+//TODO - app Collection fixture data (pre-set products, etc)
+
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
