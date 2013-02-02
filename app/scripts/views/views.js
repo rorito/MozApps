@@ -1,6 +1,11 @@
 //TODO - BUG - delete DB then doesn't load first time
 //TODO - BUG - UUID doesn't work on phone
 //TODO figure out better Handlebars pre-render
+//TODO - loading issues if you go straight to an interior page
+//TODO - when you are in an accordian and click on a my app or template, make sure you come back to that accordian when you click BACK
+//TODO - back from appbuilder to details or home?
+//TODO - should accordians toggle close?
+//TODO - accordian arrows should go right and down
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
@@ -67,9 +72,6 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                         tmplByCategory.categories[elem.toString()].push(this);
                     }, element);
                 });
-
-                console.log("mozTemplates");
-                console.log(tmplByCategory);
 
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();
@@ -183,11 +185,36 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         // console.log(this.collection);
         this.listenTo(this.collection, "reset", this.render);
     },
+    //TODO we should really loop through the JSON struct to wire up events, but we'll hard code for now
     events: {
-        'click button#back' : "back"
+        'click button#back' : "back",
+        'click button#name' : "name",
+        'click button#about' : "about",
+        'click button#theme' : "theme",
+        'click button#icon' : "icon",
+        'click button#product-list' : "productlist",
+        'click button#ecommerce' : "ecommerce",
     },
     back : function() {
         window.history.back();
+    },
+    name: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/name",true);
+    },
+    about: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/about",true);
+    },
+    theme: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/theme",true);
+    },
+    icon: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/icon",true);
+    },
+    productlist: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
+    },
+    ecommerce: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
@@ -217,14 +244,13 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     },
     saveName: function(data){
         console.log("save name");
-        console.log(data);
     },
     changeName: function(event){
         event.preventDefault();
         var self = this;
         
         //get the form value
-        mozapps.appCollection.get(self.appID).set("name", $('#nameField').val());
+        mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
         mozapps.router.navigate("#apps/"+self.appID,true);
     },
     render: function(eventName) {

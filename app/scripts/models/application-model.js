@@ -91,16 +91,27 @@
 // }(window, window.Kinvey));
 
 
-// mozapps.Models.TemplateModel = Backbone.Model.extend({
+mozapps.Models.TemplateModel = Backbone.Model.extend({
 
-// });
+});
 
-// mozapps.Models.AppModel = Backbone.Model.extend({
-
-// });
+mozapps.Models.AppModel = Backbone.Model.extend({
+    initialize: function(options){
+        this.listenTo(this, "change", this.changeModel);
+    },
+    changeModel: function(data){
+        mozapps.appsDB.put(data.toJSON(), 
+            function(){
+                console.log("model changed - DB save success");
+            }, 
+            function(){}
+        );
+    }
+});
 
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
+  model: mozapps.Models.TemplateModel,
   initialize: function(options) {
       // var self = this;
       
@@ -116,8 +127,8 @@ mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
 //TODO wire up events to save new models added to collection back to IDB
 //TODO handle multiple add to collection?
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
+  model: mozapps.Models.AppModel,
   initialize: function(options) {
-      console.log("AppCollection init");
       this.listenTo(this, "add", this.addedToCollection);
       this.listenTo(this, "remove", this.removedFromCollection);
       this.listenTo(this, "reset", this.checkReset);
@@ -150,7 +161,14 @@ mozapps.templateFixtureData = [
     "name": "Small Store",
     "app_components": [
       {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
         "component_name": "About Me",
+        "component_id": "about",
         "completed": false,
         "description": "Introduce yourself",
         "properties": {
@@ -161,7 +179,26 @@ mozapps.templateFixtureData = [
         }
       },
       {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "theme-name": ""
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "icon-filename": ""
+        }
+      },
+      {
         "component_name": "Product List",
+        "component_id": "product-list",
         "completed": false,
         "description": "Add products to your store",
         "properties": {
@@ -170,6 +207,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "E-Commerce",
+        "component_id": "ecommerce",
         "completed": false,
         "description": "Add PayPal and other E-Commerce features",
         "properties": {
@@ -192,7 +230,14 @@ mozapps.templateFixtureData = [
     "name": "Portfolio",
     "app_components": [
       {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
         "component_name": "About Me",
+        "component_id": "about",
         "completed": false,
         "description": "Introduce yourself",
         "properties": {
@@ -203,7 +248,26 @@ mozapps.templateFixtureData = [
         }
       },
       {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "theme-name": ""
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "icon-filename": ""
+        }
+      },
+      {
         "component_name": "Product List",
+        "component_id": "product-list",
         "completed": false,
         "description": "Introduce yourself",
         "properties": {
@@ -212,6 +276,7 @@ mozapps.templateFixtureData = [
       },
       {
         "component_name": "E-Commerce",
+        "component_id": "ecommerce",
         "completed": false,
         "description": "Introduce yourself",
         "properties": {

@@ -4,8 +4,6 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var tempImgUrl = "styles/temp/template_icon_store.png";
   var initItemString = " checked";
   
-  console.log("items");
-  console.log(items);
   for (var key in items) {
     count++;
     if(count > 1) {
