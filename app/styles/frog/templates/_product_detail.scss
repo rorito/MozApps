@@ -1,7 +1,3 @@
-#appTmplProductDetailView.theme-01 {
-	background-color: $theme_01_window_background;
-}
-
 #appTmplProductDetailView section[data-type="content"] > header {
 	/* double override when using theme, using theme-01 as base */
 	height: auto !important;
@@ -60,3 +56,11 @@
 	margin: 0;
 }
 
+/* ----------------------------------
+ * PRODUCT DETAILS: frog themes
+ * ---------------------------------- */
+
+
+#appTmplProductDetailView.theme-01 {
+	background-color: $theme_01_window_background;
+}

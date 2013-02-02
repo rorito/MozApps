@@ -10,6 +10,7 @@
 *
 * */
 /* variables */
+/* theme attributes */
 /* mixins */
 /* scss imports */
 @font-face {
@@ -96,8 +97,8 @@ section[role="region"] button.previous {
  * BUTTONS: frog themes
  * ---------------------------------- */
 /* line 36, ../../app/styles/frog/widgets/_buttons.scss */
-section[role="region"].theme-01 button.buy,
-section[role="region"].theme-01 a[role="button"].buy {
+.theme-01 button.buy,
+.theme-01 a[role="button"].buy {
   width: auto;
   height: auto;
   margin: 0;
@@ -141,7 +142,7 @@ div[role="window"].theme-01 {
 }
 
 /* line 21, ../../app/styles/frog/widgets/_containers.scss */
-.theme-01.fade {
+.theme-01 .fade {
   background: -moz-linear-gradient(top, white 0%, white 40%, #afada5 100%);
 }
 
@@ -169,45 +170,38 @@ section[role="region"] > header:first-child .icon.icon-cart {
 /* ----------------------------------
  * HEADERS: frog themes
  * ---------------------------------- */
-/* line 29, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header:first-child,
-.skin-organic section[role="region"] > header:first-child {
+/* line 28, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header:first-child {
   background: #bf726b;
 }
 
-/* line 34, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header:first-child:after,
-.skin-organic section[role="region"] > header:first-child:after {
+/* line 32, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header:first-child:after {
   margin-top: -0.1rem;
 }
 
 /* Navigation links (back, cancel, etc) */
-/* line 42, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header:first-child > a .icon:after,
-.skin-organic section[role="region"] > header:first-child > a .icon:after,
-section[role="region"].theme-01 > header:first-child > button .icon:after,
-.skin-organic section[role="region"] > header > button .icon:after {
+/* line 38, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header:first-child > a .icon:after,
+.theme-01 section[data-type="header"] > header:first-child > button .icon:after {
   background: #bf726b;
 }
 
-/* line 49, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header:first-child menu[type="toolbar"] a:last-child,
-.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
-section[role="region"].theme-01 > header:first-child menu[type="toolbar"] button:last-child,
-.skin-organic section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
+/* line 43, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header:first-child menu[type="toolbar"] a:last-child,
+.theme-01 section[data-type="header"] > header:first-child menu[type="toolbar"] button:last-child {
   background: none;
 }
 
-/* line 54, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header,
-.skin-organic section[role="region"] > header {
+/* line 47, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header {
   background: #bf726b;
   color: #fff;
 }
 
-/* line 60, ../../app/styles/frog/widgets/_headers.scss */
-section[role="region"].theme-01 > header:first-child > button,
-section[role="region"].theme-01 > header:first-child > a {
+/* line 53, ../../app/styles/frog/widgets/_headers.scss */
+.theme-01 section[data-type="header"] > header:first-child > button,
+.theme-01 section[data-type="header"] > header:first-child > a {
   background: none;
 }
 
@@ -1057,11 +1051,6 @@ section[data-type="icon-list"] > header {
 
 /* TODO: consolidate app template CSS */
 /* line 1, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView.theme-01 {
-  background-color: #cccccc;
-}
-
-/* line 5, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="content"] > header {
   /* double override when using theme, using theme-01 as base */
   height: auto !important;
@@ -1080,17 +1069,17 @@ section[data-type="icon-list"] > header {
   box-shadow: none !important;
 }
 
-/* line 23, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 19, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="detail"] {
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* line 27, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 23, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="detail"] > div:nth-child(1) {
   height: 20rem;
 }
 
-/* line 31, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 27, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="detail"] > div:nth-child(2) {
   padding: 1rem 1rem;
   font-family: "MozTTLight", Sans-serif;
@@ -1098,13 +1087,13 @@ section[data-type="icon-list"] > header {
   text-align: center;
 }
 
-/* line 38, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 34, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="detail"] > div:nth-child(3) {
   padding: 0 3.4rem 2rem 3.4rem;
   text-align: center;
 }
 
-/* line 43, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 39, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="content"] > footer {
   padding: 1.3rem 3.2rem;
   font-size: 1.4rem;
@@ -1112,19 +1101,27 @@ section[data-type="icon-list"] > header {
   background-color: #cccccc;
 }
 
-/* line 50, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 46, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="content"] > footer h2:nth-child(1) {
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
 }
 
-/* line 56, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 52, ../../app/styles/frog/templates/_product_detail.scss */
 #appTmplProductDetailView section[data-type="content"] > footer p:nth-child(2) {
   font-size: 1.4rem;
   font-weight: 100;
   line-height: 1.8rem;
   margin: 0;
+}
+
+/* ----------------------------------
+ * PRODUCT DETAILS: frog themes
+ * ---------------------------------- */
+/* line 64, ../../app/styles/frog/templates/_product_detail.scss */
+#appTmplProductDetailView.theme-01 {
+  background-color: #cccccc;
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
