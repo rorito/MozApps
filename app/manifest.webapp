@@ -13,5 +13,6 @@
     "url": "http://www.mozilla.com"
   },
   "installs_allowed_from": ["*"],
-  "default_locale": "en"
+  "default_locale": "en",
+  "orientation": "portrait-primary"
 }

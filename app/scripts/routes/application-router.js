@@ -3,7 +3,7 @@ routes:{
         "":"templates",
         "templates/:id":"templateDetails",
         "apps/:id":"appBuilder",
-        //"apps/create/:id":"appBuilderCreate",
+        "apps/:id/name":"appBuilderName",
         "*path":  "templates"
     },
     initialize: function() {
@@ -12,8 +12,6 @@ routes:{
         // Keep track of the history of pages (we only store the page URL). Used to identify the direction
         // (left or right) of the sliding transition between pages.
         this.pageHistory = [];
-
-
     },
 
     selectItem: function(event) {
@@ -42,7 +40,15 @@ routes:{
         mozapps.appBuilderView.appID = id;
         this.slidePage(mozapps.appBuilderView.render());  
     },
+    //TODO should we do new on everypage instead of having several views for life of app (template list, template detail)
+    appBuilderName: function(id){
+        mozapps.currentPage = namePage.viewName;
+        var namePage = new mozapps.Views.appBuilderNameView({appID: id, model: mozapps.appCollection.get(id)});
+        this.slidePage(namePage.render());  
+    },
 
+    //TODO have sonny look at
+    //TODO disable swipe left and right to prevent seeing off center stage pages
     slidePage: function(page) {
         var slideFrom,
             self = this;
