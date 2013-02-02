@@ -44,6 +44,7 @@ routes:{
     appBuilderName: function(id){
         var namePage = new mozapps.Views.appBuilderNameView({appID: id, model: mozapps.appCollection.get(id)});
         mozapps.currentPage = namePage.viewName;
+        namePage.appID = id;
         this.slidePage(namePage.render());  
     },
 

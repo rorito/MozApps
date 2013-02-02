@@ -91,16 +91,27 @@
 // }(window, window.Kinvey));
 
 
-// mozapps.Models.TemplateModel = Backbone.Model.extend({
+mozapps.Models.TemplateModel = Backbone.Model.extend({
 
-// });
+});
 
-// mozapps.Models.AppModel = Backbone.Model.extend({
-
-// });
+mozapps.Models.AppModel = Backbone.Model.extend({
+    initialize: function(options){
+        this.listenTo(this, "change", this.changeModel);
+    },
+    changeModel: function(data){
+        mozapps.appsDB.put(data.toJSON(), 
+            function(){
+                console.log("model changed - DB save success");
+            }, 
+            function(){}
+        );
+    }
+});
 
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
+  model: mozapps.Models.TemplateModel,
   initialize: function(options) {
       // var self = this;
       
@@ -116,6 +127,7 @@ mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
 //TODO wire up events to save new models added to collection back to IDB
 //TODO handle multiple add to collection?
 mozapps.Collections.AppCollection = Backbone.Collection.extend({
+  model: mozapps.Models.AppModel,
   initialize: function(options) {
       this.listenTo(this, "add", this.addedToCollection);
       this.listenTo(this, "remove", this.removedFromCollection);

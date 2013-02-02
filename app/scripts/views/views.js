@@ -244,14 +244,13 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
     },
     saveName: function(data){
         console.log("save name");
-        console.log(data);
     },
     changeName: function(event){
         event.preventDefault();
         var self = this;
         
         //get the form value
-        mozapps.appCollection.get(self.appID).set("name", $('#nameField').val());
+        mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
         mozapps.router.navigate("#apps/"+self.appID,true);
     },
     render: function(eventName) {
