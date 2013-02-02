@@ -42,8 +42,8 @@ routes:{
     },
     //TODO should we do new on everypage instead of having several views for life of app (template list, template detail)
     appBuilderName: function(id){
-        mozapps.currentPage = namePage.viewName;
         var namePage = new mozapps.Views.appBuilderNameView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = namePage.viewName;
         this.slidePage(namePage.render());  
     },
 
