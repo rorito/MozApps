@@ -9,6 +9,8 @@ routes:{
         "apps/:id/icon":"appBuilderIcon",
         "apps/:id/product-list":"appBuilderProductList",
         "apps/:id/ecommerce":"appBuilderECommerce",
+        "apps/:id/publish":"appBuilderPublishDestination",
+        "apps/:id/publish/marketplace":"appBuilderPublishMarketplace",
         "*path":  "templates"
     },
     initialize: function() {
@@ -59,6 +61,19 @@ routes:{
         aboutPage.appID = id;
         this.slidePage(aboutPage.render());  
     },
+    appBuilderPublishDestination: function(id){
+        var publishDestination = new mozapps.Views.appBuilderPublishDestinationView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishDestination.viewName;
+        publishDestination.appID = id;
+        this.slidePage(publishDestination.render());  
+    },
+    appBuilderPublishMarketplace: function(id){
+        var publishMarketplace = new mozapps.Views.appBuilderPublishMarketplaceView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishMarketplace.viewName;
+        publishMarketplace.appID = id;
+        this.slidePage(publishMarketplace.render());  
+    },
+    
 
     //TODO have sonny look at
     //TODO disable swipe left and right to prevent seeing off center stage pages

@@ -195,6 +195,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         'click button#icon' : "icon",
         'click button#product-list' : "productlist",
         'click button#ecommerce' : "ecommerce",
+        'click button#appBuilderPublish': "publish"
     },
     back : function() {
         window.history.back();
@@ -216,6 +217,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     },
     ecommerce: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
+    },
+    publish: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
@@ -334,6 +338,53 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
     }
 });
 
+mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishDestinationTemplate").html()),
+    viewName: "appBuilderPublishDestinationView",
+    events: {
+        'click button#back' : "back",
+        'click button#publishMarketplace': "publishToMaketplace"
+    },
+    back : function() {
+        window.history.back();
+    },
+    publishToMaketplace: function() {
+        mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model));
+            }
+        }
+        return this;
+    }
+});
 
-
+mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishMarketplaceTemplate").html()),
+    viewName: "appBuilderPublishMarketplaceView",
+    events: {
+        'click button#back' : "back",
+        'click button#loginPublish': "publishSubmit"
+    },
+    back : function() {
+        window.history.back();
+    },
+    publishSubmit: function() {
+        mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace/submit",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model));
+            }
+        }
+        return this;
+    }
+});
 

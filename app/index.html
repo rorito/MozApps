@@ -87,8 +87,8 @@
                       <div><img src="styles/temp/template_icon_store.png" class="template-thumbnail-small"></div>
                       <div>
                         <h1>{{name}}</h1>
-                        <button class="">Preview</button>
-                        <button class="" disabled="">Publish</button>
+                        <button id="appBuilderPreview" class="">Preview</button>
+                        <button id="appBuilderPublish" class="">Publish</button>
                       </div>
                     </section>
                     <section role="region" data-type="list">
@@ -248,7 +248,6 @@
                     <!-- content region -->
                     <section role="region" data-type="content" class="box-padded">
                         <form id="aboutForm">
-                            <!-- TODO: Change h2 to label but confirm design with Kenji -->
                             <p>
                                 <label class="label-dark">Description</label>
                                 <textarea rows="4" id="description">{{description}}</textarea>
@@ -278,6 +277,93 @@
         </script>
 
         <!-- end app builder about add/edit template -->
+        
+        <!-- start app publish desintation template -->
+
+        <script id="appBuilderPublishDestinationTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application screen APP PUBLISH DESTINATION -->
+                <div id="appBuilderPublishDestination" role="window">
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                        <header>
+                            <button id="back"><span class="icon icon-back">back</span></button>
+                            <h1>Publish</h1>
+                        </header>
+                    </section>
+
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="box-padded">
+                        <h2>Where do you want to publish you app?</h2>
+                        <div>
+                            <button id="publishMarketplace">Firefox Marketplace</button>
+                        </div>
+                        <div>
+                            <button id="publishServer" disabled="">On a different server</button>
+                        </div>
+                    </section>
+
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                    <footer></footer>
+                    </section>
+                </div>
+            {{/if}}
+            
+        </script>
+
+        <!-- end app publish desintation template -->
+
+        <!-- start app publish desintation template -->
+
+        <script id="appBuilderPublishMarketplaceTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application screen APP PUBLISH MARKETPLACE LOGIN -->
+                <div id="appBuilderPublishMarketplace" role="window">
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                        <header>
+                            <button id="back"><span class="icon icon-back">back</span></button>
+                            <h1>Publish</h1>
+                        </header>
+                    </section>
+
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="box-padded">
+                        <h2>Log into Firefox Marketplace</h2>
+                        <p>
+                            <label class="label-dark">User name</label>
+                            <input type="text" id="username" value="Thatsmyname22">
+                        </p>
+                        <p>
+                            <label class="label-dark">Password</label>
+                            <input type="password" id="password" value="">
+                        </p>
+                        <p>
+                            <a href="#">I forgot my user name or password</>
+                        </p>
+                        <p>
+                            <button id="publishSubmit">Log in</button>
+                        </p>
+                        <p>
+                            <a href="#">Register</a> for Firefox Marketplace
+                        </p>
+                    </section>
+
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                    <footer></footer>
+                    </section>
+                </div>
+            {{/if}}
+            
+        </script>
+
+        <!-- end app publish desintation template -->
 
         <!-- start product list view -->
         <script id="productListViewTemplate" type="text/x-handlebars-template">

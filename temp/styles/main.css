@@ -383,8 +383,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* ----------------------------------
  * INPUTS: frog form inputs
  * ---------------------------------- */
-/* line 14, ../../app/styles/frog/widgets/_inputs.scss */
-section[role="region"] input[type="text"], section[role="region"] textarea {
+/* line 16, ../../app/styles/frog/widgets/_inputs.scss */
+section[role="region"] input[type="text"],
+section[role="region"] textarea,
+section[role="region"] input[type="password"] {
   width: 100%;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -395,18 +397,18 @@ section[role="region"] input[type="text"], section[role="region"] textarea {
   font-size: 1.1rem;
 }
 
-/* line 24, ../../app/styles/frog/widgets/_inputs.scss */
+/* line 26, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] textarea {
   overflow: hidden;
 }
 
-/* line 28, ../../app/styles/frog/widgets/_inputs.scss */
+/* line 30, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] label {
   text-transform: uppercase;
   color: white !important;
 }
 
-/* line 33, ../../app/styles/frog/widgets/_inputs.scss */
+/* line 35, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] label.label-dark {
   color: #eaeaea !important;
 }
