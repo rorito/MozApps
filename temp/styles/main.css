@@ -107,7 +107,7 @@ section[role="region"] button.previous {
   width: auto;
   height: auto;
   margin: 0;
-  padding: 0 .6rem;
+  padding: 0 0.6rem;
   -moz-box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
@@ -118,7 +118,7 @@ section[role="region"] button.previous {
   border: none;
   border-radius: 0.2rem;
   font-size: 1.7rem;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   font-weight: 400;
   line-height: 3rem;
   color: #fff;
@@ -160,6 +160,11 @@ div[role="window"].theme-01 {
 /* line 30, ../../app/styles/frog/widgets/_containers.scss */
 .theme-01 .fade {
   background: -moz-linear-gradient(top, white 0%, white 40%, #afada5 100%);
+}
+
+/* line 34, ../../app/styles/frog/widgets/_containers.scss */
+.box-padded {
+  padding: 2rem;
 }
 
 /******************************************************************
@@ -270,7 +275,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* start horizontal list */
 /* line 45, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
-  margin: 2rem 0 .8rem 0;
+  margin: 2rem 0 0.8rem 0;
 }
 
 /* line 49, ../../app/styles/frog/widgets/_accordion.scss */
@@ -381,10 +386,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* line 14, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] input[type="text"], section[role="region"] textarea {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: inset 0 0 3px #ccc;
+  box-shadow: inset 0 0 3px #cccccc;
   -moz-box-sizing: border-box;
   font-family: "OpenSans", Sans-serif;
   font-size: 1.1rem;
@@ -399,6 +404,11 @@ section[role="region"] textarea {
 section[role="region"] label {
   text-transform: uppercase;
   color: white !important;
+}
+
+/* line 33, ../../app/styles/frog/widgets/_inputs.scss */
+section[role="region"] label.label-dark {
+  color: #eaeaea !important;
 }
 
 /******************************************************************
@@ -602,10 +612,10 @@ section[role="region"] label {
 #appBuilder [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -0.4rem;
+  top: -.4rem;
   bottom: 0;
   right: 0;
-  left: -0.8rem;
+  left: -.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -770,7 +780,7 @@ section[data-type="icon-list"] > header {
 
 /* line 19, ../../app/styles/frog/screens/_app_builder_name.scss */
 #appBuilderName [data-type="content"] div.grey-box {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   background-color: #ccc;
   border-radius: 4px;
   padding: 1rem;
@@ -833,7 +843,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list.scss */
 #productList [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -901,7 +911,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -1105,7 +1115,7 @@ section[data-type="icon-list"] > header {
 
 /* line 24, ../../app/styles/frog/screens/_product_detail_edit.scss */
 #productDetailEdit [data-type="content"] p.box-margin-top {
-  margin: 3.0rem 0 1.6rem 0;
+  margin: 3rem 0 1.6rem 0;
 }
 
 /* line 28, ../../app/styles/frog/screens/_product_detail_edit.scss */
@@ -1192,67 +1202,67 @@ section[data-type="icon-list"] > header {
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 105, ../../app/styles/main.scss */
+/* line 109, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 107, ../../app/styles/main.scss */
+/* line 111, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   background-color: white;
   color: black;
 }
 
-/* line 114, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 119, ../../app/styles/main.scss */
+/* line 123, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 123, ../../app/styles/main.scss */
+/* line 127, ../../app/styles/main.scss */
 div[role="window"] {
   height: 100%;
   background-color: white;
 }
 
-/* line 128, ../../app/styles/main.scss */
+/* line 132, ../../app/styles/main.scss */
 a:link {
   color: black;
   text-decoration: none;
 }
 
-/* line 129, ../../app/styles/main.scss */
+/* line 133, ../../app/styles/main.scss */
 a:visited {
   color: black;
   text-decoration: none;
 }
 
-/* line 130, ../../app/styles/main.scss */
+/* line 134, ../../app/styles/main.scss */
 a:hover {
   color: black;
   text-decoration: none;
 }
 
-/* line 131, ../../app/styles/main.scss */
+/* line 135, ../../app/styles/main.scss */
 a:active {
   color: black;
   text-decoration: none;
 }
 
-/* line 133, ../../app/styles/main.scss */
+/* line 137, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 140, ../../app/styles/main.scss */
+/* line 144, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -1261,7 +1271,7 @@ a:active {
   /* 2 */
 }
 
-/* line 145, ../../app/styles/main.scss */
+/* line 149, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -1270,13 +1280,13 @@ a:active {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 153, ../../app/styles/main.scss */
+/* line 157, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
 
 /* rory temp stuff */
-/* line 159, ../../app/styles/main.scss */
+/* line 163, ../../app/styles/main.scss */
 #appContainer {
   position: absolute;
   width: 100%;
@@ -1285,7 +1295,7 @@ a:active {
   overflow-y: auto;
 }
 
-/* line 167, ../../app/styles/main.scss */
+/* line 171, ../../app/styles/main.scss */
 .page {
   position: absolute;
   width: 100%;
@@ -1293,23 +1303,23 @@ a:active {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 174, ../../app/styles/main.scss */
+/* line 178, ../../app/styles/main.scss */
 .stage-center {
   top: 0;
   left: 0;
 }
 
-/* line 179, ../../app/styles/main.scss */
+/* line 183, ../../app/styles/main.scss */
 .stage-left {
   left: -100%;
 }
 
-/* line 183, ../../app/styles/main.scss */
+/* line 187, ../../app/styles/main.scss */
 .stage-right {
   left: 100%;
 }
 
-/* line 187, ../../app/styles/main.scss */
+/* line 191, ../../app/styles/main.scss */
 .transition {
   -moz-transition-duration: .375s;
   -webkit-transition-duration: .375s;

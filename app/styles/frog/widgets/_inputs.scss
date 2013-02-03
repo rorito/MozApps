@@ -29,3 +29,8 @@ section[role="region"] label {
 	text-transform:uppercase;
 	@include label-text;	
 }
+
+section[role="region"] label.label-dark {
+	@include label-text-dark;
+}
+
