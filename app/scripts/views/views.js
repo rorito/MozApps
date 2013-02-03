@@ -312,5 +312,61 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
 });
 
 
+mozapps.Views.productList = Backbone.View.extend({
+    template: Handlebars.compile($("#productListTemplate").html()),
+    viewName: "productList",
+    events: {
+        'click button#back' : "back",
+        'click button#addProduct' : "addProduct"
+    },
+    back : function() {
+        window.history.back();
+    },
+    addProduct: function(event){
+        mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                var product = _.find(this.model.toJSON().app_components, function(elem){
+                    return elem.component_id == "product-list";
+                });
 
+                console.log(product);
+                console.log(product.properties);
+                var products = [];
+                product.properties.productIDs.forEach(function(element, index, array){
+                    products.push(mozapps.productCollection.get(id).toJSON());
+                });
+
+                this.$el.html(this.template(products));
+            }
+        }
+        return this;
+    }
+});
+
+mozapps.Views.productListAdd = Backbone.View.extend({
+    template: Handlebars.compile($("#productListAddTemplate").html()),
+    viewName: "productListAdd",
+    events: {
+        'click button#back' : "back",
+        'click button#saveProduct' : "saveProduct"
+    },
+    back : function() {
+        window.history.back();
+    },
+    saveProduct: function(event){
+        
+        //mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            this.$el.html(this.template({}));
+        }
+        return this;
+    }
+});
 

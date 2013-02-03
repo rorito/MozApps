@@ -7,7 +7,8 @@ routes:{
         "apps/:id/about":"appBuilderAbout",
         "apps/:id/theme":"appBuilderTheme",
         "apps/:id/icon":"appBuilderIcon",
-        "apps/:id/product-list":"appBuilderProductList",
+        "apps/:id/product-list":"ProductList",
+        "apps/:id/product-list/add":"ProductListAdd",
         "apps/:id/ecommerce":"appBuilderECommerce",
         "*path":  "templates"
     },
@@ -58,6 +59,24 @@ routes:{
         mozapps.currentPage = aboutPage.viewName;
         aboutPage.appID = id;
         this.slidePage(aboutPage.render());  
+    },
+    ProductList: function(id){
+        mozapps.currentPage = "productList";
+        this.slidePage(
+            new mozapps.Views.productList({
+                appID: id, 
+                model: mozapps.appCollection.get(id)
+            }).render()
+        );  
+    },
+    ProductListAdd: function(id){
+        mozapps.currentPage = "productListAdd";
+        this.slidePage(
+            new mozapps.Views.productListAdd({
+                appID: id, 
+                model: mozapps.appCollection.get(id)
+            }).render()
+        );  
     },
 
     //TODO have sonny look at

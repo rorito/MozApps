@@ -65,6 +65,57 @@ window.mozapps = window.mozapps || {
     return deferred.promise();
   },
 
+  initProductDB: function(){
+    var deferred = Deferred();
+
+    mozapps.productsDB = new IDBStore({
+      dbVersion: 1,
+      storePrefix: 'mozapps-',
+      storeName: 'products',
+      keyPath: 'id',
+      autoIncrement: true,
+      onStoreReady: function(){
+        console.log('Products IDB ObjectStore ready!');
+
+        //TODO revisit this
+        //note: we're only doing an IDB count because the first time you load a page and it creates an IDB
+        // database, data is returned as Array[0] instead of []. I may revert to just a getAll call later
+        // and then check for Array[0] or []
+        mozapps.productsDB.count(
+            function(count){
+                if(count > 0){
+                    mozapps.productsDB.getAll(
+                        function(data){
+                            mozapps.productCollection = new mozapps.Collections.ProductCollection(data);
+                            deferred.resolve();
+                        }, 
+                        function(){
+                            console.log("*** ERROR loading appsDB getAll");
+                            //TODO throw error?
+                            deferred.resolve();
+                        } 
+                    );
+                } else {
+                    mozapps.productCollection = new mozapps.Collections.ProductCollection();
+                    deferred.resolve();
+                }
+            },
+            function(data){
+                console.log("ERROR getting productsDB count");
+                //TODO throw error?
+                deferred.resolve();
+            }
+        );
+      },
+        onError: function(error){ 
+            alert("There was a problem opening the MozApps database. Please restart the app."); 
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise();
+  },
+
   initTemplateDB: function(){
     var deferred = Deferred();
 
@@ -109,7 +160,7 @@ window.mozapps = window.mozapps || {
     return deferred.promise();
   },
     init: function() {
-        $.when(mozapps.initAppDB(), mozapps.initTemplateDB())
+        $.when(mozapps.initAppDB(), mozapps.initTemplateDB(), mozapps.initProductDB())
         .done(function(){
 
             mozapps.tmplListView = new mozapps.Views.templatesListView();
@@ -119,6 +170,42 @@ window.mozapps = window.mozapps || {
             mozapps.router = new mozapps.Routers.ApplicationRouter(); 
             Backbone.history.start(); //{ pushState: true, root: mozapps.root }
         });
+    },
+    initDBJS: function(){
+        db.open({
+            server: 'mozapps',
+            version: 1,
+            schema: {
+                templates: {
+                    key: { keyPath: 'id' , autoIncrement: true }
+                },
+                apps: {
+                    key: { keyPath: 'id' , autoIncrement: true }
+                },
+                products: {
+                    key: { keyPath: 'id' , autoIncrement: true }
+                }
+            }
+        })
+        .then(function(s){
+            mozapps.db = s;
+            mozapps.db.templates.query()
+                .filter()
+                .execute()
+                .done(function (results){
+                    if(results.length < 1){
+                        _.each(mozapps.templateFixtureData, function(element, index, list){
+                            mozapps.db.templates.add(element);
+                        });
+                        mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
+                    } else {
+                        mozapps.templateCollection = new mozapps.Collections.TemplateCollection(results);
+                    }
+                });
+        })
+        .done(function (s){
+            
+        });    
     }
 };
 

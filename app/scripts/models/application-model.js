@@ -29,6 +29,29 @@ mozapps.Models.AppModel = Backbone.Model.extend({
     }
 });
 
+mozapps.Models.ProductModel = Backbone.Model.extend({
+    // defaults: {
+    //     id: "",
+    //     name: "",
+    //     published: false,
+    //     version: "1.0",
+    //     app_components: [],
+    //     templateID: ""
+    // },
+    initialize: function(options){
+        this.listenTo(this, "change", this.changeModel);
+    },
+    changeModel: function(data){
+        console.log("app model - change model");
+        mozapps.productsDB.put(data.toJSON(), 
+            function(){
+                console.log("model changed - DB save success");
+            }, 
+            function(){}
+        );
+    }
+});
+
 /***************/
 /* Collections */
 /***************/
@@ -61,6 +84,35 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
   removedFromCollection: function(data){
     console.log("removed from collection");
     mozapps.appsDB.batch([ {type: "remove", value: data.toJSON()} ], 
+      function(){ console.log("batch remove apps IDB - success"); }, 
+      function(){ console.log("batch remove apps IDB - fail"); }
+    );
+  },
+  checkReset: function(data){
+    console.log("app collection reset");
+  } 
+});
+
+mozapps.Collections.ProductCollection = Backbone.Collection.extend({
+  model: mozapps.Models.ProductModel,
+  initialize: function(options) {
+      this.listenTo(this, "add", this.addedToCollection);
+      this.listenTo(this, "remove", this.removedFromCollection);
+      this.listenTo(this, "reset", this.checkReset);
+  },
+  addedToCollection: function(data){
+    console.log("&&&& added to collection");
+
+//TODO test that these batch puts work with arrays of data
+
+    mozapps.productsDB.batch([ {type: "put", value: data.toJSON()} ], 
+      function(){ console.log("batch add apps IDB - success"); }, 
+      function(){ console.log("batch add apps IDB - fail"); }
+    );
+  },
+  removedFromCollection: function(data){
+    console.log("removed from collection");
+    mozapps.productsDB.batch([ {type: "remove", value: data.toJSON()} ], 
       function(){ console.log("batch remove apps IDB - success"); }, 
       function(){ console.log("batch remove apps IDB - fail"); }
     );
@@ -117,7 +169,7 @@ mozapps.templateFixtureData = [
         "completed": false,
         "description": "Add products to your store",
         "properties": {
-          "product-ids": []
+          "productIDs": []
         }
       },
       {
@@ -178,27 +230,6 @@ mozapps.templateFixtureData = [
         "description": "Set the icon for your app",
         "properties": {
           "icon-filename": ""
-        }
-      },
-      {
-        "component_name": "Product List",
-        "component_id": "product-list",
-        "completed": false,
-        "description": "Introduce yourself",
-        "properties": {
-          "product-ids": []
-        }
-      },
-      {
-        "component_name": "E-Commerce",
-        "component_id": "ecommerce",
-        "completed": false,
-        "description": "Introduce yourself",
-        "properties": {
-          "paypal_user": "",
-          "paypal_key": "",
-          "shopify_user": "",
-          "shopify_key": ""
         }
       }
     ],
