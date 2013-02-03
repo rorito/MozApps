@@ -38,6 +38,7 @@
 	/*margin:2.4rem 0.3rem 0.3rem 0rem;*/
 	height:2.8rem;
 	width:2.8rem;
+	visibility:hidden;
 }
 
 #productListEdit [data-type="list"] li > label > input[type=checkbox] + div {
@@ -46,6 +47,10 @@
 	position:absolute;
 	top:3.0rem;
 	left:0.8rem;
+}
+
+#productListEdit [data-type="list"] li > label > input[type=checkbox]:checked + div {
+	background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
 }
 
 
