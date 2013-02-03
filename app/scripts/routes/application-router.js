@@ -11,6 +11,7 @@ routes:{
         "apps/:id/ecommerce":"appBuilderECommerce",
         "apps/:id/publish":"appBuilderPublishDestination",
         "apps/:id/publish/marketplace":"appBuilderPublishMarketplace",
+        "apps/:id/publish/marketplace/submit":"appBuilderPublishSubmit",
         "*path":  "templates"
     },
     initialize: function() {
@@ -73,6 +74,13 @@ routes:{
         publishMarketplace.appID = id;
         this.slidePage(publishMarketplace.render());  
     },
+    appBuilderPublishSubmit: function(id){
+        var publishSubmit = new mozapps.Views.appBuilderPublishSubmitView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishSubmit.viewName;
+        publishSubmit.appID = id;
+        this.slidePage(publishSubmit.render());  
+    },
+    
     
 
     //TODO have sonny look at

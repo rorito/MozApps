@@ -348,7 +348,8 @@ mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
     back : function() {
         window.history.back();
     },
-    publishToMaketplace: function() {
+    publishToMaketplace: function(event) {
+        event.preventDefault();
         mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace",true);
     },
     render: function(eventName) {
@@ -368,12 +369,13 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
     viewName: "appBuilderPublishMarketplaceView",
     events: {
         'click button#back' : "back",
-        'click button#loginPublish': "publishSubmit"
+        'click button#publishLogIn': "publishLogInSubmit"
     },
     back : function() {
         window.history.back();
     },
-    publishSubmit: function() {
+    publishLogInSubmit: function(event) {
+        event.preventDefault();
         mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace/submit",true);
     },
     render: function(eventName) {
@@ -388,3 +390,23 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
     }
 });
 
+mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishSumbitTemplate").html()),
+    viewName: "appBuilderPublishSubmitView",
+    events: {
+        'click button#cancel' : "cancel",
+    },
+    cancel : function() {
+        window.history.back();
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model));
+            }
+        }
+        return this;
+    }
+});

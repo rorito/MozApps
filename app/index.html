@@ -347,7 +347,7 @@
                             <a href="#">I forgot my user name or password</>
                         </p>
                         <p>
-                            <button id="publishSubmit">Log in</button>
+                            <button id="publishLogIn">Log in</button>
                         </p>
                         <p>
                             <a href="#">Register</a> for Firefox Marketplace
@@ -364,6 +364,40 @@
         </script>
 
         <!-- end app publish desintation template -->
+
+        <!-- start app publish submit template -->
+
+        <script id="appBuilderPublishSumbitTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application screen APP PUBLISH SUBMIT  -->
+                <div id="appBuilderPublishSubmit" role="window">
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                        <header>
+                            <button id="back"><span class="icon icon-back">back</span></button>
+                            <h1>Publish</h1>
+                        </header>
+                    </section>
+
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="box-padded">
+                        <p>
+                            <button id="cancel">Cancel</button>
+                        </p>
+                    </section>
+
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                    <footer></footer>
+                    </section>
+                </div>
+            {{/if}}
+            
+        </script>
+
+        <!-- end app publish submit template -->
 
         <!-- start product list view -->
         <script id="productListViewTemplate" type="text/x-handlebars-template">
