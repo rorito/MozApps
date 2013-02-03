@@ -400,6 +400,64 @@
 
         <!-- end app publish submit template -->
 
+        <!-- start product detail add/edit template -->
+
+        <script id="productDetailEditTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application screen PRODUCT DETAIL EDIT -->
+                <div id="productDetailEdit" role="window">
+
+                <!-- title bar region -->
+                <section role="region" data-type="header">
+                    <header>
+                        <button><span class="icon icon-back">back</span></button>
+                        <menu type="toolbar">
+                          <!-- TODO: skin this button properly -->
+                          <button id="productDetailEditDone">Done</button>
+                        </menu>
+                        <h1>{{name}}}</h1>
+                    </header>
+                </section>
+
+                <!-- content region -->
+                <section role="region" data-type="content">
+                    <section role="region" data-type="detail" class="template-detail box-padded">
+                    <p class="box-unpadded">
+                      <img src="styles/temp/product_list_thumb.png" />
+                    </p>
+                    <p class="box-unpadded">
+                        <label class="label-dark">Item Name</label>
+                        <input id="name" name="name" type="text" value="{{name}}}" />
+                    </p>
+                    <p class="box-unpadded">
+                        <label class="label-dark">Description</label>
+                        <textarea id="description" name="description">{{description}}</textarea>
+                    </p>
+                    <p class="box-unpadded">
+                        <label class="label-dark">Price</label>
+                        <input id="price" name="price" type="text" value="{{price}}}" />
+                    </p>
+                    <p class="box-margin-top box-unpadded">
+                      <button id="deleteProductDetail">Delete</button>
+                    </p>
+                    </section>
+                </section>
+            {{/if}}
+            
+        </script>
+
+        <!-- end app product detail add/edit template -->
+
+        
+
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+      <footer></footer>
+    </section>
+  </div>
+
         <!-- start product list view -->
         <script id="productListViewTemplate" type="text/x-handlebars-template">
             <div id="productList" role="window">
