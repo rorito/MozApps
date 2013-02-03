@@ -4,6 +4,11 @@ routes:{
         "templates/:id":"templateDetails",
         "apps/:id":"appBuilder",
         "apps/:id/name":"appBuilderName",
+        "apps/:id/about":"appBuilderAbout",
+        "apps/:id/theme":"appBuilderTheme",
+        "apps/:id/icon":"appBuilderIcon",
+        "apps/:id/product-list":"appBuilderProductList",
+        "apps/:id/ecommerce":"appBuilderECommerce",
         "*path":  "templates"
     },
     initialize: function() {
@@ -41,11 +46,18 @@ routes:{
         this.slidePage(mozapps.appBuilderView.render());  
     },
     //TODO should we do new on everypage instead of having several views for life of app (template list, template detail)
+    //TODO use switch statement to dispatch app component routes
     appBuilderName: function(id){
         var namePage = new mozapps.Views.appBuilderNameView({appID: id, model: mozapps.appCollection.get(id)});
         mozapps.currentPage = namePage.viewName;
         namePage.appID = id;
         this.slidePage(namePage.render());  
+    },
+    appBuilderAbout: function(id){
+        var aboutPage = new mozapps.Views.appBuilderAboutView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = aboutPage.viewName;
+        aboutPage.appID = id;
+        this.slidePage(aboutPage.render());  
     },
 
     //TODO have sonny look at

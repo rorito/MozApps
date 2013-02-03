@@ -182,8 +182,17 @@
           {{/if}}
         </script>
 
-        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
+        <script id="appBuilderAboutTemplate" type="text/x-handlebars-template">
+            <form id="aboutForm">
+                <textarea rows="4" id="description">{{description}}</textarea>
+                <input id="address" value="{{address}}">
+                <input id="phone" value="{{phone}}">
+                <input id="email" value="{{email}}">
+                <button id="aboutFormDone" value="Submit">
+            </form>
+        </script>
 
+        <script id="appBuilderNameViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
@@ -219,8 +228,6 @@
                   </section>
                 </div>
             {{/if}}
-
-            
         </script>
 
         <!-- end template list view -->

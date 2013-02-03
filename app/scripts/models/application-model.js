@@ -7,10 +7,19 @@ mozapps.Models.TemplateModel = Backbone.Model.extend({
 });
 
 mozapps.Models.AppModel = Backbone.Model.extend({
+    defaults: {
+        id: "",
+        name: "",
+        published: false,
+        version: "1.0",
+        app_components: [],
+        templateID: ""
+    },
     initialize: function(options){
         this.listenTo(this, "change", this.changeModel);
     },
     changeModel: function(data){
+        console.log("app model - change model");
         mozapps.appsDB.put(data.toJSON(), 
             function(){
                 console.log("model changed - DB save success");
