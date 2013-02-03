@@ -98,7 +98,7 @@
                             <li>
                                 <p>{{this.component_name}}</p>
                                 <p>{{this.description}}</p>
-                                <button id="{{component_id}}"class="complete"></button>
+                                <button id="{{component_id}}" {{#if this.completed}}class="complete"{{/if}}></button>
                             </li>
                         {{/each}}
                       </ul>

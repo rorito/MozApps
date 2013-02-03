@@ -243,10 +243,32 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
         window.history.back();
     },
     changeName: function(event){
+        var self = this;
         event.preventDefault();
         
         //get the form value
-        mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
+        //mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
+        // need to go deeper to update completed field
+        /* TODO: Make util function to do deeper and return JSON when done */
+        /* Can also check if we are completed from before and do the quick model.set in that case */
+        var nameJSON = mozapps.appCollection.get(this.appID).toJSON();
+
+        nameJSON.name = $('#nameField').val();
+        
+        nameJSON.app_components.forEach(function(element, index, array){
+            if(element.component_id == "name"){
+                element.completed = true;
+            }
+        });
+
+        self.model.set(nameJSON);
+
+        // //TODO fix this so that the model change event does the save instead of having to explicitly do it here
+        mozapps.appsDB.put(nameJSON, 
+            function(){ console.log("saved name");},
+            function(){}
+        );
+
         mozapps.router.navigate("#apps/"+this.appID,true);
     },
     render: function(eventName) {
@@ -279,6 +301,7 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
 
         aboutJSON.app_components.forEach(function(element, index, array){
             if(element.component_id == "about"){
+                element.completed = true;
                 element.properties.description = $('#aboutForm #description').val();
                 element.properties.address = $('#aboutForm #address').val();
                 element.properties.phone = $('#aboutForm #phone').val();
