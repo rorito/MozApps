@@ -357,7 +357,7 @@ mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                this.$el.html(this.template(this.model));
+                this.$el.html(this.template(this.model.toJSON()));
             }
         }
         return this;
@@ -383,7 +383,7 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                this.$el.html(this.template(this.model));
+                this.$el.html(this.template(this.model.toJSON()));
             }
         }
         return this;
@@ -404,7 +404,7 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                this.$el.html(this.template(this.model));
+                this.$el.html(this.template(this.model.toJSON()));
             }
         }
         return this;
