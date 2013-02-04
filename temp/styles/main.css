@@ -1130,7 +1130,7 @@ section[data-type="icon-list"] > header {
 
 /* TODO: consolidate app template CSS */
 /* line 1, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="content"] > header {
+#appView section[data-type="content"] > header {
   /* double override when using theme, using theme-01 as base */
   height: auto !important;
   padding: 1.1rem 3.4rem !important;
@@ -1149,17 +1149,17 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 19, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="detail"] {
+#appView section[data-type="detail"] {
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* line 23, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(1) {
+#appView section[data-type="detail"] > div:nth-child(1) {
   height: 20rem;
 }
 
 /* line 27, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(2) {
+#appView section[data-type="detail"] > div:nth-child(2) {
   padding: 1rem 1rem;
   font-family: "MozTTLight", Sans-serif;
   font-size: 1.7rem;
@@ -1167,13 +1167,13 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 34, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(3) {
+#appView section[data-type="detail"] > div:nth-child(3) {
   padding: 0 3.4rem 2rem 3.4rem;
   text-align: center;
 }
 
 /* line 39, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="content"] > footer {
+#appView section[data-type="content"] > footer {
   padding: 1.3rem 3.2rem;
   font-size: 1.4rem;
   border-top: 0.1rem solid rgba(255, 255, 255, 0.5);
@@ -1181,14 +1181,14 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 46, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="content"] > footer h2:nth-child(1) {
+#appView section[data-type="content"] > footer h2:nth-child(1) {
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
 }
 
 /* line 52, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView section[data-type="content"] > footer p:nth-child(2) {
+#appView section[data-type="content"] > footer p:nth-child(2) {
   font-size: 1.4rem;
   font-weight: 100;
   line-height: 1.8rem;
@@ -1199,7 +1199,7 @@ section[data-type="icon-list"] > header {
  * PRODUCT DETAILS: frog themes
  * ---------------------------------- */
 /* line 64, ../../app/styles/frog/templates/_product_detail.scss */
-#appTmplProductDetailView.theme-01 {
+#appView.theme-01 {
   background-color: #cccccc;
 }
 

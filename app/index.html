@@ -507,25 +507,17 @@
                 </section>
             </div>
         </script>
-
-        <script id="previewTemplate" type="text/x-handlebars-template">
-            {{#each products}}
-                <p>{{this.name}}
-            {{/each}}
-
-            {{debug model}}
-        </script>
         <!-- end product list view -->
 
         <!-- start app preview template -->
 
-        <script id="appTmplProductDetailViewTemplate" type="text/x-handlebars-template">
+        <script id="appViewTemplate" type="text/x-handlebars-template">
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
                 <!-- represents application template screen, prefixed appTmpl
                    APPLICATION PRODUCT DETAIL with PREVIEW -->
-                <div id="appTmplProductDetailView" role="window" class="theme-01">
+                <div id="appView" role="window" class="theme-01">
                     <section role="region" data-type="outer-chrome" class="outer-chrome">
                         <button id="back">Back</button>
                     </section>
@@ -544,14 +536,25 @@
                     <section role="region" data-type="content" class="fade">
                       <section role="region" data-type="detail" class="template-detail box-padded">
                         <div class="carousel">
-                          carousel
+                          <p>carousel</p>
+                            {{debug}}
+                            {{#each products}}
+                                <p>{{this.name}}</p>
+                                <p>{{this.description}}</p>
+                                <p>{{this.price}}</p>
+                            {{/each}}
                         </div>
                         <div>{{product.name}}</div>
                         <div><button class="buy">${{product.price}}</button></div>
                       </section>
                       <footer>
-                        <h2>{{product.name}}</h2>
-                        <p>{{product.description}}</p>
+                        {{#if about.completed}}
+                            <h2>{{about.component_name}}</h2>
+                            <p>{{about.properties.description}}</p>
+                            <p>{{about.properties.address}}</p>
+                            <p>{{about.properties.email}}</p>
+                            <p>{{about.properties.phone}}</p>    
+                        {{/if}}
                       </footer>
                     </section>
 
@@ -578,11 +581,11 @@
         <script src="scripts/vendor/deferred.min.js"></script>
         <script src="scripts/vendor/lodash.min.js"></script>
         <script src="scripts/vendor/backbone-min.js"></script>
-        <script src="scripts/vendor/db.js"></script>
+        <!-- <script src="scripts/vendor/db.js"></script> //-->
         <script src="scripts/vendor/idbstore.min.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/helpers/handlebars-helpers.js"></script>
-        <script src="scripts/vendor/Object.observe.poly.js"></script>
+        <!-- <script src="scripts/vendor/Object.observe.poly.js"></script> //-->
         <script src="scripts/vendor/uuid.js"></script>        
         <script src="scripts/main.js"></script>
         <script src="scripts/views/views.js"></script>

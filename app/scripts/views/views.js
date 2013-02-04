@@ -459,7 +459,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 });
 
 mozapps.Views.preview = Backbone.View.extend({
-    template: Handlebars.compile($("#previewTemplate").html()),
+    template: Handlebars.compile($("#appViewTemplate").html()),
     viewName: "preview",
     events: {
         'click button#back' : "back"
@@ -473,7 +473,12 @@ mozapps.Views.preview = Backbone.View.extend({
             mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
                 productList.push(element.toJSON());
             });
-            this.$el.html(this.template({model: this.model.toJSON(), products: productList}));
+
+            var aboutJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
+                return elem.component_id == "about";
+            });
+
+            this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON }));
         }
         return this;
     }
