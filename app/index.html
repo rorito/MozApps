@@ -403,51 +403,52 @@
         <!-- start product detail add/edit template -->
 
         <script id="productDetailEditTemplate" type="text/x-handlebars-template">
-            {{debug}}
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
                 <!-- represents application screen PRODUCT DETAIL EDIT -->
                 <div id="productDetailEdit" role="window">
 
-                <!-- title bar region -->
-                <section role="region" data-type="header">
-                    <header>
-                        <button id="back"><span class="icon icon-back">back</span></button>
-                        <menu type="toolbar">
-                          <!-- TODO: skin this button properly -->
-                          <button id="productDetailEditDone">Done</button>
-                        </menu>
-                        <h1>{{name}}}</h1>
-                    </header>
-                </section>
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                        <header>
+                            <button id="back"><span class="icon icon-back">back</span></button>
+                            <menu type="toolbar">
+                              <!-- TODO: skin this button properly -->
+                              <button id="productDetailEditDone">Done</button>
+                            </menu>
+                            <h1>{{name}}}</h1>
+                        </header>
+                    </section>
 
-                <!-- content region -->
-                <section role="region" data-type="content">
-                    <section role="region" data-type="detail" class="template-detail box-padded">
-                    <p class="box-unpadded">
-                      <img src="styles/temp/product_list_thumb.png" />
-                    </p>
-                    <p class="box-unpadded">
-                        <label class="label-dark">Item Name</label>
-                        <input id="name" name="name" type="text" value="{{name}}}" />
-                    </p>
-                    <p class="box-unpadded">
-                        <label class="label-dark">Description</label>
-                        <textarea id="description" name="description">{{description}}</textarea>
-                    </p>
-                    <p class="box-unpadded">
-                        <label class="label-dark">Price</label>
-                        <input id="price" name="price" type="text" value="{{price}}}" />
-                    </p>
-                    {{#if add}}
-                    {{else}}
+                    <!-- content region -->
+                    <section role="region" data-type="content">
+                        <section role="region" data-type="detail" class="template-detail box-padded">
+                        <p class="box-unpadded">
+                          <img src="styles/temp/product_list_thumb.png" />
+                        </p>
+                        <p class="box-unpadded">
+                            <label class="label-dark">Item Name</label>
+                            <input id="name" name="name" type="text" value="{{name}}}" />
+                        </p>
+                        <p class="box-unpadded">
+                            <label class="label-dark">Description</label>
+                            <textarea id="description" name="description">{{description}}</textarea>
+                        </p>
+                        <p class="box-unpadded">
+                            <label class="label-dark">Price</label>
+                            <input id="price" name="price" type="text" value="{{price}}}" />
+                        </p>
                         <p class="box-margin-top box-unpadded">
                           <button id="deleteProductDetail">Delete</button>
                         </p>
-                    {{/if}}
+                        </section>
                     </section>
-                </section>
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                      <footer></footer>
+                    </section>
+              </div>
             {{/if}}
             
         </script>
@@ -456,11 +457,7 @@
 
         
 
-    <!-- footer region -->
-    <section role="region" data-type="footer">
-      <footer></footer>
-    </section>
-  </div>
+    
 
         <!-- start product list view -->
         <script id="productListViewTemplate" type="text/x-handlebars-template">
@@ -519,6 +516,58 @@
             {{debug model}}
         </script>
         <!-- end product list view -->
+
+        <!-- start app preview template -->
+
+        <script id="appTmplProductDetailViewTemplate" type="text/x-handlebars-template">
+            {{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application template screen, prefixed appTmpl
+                   APPLICATION PRODUCT DETAIL with PREVIEW -->
+                <div id="appTmplProductDetailView" role="window" class="theme-01">
+                    <section role="region" data-type="outer-chrome" class="outer-chrome">
+                        <button id="back">Back</button>
+                    </section>
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                      <header>
+                        <button><span class="icon icon-menu">menu</span></button>
+                        <menu type="toolbar">
+                          <button><span class="icon icon-cart">cart</span></button>
+                        </menu>
+                        <h1>{{name}}}</h1>
+                      </header>
+                    </section>
+
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="fade">
+                      <section role="region" data-type="detail" class="template-detail box-padded">
+                        <div class="carousel">
+                          carousel
+                        </div>
+                        <div>{{product.name}}</div>
+                        <div><button class="buy">${{product.price}}</button></div>
+                      </section>
+                      <footer>
+                        <h2>{{product.name}}</h2>
+                        <p>{{product.description}}</p>
+                      </footer>
+                    </section>
+
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                      <footer></footer>
+                    </section>
+                </div>
+                
+            {{/if}}
+            
+        </script>
+
+        <!-- end app preview template -->
+
+        
 
         <!-- Add your site or application content here -->
         
