@@ -444,7 +444,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
             if(!this.model || this.model == "add"){
-                this.$el.html(this.template({}));
+                this.$el.html(this.template({add: true}));
             } else {
                 console.log(this.model.toJSON());
                 this.$el.html(this.template(this.model.toJSON()));
