@@ -196,7 +196,8 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         'click button#icon' : "icon",
         'click button#product-list' : "productlist",
         'click button#ecommerce' : "ecommerce",
-        'click button#appBuilderPublish': "publish"
+        'click button#appBuilderPublish': "publish",
+        'click button#appBuilderPreview': "preview"
     },
     back : function() {
         window.history.back();
@@ -221,6 +222,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     },
     publish: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
+    },
+    preview: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
@@ -374,7 +378,7 @@ mozapps.Views.productList = Backbone.View.extend({
         'click button#addProduct' : "addProduct"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     addProduct: function(event){
         mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
@@ -449,6 +453,27 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 console.log(this.model.toJSON());
                 this.$el.html(this.template(this.model.toJSON()));
             }
+        }
+        return this;
+    }
+});
+
+mozapps.Views.preview = Backbone.View.extend({
+    template: Handlebars.compile($("#previewTemplate").html()),
+    viewName: "preview",
+    events: {
+        'click button#back' : "back"
+    },
+    back : function() {
+        window.history.back();
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            var productList = [];
+            mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
+                productList.push(element.toJSON());
+            });
+            this.$el.html(this.template({model: this.model.toJSON(), products: productList}));
         }
         return this;
     }

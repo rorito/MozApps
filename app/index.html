@@ -510,6 +510,14 @@
                 </section>
             </div>
         </script>
+
+        <script id="previewTemplate" type="text/x-handlebars-template">
+            {{#each products}}
+                <p>{{this.name}}
+            {{/each}}
+
+            {{debug model}}
+        </script>
         <!-- end product list view -->
 
         <!-- Add your site or application content here -->

@@ -7,6 +7,8 @@ routes:{
         "apps/:id/about":"appBuilderAbout",
         "apps/:id/theme":"appBuilderTheme",
         "apps/:id/icon":"appBuilderIcon",
+        "apps/:id/preview":"preview",
+        "apps/:id/publish":"publish",
         "apps/:id/product-list":"ProductList",
         "apps/:id/product-list/:productID":"ProductListDetailEdit",
         "apps/:id/ecommerce":"appBuilderECommerce",
@@ -81,6 +83,22 @@ routes:{
         mozapps.currentPage = plde.viewName;
         this.slidePage(
             plde.render()
+        );  
+    },
+    preview: function(id){
+        var prev = new mozapps.Views.preview({ model: mozapps.appCollection.get(id) });
+        prev.appID = id;
+        mozapps.currentPage = prev.viewName;
+        this.slidePage(
+            prev.render()
+        );  
+    },
+    publish: function(id){
+        var pub = new mozapps.Views.publish({ model: mozapps.appCollection.get(id) });
+        pub.appID = id;
+        mozapps.currentPage = pub.viewName;
+        this.slidePage(
+            pub.render()
         );  
     },
     appBuilderPublishDestination: function(id){
