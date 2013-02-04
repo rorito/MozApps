@@ -434,6 +434,7 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
     },
     publishLogInSubmit: function(event) {
         event.preventDefault();
+        console.log('route');
         mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace/submit",true);
     },
     render: function(eventName) {
