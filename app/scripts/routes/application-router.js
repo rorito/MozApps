@@ -8,7 +8,6 @@ routes:{
         "apps/:id/theme":"appBuilderTheme",
         "apps/:id/icon":"appBuilderIcon",
         "apps/:id/product-list":"ProductList",
-        "apps/:id/product-list/add":"ProductListAdd",
         "apps/:id/product-list/:productID":"ProductListDetailEdit",
         "apps/:id/ecommerce":"appBuilderECommerce",
         "apps/:id/publish":"appBuilderPublishDestination",
@@ -72,16 +71,11 @@ routes:{
             pl.render()
         );  
     },
-    ProductListAdd: function(id){
-        var pla = new mozapps.Views.productListAdd({model: mozapps.appCollection.get(id)});
-        pla.appID = id;
-        mozapps.currentPage = pla.viewName;
-        this.slidePage(
-            pla.render()
-        );  
-    },
     ProductListDetailEdit: function(id, productID){
-        var plde = new mozapps.Views.productListDetailEdit({model: mozapps.productCollection.get(productID)});
+        var plde = new mozapps.Views.productListDetailEdit();
+        if(productID != "add"){
+            plde.model = mozapps.productCollection.get(productID);
+        }
         plde.appID = id;
         plde.productID = productID;
         mozapps.currentPage = plde.viewName;

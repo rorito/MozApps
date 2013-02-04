@@ -9,6 +9,7 @@
 //TODO - app Collection fixture data (pre-set products, etc)
 //TODO - handle #apps/undefined
 //TODO - app name change should put focus in input once the view is animated on
+//TODO - override fetch in model to do db lookup and then bind render to fetch completion?
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
@@ -387,21 +388,24 @@ mozapps.Views.productList = Backbone.View.extend({
                     return elem.component_id == "product-list";
                 });
 
-                var products = [];
-                product.properties.productIDs.forEach(function(element, index, array){
-                    products.push(mozapps.productCollection.get(id).toJSON());
+                var productList = [];
+                mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
+                    productList.push(element.toJSON());
                 });
 
-                this.$el.html(this.template({ products: products, addURL: "#apps/"+this.appID+"/product-list/add" }));
+                this.$el.html(this.template({ 
+                    products: productList,
+                    appID: this.appID
+                }));
             }
         }
         return this;
     }
 });
 
-mozapps.Views.productListAdd = Backbone.View.extend({
+mozapps.Views.productListDetailEdit = Backbone.View.extend({
     template: Handlebars.compile($("#productDetailEditTemplate").html()),
-    viewName: "productListAdd",
+    viewName: "productListDetailEdit",
     events: {
         'click button#back' : "back",
         'click button#productDetailEditDone' : "saveProduct"
@@ -413,41 +417,38 @@ mozapps.Views.productListAdd = Backbone.View.extend({
         var self = this;
         event.preventDefault();
 
-        var newProduct = new mozapps.Models.ProductModel({
-            id: UUID.genV4().toString(),
-            name: $('#name').val(),
-            description: $('#description').val(),
-            price: $('#price').val()
-        });
+        if(this.productID == "add"){
+            //new product
+            console.log("create new product")
+            var newProduct = new mozapps.Models.ProductModel({
+                id: UUID.genV4().toString(),
+                appID: this.appID,
+                name: $('#name').val(),
+                description: $('#description').val(),
+                price: $('#price').val()
+            });
         mozapps.productCollection.add(newProduct);
+        } else {
+            //update existing product
+            console.log("updating existing product");
+            this.model.set({
+                name: $('#name').val(),
+                description: $('#description').val(),
+                price: $('#price').val()
+            });
+        }
+
+
         mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
-            this.$el.html(this.template({}));
-        }
-        return this;
-    }
-});
-
-mozapps.Views.productListDetailEdit = Backbone.View.extend({
-    template: Handlebars.compile($("#productDetailEditTemplate").html()),
-    viewName: "productListDetailEdit",
-    events: {
-        'click button#back' : "back",
-        'click button#saveProduct' : "saveProduct"
-    },
-    back : function() {
-        window.history.back();
-    },
-    saveProduct: function(event){
-        
-        //mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
-    },
-    render: function(eventName) {
-        if(mozapps.currentPage == this.viewName){
-            this.$el.html(this.template(this.model.toJSON()));
-        
+            if(!this.model || this.model == "add"){
+                this.$el.html(this.template({}));
+            } else {
+                console.log(this.model.toJSON());
+                this.$el.html(this.template(this.model.toJSON()));
+            }
         }
         return this;
     }
