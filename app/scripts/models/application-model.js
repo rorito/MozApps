@@ -30,14 +30,6 @@ mozapps.Models.AppModel = Backbone.Model.extend({
 });
 
 mozapps.Models.ProductModel = Backbone.Model.extend({
-    // defaults: {
-    //     id: "",
-    //     name: "",
-    //     published: false,
-    //     version: "1.0",
-    //     app_components: [],
-    //     templateID: ""
-    // },
     initialize: function(options){
         this.listenTo(this, "change", this.changeModel);
     },
@@ -101,24 +93,24 @@ mozapps.Collections.ProductCollection = Backbone.Collection.extend({
       this.listenTo(this, "reset", this.checkReset);
   },
   addedToCollection: function(data){
-    console.log("&&&& added to collection");
+    console.log("added to product collection");
 
 //TODO test that these batch puts work with arrays of data
 
     mozapps.productsDB.batch([ {type: "put", value: data.toJSON()} ], 
-      function(){ console.log("batch add apps IDB - success"); }, 
-      function(){ console.log("batch add apps IDB - fail"); }
+      function(){ console.log("batch add products IDB - success"); }, 
+      function(){ console.log("batch add products IDB - fail"); }
     );
   },
   removedFromCollection: function(data){
     console.log("removed from collection");
     mozapps.productsDB.batch([ {type: "remove", value: data.toJSON()} ], 
-      function(){ console.log("batch remove apps IDB - success"); }, 
-      function(){ console.log("batch remove apps IDB - fail"); }
+      function(){ console.log("batch remove products IDB - success"); }, 
+      function(){ console.log("batch remove products IDB - fail"); }
     );
   },
   checkReset: function(data){
-    console.log("app collection reset");
+    console.log("products collection reset");
   } 
 });
 

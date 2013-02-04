@@ -400,8 +400,39 @@ mozapps.Views.productList = Backbone.View.extend({
 });
 
 mozapps.Views.productListAdd = Backbone.View.extend({
-    template: Handlebars.compile($("#productListAdd").html()),
+    template: Handlebars.compile($("#productDetailEditTemplate").html()),
     viewName: "productListAdd",
+    events: {
+        'click button#back' : "back",
+        'click button#productDetailEditDone' : "saveProduct"
+    },
+    back : function() {
+        window.history.back();
+    },
+    saveProduct: function(event){
+        var self = this;
+        event.preventDefault();
+
+        var newProduct = new mozapps.Models.ProductModel({
+            id: UUID.genV4().toString(),
+            name: $('#name').val(),
+            description: $('#description').val(),
+            price: $('#price').val()
+        });
+        mozapps.productCollection.add(newProduct);
+        mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            this.$el.html(this.template({}));
+        }
+        return this;
+    }
+});
+
+mozapps.Views.productListDetailEdit = Backbone.View.extend({
+    template: Handlebars.compile($("#productDetailEditTemplate").html()),
+    viewName: "productListDetailEdit",
     events: {
         'click button#back' : "back",
         'click button#saveProduct' : "saveProduct"
