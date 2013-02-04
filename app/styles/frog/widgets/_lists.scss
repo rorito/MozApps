@@ -12,6 +12,7 @@
  * LISTS: frog
  * ---------------------------------- */
 
+
 [data-type="list"] {
 	padding: 0 0;
 }
@@ -29,3 +30,7 @@
 [data-type="list"] li p {
 	color: white !important;
 }*/
+
+[data-type="edit"].no-transform li {
+	transform: translateX(0);
+}

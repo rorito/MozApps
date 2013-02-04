@@ -30,12 +30,12 @@
 /* ----------------------------------
  * LISTS: frog
  * ---------------------------------- */
-/* line 15, ../../app/styles/frog/widgets/_lists.scss */
+/* line 16, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] {
   padding: 0 0;
 }
 
-/* line 19, ../../app/styles/frog/widgets/_lists.scss */
+/* line 20, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] > header {
   height: auto !important;
   padding: 0.3rem 3.4rem 0 3.4rem !important;
@@ -51,7 +51,7 @@
   box-shadow: none !important;
 }
 
-/* line 23, ../../app/styles/frog/widgets/_lists.scss */
+/* line 24, ../../app/styles/frog/widgets/_lists.scss */
 [data-type="list"] li {
   padding: 0 3.4rem;
   border-bottom: solid 1px #5f5f5f;
@@ -61,6 +61,11 @@
 [data-type="list"] li p {
 	color: white !important;
 }*/
+/* line 34, ../../app/styles/frog/widgets/_lists.scss */
+[data-type="edit"].no-transform li {
+  transform: translateX(0);
+}
+
 /******************************************************************
  * 
  * BUTTON EXTENSIONS AND OVERRIDES
@@ -155,6 +160,11 @@ div[role="window"].theme-01 {
 /* line 30, ../../app/styles/frog/widgets/_containers.scss */
 .theme-01 .fade {
   background: -moz-linear-gradient(top, white 0%, white 40%, #afada5 100%);
+}
+
+/* line 34, ../../app/styles/frog/widgets/_containers.scss */
+.box-padded {
+  padding: 2rem;
 }
 
 /******************************************************************
@@ -373,8 +383,10 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* ----------------------------------
  * INPUTS: frog form inputs
  * ---------------------------------- */
-/* line 14, ../../app/styles/frog/widgets/_inputs.scss */
-section[role="region"] input[type="text"], section[role="region"] textarea {
+/* line 16, ../../app/styles/frog/widgets/_inputs.scss */
+section[role="region"] input[type="text"],
+section[role="region"] textarea,
+section[role="region"] input[type="password"] {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -385,15 +397,20 @@ section[role="region"] input[type="text"], section[role="region"] textarea {
   font-size: 1.1rem;
 }
 
-/* line 24, ../../app/styles/frog/widgets/_inputs.scss */
+/* line 26, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] textarea {
   overflow: hidden;
 }
 
-/* line 28, ../../app/styles/frog/widgets/_inputs.scss */
+/* line 30, ../../app/styles/frog/widgets/_inputs.scss */
 section[role="region"] label {
   text-transform: uppercase;
   color: white !important;
+}
+
+/* line 35, ../../app/styles/frog/widgets/_inputs.scss */
+section[role="region"] label.label-dark {
+  color: #eaeaea !important;
 }
 
 /******************************************************************
@@ -923,9 +940,10 @@ section[data-type="icon-list"] > header {
   /*margin:2.4rem 0.3rem 0.3rem 0rem;*/
   height: 2.8rem;
   width: 2.8rem;
+  visibility: hidden;
 }
 
-/* line 43, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 44, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > label > input[type=checkbox] + div {
   height: 2.8rem;
   width: 2.8rem;
@@ -935,6 +953,11 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 52, ../../app/styles/frog/screens/_product_list_edit.scss */
+#productListEdit [data-type="list"] li > label > input[type=checkbox]:checked + div {
+  background: transparent url(frog/widgets/buttons/images/check.png) no-repeat top right !important;
+}
+
+/* line 57, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figure {
   margin: 0;
   left: 4.4rem;
@@ -943,7 +966,7 @@ section[data-type="icon-list"] > header {
   top: 0;
 }
 
-/* line 60, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 65, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="list"] li > figcaption {
   padding: 0 2.2rem 0 13.8rem;
   position: relative;
@@ -952,7 +975,7 @@ section[data-type="icon-list"] > header {
 }
 
 /* fixed position buttons on bottom */
-/* line 69, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 74, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] .chrome-fixed-bottom {
   position: fixed;
   bottom: 0px;
@@ -962,7 +985,7 @@ section[data-type="icon-list"] > header {
   -moz-box-sizing: border-box;
 }
 
-/* line 79, ../../app/styles/frog/screens/_product_list_edit.scss */
+/* line 84, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] .chrome-fixed-bottom button {
   margin: 0;
   display: block;
@@ -1181,12 +1204,12 @@ section[data-type="icon-list"] > header {
 }
 
 /* setting base font size to something rational, 1.4rem = 14px, 3.2 = 32px  */
-/* line 105, ../../app/styles/main.scss */
+/* line 109, ../../app/styles/main.scss */
 html {
   font-size: 62.5%;
 }
 
-/* line 107, ../../app/styles/main.scss */
+/* line 111, ../../app/styles/main.scss */
 body {
   margin: 0px;
   font-family: 'Open Sans', Sans-serif;
@@ -1194,54 +1217,54 @@ body {
   color: black;
 }
 
-/* line 114, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 ul {
   list-style-type: none;
   margin: 0;
 }
 
-/* line 119, ../../app/styles/main.scss */
+/* line 123, ../../app/styles/main.scss */
 ul > li {
   padding: 0;
 }
 
-/* line 123, ../../app/styles/main.scss */
+/* line 127, ../../app/styles/main.scss */
 div[role="window"] {
   height: 100%;
   background-color: white;
 }
 
-/* line 128, ../../app/styles/main.scss */
+/* line 132, ../../app/styles/main.scss */
 a:link {
   color: black;
   text-decoration: none;
 }
 
-/* line 129, ../../app/styles/main.scss */
+/* line 133, ../../app/styles/main.scss */
 a:visited {
   color: black;
   text-decoration: none;
 }
 
-/* line 130, ../../app/styles/main.scss */
+/* line 134, ../../app/styles/main.scss */
 a:hover {
   color: black;
   text-decoration: none;
 }
 
-/* line 131, ../../app/styles/main.scss */
+/* line 135, ../../app/styles/main.scss */
 a:active {
   color: black;
   text-decoration: none;
 }
 
-/* line 133, ../../app/styles/main.scss */
+/* line 137, ../../app/styles/main.scss */
 .hidden {
   display: none;
 }
 
 /* due to FF laking support of flex-wrap we need to use float */
-/* line 140, ../../app/styles/main.scss */
+/* line 144, ../../app/styles/main.scss */
 .cf:before,
 .cf:after {
   content: " ";
@@ -1250,7 +1273,7 @@ a:active {
   /* 2 */
 }
 
-/* line 145, ../../app/styles/main.scss */
+/* line 149, ../../app/styles/main.scss */
 .cf:after {
   clear: both;
 }
@@ -1259,13 +1282,13 @@ a:active {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-/* line 153, ../../app/styles/main.scss */
+/* line 157, ../../app/styles/main.scss */
 .cf {
   *zoom: 1;
 }
 
 /* rory temp stuff */
-/* line 159, ../../app/styles/main.scss */
+/* line 163, ../../app/styles/main.scss */
 #appContainer {
   position: absolute;
   width: 100%;
@@ -1274,7 +1297,7 @@ a:active {
   overflow-y: auto;
 }
 
-/* line 167, ../../app/styles/main.scss */
+/* line 171, ../../app/styles/main.scss */
 .page {
   position: absolute;
   width: 100%;
@@ -1282,23 +1305,23 @@ a:active {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-/* line 174, ../../app/styles/main.scss */
+/* line 178, ../../app/styles/main.scss */
 .stage-center {
   top: 0;
   left: 0;
 }
 
-/* line 179, ../../app/styles/main.scss */
+/* line 183, ../../app/styles/main.scss */
 .stage-left {
   left: -100%;
 }
 
-/* line 183, ../../app/styles/main.scss */
+/* line 187, ../../app/styles/main.scss */
 .stage-right {
   left: 100%;
 }
 
-/* line 187, ../../app/styles/main.scss */
+/* line 191, ../../app/styles/main.scss */
 .transition {
   -moz-transition-duration: .375s;
   -webkit-transition-duration: .375s;

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css"/>
   <!-- temp, for live refresh dev -->
   <style>
-    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, #productDetailEdit, appTmplProductDetailView, #leftNav{
+    #templateList, #templateDetail, #appBuilderEditIcon, #appBuilder, #productList, #productListEdit, #productAddImage, #productDetailView, productDetailEdit, #appTmplProductDetailView, #leftNav{
       display: none;
     }
   </style>
@@ -372,9 +372,9 @@
     <section role="region" data-type="content">
       <header>Products</header>
       <section role="region" data-type="list" class="template-detail">
-        <ul data-type="edit">
+        <ul data-type="edit" class="no-transform">
           <li>
-            <label class="danger">
+            <label>
               <input type="checkbox" checked>
               <div></div>
             </label>
@@ -388,7 +388,7 @@
             </figcaption>
           </li>
           <li>
-              <label class="danger">
+              <label>
                 <input type="checkbox" checked>
                 <div></div>
               </label>

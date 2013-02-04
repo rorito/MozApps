@@ -10,6 +10,9 @@ routes:{
         "apps/:id/product-list":"ProductList",
         "apps/:id/product-list/add":"ProductListAdd",
         "apps/:id/ecommerce":"appBuilderECommerce",
+        "apps/:id/publish":"appBuilderPublishDestination",
+        "apps/:id/publish/marketplace":"appBuilderPublishMarketplace",
+        "apps/:id/publish/marketplace/submit":"appBuilderPublishSubmit",
         "*path":  "templates"
     },
     initialize: function() {
@@ -61,24 +64,39 @@ routes:{
         this.slidePage(aboutPage.render());  
     },
     ProductList: function(id){
-        mozapps.currentPage = "productList";
+        var pl = new mozapps.Views.productList({ model: mozapps.appCollection.get(id) });
+        pl.appID = id;
+        mozapps.currentPage = pl.viewName;
         this.slidePage(
-            new mozapps.Views.productList({
-                appID: id, 
-                model: mozapps.appCollection.get(id)
-            }).render()
+            pl.render()
         );  
     },
     ProductListAdd: function(id){
-        mozapps.currentPage = "productListAdd";
+        var pla = new mozapps.Views.productListAdd({model: mozapps.appCollection.get(id)});
+        pla.appID = id;
+        mozapps.currentPage = pla.viewName;
         this.slidePage(
-            new mozapps.Views.productListAdd({
-                appID: id, 
-                model: mozapps.appCollection.get(id)
-            }).render()
+            pla.render()
         );  
     },
-
+    appBuilderPublishDestination: function(id){
+        var publishDestination = new mozapps.Views.appBuilderPublishDestinationView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishDestination.viewName;
+        publishDestination.appID = id;
+        this.slidePage(publishDestination.render());  
+    },
+    appBuilderPublishMarketplace: function(id){
+        var publishMarketplace = new mozapps.Views.appBuilderPublishMarketplaceView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishMarketplace.viewName;
+        publishMarketplace.appID = id;
+        this.slidePage(publishMarketplace.render());  
+    },
+    appBuilderPublishSubmit: function(id){
+        var publishSubmit = new mozapps.Views.appBuilderPublishSubmitView({appID: id, model: mozapps.appCollection.get(id)});
+        mozapps.currentPage = publishSubmit.viewName;
+        publishSubmit.appID = id;
+        this.slidePage(publishSubmit.render());  
+    },
     //TODO have sonny look at
     //TODO disable swipe left and right to prevent seeing off center stage pages
     slidePage: function(page) {

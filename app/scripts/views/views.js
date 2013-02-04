@@ -195,6 +195,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         'click button#icon' : "icon",
         'click button#product-list' : "productlist",
         'click button#ecommerce' : "ecommerce",
+        'click button#appBuilderPublish': "publish"
     },
     back : function() {
         window.history.back();
@@ -216,6 +217,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     },
     ecommerce: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
+    },
+    publish: function(){
+        mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
@@ -243,10 +247,32 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
         window.history.back();
     },
     changeName: function(event){
+        var self = this;
         event.preventDefault();
         
         //get the form value
-        mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
+        //mozapps.appCollection.get(this.appID).set("name", $('#nameField').val());
+        // need to go deeper to update completed field
+        /* TODO: Make util function to do deeper and return JSON when done */
+        /* Can also check if we are completed from before and do the quick model.set in that case */
+        var nameJSON = mozapps.appCollection.get(this.appID).toJSON();
+
+        nameJSON.name = $('#nameField').val();
+        
+        nameJSON.app_components.forEach(function(element, index, array){
+            if(element.component_id == "name"){
+                element.completed = true;
+            }
+        });
+
+        self.model.set(nameJSON);
+
+        // //TODO fix this so that the model change event does the save instead of having to explicitly do it here
+        mozapps.appsDB.put(nameJSON, 
+            function(){ console.log("saved name");},
+            function(){}
+        );
+
         mozapps.router.navigate("#apps/"+this.appID,true);
     },
     render: function(eventName) {
@@ -279,6 +305,7 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
 
         aboutJSON.app_components.forEach(function(element, index, array){
             if(element.component_id == "about"){
+                element.completed = true;
                 element.properties.description = $('#aboutForm #description').val();
                 element.properties.address = $('#aboutForm #address').val();
                 element.properties.phone = $('#aboutForm #phone').val();
@@ -311,9 +338,35 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
     }
 });
 
+mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishDestinationTemplate").html()),
+    viewName: "appBuilderPublishDestinationView",
+    events: {
+        'click button#back' : "back",
+        'click button#publishMarketplace': "publishToMaketplace"
+    },
+    back : function() {
+        window.history.back();
+    },
+    publishToMaketplace: function(event) {
+        event.preventDefault();
+        mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        }
+        return this;
+    }
+});
+
 
 mozapps.Views.productList = Backbone.View.extend({
-    template: Handlebars.compile($("#productListTemplate").html()),
+    template: Handlebars.compile($("#productListViewTemplate").html()),
     viewName: "productList",
     events: {
         'click button#back' : "back",
@@ -334,14 +387,12 @@ mozapps.Views.productList = Backbone.View.extend({
                     return elem.component_id == "product-list";
                 });
 
-                console.log(product);
-                console.log(product.properties);
                 var products = [];
                 product.properties.productIDs.forEach(function(element, index, array){
                     products.push(mozapps.productCollection.get(id).toJSON());
                 });
 
-                this.$el.html(this.template(products));
+                this.$el.html(this.template({ products: products, addURL: "#apps/"+this.appID+"/product-list/add" }));
             }
         }
         return this;
@@ -349,7 +400,7 @@ mozapps.Views.productList = Backbone.View.extend({
 });
 
 mozapps.Views.productListAdd = Backbone.View.extend({
-    template: Handlebars.compile($("#productListAddTemplate").html()),
+    template: Handlebars.compile($("#productListAdd").html()),
     viewName: "productListAdd",
     events: {
         'click button#back' : "back",
@@ -364,9 +415,56 @@ mozapps.Views.productListAdd = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
-            this.$el.html(this.template({}));
+            this.$el.html(this.template(this.model.toJSON()));
+        
         }
         return this;
     }
 });
 
+mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishMarketplaceTemplate").html()),
+    viewName: "appBuilderPublishMarketplaceView",
+    events: {
+        'click button#back' : "back",
+        'click button#publishLogIn': "publishLogInSubmit"
+    },
+    back : function() {
+        window.history.back();
+    },
+    publishLogInSubmit: function(event) {
+        event.preventDefault();
+        mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace/submit",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        }
+        return this;
+    }
+});
+
+mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderPublishSumbitTemplate").html()),
+    viewName: "appBuilderPublishSubmitView",
+    events: {
+        'click button#cancel' : "cancel",
+    },
+    cancel : function() {
+        window.history.back();
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
+        }
+        return this;
+    }
+});

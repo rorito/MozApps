@@ -11,7 +11,9 @@
  * INPUTS: frog form inputs
  * ---------------------------------- */
 
-section[role="region"] input[type="text"], section[role="region"] textarea{
+section[role="region"] input[type="text"], 
+section[role="region"] textarea, 
+section[role="region"] input[type="password"]{
 	width:100%;
 	border:1px solid #ccc;
 	border-radius: 4px;
@@ -29,3 +31,8 @@ section[role="region"] label {
 	text-transform:uppercase;
 	@include label-text;	
 }
+
+section[role="region"] label.label-dark {
+	@include label-text-dark;
+}
+
