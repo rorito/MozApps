@@ -222,8 +222,17 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
     },
     publish: function(){
-        var a = new Activity({ name: "view", data: { foo: "hi" }});
-        a.onerror = function() { alert("Couldn't launch Activity"); };
+            var activity = new MozActivity({ 
+                name: 'mozAppsData', 
+                data: { foo: "bar" } 
+            }); 
+            activity.onerror = function() { 
+                console.log('Failed to launch generated app with activity.'); 
+            };
+            activity.onsuccess = function() { 
+                console.log('Launched generated app with activity.'); 
+            };
+            console.log("publish");
         //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     preview: function(){
