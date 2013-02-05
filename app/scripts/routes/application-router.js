@@ -8,6 +8,7 @@ routes:{
         "apps/:id/theme":"appBuilderTheme",
         "apps/:id/icon":"appBuilderIcon",
         "apps/:id/preview":"preview",
+        "apps/:id/preview/product/:productID/":"previewProductDetail",
         "apps/:id/publish":"publish",
         "apps/:id/product-list":"ProductList",
         "apps/:id/product-list/:productID":"ProductListDetailEdit",
@@ -91,6 +92,15 @@ routes:{
         mozapps.currentPage = prev.viewName;
         this.slidePage(
             prev.render()
+        );  
+    },
+    previewProductDetail: function(id, productID){
+        var prevProductDetail = new mozapps.Views.previewProductDetailView({ model: mozapps.appCollection.get(id) });
+        prevProductDetail.appID = id;
+        prevProductDetail.productID = productID;
+        mozapps.currentPage = prevProductDetail.viewName;
+        this.slidePage(
+            prevProductDetail.render()
         );  
     },
     publish: function(id){

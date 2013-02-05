@@ -107,7 +107,7 @@ section[role="region"] button.previous {
   width: auto;
   height: auto;
   margin: 0;
-  padding: 0 .6rem;
+  padding: 0 0.6rem;
   -moz-box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
@@ -118,7 +118,7 @@ section[role="region"] button.previous {
   border: none;
   border-radius: 0.2rem;
   font-size: 1.7rem;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   font-weight: 400;
   line-height: 3rem;
   color: #fff;
@@ -275,7 +275,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 /* start horizontal list */
 /* line 45, ../../app/styles/frog/widgets/_accordion.scss */
 .horizontal-list {
-  margin: 2rem 0 .8rem 0;
+  margin: 2rem 0 0.8rem 0;
 }
 
 /* line 49, ../../app/styles/frog/widgets/_accordion.scss */
@@ -388,10 +388,10 @@ section[role="region"] input[type="text"],
 section[role="region"] textarea,
 section[role="region"] input[type="password"] {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 0.5rem;
-  box-shadow: inset 0 0 3px #ccc;
+  box-shadow: inset 0 0 3px #cccccc;
   -moz-box-sizing: border-box;
   font-family: "OpenSans", Sans-serif;
   font-size: 1.1rem;
@@ -614,10 +614,10 @@ section[role="region"] label.label-dark {
 #appBuilder [data-type="list"] li > label {
   pointer-events: none;
   position: absolute;
-  top: -0.4rem;
+  top: -.4rem;
   bottom: 0;
   right: 0;
-  left: -0.8rem;
+  left: -.8rem;
   z-index: 1;
   width: auto;
   height: auto;
@@ -782,7 +782,7 @@ section[data-type="icon-list"] > header {
 
 /* line 19, ../../app/styles/frog/screens/_app_builder_name.scss */
 #appBuilderName [data-type="content"] div.grey-box {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   background-color: #ccc;
   border-radius: 4px;
   padding: 1rem;
@@ -845,7 +845,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list.scss */
 #productList [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -913,7 +913,7 @@ section[data-type="icon-list"] > header {
 /* line 15, ../../app/styles/frog/screens/_product_list_edit.scss */
 #productListEdit [data-type="content"] div.product-empty {
   text-align: center;
-  padding: 2.0rem 20% 0 20%;
+  padding: 2rem 20% 0 20%;
   font-size: 2.2rem;
   font-weight: 100;
 }
@@ -1117,7 +1117,7 @@ section[data-type="icon-list"] > header {
 
 /* line 24, ../../app/styles/frog/screens/_product_detail_edit.scss */
 #productDetailEdit [data-type="content"] p.box-margin-top {
-  margin: 3.0rem 0 1.6rem 0;
+  margin: 3rem 0 1.6rem 0;
 }
 
 /* line 28, ../../app/styles/frog/screens/_product_detail_edit.scss */
@@ -1149,7 +1149,7 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 19, ../../app/styles/frog/templates/_product_detail.scss */
-#appView section[data-type="detail"] {
+#appView section[data-type="detail"], #appViewProductDetail section[data-type="detail"] {
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -1173,22 +1173,39 @@ section[data-type="icon-list"] > header {
 }
 
 /* line 39, ../../app/styles/frog/templates/_product_detail.scss */
-#appView section[data-type="content"] > footer {
+#appViewProductDetail section[data-type="detail"] img.img-detail {
+  display: block;
+}
+
+/* line 43, ../../app/styles/frog/templates/_product_detail.scss */
+#appView section[data-type="content"] > footer, #appViewProductDetail section[data-type="content"] > footer {
   padding: 1.3rem 3.2rem;
   font-size: 1.4rem;
   border-top: 0.1rem solid rgba(255, 255, 255, 0.5);
   background-color: #cccccc;
 }
 
-/* line 46, ../../app/styles/frog/templates/_product_detail.scss */
-#appView section[data-type="content"] > footer h2:nth-child(1) {
+/* line 50, ../../app/styles/frog/templates/_product_detail.scss */
+#appView section[data-type="content"] > footer h2:nth-child(1), #appViewProductDetail section[data-type="content"] > footer h2 {
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
 }
 
-/* line 52, ../../app/styles/frog/templates/_product_detail.scss */
-#appView section[data-type="content"] > footer p:nth-child(2) {
+/* line 56, ../../app/styles/frog/templates/_product_detail.scss */
+#appViewProductDetail section[data-type="content"] > footer h2 button {
+  position: relative;
+  float: right;
+  right: 0;
+}
+
+/* line 62, ../../app/styles/frog/templates/_product_detail.scss */
+#appViewProductDetail section[data-type="content"] > footer h2:nth-child(2) {
+  margin: 0.4rem 0 0.6rem 0;
+}
+
+/* line 66, ../../app/styles/frog/templates/_product_detail.scss */
+#appView section[data-type="content"] > footer p:nth-child(2), #appViewProductDetail section[data-type="content"] > footer p:nth-child(3) {
   font-size: 1.4rem;
   font-weight: 100;
   line-height: 1.8rem;
@@ -1198,7 +1215,7 @@ section[data-type="icon-list"] > header {
 /* ----------------------------------
  * PRODUCT DETAILS: frog themes
  * ---------------------------------- */
-/* line 64, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 78, ../../app/styles/frog/templates/_product_detail.scss */
 #appView.theme-01 {
   background-color: #cccccc;
 }
@@ -1212,7 +1229,7 @@ html {
 /* line 111, ../../app/styles/main.scss */
 body {
   margin: 0px;
-  font-family: 'Open Sans', Sans-serif;
+  font-family: "Open Sans", Sans-serif;
   background-color: white;
   color: black;
 }

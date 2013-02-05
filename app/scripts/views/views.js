@@ -462,10 +462,19 @@ mozapps.Views.preview = Backbone.View.extend({
     template: Handlebars.compile($("#appViewTemplate").html()),
     viewName: "preview",
     events: {
-        'click button#back' : "back"
+        'click button#back' : "back",
+        'click a.link-product-temp' : "showProductDetail"
     },
     back : function() {
         window.history.back();
+    },
+    showProductDetail: function(event) {
+        event.preventDefault();
+        console.log(event.currentTarget);
+        var targetLink = event.currentTarget;
+        var productID = targetLink.getAttribute("productID");
+
+        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -479,6 +488,35 @@ mozapps.Views.preview = Backbone.View.extend({
             });
 
             this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON }));
+        }
+        return this;
+    }
+});
+
+mozapps.Views.previewProductDetailView = Backbone.View.extend({
+    template: Handlebars.compile($("#appViewProductDetailTemplate").html()),
+    viewName: "previewProductDetail",
+    events: {
+        'click button#back' : "back",
+        'click a.link-product-temp' : "showProductDetail"
+    },
+    back : function() {
+        window.history.back();
+    },
+    showProductDetail: function(event) {
+        event.preventDefault();
+        console.log(event.currentTarget);
+        var targetLink = event.currentTarget;
+        var productID = targetLink.getAttribute("productID");
+
+        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            var productJSON = mozapps.productCollection.get({id: this.productID});
+            
+
+            this.$el.html(this.template({model: this.model.toJSON(), product: productJSON}));
         }
         return this;
     }
