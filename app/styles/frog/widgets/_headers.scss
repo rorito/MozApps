@@ -62,7 +62,7 @@ section[role="region"] > header:first-child .icon.icon-cart {
 /* theme-02 - light theme */
 
 .theme-02 section[data-type="header"] > header:first-child {
-  background: $theme_01_highlight_color;
+  background: $theme_02_highlight_color;
 }
 
 .theme-02 section[data-type="header"] > header:first-child:after {
@@ -72,7 +72,7 @@ section[role="region"] > header:first-child .icon.icon-cart {
 /* Navigation links (back, cancel, etc) */
 .theme-02 section[data-type="header"] > header:first-child > a .icon:after,
 .theme-02 section[data-type="header"] > header:first-child > button .icon:after {
-  background: $theme_01_highlight_color;
+  background: $theme_02_highlight_color;
 }
 
 .theme-02 section[data-type="header"] > header:first-child menu[type="toolbar"] a:last-child,
@@ -81,7 +81,7 @@ section[role="region"] > header:first-child .icon.icon-cart {
 }
 
 .theme-02 section[data-type="header"] > header {
-  background: $theme_01_highlight_color;
+  background: $theme_02_highlight_color;
   color: #fff;
 }
 
