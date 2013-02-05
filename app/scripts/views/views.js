@@ -10,6 +10,7 @@
 //TODO - handle #apps/undefined
 //TODO - app name change should put focus in input once the view is animated on
 //TODO - override fetch in model to do db lookup and then bind render to fetch completion?
+//TODO - create new product, don't allow save on empty fields
 
 mozapps.Views.appSubView = Backbone.View.extend({
     template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
@@ -221,7 +222,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
     },
     publish: function(){
-        mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
+        var a = new Activity({ name: "view", data: { foo: "hi" }});
+        a.onerror = function() { alert("Couldn't launch Activity"); };
+        //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     preview: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
@@ -463,10 +466,15 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
     viewName: "productListDetailEdit",
     events: {
         'click button#back' : "back",
-        'click button#productDetailEditDone' : "saveProduct"
+        'click button#productDetailEditDone' : "saveProduct",
+        'click button#deleteProductDetail' : "deleteProduct"
     },
     back : function() {
         window.history.back();
+    },
+    deleteProduct: function(event){
+        mozapps.productCollection.remove(this.model);
+        mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
     },
     saveProduct: function(event){
         var self = this;
@@ -569,9 +577,13 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
             var productJSON = mozapps.productCollection.get({id: this.productID});
+
+            var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
+                return elem.component_id == "theme";
+            });
             
 
-            this.$el.html(this.template({model: this.model.toJSON(), product: productJSON}));
+            this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
         }
         return this;
     }

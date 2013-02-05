@@ -56,21 +56,10 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
       this.listenTo(this, "reset", this.checkReset);
   },
   addedToCollection: function(data){
-    console.log("&&&& added to collection");
-
-//TODO test that these batch puts work with arrays of data
-
-    mozapps.appsDB.batch([ {type: "put", value: data.toJSON()} ], 
-      function(){ console.log("batch add apps IDB - success"); }, 
-      function(){ console.log("batch add apps IDB - fail"); }
-    );
+    mozapps.Utils.addedToCollection(data,mozapps.appsDB);
   },
   removedFromCollection: function(data){
-    console.log("removed from collection");
-    mozapps.appsDB.batch([ {type: "remove", value: data.toJSON()} ], 
-      function(){ console.log("batch remove apps IDB - success"); }, 
-      function(){ console.log("batch remove apps IDB - fail"); }
-    );
+    mozapps.Utils.removeFromCollection(data,mozapps.appsDB);
   },
   checkReset: function(data){
     console.log("app collection reset");
@@ -85,26 +74,40 @@ mozapps.Collections.ProductCollection = Backbone.Collection.extend({
       this.listenTo(this, "reset", this.checkReset);
   },
   addedToCollection: function(data){
-    console.log("added to product collection");
-
-//TODO test that these batch puts work with arrays of data
-
-    mozapps.productsDB.batch([ {type: "put", value: data.toJSON()} ], 
-      function(){ console.log("batch add products IDB - success"); }, 
-      function(){ console.log("batch add products IDB - fail"); }
-    );
+    mozapps.Utils.addToCollection(data,mozapps.productsDB);
   },
   removedFromCollection: function(data){
-    console.log("removed from collection");
-    mozapps.productsDB.batch([ {type: "remove", value: data.toJSON()} ], 
-      function(){ console.log("batch remove products IDB - success"); }, 
-      function(){ console.log("batch remove products IDB - fail"); }
-    );
+    mozapps.Utils.removeFromCollection(data,mozapps.productsDB);
   },
   checkReset: function(data){
     console.log("products collection reset");
   } 
 });
+
+window.mozapps.Utils = window.mozapps.Utils || {}
+window.mozapps.Utils.addToCollection = function(data,db) {
+    if (data instanceof Array) {
+            console.log("adding array of products to " + db.dbName);
+            data.forEach(function(element, index, array){
+                db.put(element.toJSON());
+            });
+    } else {
+        console.log("adding single product to "+ db.dbName);
+        db.put(data.toJSON());
+    }
+}
+
+window.mozapps.Utils.removeFromCollection = function(data,db) {
+    if (data instanceof Array) {
+        console.log("removing array of products from DB");
+        data.forEach(function(element, index, array){
+            db.remove(element.toJSON().id);
+        });
+    } else {
+        console.log("removing single product from DB");
+        db.remove(data.toJSON().id);
+    }
+}
 
 mozapps.templateFixtureData = [
   {
@@ -167,18 +170,6 @@ mozapps.templateFixtureData = [
         "description": "Add products to your store",
         "properties": {
           "productIDs": []
-        }
-      },
-      {
-        "component_name": "E-Commerce",
-        "component_id": "ecommerce",
-        "completed": false,
-        "description": "Add PayPal and other E-Commerce features",
-        "properties": {
-          "paypal_user": "",
-          "paypal_key": "",
-          "shopify_user": "",
-          "shopify_key": ""
         }
       }
     ],
@@ -251,3 +242,18 @@ mozapps.templateFixtureData = [
     ]
   }
 ];
+
+
+
+      // {
+      //   "component_name": "E-Commerce",
+      //   "component_id": "ecommerce",
+      //   "completed": false,
+      //   "description": "Add PayPal and other E-Commerce features",
+      //   "properties": {
+      //     "paypal_user": "",
+      //     "paypal_key": "",
+      //     "shopify_user": "",
+      //     "shopify_key": ""
+      //   }
+      // }

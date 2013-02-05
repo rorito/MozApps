@@ -433,7 +433,11 @@
                               <!-- TODO: skin this button properly -->
                               <button id="productDetailEditDone">Done</button>
                             </menu>
-                            <h1>{{name}}}</h1>
+                            {{#if name}}
+                                <h1>{{name}}</h1>
+                            {{else}}
+                                <h1>Add Details</h1>
+                            {{/if}}
                         </header>
                     </section>
 
@@ -455,9 +459,13 @@
                             <label class="label-dark">Price</label>
                             <input id="price" name="price" type="text" value="{{price}}}" />
                         </p>
+                        {{#if add}}
+                        {{else }}
                         <p class="box-margin-top box-unpadded">
                           <button id="deleteProductDetail">Delete</button>
                         </p>
+                        {{/if}}
+                        
                         </section>
                     </section>
                     <!-- footer region -->
@@ -592,7 +600,7 @@
             {{else}}
                 <!-- represents application template screen, prefixed appTmpl
                    APPLICATION PRODUCT DETAIL with PREVIEW -->
-                <div id="appViewProductDetail" role="window" class="theme-01">
+                <div id="appViewProductDetail" role="window" class="{{theme}}">
                     <section role="region" data-type="outer-chrome" class="outer-chrome">
                         <button id="back">Back</button>
                     </section>
