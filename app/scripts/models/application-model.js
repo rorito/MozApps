@@ -142,12 +142,17 @@ mozapps.templateFixtureData = [
             {
                 "themeName": "Dark",
                 "themeID": "theme-01",
-                "themeImg": "images/130x200.jpg"
+                "themeImg": "imgs/themes/theme_01.png"
             },
             {
                 "themeName": "Light",
                 "themeID": "theme-02",
-                "themeImg": "images/130x200.jpg"
+                "themeImg": "imgs/themes/theme_02.png"
+            },
+            {
+                "themeName": "Puce",
+                "themeID": "theme-03",
+                "themeImg": "imgs/themes/theme_03.png"
             }
           ],
           "selectedTheme": "theme-01"

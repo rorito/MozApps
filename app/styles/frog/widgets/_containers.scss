@@ -39,6 +39,10 @@ div[role="window"].theme-01 {
 	padding:2rem;
 }
 
+.box-padded-thin {
+	padding:1rem;
+}
+
 /* used for the publish progress screen */
 div[role="window"].dark-bg {
 	background-color: #333;
@@ -46,6 +50,10 @@ div[role="window"].dark-bg {
 
 .medium-bg {
 	background-color: #4f4e4e;
+}
+
+.light-bg {
+	background-color: #bdbdbd;
 }
 
 .round-corners {
