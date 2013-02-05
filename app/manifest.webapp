@@ -1,14 +1,12 @@
 {
   "version": "0.1",
-  "name": "MozApps",
+  "name": "MozApps2",
   "description": "Create your own apps!",
-  "launch_path": "/",
-  "orientation": "portrait",
+  "launch_path": "/index.html",
+  "orientation": "portrait-primary",
   "fullscreen": true,
   "icons": {
-    "16": "/img/icons/mortar-16.png",
-    "48": "/img/icons/mortar-48.png",
-    "128": "/img/icons/mortar-128.png"
+    "60": "/img/icons/mortar-60.png"
   },
   "developer": {
     "name": "Mozilla",
@@ -35,6 +33,5 @@
     }
   },
   "installs_allowed_from": ["*"],
-  "default_locale": "en",
-  "orientation": "portrait-primary"
+  "default_locale": "en"
 }

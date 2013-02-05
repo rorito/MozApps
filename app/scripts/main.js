@@ -133,6 +133,7 @@ window.mozapps = window.mozapps || {
                 if(data.length < 1){
                     console.log("loading fixture data");
                     _.each(mozapps.templateFixtureData, function(element, index, list){
+                        //TODO don't add to collection as json, make models first
                         mozapps.templatesDB.put(element, function(){}, function(){});
                     });
 

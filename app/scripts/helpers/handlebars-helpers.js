@@ -24,6 +24,21 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   return out;
 });
 
+Handlebars.registerHelper('themeSelectHelper', function(themes, selectedTheme, options) {   
+    var out = "<ul>";
+
+    themes.forEach(function(element, index, array){
+        if(element.themeID == selectedTheme){
+            out += "<li><input type='radio' name='themeRadioGroup' value='"+element.themeID+"' checked='checked'><label>"+element.themeName+"</label></li>";
+        } else {
+            out += "<li><input type='radio' name='themeRadioGroup' value='"+element.themeID+"'><label>"+element.themeName+"</label></li>";
+        }
+    });
+    out += "</ul>";
+
+    return out;
+});
+
 
 Handlebars.registerHelper("debug", function(optionalValue) { 
   console.log("Current Context"); 

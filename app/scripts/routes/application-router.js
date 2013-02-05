@@ -55,16 +55,23 @@ routes:{
     //TODO should we do new on everypage instead of having several views for life of app (template list, template detail)
     //TODO use switch statement to dispatch app component routes
     appBuilderName: function(id){
-        var namePage = new mozapps.Views.appBuilderNameView({appID: id, model: mozapps.appCollection.get(id)});
+        var namePage = new mozapps.Views.appBuilderNameView({model: mozapps.appCollection.get(id)});
         mozapps.currentPage = namePage.viewName;
         namePage.appID = id;
         this.slidePage(namePage.render());  
     },
     appBuilderAbout: function(id){
-        var aboutPage = new mozapps.Views.appBuilderAboutView({appID: id, model: mozapps.appCollection.get(id)});
+        var aboutPage = new mozapps.Views.appBuilderAboutView({model: mozapps.appCollection.get(id)});
         mozapps.currentPage = aboutPage.viewName;
         aboutPage.appID = id;
         this.slidePage(aboutPage.render());  
+    },
+    appBuilderTheme: function(id){
+        var theme = new mozapps.Views.appBuilderTheme({model: mozapps.appCollection.get(id)});
+        theme.appID = id;
+        mozapps.currentPage = theme.viewName;
+        
+        this.slidePage(theme.render());  
     },
     ProductList: function(id){
         var pl = new mozapps.Views.productList({ model: mozapps.appCollection.get(id) });
