@@ -7,14 +7,6 @@ mozapps.Models.TemplateModel = Backbone.Model.extend({
 });
 
 mozapps.Models.AppModel = Backbone.Model.extend({
-    defaults: {
-        id: "",
-        name: "",
-        published: false,
-        version: "1.0",
-        app_components: [],
-        templateID: ""
-    },
     initialize: function(options){
         this.listenTo(this, "change", this.changeModel);
     },
@@ -22,7 +14,7 @@ mozapps.Models.AppModel = Backbone.Model.extend({
         console.log("app model - change model");
         mozapps.appsDB.put(data.toJSON(), 
             function(){
-                console.log("model changed - DB save success");
+                console.log("app model changed - DB save success");
             }, 
             function(){}
         );
@@ -34,10 +26,10 @@ mozapps.Models.ProductModel = Backbone.Model.extend({
         this.listenTo(this, "change", this.changeModel);
     },
     changeModel: function(data){
-        console.log("app model - change model");
+        console.log("product model - change model");
         mozapps.productsDB.put(data.toJSON(), 
             function(){
-                console.log("model changed - DB save success");
+                console.log("product model changed - DB save success");
             }, 
             function(){}
         );
@@ -143,7 +135,19 @@ mozapps.templateFixtureData = [
         "completed": false,
         "description": "Change Themes",
         "properties": {
-          "theme-name": ""
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
         }
       },
       {
@@ -152,7 +156,8 @@ mozapps.templateFixtureData = [
         "completed": false,
         "description": "Set the icon for your app",
         "properties": {
-          "icon-filename": ""
+          "iconFilenames": ["images/60x60.jpg", "images/60x60.jpg"],
+          "selectedIcon": ""
         }
       },
       {
@@ -212,7 +217,19 @@ mozapps.templateFixtureData = [
         "completed": false,
         "description": "Change Themes",
         "properties": {
-          "theme-name": ""
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
         }
       },
       {
@@ -221,7 +238,8 @@ mozapps.templateFixtureData = [
         "completed": false,
         "description": "Set the icon for your app",
         "properties": {
-          "icon-filename": ""
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
         }
       }
     ],

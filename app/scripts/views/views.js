@@ -132,7 +132,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         window.location = "#templates/" + button.data('id');
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#",true);
     },
     createApp: function(){
         var self = this;        
@@ -343,6 +343,57 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
     }
 });
 
+mozapps.Views.appBuilderTheme = Backbone.View.extend({
+    template: Handlebars.compile($("#appBuilderThemeTemplate").html()),
+    viewName: "appBuilderTheme",
+    events: {
+        'click button#back' : "back",
+        'click button#themeFormDone' : "saveTheme"
+    },
+    back : function() {
+        window.history.back();
+    },
+    saveTheme: function(event){
+        event.preventDefault();
+
+        var themeJSON = mozapps.appCollection.get(this.appID).toJSON();
+
+        themeJSON.app_components.forEach(function(element, index, array){
+            if(element.component_id == "theme"){
+                console.log(element);
+                console.log("radio value: " + $('input[name=themeRadioGroup]:checked').val());
+                element.completed = true;
+                element.properties.selectedTheme = $('input[name=themeRadioGroup]:checked').val();
+            }
+        });
+
+        console.log(this.model);
+        console.log(themeJSON);
+
+        this.model.set(themeJSON);
+        // //TODO fix this so that the model change event does the save instead of having to explicitly do it here
+        mozapps.appsDB.put(themeJSON, 
+            function(){ console.log("saved theme");},
+            function(){}
+        );
+
+        mozapps.router.navigate("#apps/"+this.appID,true);
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            if(!this.model){
+                this.$el.html(this.template( { loading: true } ));
+            } else {
+                var theme = _.find(this.model.toJSON().app_components, function(elem){
+                    return elem.component_id == "theme";
+                });
+                this.$el.html(this.template(theme.properties));
+            }
+        }
+        return this;
+    }
+});
+
 mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
     template: Handlebars.compile($("#appBuilderPublishDestinationTemplate").html()),
     viewName: "appBuilderPublishDestinationView",
@@ -431,7 +482,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 description: $('#description').val(),
                 price: $('#price').val()
             });
-        mozapps.productCollection.add(newProduct);
+            mozapps.productCollection.add(newProduct);
         } else {
             //update existing product
             console.log("updating existing product");
@@ -478,7 +529,11 @@ mozapps.Views.preview = Backbone.View.extend({
                 return elem.component_id == "about";
             });
 
-            this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON }));
+            var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
+                return elem.component_id == "theme";
+            });
+
+            this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON, theme: themeJSON.properties.selectedTheme }));
         }
         return this;
     }
