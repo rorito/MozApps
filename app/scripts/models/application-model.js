@@ -140,19 +140,14 @@ mozapps.templateFixtureData = [
         "properties": {
           "themes": [
             {
-                "themeName": "Dark",
+                "themeName": "Espresso",
                 "themeID": "theme-01",
                 "themeImg": "imgs/themes/theme_01.png"
             },
             {
-                "themeName": "Light",
+                "themeName": "Cream",
                 "themeID": "theme-02",
                 "themeImg": "imgs/themes/theme_02.png"
-            },
-            {
-                "themeName": "Puce",
-                "themeID": "theme-03",
-                "themeImg": "imgs/themes/theme_03.png"
             }
           ],
           "selectedTheme": "theme-01"
@@ -262,3 +257,13 @@ mozapps.templateFixtureData = [
       //     "shopify_key": ""
       //   }
       // }
+
+
+
+/*
+{
+    "themeName": "Ocean",
+    "themeID": "theme-03",
+    "themeImg": "imgs/themes/theme_03.png"
+} 
+*/     
