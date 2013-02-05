@@ -1,27 +1,11 @@
 /* double override when using theme, using theme-01 as base */
-/*
-#appView section[data-type="content"] > header {
-	
-	
-	height: auto !important;
-	padding: 1.1rem 3.4rem !important;
-	background: transparent !important;
-	background-image: none !important;
-	margin: 0 !important;
-	font-family: "MozTTLight", Sans-serif !important;
-    font-weight: 100 !important;
-	font-size: 2.4rem;
-	line-height: 2rem;
-	text-transform: none;
-	text-align: center;
-	
-    color: $theme_01_text_color !important;
-    border-bottom: .1rem solid $theme_01_border_color !important;
-    
-    box-shadow: none !important;
-    
+#appView.theme-01 section[data-type="content"] > header {
+	border-bottom: .1rem solid $theme_01_border_color !important;
 }
-*/
+
+#appView.theme-02 section[data-type="content"] > header {
+	border-bottom: .1rem solid $theme_02_border_color !important;
+}
 
 #appView section[data-type="detail"], #appViewProductDetail section[data-type="detail"] {
 	@include inset-shadow;
@@ -48,12 +32,12 @@
 }
 
 #appView.theme-01 section[data-type="content"] > footer, #appViewProductDetail.theme-01 section[data-type="content"] > footer {
-	border-top: .1rem solid #565154;
+	border-top: .1rem solid $theme_01_footer_border_color;
 	background-color: $theme_01_window_background;
 }
 
 #appView.theme-02 section[data-type="content"] > footer, #appViewProductDetail.theme-02 section[data-type="content"] > footer {
-	border-top: .1rem solid rgba(255,255,255, 0.5);
+	border-top: .1rem solid $theme_02_footer_border_color;
 	background-color: $theme_02_window_background;
 }
 
