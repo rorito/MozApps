@@ -129,6 +129,34 @@ section[role="region"] button.previous {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
+/* line 64, ../../app/styles/frog/widgets/_buttons.scss */
+.theme-02 button.buy,
+.theme-02 a[role="button"].buy {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 0.6rem;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #bf726b;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 1.7rem;
+  font-family: "Open Sans", Sans-serif;
+  font-weight: 400;
+  line-height: 3rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: none;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
 /******************************************************************
  * 
  * CONTAINER EXTENSIONS AND OVERRIDES
@@ -191,41 +219,80 @@ section[role="region"] > header:first-child .icon.icon-cart {
 /* ----------------------------------
  * HEADERS: frog themes
  * ---------------------------------- */
-/* line 28, ../../app/styles/frog/widgets/_headers.scss */
+/* theme-01 - dark theme */
+/* line 31, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header:first-child {
   background: #bf726b;
 }
 
-/* line 32, ../../app/styles/frog/widgets/_headers.scss */
+/* line 35, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header:first-child:after {
   margin-top: -0.1rem;
 }
 
 /* Navigation links (back, cancel, etc) */
-/* line 38, ../../app/styles/frog/widgets/_headers.scss */
+/* line 41, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header:first-child > a .icon:after,
 .theme-01 section[data-type="header"] > header:first-child > button .icon:after {
   background: #bf726b;
 }
 
-/* line 43, ../../app/styles/frog/widgets/_headers.scss */
+/* line 46, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header:first-child menu[type="toolbar"] a:last-child,
 .theme-01 section[data-type="header"] > header:first-child menu[type="toolbar"] button:last-child {
   background: none;
 }
 
-/* line 47, ../../app/styles/frog/widgets/_headers.scss */
+/* line 50, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header {
   background: #bf726b;
   color: #fff;
 }
 
-/* line 53, ../../app/styles/frog/widgets/_headers.scss */
+/* line 56, ../../app/styles/frog/widgets/_headers.scss */
 .theme-01 section[data-type="header"] > header:first-child > button,
 .theme-01 section[data-type="header"] > header:first-child > a {
   background: none;
 }
 
+/* end theme-01 - dark theme */
+/* theme-02 - light theme */
+/* line 64, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header:first-child {
+  background: #bf726b;
+}
+
+/* line 68, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header:first-child:after {
+  margin-top: -0.1rem;
+}
+
+/* Navigation links (back, cancel, etc) */
+/* line 74, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header:first-child > a .icon:after,
+.theme-02 section[data-type="header"] > header:first-child > button .icon:after {
+  background: #bf726b;
+}
+
+/* line 79, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header:first-child menu[type="toolbar"] a:last-child,
+.theme-02 section[data-type="header"] > header:first-child menu[type="toolbar"] button:last-child {
+  background: none;
+}
+
+/* line 83, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header {
+  background: #bf726b;
+  color: #fff;
+}
+
+/* line 89, ../../app/styles/frog/widgets/_headers.scss */
+.theme-02 section[data-type="header"] > header:first-child > button,
+.theme-02 section[data-type="header"] > header:first-child > a {
+  background: none;
+}
+
+/* end theme-02 - light theme */
 /* using important override here as header seem to be broadly declared in gaia headers.css */
 /* line 4, ../../app/styles/frog/widgets/_accordion.scss */
 section[data-type="accordion"] {
@@ -1143,22 +1210,24 @@ section[data-type="icon-list"] > header {
   line-height: 2rem;
   text-transform: none;
   text-align: center;
-  color: black !important;
-  border-bottom: 0.1rem solid #4d4e4d !important;
+  	/*
+      color: $theme_01_text_color !important;
+      border-bottom: .1rem solid $theme_01_border_color !important;
+      */
   box-shadow: none !important;
 }
 
-/* line 19, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 21, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="detail"], #appViewProductDetail section[data-type="detail"] {
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* line 23, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 25, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="detail"] > div:nth-child(1) {
   height: 20rem;
 }
 
-/* line 27, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 29, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="detail"] > div:nth-child(2) {
   padding: 1rem 1rem;
   font-family: "MozTTLight", Sans-serif;
@@ -1166,18 +1235,18 @@ section[data-type="icon-list"] > header {
   text-align: center;
 }
 
-/* line 34, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 36, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="detail"] > div:nth-child(3) {
   padding: 0 3.4rem 2rem 3.4rem;
   text-align: center;
 }
 
-/* line 39, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 41, ../../app/styles/frog/templates/_product_detail.scss */
 #appViewProductDetail section[data-type="detail"] img.img-detail {
   display: block;
 }
 
-/* line 43, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 45, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="content"] > footer, #appViewProductDetail section[data-type="content"] > footer {
   padding: 1.3rem 3.2rem;
   font-size: 1.4rem;
@@ -1185,26 +1254,26 @@ section[data-type="icon-list"] > header {
   background-color: #cccccc;
 }
 
-/* line 50, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 52, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="content"] > footer h2:nth-child(1), #appViewProductDetail section[data-type="content"] > footer h2 {
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
 }
 
-/* line 56, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 58, ../../app/styles/frog/templates/_product_detail.scss */
 #appViewProductDetail section[data-type="content"] > footer h2 button {
   position: relative;
   float: right;
   right: 0;
 }
 
-/* line 62, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 64, ../../app/styles/frog/templates/_product_detail.scss */
 #appViewProductDetail section[data-type="content"] > footer h2:nth-child(2) {
   margin: 0.4rem 0 0.6rem 0;
 }
 
-/* line 66, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 68, ../../app/styles/frog/templates/_product_detail.scss */
 #appView section[data-type="content"] > footer p:nth-child(2), #appViewProductDetail section[data-type="content"] > footer p:nth-child(3) {
   font-size: 1.4rem;
   font-weight: 100;
@@ -1215,7 +1284,7 @@ section[data-type="icon-list"] > header {
 /* ----------------------------------
  * PRODUCT DETAILS: frog themes
  * ---------------------------------- */
-/* line 78, ../../app/styles/frog/templates/_product_detail.scss */
+/* line 80, ../../app/styles/frog/templates/_product_detail.scss */
 #appView.theme-01 {
   background-color: #cccccc;
 }
