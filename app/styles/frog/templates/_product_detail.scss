@@ -1,4 +1,4 @@
-#appTmplProductDetailView section[data-type="content"] > header {
+#appView section[data-type="content"] > header {
 	/* double override when using theme, using theme-01 as base */
 	height: auto !important;
 	padding: 1.1rem 3.4rem !important;
@@ -16,40 +16,40 @@
     box-shadow: none !important;
 }
 
-#appTmplProductDetailView section[data-type="detail"] {
+#appView section[data-type="detail"] {
 	@include inset-shadow;
 }
 
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(1) {
+#appView section[data-type="detail"] > div:nth-child(1) {
 	height: 20rem;
 }
 
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(2) {
+#appView section[data-type="detail"] > div:nth-child(2) {
 	padding: 1rem 1rem;
 	font-family: "MozTTLight", Sans-serif;
 	font-size: 1.7rem;
 	text-align: center;
 }
 
-#appTmplProductDetailView section[data-type="detail"] > div:nth-child(3) {
+#appView section[data-type="detail"] > div:nth-child(3) {
 	padding: 0 3.4rem 2rem 3.4rem;
 	text-align: center;
 }
 
-#appTmplProductDetailView section[data-type="content"] > footer {
+#appView section[data-type="content"] > footer {
 	padding: 1.3rem 3.2rem;
 	font-size: 1.4rem;
 	border-top: .1rem solid rgba(255,255,255, 0.5);
 	background-color: $theme_01_window_background;
 }
 
-#appTmplProductDetailView section[data-type="content"] > footer h2:nth-child(1) {
+#appView section[data-type="content"] > footer h2:nth-child(1) {
 	font-size: 1.4rem;
 	font-weight: 600;
 	margin: 0;
 }
 
-#appTmplProductDetailView section[data-type="content"] > footer p:nth-child(2) {
+#appView section[data-type="content"] > footer p:nth-child(2) {
 	font-size: 1.4rem;
 	font-weight: 100;
 	line-height: 1.8rem;
@@ -61,6 +61,6 @@
  * ---------------------------------- */
 
 
-#appTmplProductDetailView.theme-01 {
+#appView.theme-01 {
 	background-color: $theme_01_window_background;
 }
