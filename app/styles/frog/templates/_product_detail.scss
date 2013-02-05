@@ -67,6 +67,15 @@
 	right:0;
 }
 
+#appViewProductDetail section[data-type="content"] > footer h2:nth-child(1) span {
+	display: inline-block;
+    max-width: 13.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
 #appViewProductDetail section[data-type="content"] > footer h2:nth-child(2) {
 	margin:0.4rem 0 0.6rem 0;
 }
