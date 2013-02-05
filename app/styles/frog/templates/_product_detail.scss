@@ -1,22 +1,13 @@
-#appView section[data-type="content"] > header {
-	/* double override when using theme, using theme-01 as base */
-	height: auto !important;
-	padding: 1.1rem 3.4rem !important;
-	background: transparent !important;
-	background-image: none !important;
-	margin: 0 !important;
-	font-family: "MozTTLight", Sans-serif !important;
-    font-weight: 100 !important;
-	font-size: 2.4rem;
-	line-height: 2rem;
-	text-transform: none;
-	text-align: center;
-    color: $theme_01_text_color !important;
-    border-bottom: .1rem solid $theme_01_border_color !important;
-    box-shadow: none !important;
+/* double override when using theme, using theme-01 as base */
+#appView.theme-01 section[data-type="content"] > header {
+	border-bottom: .1rem solid $theme_01_border_color !important;
 }
 
-#appView section[data-type="detail"] {
+#appView.theme-02 section[data-type="content"] > header {
+	border-bottom: .1rem solid $theme_02_border_color !important;
+}
+
+#appView section[data-type="detail"], #appViewProductDetail section[data-type="detail"] {
 	@include inset-shadow;
 }
 
@@ -36,20 +27,60 @@
 	text-align: center;
 }
 
-#appView section[data-type="content"] > footer {
-	padding: 1.3rem 3.2rem;
-	font-size: 1.4rem;
-	border-top: .1rem solid rgba(255,255,255, 0.5);
+#appViewProductDetail section[data-type="detail"] img.img-detail {
+	display:block;
+}
+
+#appView.theme-01 section[data-type="content"] > footer, #appViewProductDetail.theme-01 section[data-type="content"] > footer {
+	border-top: .1rem solid $theme_01_footer_border_color;
 	background-color: $theme_01_window_background;
 }
 
-#appView section[data-type="content"] > footer h2:nth-child(1) {
+#appView.theme-02 section[data-type="content"] > footer, #appViewProductDetail.theme-02 section[data-type="content"] > footer {
+	border-top: .1rem solid $theme_02_footer_border_color;
+	background-color: $theme_02_window_background;
+}
+
+#appView section[data-type="content"] > footer, #appViewProductDetail section[data-type="content"] > footer {
+	padding: 1.3rem 3.2rem;
+	font-size: 1.4rem;
+}
+
+#appView section[data-type="content"] > footer, #appViewProductDetail section[data-type="content"] > footer {
+	padding: 1.3rem 3.2rem;
+	font-size: 1.4rem;
+	/*
+	border-top: .1rem solid rgba(255,255,255, 0.5);
+	background-color: $theme_01_window_background;
+	*/
+}
+
+#appView section[data-type="content"] > footer h2:nth-child(1), #appViewProductDetail section[data-type="content"] > footer h2 {
 	font-size: 1.4rem;
 	font-weight: 600;
 	margin: 0;
 }
 
-#appView section[data-type="content"] > footer p:nth-child(2) {
+#appViewProductDetail section[data-type="content"] > footer h2 button {
+	position:relative;
+	float:right;
+	right:0;
+}
+
+#appViewProductDetail section[data-type="content"] > footer h2:nth-child(1) span {
+	display: inline-block;
+    max-width: 13.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+#appViewProductDetail section[data-type="content"] > footer h2:nth-child(2) {
+	margin:0.4rem 0 0.6rem 0;
+}
+
+#appView section[data-type="content"] > footer p:nth-child(2), #appViewProductDetail section[data-type="content"] > footer p:nth-child(3) {
 	font-size: 1.4rem;
 	font-weight: 100;
 	line-height: 1.8rem;
