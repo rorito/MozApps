@@ -11,6 +11,7 @@ window.mozapps = window.mozapps || {
   Collections: {},
   Views: {},
   Routers: {},
+  Templates: {},
   Utils: {},
   currentPage: {},
 

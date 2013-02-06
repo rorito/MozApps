@@ -642,25 +642,28 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
                 this.$el.html(this.template( { loading: true } ));
             } else {
                 this.$el.html(this.template(this.model.toJSON()));
-                console.log('test');
+                console.log('creat sub view');
                 //console.log(this.$el.find('#publishMarkupContainer'));
                 //console.log(window.document.getElementById("publishMarkupContainer"));
                 // create and render sub view
-                //this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({el: this.$el.find('#publishMarkupContainer')});
+                this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({el: this.$el.find('#publishMarkupContainer')});
             }
         }
         return this;
     }
 });
 
-/*
 mozapps.Views.appBuilderPublishSubmitSubView = Backbone.View.extend({
-    template: Handlebars.compile($("#fakeMarkupTemplate").html()),
+    //template: Handlebars.compile($("#fakeMarkupTemplate").html()),
     viewName: "appBuilderPublishSubmitSubView",
+    initialize: function(){
+        
+        // TODO SK - this may be a hack?, problem with back button render
+        this.render();
+    },
     render: function(eventName) {
         console.log('render subview');
-        this.$el.html(this.template());        
+        this.$el.html(mozapps.Templates.fakeMarkupTemplate);        
         return this;
     }
 });
-*/
