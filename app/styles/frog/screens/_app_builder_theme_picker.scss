@@ -1,0 +1,90 @@
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+/* template detail */
+#appBuilderThemePicker [data-type="content"] header {
+	height: auto !important;
+	padding: 0.3rem 3.4rem 0 3.4rem !important;
+	background: #a6a6a6 !important;
+	background-image: none !important;
+	margin: 0 !important;
+	font-family: "MozTTMedium", Sans-serif !important;
+    font-weight: 100 !important;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	text-transform: none;
+    color: $default_primary_color !important;
+    box-shadow: none !important;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail {
+	position: relative;
+	padding: 2rem 2rem;
+	border-top: 1px solid #525252;
+	box-shadow:inset 0px 0px 5px rgba(0,0,0,.2);
+	min-height:388px;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail h1 {
+	font-family: "OpenSans", Sans-serif;
+	font-weight: 100;
+	font-size: 1.9rem;
+	margin: 1rem 0;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail h2 {
+	font-family: "OpenSans", Sans-serif;
+	/* TODO: use SASS and consolidate */
+	color:white;
+	margin:0;
+	font-size:1.3rem;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail ul {
+	padding:0;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail li {
+	display:inline-block;
+	height:180px;
+	width:50%;
+	padding:0
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail li {
+	display:inline-block;
+	height:180px;
+	width:50%;
+	margin:0 0 1.3rem 0;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail label {
+	display:block;
+	height:92%;
+	width:92%;
+	margin:4%;
+	text-align:center;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail input[type="radio"] {
+	display:none;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail input[type="radio"]:checked + img {
+	border:0.3rem solid white;
+}
+
+#appBuilderThemePicker [data-type="content"] .template-detail img {
+	display:block;
+	width:100%;
+	height:100%;
+	-moz-box-sizing:border-box;
+	border:0.3rem solid transparent;
+	margin:0 0 0.6rem 0;
+}

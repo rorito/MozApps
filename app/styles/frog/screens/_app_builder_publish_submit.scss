@@ -1,0 +1,55 @@
+/******************************************************************
+ * 
+ * SCREEN: APP BUILDER;
+ *
+ * Notes:
+ * 1.
+ * 
+ */
+
+#appBuilderPublishSubmit section.box-padded {
+	padding-bottom:0;
+}
+
+#appBuilderPublishSubmit section.box-padded div.load-status {
+	background: url("../imgs/widgets/spinner.png") no-repeat top left;
+}
+
+#appBuilderPublishSubmit h2 {
+	margin:0 0 0 4rem;
+	padding:0.2rem 0 0.2rem 0;
+	color:white;
+}
+
+#appBuilderPublishSubmit h3 {
+	margin:0 0 0 4rem;
+	color:white;
+	padding-bottom:2rem;
+}
+
+#appBuilderPublishSubmit h4 {
+	color:white;
+	border-bottom:1px solid #858585;	
+}
+
+/*
+#appBuilderPublishSubmit hr {
+	border:0;
+	border-bottom:1px solid #858585;	
+}
+*/
+
+#appBuilderPublishSubmit div.scroll-window {
+	overflow:hidden;
+	max-height:320px;
+	margin-bottom:2rem;
+}
+
+#appBuilderPublishSubmit div.scroll-window + div {
+	border-top:1px solid #858585;
+}
+
+#appBuilderPublishSubmit div.scroll-window pre {
+	color:#858585;
+	overflow-x:hidden;
+}

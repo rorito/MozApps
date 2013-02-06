@@ -29,9 +29,9 @@ Handlebars.registerHelper('themeSelectHelper', function(themes, selectedTheme, o
 
     themes.forEach(function(element, index, array){
         if(element.themeID == selectedTheme){
-            out += "<li><input type='radio' name='themeRadioGroup' value='"+element.themeID+"' checked='checked'><label>"+element.themeName+"</label></li>";
+            out += "<li><label><input type='radio' name='themeRadioGroup' value='"+element.themeID+"' checked='checked'><img src='" + element.themeImg + "' />"+element.themeName+"</label></li>";
         } else {
-            out += "<li><input type='radio' name='themeRadioGroup' value='"+element.themeID+"'><label>"+element.themeName+"</label></li>";
+            out += "<li><label><input type='radio' name='themeRadioGroup' value='"+element.themeID+"'><img src='" + element.themeImg + "' />"+element.themeName+"</label></li>";
         }
     });
     out += "</ul>";
