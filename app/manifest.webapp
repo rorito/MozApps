@@ -6,9 +6,12 @@
   "orientation": "portrait-primary",
   "fullscreen": true,
   "developer": {
-    "name": "Mozilla",
-    "url": "http://www.mozilla.com"
+    "name": "Frog",
+    "url": "http://www.frogdesign.com"
   },
+  "icons": {
+        "60": "/imgs/icons/60.png"
+    },
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },
     "camera":{}

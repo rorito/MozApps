@@ -222,7 +222,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
     },
     publish: function(){
-            /*
+            
             var activity = new MozActivity({ 
                 name: 'mozAppsData', 
                 data: { foo: "bar" } 
@@ -233,9 +233,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             activity.onsuccess = function() { 
                 console.log('Launched generated app with activity.'); 
             };
-            console.log("publish");
-            */
-        mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
+            alert("publish");
+            
+        //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     preview: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);

@@ -8,10 +8,10 @@ XPCSHELL = ./xulrunner-sdk/bin/xpcshell
 ADB = ./adb
 
 FOLDER = ../../dist
-NAME = MozAppsInstall
+NAME = mozappsinstall
 
 package:
-	cd ${FOLDER} && zip -Xr ./application.zip ./* -x application.zip
+	cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
 
 packaged: package
 	${ADB} push ${FOLDER}/application.zip /data/local/tmp/b2g/${NAME}/application.zip
