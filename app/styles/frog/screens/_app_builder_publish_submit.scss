@@ -30,6 +30,9 @@
     font-size: 1.4rem;
     margin: 0 0 0 4rem;
     padding-bottom: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #appBuilderPublishSubmit h4 {
