@@ -56,7 +56,7 @@ mozapps.Collections.AppCollection = Backbone.Collection.extend({
       this.listenTo(this, "reset", this.checkReset);
   },
   addedToCollection: function(data){
-    mozapps.Utils.addedToCollection(data,mozapps.appsDB);
+    mozapps.Utils.addToCollection(data,mozapps.appsDB);
   },
   removedFromCollection: function(data){
     mozapps.Utils.removeFromCollection(data,mozapps.appsDB);

@@ -1,15 +1,10 @@
 {
   "version": "0.1",
-  "name": "MozApps",
+  "name": "Moz Apps",
   "description": "Create your own apps!",
   "launch_path": "/index.html",
   "orientation": "portrait-primary",
   "fullscreen": true,
-  "icons": {
-    "16": "/images/icons/mortar-16.png",
-    "48": "/images/icons/mortar-48.png",
-    "128": "/images/icons/mortar-128.png"
-  },
   "developer": {
     "name": "Mozilla",
     "url": "http://www.mozilla.com"
@@ -19,19 +14,7 @@
     "camera":{}
   },
   "activities": {
-    "record": {
-      "filters": {
-        "type": "photos"
-       },
-      "disposition": "window"
-    },
-    "pick": {
-      "filters": {
-        "type": ["image/jpeg"]
-       },
-      "returnValue": true,
-      "disposition": "inline",
-      "href": "/index.html#pick"
+    "mozAppsData": {
     }
   },
   "installs_allowed_from": ["*"],

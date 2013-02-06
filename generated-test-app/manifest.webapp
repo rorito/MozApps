@@ -1,0 +1,18 @@
+{
+  "version": "0.1",
+  "name": "Small Store",
+  "description": "Sample App",
+  "launch_path": "/index.html",
+  "orientation": "portrait-primary",
+  "fullscreen": true,
+  "developer": {
+    "name": "Mozilla",
+    "url": "http://www.mozilla.com"
+  },
+  "activities": {
+    "mozAppsData": {
+    }
+  },
+  "installs_allowed_from": ["*"],
+  "default_locale": "en"
+}
