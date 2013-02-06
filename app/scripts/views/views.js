@@ -630,6 +630,10 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
 mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
     template: Handlebars.compile($("#appBuilderPublishSumbitTemplate").html()),
     viewName: "appBuilderPublishSubmitView",
+    maxCounter: 5,
+    counter: 0,
+    intervalID: -1,
+    intervalTime: 500,
     events: {
         'click button#cancel' : "cancel",
     },
@@ -647,9 +651,25 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
                 //console.log(window.document.getElementById("publishMarkupContainer"));
                 // create and render sub view
                 this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({el: this.$el.find('#publishMarkupContainer')});
+
+                // start interval
+                this.intervalID = window.setInterval(this.handleInterval, this.intervalTime, this);
             }
         }
         return this;
+    },
+    handleInterval: function(self) {
+        console.log("handle interval: animate scroll");
+        //console.log(self);
+        
+        self.counter += 1;
+        if ((self.counter > self.maxCounter) && (self.intervalID != -1)) { 
+            window.clearInterval(self.intervalID);
+            self.intervalID = -1;
+            self.counter = 0;
+            console.log(">>> do next action after publish");
+        }
+
     }
 });
 
