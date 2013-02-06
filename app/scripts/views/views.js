@@ -642,8 +642,25 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
                 this.$el.html(this.template( { loading: true } ));
             } else {
                 this.$el.html(this.template(this.model.toJSON()));
+                console.log('test');
+                //console.log(this.$el.find('#publishMarkupContainer'));
+                //console.log(window.document.getElementById("publishMarkupContainer"));
+                // create and render sub view
+                //this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({el: this.$el.find('#publishMarkupContainer')});
             }
         }
         return this;
     }
 });
+
+/*
+mozapps.Views.appBuilderPublishSubmitSubView = Backbone.View.extend({
+    template: Handlebars.compile($("#fakeMarkupTemplate").html()),
+    viewName: "appBuilderPublishSubmitSubView",
+    render: function(eventName) {
+        console.log('render subview');
+        this.$el.html(this.template());        
+        return this;
+    }
+});
+*/

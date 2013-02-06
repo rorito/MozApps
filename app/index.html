@@ -406,25 +406,23 @@
             {{#if loading}}
                 <h1>Loading...</h1>
             {{else}}
-                <!-- represents application screen APP PUBLISH SUBMIT  -->
-                <div id="appBuilderPublishSubmit" role="window" class="dark-bg">
-                    
-
+                <!-- represents application publish uploading screen
+                APPLICATION BUILDER PUBLISH SUBMIT -->
+                <div id="appBuilderPublishSubmit" class="dark-bg" role="window">
                     <!-- content region -->
                     <section role="region" data-type="content" class="box-padded">
-                        <div class="medium-bg round-corners box-padded">
+                        <section role="region" data-type="header" class="medium-bg round-corners box-padded">
+                            <div class="load-status">
                             <h2>Publishing</h2>
-                            <h3>{{name}}</h3>    
-                        </div>
-                        
-                        <p>
-                            <button id="cancel">Cancel</button>
-                        </p>
-                    </section>
-
-                    <!-- footer region -->
-                    <section role="region" data-type="footer">
-                    <footer></footer>
+                            <h3>Small Store</h3>    
+                            </div>
+                        </section>
+                        <section role="region" data-type="detail" class="box-padded">
+                            <div class="scroll-window">
+                            <h4>Building in html...</h4>
+                            <pre id="publishMarkupContainer">
+                            </pre>
+                        </section>
                     </section>
                 </div>
             {{/if}}
@@ -666,6 +664,7 @@
         <!-- build:js scripts/scripts.js -->
         <!--<script src="scripts/vendor/kinvey-js-0.9.13.min.js"></script> //-->
         <!-- <script src="scripts/vendor/stacktrace.js"></script> //-->
+        <script src="scripts/templates/fake-markup.js"></script>
         <script src="scripts/vendor/zepto.min.js"></script>
         <script src="scripts/vendor/deferred.min.js"></script>
         <script src="scripts/vendor/lodash.min.js"></script>
@@ -681,7 +680,6 @@
         <script src="scripts/models/application-model.js"></script>
         <script src="scripts/routes/application-router.js"></script>
         <script src="scripts/vendor/iscroll.js"></script>  <!-- TODO remove? //-->
-
         <!-- endbuild -->
     </body>
 </html>
