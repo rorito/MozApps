@@ -7,7 +7,8 @@ PORT_LOCAL = 6000
 XPCSHELL = ./xulrunner-sdk/bin/xpcshell
 ADB = ./adb
 
-FOLDER = ../../dist
+#FOLDER = ../../dist
+FOLDER = ../../app
 NAME = mozappsinstall
 
 package:

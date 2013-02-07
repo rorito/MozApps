@@ -18,7 +18,6 @@ Handlebars.getTemplate = function(name) {
             url : '/scripts/templates/' + name + '.handlebars',
             datatype: 'text/javascript',
             success : function(response, status, jqXHR) {
-                console.log(jqXHR.responseText);
                 if (Handlebars.templates === undefined) {
                     Handlebars.templates = {};
                 }
