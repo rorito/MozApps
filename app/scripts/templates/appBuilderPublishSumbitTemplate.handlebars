@@ -1,0 +1,23 @@
+{{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application publish uploading screen
+                APPLICATION BUILDER PUBLISH SUBMIT -->
+                <div id="appBuilderPublishSubmit" class="dark-bg" role="window">
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="box-padded">
+                        <section role="region" data-type="header" class="medium-bg round-corners box-padded">
+                            <div class="load-status">
+                            <h2>Publishing</h2>
+                            <h3>Small Store</h3>    
+                            </div>
+                        </section>
+                        <section role="region" data-type="detail" class="box-padded">
+                            <div class="scroll-window">
+                            <h4>Building in html...</h4>
+                            <pre id="publishMarkupContainer">
+                            </pre>
+                        </section>
+                    </section>
+                </div>
+            {{/if}}

@@ -1,18 +1,21 @@
 {
-  "version": "0.1",
   "name": "Small Store",
-  "description": "Sample App",
+  "description": "An example store",
   "launch_path": "/index.html",
-  "orientation": "portrait-primary",
-  "fullscreen": true,
+  "icons": {
+    "60": "/icons/60.png"
+  },
   "developer": {
-    "name": "Mozilla",
-    "url": "http://www.mozilla.com"
+    "name": "RoryCorp",
+    "url": "http://www.rorypetty.com"
+  },
+  "permissions": {
+    "device-storage:pictures":{ "access": "readwrite" },
+    "camera":{}
   },
   "activities": {
     "mozAppsData": {
     }
   },
-  "installs_allowed_from": ["*"],
   "default_locale": "en"
 }

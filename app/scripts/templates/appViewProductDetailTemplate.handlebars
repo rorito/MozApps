@@ -1,0 +1,42 @@
+{{#if loading}}
+                <h1>Loading...</h1>
+            {{else}}
+                <!-- represents application template screen, prefixed appTmpl
+                   APPLICATION PRODUCT DETAIL with PREVIEW -->
+                <div id="appViewProductDetail" role="window" class="{{theme}}">
+                    <section role="region" data-type="outer-chrome" class="outer-chrome">
+                        <button id="back">Back</button>
+                    </section>
+                    <!-- title bar region -->
+                    <section role="region" data-type="header">
+                      <header>
+                        <button><span class="icon icon-menu">menu</span></button>
+                        <menu type="toolbar">
+                          <button><span class="icon icon-cart">cart</span></button>
+                        </menu>
+                        <h1>{{this.model.name}}}</h1>
+                      </header>
+                    </section>
+
+                    <!-- content region -->
+                    <section role="region" data-type="content" class="fade">
+                      <section role="region" data-type="detail" class="template-detail">
+                        <img src="styles/temp/product_detail.png" class="img-detail"/>
+                      </section>
+                      <footer>
+                        <h2>
+                            <span>{{product.attributes.name}}</span>
+                            <button class="buy">Add to cart</button>
+                        </h2>
+                        <h2>{{product.attributes.price}}</h2>
+                        <p>{{product.attributes.description}}</p>
+                      </footer>
+                    </section>
+
+                    <!-- footer region -->
+                    <section role="region" data-type="footer">
+                      <footer></footer>
+                    </section>
+                </div>
+                
+            {{/if}}
