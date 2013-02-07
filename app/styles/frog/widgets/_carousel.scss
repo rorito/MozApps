@@ -54,11 +54,14 @@
     width: 100%;
 }
 
-/*
 .carousel ul li label input[type="radio"] {
 	display:none;
 }
-*/
+
+.carousel ul li label img {
+	min-width:100%;
+}
+
 
 .carousel ul li.left-off {
 	width:4rem;
