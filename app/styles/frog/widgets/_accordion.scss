@@ -9,7 +9,7 @@ section[data-type="accordion"] {
 
 section[data-type="accordion"], img {
 	-moz-user-select: none;
-	user-drag: none;
+	/*user-drag: none;*/
 }
 
 section[data-type="accordion"] > .list > li.header {

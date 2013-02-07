@@ -1,0 +1,1 @@
+alias fxos_log='adb logcat GeckoConsole:W *:F | ~/Dropbox/scripts/coloredlogcat.py'
