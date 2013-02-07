@@ -3,9 +3,9 @@ window.widgets = window.widgets || {
     carousel: function() {
         var listItems           = [];
         var activeCount         = null;
-        var activeStartIndex    = 3;
+        var activeStartIndex    = 0;
         var indexOffset         = null;
-        var activeClassNames    = ["left-left", "left", "", "right", "right-right"];
+        var activeClassNames    = ["left-out", "left-left", "left", "", "right", "right-right", "right-out"];
 
         this.init = function(carouselID) {
             //console.log('init: ' + carouselID);
@@ -49,6 +49,8 @@ window.widgets = window.widgets || {
                 // populate the list item, where we will add and remove class names   
                 if ("LI" === targetLI.tagName.toUpperCase()) {
                     listItems.push(targetLI);
+                    // add callback for transition done
+                    targetLI.addEventListener("transitionend", handleTransitionEnd, true);
                 }
             }
         };
@@ -64,7 +66,7 @@ window.widgets = window.widgets || {
                 var listItem = listItems[i];
                 //console.log(i, listItem);
 
-                if (i < targetIndex - indexOffset) {
+                if (i <= targetIndex - indexOffset) {
                     //console.log('a');
                     listItem.className = "left-off";
                 } else if (i == targetIndex - 2) {
@@ -79,7 +81,7 @@ window.widgets = window.widgets || {
                 } else if (i == targetIndex + 2) {
                     //console.log('e');
                     listItem.className = "right-right";
-                } else if (i > targetIndex + indexOffset) {
+                } else if (i >= targetIndex + indexOffset) {
                     //console.log('f');
                     listItem.className = "right-off";
                 } else {
@@ -94,15 +96,27 @@ window.widgets = window.widgets || {
         // event handler for radio button click
         var handleRadioBtnClick = function(event, targetBtn) {
             event.preventDefault();
+            //alert('click');
             //console.log(targetBtn);
             var targetLI = targetBtn.parentNode.parentNode;
             var targetIndex = $(targetLI).index();
             //console.log(targetIndex);
-            setActiveItems(targetIndex);
+            
+            //alert(targetIndex); // 2
+            //alert(activeStartIndex); //0
+            //alert(indexOffset); // 3
+            
+            if (targetIndex != activeStartIndex + indexOffset) {
+                setActiveItems(targetIndex);    
+            } else {
+                alert('go to product detail');
+            }
+            
         }
 
         var handleSwipe = function(event) {
             event.preventDefault();
+            //alert('swipe');
             var data = event.detail;
             if (data) {
                 //alert(data.direction);
@@ -119,6 +133,18 @@ window.widgets = window.widgets || {
                         setActiveItems(currentIndex - 1);
                     }
                 }
+            }
+        }
+
+        var handleTransitionEnd = function(event) {
+            //  alert('transition end: ' + this);
+            var targetIndex = $(this).index();
+            if ((targetIndex === activeStartIndex + indexOffset) 
+                && (event.propertyName.toUpperCase() === "LEFT")) {
+                //alert(event);
+                // we are changing multiple properties, so just catch the
+                //console.log(event);
+                alert('update text content for li: ' + targetIndex);
             }
         }
     }
