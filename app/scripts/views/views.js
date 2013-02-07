@@ -707,7 +707,7 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
 
 mozapps.Views.appBuilderPublishSubmitSubView = Backbone.View.extend({
     //template: Handlebars.compile($("#fakeMarkupTemplate").html()),
-    template: Handlebars.getTemplate("fakeMarkupTemplate"),
+    template: Handlebars.getTemplate("fake-markup"),
     viewName: "appBuilderPublishSubmitSubView",
     initialize: function(){
         
