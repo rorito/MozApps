@@ -1,0 +1,7 @@
+          {{#if loading}}
+            <!-- only want one loading message -->
+          {{else}}
+            {{#templateListViewHelper mozTemplates.categories}}
+                {{this.name}}
+            {{/templateListViewHelper}}
+          {{/if}}

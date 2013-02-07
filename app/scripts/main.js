@@ -172,43 +172,44 @@ window.mozapps = window.mozapps || {
             mozapps.router = new mozapps.Routers.ApplicationRouter(); 
             Backbone.history.start(); //{ pushState: true, root: mozapps.root }
         });
-    },
-    initDBJS: function(){
-        db.open({
-            server: 'mozapps',
-            version: 1,
-            schema: {
-                templates: {
-                    key: { keyPath: 'id' , autoIncrement: true }
-                },
-                apps: {
-                    key: { keyPath: 'id' , autoIncrement: true }
-                },
-                products: {
-                    key: { keyPath: 'id' , autoIncrement: true }
-                }
-            }
-        })
-        .then(function(s){
-            mozapps.db = s;
-            mozapps.db.templates.query()
-                .filter()
-                .execute()
-                .done(function (results){
-                    if(results.length < 1){
-                        _.each(mozapps.templateFixtureData, function(element, index, list){
-                            mozapps.db.templates.add(element);
-                        });
-                        mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
-                    } else {
-                        mozapps.templateCollection = new mozapps.Collections.TemplateCollection(results);
-                    }
-                });
-        })
-        .done(function (s){
-            
-        });    
     }
+    // ,
+    // initDBJS: function(){
+    //     db.open({
+    //         server: 'mozapps',
+    //         version: 1,
+    //         schema: {
+    //             templates: {
+    //                 key: { keyPath: 'id' , autoIncrement: true }
+    //             },
+    //             apps: {
+    //                 key: { keyPath: 'id' , autoIncrement: true }
+    //             },
+    //             products: {
+    //                 key: { keyPath: 'id' , autoIncrement: true }
+    //             }
+    //         }
+    //     })
+    //     .then(function(s){
+    //         mozapps.db = s;
+    //         mozapps.db.templates.query()
+    //             .filter()
+    //             .execute()
+    //             .done(function (results){
+    //                 if(results.length < 1){
+    //                     _.each(mozapps.templateFixtureData, function(element, index, list){
+    //                         mozapps.db.templates.add(element);
+    //                     });
+    //                     mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
+    //                 } else {
+    //                     mozapps.templateCollection = new mozapps.Collections.TemplateCollection(results);
+    //                 }
+    //             });
+    //     })
+    //     .done(function (s){
+            
+    //     });    
+    // }
 };
 
 $(document).ready(function(){

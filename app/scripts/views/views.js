@@ -12,8 +12,27 @@
 //TODO - override fetch in model to do db lookup and then bind render to fetch completion?
 //TODO - create new product, don't allow save on empty fields
 
+Handlebars.getTemplate = function(name) {
+    if (Handlebars.templates === undefined || Handlebars.templates[name] === undefined) {
+        $.ajax({
+            url : '/scripts/templates/' + name + '.handlebars',
+            datatype: 'text/javascript',
+            success : function(response, status, jqXHR) {
+                console.log(jqXHR.responseText);
+                if (Handlebars.templates === undefined) {
+                    Handlebars.templates = {};
+                }
+                Handlebars.templates[name] = Handlebars.compile(jqXHR.responseText);
+            },
+            async : false
+        });
+    }
+    return Handlebars.templates[name];
+};
+
 mozapps.Views.appSubView = Backbone.View.extend({
-    template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
+    //template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
+    template: Handlebars.getTemplate("myAppsSubViewTemplate"),
     iscrollObjects: new Array(),
     initialize: function(){
         this.listenTo(this.collection, "reset", this.render);
@@ -46,7 +65,8 @@ mozapps.Views.appSubView = Backbone.View.extend({
 });
 
 mozapps.Views.templateSubView = Backbone.View.extend({
-    template: Handlebars.compile($("#templatesSubViewTemplate").html()),
+    //template: Handlebars.compile($("#templatesSubViewTemplate").html()),
+    template: Handlebars.getTemplate("templatesSubViewTemplate"),
     iscrollObjects: new Array(),
     initialize: function(){
         this.listenTo(this.collection, "reset", this.render);
@@ -99,7 +119,8 @@ mozapps.Views.templateSubView = Backbone.View.extend({
 mozapps.Views.templatesListView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     viewName: "templatesListView",
-    template: Handlebars.compile($("#screenViewTemplate").html()),
+    //template: Handlebars.compile($("#screenViewTemplate").html()),
+    template: Handlebars.getTemplate("screenViewTemplate"),
     initialize: function() {
     },
     render: function(eventName) {
@@ -116,7 +137,8 @@ mozapps.Views.templatesListView = Backbone.View.extend({
 
 mozapps.Views.templateDetailView = Backbone.View.extend({
     viewName: "templateDetailView",
-    template: Handlebars.compile($("#templateDetailViewTemplate").html()),
+    //template: Handlebars.compile($("#templateDetailViewTemplate").html()),
+    template: Handlebars.getTemplate("templateDetailViewTemplate"),
     templateID: "",
     collection: mozapps.templateCollection,
     initialize: function() {
@@ -178,7 +200,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
 mozapps.Views.appBuilderView = Backbone.View.extend({
     //TODO pre-compile templates and make sure compile only happens during init
     //TODO better handling if app_id isn't found
-    template: Handlebars.compile($("#appBuilderViewTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderViewTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderViewTemplate"),
     viewName: "appBuilderView",
     appID: "",
     collection: [],
@@ -254,7 +277,8 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderNameView = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderNameViewTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderNameViewTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderNameViewTemplate"),
     viewName: "appBuilderNameView",
     initialize: function(options) {
     },
@@ -307,7 +331,8 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderAboutView = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderAboutTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderAboutTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderAboutTemplate"),
     viewName: "appBuilderAboutView",
     events: {
         'click button#back' : "back",
@@ -358,7 +383,8 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderTheme = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderThemeTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderThemeTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderThemeTemplate"),
     viewName: "appBuilderTheme",
     events: {
         'click button#back' : "back",
@@ -409,7 +435,8 @@ mozapps.Views.appBuilderTheme = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderPublishDestinationTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderPublishDestinationTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderPublishDestinationTemplate"),
     viewName: "appBuilderPublishDestinationView",
     events: {
         'click button#back' : "back",
@@ -436,7 +463,8 @@ mozapps.Views.appBuilderPublishDestinationView = Backbone.View.extend({
 
 
 mozapps.Views.productList = Backbone.View.extend({
-    template: Handlebars.compile($("#productListViewTemplate").html()),
+    //template: Handlebars.compile($("#productListViewTemplate").html()),
+    template: Handlebars.getTemplate("productListViewTemplate"),
     viewName: "productList",
     events: {
         'click button#back' : "back",
@@ -473,7 +501,8 @@ mozapps.Views.productList = Backbone.View.extend({
 });
 
 mozapps.Views.productListDetailEdit = Backbone.View.extend({
-    template: Handlebars.compile($("#productDetailEditTemplate").html()),
+    //template: Handlebars.compile($("#productDetailEditTemplate").html()),
+    template: Handlebars.getTemplate("productDetailEditTemplate"),
     viewName: "productListDetailEdit",
     events: {
         'click button#back' : "back",
@@ -529,7 +558,8 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 });
 
 mozapps.Views.preview = Backbone.View.extend({
-    template: Handlebars.compile($("#appViewTemplate").html()),
+    //template: Handlebars.compile($("#appViewTemplate").html()),
+    template: Handlebars.getTemplate("appViewTemplate"),
     viewName: "preview",
     events: {
         'click button#back' : "back",
@@ -568,7 +598,8 @@ mozapps.Views.preview = Backbone.View.extend({
 });
 
 mozapps.Views.previewProductDetailView = Backbone.View.extend({
-    template: Handlebars.compile($("#appViewProductDetailTemplate").html()),
+    //template: Handlebars.compile($("#appViewProductDetailTemplate").html()),
+    template: Handlebars.getTemplate("appViewProductDetailTemplate"),
     viewName: "previewProductDetail",
     events: {
         'click button#back' : "back",
@@ -601,7 +632,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderPublishMarketplaceTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderPublishMarketplaceTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderPublishMarketplaceTemplate"),
     viewName: "appBuilderPublishMarketplaceView",
     events: {
         'click button#back' : "back",
@@ -628,7 +660,8 @@ mozapps.Views.appBuilderPublishMarketplaceView = Backbone.View.extend({
 });
 
 mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
-    template: Handlebars.compile($("#appBuilderPublishSumbitTemplate").html()),
+    //template: Handlebars.compile($("#appBuilderPublishSumbitTemplate").html()),
+    template: Handlebars.getTemplate("appBuilderPublishSumbitTemplate"),
     viewName: "appBuilderPublishSubmitView",
     maxCounter: 5,
     counter: 0,
@@ -675,6 +708,7 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
 
 mozapps.Views.appBuilderPublishSubmitSubView = Backbone.View.extend({
     //template: Handlebars.compile($("#fakeMarkupTemplate").html()),
+    template: Handlebars.getTemplate("fakeMarkupTemplate"),
     viewName: "appBuilderPublishSubmitSubView",
     initialize: function(){
         
