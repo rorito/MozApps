@@ -1,0 +1,161 @@
+/******************************************************************
+ * 
+ * CAROUSEL
+ *
+ * Notes:
+ * 1. 
+ * 
+ */
+
+
+/* ----------------------------------
+ * CAROUSEL: frog
+ * ---------------------------------- */
+
+.carousel {
+	text-align:center;
+}
+
+/* contain the carousel to a fixed width */
+.carousel > div {
+	margin:auto;
+	/*background-color: red;*/
+    height: 200px;
+    width: 265px;
+    overflow:hidden;
+}
+
+
+.carousel ul {
+	padding:0;
+	display:block;
+	position: relative;
+}
+
+.carousel ul li {
+	display:inline-block;
+	width:16rem;
+	height:16rem;
+	border:0.2rem solid white;
+	position:absolute;
+	left:5.3rem;
+	top:2.6rem;
+	-moz-box-sizing:border-box;
+	background: rgba(155,155,155,0.5);
+	opacity:1;
+	transition-property: opacity, left, top, width, height;
+	transition-duration:0.5s;
+	z-index:99;
+}
+
+.carousel ul li label {
+	display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+.carousel ul li label input[type="radio"] {
+	display:none;
+}
+*/
+
+.carousel ul li.left-off {
+	width:4rem;
+	height:4rem;
+	left:-2rem;
+	top:8.6rem;
+	opacity:1;
+	z-index:94;
+	opacity:0;
+}
+
+.carousel ul li.left-left {
+	width:8rem;
+	height:8rem;
+	left:0rem;
+	top:6.6rem;
+	z-index:97;
+}
+
+.carousel ul li.left {
+	width:12rem;
+	height:12rem;
+	left:2.6rem;
+	top:4.6rem;
+	z-index:98;
+}
+
+.carousel ul li.right {
+	width:12rem;
+	height:12rem;
+	left:12.3rem;
+	top:4.6rem;
+	z-index:96;
+}
+
+.carousel ul li.right-right {
+	width:8rem;
+	height:8rem;
+	left:18.5rem;
+	top:6.6rem;
+	z-index:95;
+}
+
+.carousel ul li.right-off {
+	width:4rem;
+	height:4rem;
+	left:24.8rem;
+	top:8.6rem;
+	z-index:93;
+	opacity:0;
+}
+
+/*
+
+.carousel ul li:nth-child(1) {
+	width:8rem;
+	height:8rem;
+	left:0rem;
+	top:6.6rem;
+}
+
+.carousel ul li:nth-child(2) {
+	width:12rem;
+	height:12rem;
+	left:2.6rem;
+	top:4.6rem;
+}
+
+.carousel ul li:nth-child(4) {
+	width:12rem;
+	height:12rem;
+	left:11.8rem;
+	top:4.6rem;
+}
+
+.carousel ul li:nth-child(5) {
+	width:8rem;
+	height:8rem;
+	left:18rem;
+	top:6.6rem;
+}
+*/
+
+/*
+.carousel ul li:nth-child(1) {
+	transform: translate(-50%, 0) scale(0.6, 0.6);
+}
+
+.carousel ul li:nth-child(2) {
+	transform: translate(-25%, 0) scale(0.8, 0.8);
+}
+
+.carousel ul li:nth-child(4) {
+	transform: translate(25%, 0) scale(0.8, 0.8);
+}
+
+.carousel ul li:nth-child(5) {
+	transform: translate(50%, 0) scale(0.6, 0.6);
+}
+*/
