@@ -41,7 +41,9 @@ window.mozapps = window.mozapps || {
                         } 
                     );
                 } else {
-                    mozapps.appCollection = new mozapps.Collections.AppCollection();
+                    console.log(">>>>>> add default product(s)");
+                    console.log(mozapps.defaultAppData)
+                    mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
                     deferred.resolve();
                 }
             },

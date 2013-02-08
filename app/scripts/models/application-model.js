@@ -243,6 +243,17 @@ mozapps.templateFixtureData = [
   }
 ];
 
+mozapps.defaultAppData = [
+    {
+        "id": UUID.genV4().toString(),
+        "name": "Maria's Fine Crafts",
+        "published": false,
+        "version": "1.0",
+        "app_components": mozapps.templateFixtureData[0].app_components,
+        "templateID": mozapps.templateFixtureData[0].id
+    }
+];
+
 
 
       // {

@@ -166,15 +166,82 @@ routes:{
         }
 
         $('#appContainer').append(page.el);
-
+        //console.log(page);
         // Wait until the new page has been added to the DOM...
+        //_.defer( function( router ){ router.doSlideTransition(page, slideFrom);}, this );
+        
         setTimeout(function() {
             // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
             $(self.currentPage.el).attr('class', 'page transition ' + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
+             
+            console.log(self);   
+            console.log("*******");
+            //console.log(self.currentPage.el);
+            console.log('attack event handler');
+            //self.currentPage.el.addEventListener("transitionend", ghandleTransitionEnd, true);
+//console.log(slideFrom);
+//return;
             // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
         });
-    }
+
+        
+    }/*,
+    doSlideTransition: function(page, slideFrom) {
+        
+        console.log(".... do slide transition");
+        //console.log(page);
+        //console.log(slideFrom);
+
+        // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
+        $(this.currentPage.el).attr('class', 'page transition ' + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
+        console.log(">>>>> attaching listener");
+        //console.log(this.currentPage.el);    
+
+        //return;
+        //this.currentPage.el.addEventListener("transitionend", this.handleTransitionEnd, true);
+        //this.currentPage.el.addEventListener("webkitTransitionEnd", ghandleTransitionEnd, false);
+
+        this.currentPage.el.addEventListener("transitionend", ghandleTransitionEnd, false);
+
+        // Slide in the new page
+        $(page.el).attr('class', 'page stage-center transition');
+        this.currentPage = page;
+    },
+    handleTransitionEnd: function(event) {
+        //
+    if (event.propertyName.toUpperCase() === "LEFT") {
+        console.log("transition end");
+        console.log(event);
+        console.log(event.target);
+        console.log(this);
+        var targetEl = event.target;
+
+        //var parent = targetEl.parentNode;
+        targetEl.removeEventListener("webkitTransitionEnd", this.handleTransitionEnd, false);
+        // remove it from the DOM
+        //$(targetEl).remove();
+        }
+    }*/
 
 });
+/*
+var ghandleTransitionEnd = function(event) {
+    console.log(">>>>>>>>>>>>>> ghandleTransitionEnd");
+    //return;
+    if (event.propertyName.toUpperCase() === "LEFT") {
+        console.log("transition end");
+        //console.log(event);
+        console.log(event.target);
+        //console.log(this);
+        var targetEl = event.target;
+
+        //var parent = targetEl.parentNode;
+        //targetEl.removeEventListener("webkitTransitionEnd", ghandleTransitionEnd, false);
+        targetEl.removeEventListener("transitionend", ghandleTransitionEnd, true);
+        // remove it from the DOM
+        $(targetEl).remove();
+        }
+    }
+*/
