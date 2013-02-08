@@ -13,7 +13,7 @@
 }
 
 #productAddImage [data-type="content"] div p {
-	margin-top:20
+	margin-top:20px;
 }
 
 /* fixed position buttons on bottom */
@@ -25,10 +25,8 @@
 }
 
 #productAddImage [data-type="content"] div.chrome-fixed-bottom > ul {
-	/*
-	display: flex;
-	flex-direction: row;
-	*/
+	/* display: flex;*/
+	/*flex-direction: row; */
 	width: 100%;
 	padding: 0 !important;
 }

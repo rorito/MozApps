@@ -15,7 +15,13 @@
 // 1. replace console.log
 // 2. add refresh button to main page
 //TODO - disallow horiz. scroll on templaet detail view
-
+//TODO - long press to go home
+//TODO - my apps accordian
+//TODO - disable horiz scrolling
+//TODO - header gets stuck under status bar
+//TODO - albert figure out sonny
+// elementObject.css('width', (500 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+//TODO - albert fix flex issues in css
 
 // Handlebars.getTemplate = function(name) {
 //     if (Handlebars.templates === undefined || Handlebars.templates[name] === undefined) {
@@ -273,27 +279,24 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             //     console.log('Launched generated app with activity.'); 
             // };
 
-            // var sharing = new MozActivity({
-            //     name: "share",
-            //     data: {
-            //         //type: "url", // Possibly text/html in future versions,
-            //         type: "foo",
-            //         number: 1,
-            //         url: "http://robertnyman.com"
-            //     }
-            // });
+            var sharing = new MozActivity({
+                name: "share",
+                data: {
+                    //type: "url", // Possibly text/html in future versions,
+                    type: "foo",
+                    number: 1,
+                    url: "http://robertnyman.com"
+                }
+            });
             
-            // sharing.onerror = function() { 
-            //     console.log('Failed to launch generated app with activity.'); 
-            // };
-            // sharing.onsuccess = function() { 
-            //     console.log('Launched generated app with activity.'); 
-            // };
+            sharing.onerror = function() { 
+                console.log('Failed to launch generated app with activity.'); 
+            };
+            sharing.onsuccess = function() { 
+                console.log('Launched generated app with activity.'); 
+            };
             
-var a = new MozActivity({ name: "increment", data: {a:1, b:"blah"} });
-a.onsuccess = function() { console.log('Increment user', "Activity launched and succeeded") };
-a.onerror = function() { console.log('Increment user', "Activity error ", this.error.message, this.error.name) };
-            
+
         //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     preview: function(){
