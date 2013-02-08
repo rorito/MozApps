@@ -17,8 +17,9 @@ window.widgets = window.widgets || {
         var activeCount         = null;
         var activeStartIndex    = 0;
         var indexOffset         = null;
-        //var activeClassNames    = ["left-out", "left-left", "left", "", "right", "right-right", "right-out"];
-
+        var self                = null;
+        
+        // initialze
         this.init = function(carouselID) {
             //console.log('init: ' + carouselID);
             
@@ -31,11 +32,18 @@ window.widgets = window.widgets || {
             initContainer(carouselID);
             // init the items
             initItems(carouselID);
+
+            // create reference to the carousel
+            self = this;
+            console.log('init');
+            console.log(self);
         };
 
-        this.getClassNames = function() {
-            return activeClassNames;
-        }
+        // handler for when swipe it done
+        this.onSwipeDone = null;
+
+        // handler for when main item is clicked
+        this.onMainItemClicked = null;
 
         // set up the container for swipe gestures
         var initContainer = function(carouselID) {
@@ -55,7 +63,7 @@ window.widgets = window.widgets || {
                 var radioBtn = radioBtns[i];
                 radioBtn.onclick = function(event) {
                     handleRadioBtnClick(event, this);
-                }
+                };
 
                 
 
@@ -127,6 +135,11 @@ window.widgets = window.widgets || {
                 setActiveItems(targetIndex);    
             } else {
                 console.log('go to product detail');
+                //console.log(self.onMainItemClicked);
+                //debugger;
+                if (null != self.onMainItemClicked) {
+                    self.onMainItemClicked(targetIndex, targetLI);
+                }
             }
             
         }
@@ -162,6 +175,12 @@ window.widgets = window.widgets || {
                 // we are changing multiple properties, so just catch the
                 //console.log(event);
                 console.log('update text content for li: ' + targetIndex);
+                console.log(self.onSwipeDone);
+                if (null != self.onSwipeDone) {
+                    // pass back element and index
+                    self.onSwipeDone(targetIndex, this);
+                }
+
             }
         }
     }

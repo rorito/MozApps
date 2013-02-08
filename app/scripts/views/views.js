@@ -630,19 +630,10 @@ mozapps.Views.preview = Backbone.View.extend({
     classNames: window.widgets.carouselClassNames,
     productCarousel:null,
     events: {
-        'click button#back' : "back",
-        'click a.link-product-temp' : "showProductDetail"
+        'click button#back' : "back"
     },
     back : function() {
         window.history.back();
-    },
-    showProductDetail: function(event) {
-        event.preventDefault();
-        console.log(event.currentTarget);
-        var targetLink = event.currentTarget;
-        var productID = targetLink.getAttribute("productID");
-
-        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -675,10 +666,30 @@ mozapps.Views.preview = Backbone.View.extend({
     },
     createCarousel: function() {
         //console.log('create carousel !!!');
+        
         // callback to instantiate carousel
         productCarousel = new window.widgets.carousel();
         // id should be part of view
         productCarousel.init("#productCarousel");
+        // set callbacks
+        productCarousel.onSwipeDone = (function(targetIndex, targetEl) {
+            console.log('on swipe done: ' + targetIndex);
+            console.log('on swipe done: ' + targetEl);
+
+            // get product info based on app id and product id
+            // update the dom
+        }).bind(this);
+        
+        productCarousel.onMainItemClicked = (function(targetIndex, targetEl) {
+            console.log('on main item clicked: ' + targetIndex);   
+            console.log('on main item clicked: ' + targetEl);
+            if (targetEl) {
+                var productID = targetEl.getAttribute("productID");
+                //console.log(this.appID);
+                //console.log(productID);
+                mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
+            }
+        }).bind(this);
     }
 });
 
@@ -705,6 +716,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
             var productJSON = mozapps.productCollection.get({id: this.productID});
+
+            console.log('appID: ' + this.appID);
 
             var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
                 return elem.component_id == "theme";
