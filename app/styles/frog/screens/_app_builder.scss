@@ -48,7 +48,7 @@
 
 #appBuilder [data-type="content"] .template-detail > div:first-child {
 	margin-left: 2rem;
-	flex: 0;
+	/*flex: 0;*/
 }
 
 #appBuilder [data-type="content"] .template-detail > div {
@@ -65,7 +65,7 @@
 }
 
 .components-list {
-	broder-bottom: 1px solid $default_text_color;
+	border-bottom: 1px solid $default_text_color;
 }
 
 #appBuilder .preview {

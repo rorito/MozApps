@@ -1,6 +1,6 @@
 {
   "version": "0.1",
-  "name": "Moz Apps",
+  "name": "Moz Apps4",
   "description": "Create your own apps!",
   "launch_path": "/index.html",
   "orientation": "portrait-primary",
@@ -15,10 +15,6 @@
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },
     "camera":{}
-  },
-  "activities": {
-    "mozAppsData": {
-    }
   },
   "installs_allowed_from": ["*"],
   "default_locale": "en"

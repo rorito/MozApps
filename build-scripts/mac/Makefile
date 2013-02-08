@@ -7,11 +7,17 @@ PORT_LOCAL = 6000
 XPCSHELL = ./xulrunner-sdk/bin/xpcshell
 ADB = ./adb
 
-#FOLDER = ../../dist
-FOLDER = ../../app
-NAME = mozappsinstall
+FOLDER = ../../dist
+#FOLDER = ../../app
+NAME = mozappsinstall5
 
-package:
+
+#add rule to compile templates
+
+handlebars:
+	handlebars ../../app/scripts/templates-handlebars/*.handlebars -f ../../app/scripts/templates/templates.js
+
+package: handlebars
 	cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
 
 packaged: package

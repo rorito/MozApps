@@ -1,11 +1,6 @@
 Deferred.installInto(Zepto);
 
 
-//TODO
-// 1. replace console.log
-// 2. add refresh button to main page
-
-
 window.mozapps = window.mozapps || {
   Models: {},
   Collections: {},

@@ -10,8 +10,8 @@
 /* nav button position */
 #templateDetail [data-type="content"] .template-detail-header {
 	position: relative;
-	display: flex;
-	flex-direction: column;
+	/*display: flex;*/
+	/*flex-direction: column;*/
 }
 
 #templateDetail [data-type="content"] button.previous {
@@ -37,8 +37,8 @@
 }
 
 #templateNameList > ul {
-	display: flex;
-	flex-direction: row;
+	/*display: flex;*/
+	/*flex-direction: row;*/
 	width: 1000px;
 	padding: 0 !important;
 }
@@ -59,7 +59,7 @@
 /* template detail */
 
 #templateDetail [data-type="content"] .template-detail {
-	display: flex;
+	/*display: flex;*/
 	padding: 2rem 0;
 	/* flex-direction: row; */
 	/* align-items: stretch; */
@@ -75,15 +75,15 @@
 
 #templateDetail [data-type="content"] .template-detail > div {
 	float: left;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	justify-content: flex-start;
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*align-items: stretch;*/
+	/*justify-content: flex-start;*/
 	width: 12rem;
 }
 
 #templateDetail [data-type="content"] .template-detail > div > p {
-	flex: 1 1 auto;
+	/*flex: 1 1 auto;*/
 	margin: 0 0 2rem 0;
 	font-size: 1.3rem;
 }
