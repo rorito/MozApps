@@ -3,8 +3,12 @@ window.widgets = window.widgets || {
     carouselClassNames : ["left-out", "left-left", "left", "", "right", "right-right", "right-out"],
     getCarouselClassNameForIndex:function(itemIndex) {
         var className = "";
-        if (itemIndex <= window.widgets.carouselClassNames.length - 1) {
-            className = window.widgets.carouselClassNames[itemIndex];
+        var classNames = window.widgets.carouselClassNames;
+        if (itemIndex <= classNames.length - 2) {
+            className = classNames[itemIndex + 1];
+        } else {
+            // hide anything else that's to the right
+            className = classNames[classNames.length - 1];
         }
         return className;
     },
@@ -122,7 +126,7 @@ window.widgets = window.widgets || {
             if (targetIndex != activeStartIndex + indexOffset) {
                 setActiveItems(targetIndex);    
             } else {
-                alert('go to product detail');
+                console.log('go to product detail');
             }
             
         }
@@ -157,7 +161,7 @@ window.widgets = window.widgets || {
                 //alert(event);
                 // we are changing multiple properties, so just catch the
                 //console.log(event);
-                alert('update text content for li: ' + targetIndex);
+                console.log('update text content for li: ' + targetIndex);
             }
         }
     }

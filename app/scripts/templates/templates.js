@@ -254,87 +254,98 @@ function program3(depth0,data) {
   else { return ''; }});
 templates['appViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n                <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->\n                <div id=\"appView\" role=\"window\" class=\"";
+  buffer += "\n    <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->\n    <div id=\"appView\" role=\"window\" class=\"";
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                        <button id=\"back\">Back</button>\n                    </section>\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                      <header>\n                        <button><span class=\"icon icon-menu\">menu</span></button>\n                        <menu type=\"toolbar\">\n                          <button><span class=\"icon icon-cart\">cart</span></button>\n                        </menu>\n                        <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Back</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button><span class=\"icon icon-menu\">menu</span></button>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n                      </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"fade\">\n                      <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        <div class=\"carousel\">\n                          <p>carousel</p>\n                            ";
-  stack1 = depth0.products;
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                <!-- TODO: check if id needs to be unique on app level -->\n                <div id=\"productCarousel\" class=\"carousel\">\n                    <div>\n\n                        <ul>\n                        ";
+  foundHelper = helpers.products;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  else { stack1 = depth0.products; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   stack2 = {};
-  stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if (!helpers.products) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                        </div>\n                        <div>";
+  buffer += "\n                        </ul>\n                    </div>\n                </div>\n                <div>";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                        <div><button class=\"buy\">Add to cart</button></div>\n                      </section>\n                      <footer>\n                        ";
+  buffer += escapeExpression(stack1) + "</div>\n                <div><button class=\"buy\">Add to cart</button></div>\n            </section>\n            <footer>\n            ";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.completed;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                      </footer>\n                    </section>\n\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                      <footer></footer>\n                    </section>\n                </div>\n                \n            ";
+  buffer += "\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
   return buffer;}
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                <p><a href=\"#\" productID=\"";
+  buffer += "\n                           <li productID=\"";
+  stack1 = depth0.id;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" class=\"";
+  stack1 = depth0.className;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\">\n                                <label>\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                    ";
+  stack1 = depth0.name;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"link-product-temp\">";
   stack1 = depth0.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</a></p>\n                                <p>";
+  buffer += escapeExpression(stack1) + "</a></p>\n                            <p>";
   stack1 = depth0.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                                <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
   stack1 = depth0.price;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            ";
+  buffer += escapeExpression(stack1) + "</p>\n                            -->\n                        ";
   return buffer;}
 
 function program6(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                            <h2>About ";
+  buffer += "\n                <h2>About ";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h2>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</h2>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.address;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.email;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.phone;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>    \n                        ";
+  buffer += escapeExpression(stack1) + "</p>    \n            ";
   return buffer;}
 
   stack1 = depth0.loading;

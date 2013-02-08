@@ -300,6 +300,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
     },
     preview: function(){
+        /*
              var pick = new MozActivity({
                  name: "pick",
                  data: {
@@ -318,7 +319,8 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             pick.onerror = function () { 
                 alert("Can't view the image!");
             };
-        //mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
+        */
+        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == "appBuilderView" && this.collection){
