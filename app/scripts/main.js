@@ -94,7 +94,13 @@ window.mozapps = window.mozapps || {
                         } 
                     );
                 } else {
-                    mozapps.productCollection = new mozapps.Collections.ProductCollection();
+                    // prepopulate with product data if we have an app already prepopulated
+                    if (mozapps.appCollection.length > 0) {
+                        mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
+                    } else {
+                        mozapps.productCollection = new mozapps.Collections.ProductCollection();    
+                    }
+                    
                     deferred.resolve();
                 }
             },

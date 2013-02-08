@@ -249,8 +249,130 @@ mozapps.defaultAppData = [
         "name": "Maria's Fine Crafts",
         "published": false,
         "version": "1.0",
-        "app_components": mozapps.templateFixtureData[0].app_components,
-        "templateID": mozapps.templateFixtureData[0].id
+        "templateID": mozapps.templateFixtureData[0].id,
+        "app_components": [
+          {
+            "component_name": "App Name",
+            "component_id": "name",
+            "completed": true,
+            "description": "Maria's Fine Crafts"
+          },
+          {
+            "component_name": "About Me",
+            "component_id": "about",
+            "completed": true,
+            "description": "Introduce yourself",
+            "properties": {
+              "description": "Maria's Fine Crafts gravitates towards the native visceral tradition of creating objects of significance and power.  It pokes fun at a culture of consumption and cannibalistic appetite and deeply desires to drag the genre of adornment far away from vain decoration.  Maria's Fine Crafts is unisex, vintage, conceptual art for wear.",
+              "address": "204 20th St, San Francisco, CA 94107",
+              "phone": "415-304-2842",
+              "email": "info@mariascrafts.com"
+            }
+          },
+          {
+            "component_name": "Theme",
+            "component_id": "theme",
+            "completed": true,
+            "description": "Change Themes",
+            "properties": {
+              "themes": [
+                {
+                    "themeName": "Espresso",
+                    "themeID": "theme-01",
+                    "themeImg": "imgs/themes/theme_01.png"
+                },
+                {
+                    "themeName": "Cream",
+                    "themeID": "theme-02",
+                    "themeImg": "imgs/themes/theme_02.png"
+                }
+              ],
+              "selectedTheme": "theme-01"
+            }
+          },
+          {
+            "component_name": "App Icon",
+            "component_id": "icon",
+            "completed": false,
+            "description": "Set the icon for your app",
+            "properties": {
+              "iconFilenames": ["images/60x60.jpg", "images/60x60.jpg"],
+              "selectedIcon": ""
+            }
+          },
+          {
+            "component_name": "Product List",
+            "component_id": "product-list",
+            "completed": true,
+            "description": "Add products to your store",
+            "properties": {
+              "productIDs": []
+            }
+          }
+        ],
+        "description": "description of small store template",
+        "categories": [
+          "Featured Templates",
+          "User Submitted Templates",
+          "Popular Templates"
+        ]
+    }
+];
+
+// default product data
+// imageStorage type can be 
+//      "package"       - image is stored with the pacakged app (use relative URL)
+//      "deviceStorage" - image is stored in Device Storage (use Device Storage API to get image)
+mozapps.defaultProductData = [
+    {
+        id: UUID.genV4().toString(),
+        appID: mozapps.defaultAppData[0].id,
+        name: "Woven Bone and Brass Body Art",
+        description: "14 inch woven brass links and bone beads with leather fringe.",
+        price: "200.00",
+        imgLargePath: "imgs/products/product_0_lg.jpg",
+        imgSmallPath: "imgs/products/product_0_sm.jpg",
+        imgStorageType: "package"
+    },
+    {
+        id: UUID.genV4().toString(),
+        appID: mozapps.defaultAppData[0].id,
+        name: "Charm Pendant",
+        description: "Brass and porcelain charms on a 20 inch brass chain.",
+        price: "75.00",
+        imgLargePath: "imgs/products/product_1_lg.jpg",
+        imgSmallPath: "imgs/products/product_1_sm.jpg",
+        imgStorageType: "package"
+    },
+    {
+        id: UUID.genV4().toString(),
+        appID: mozapps.defaultAppData[0].id,
+        name: "Skull Pendant",
+        description: "Bone skull with chained glass beads on an 8 inch silver choker.",
+        price: "69.00",
+        imgLargePath: "imgs/products/product_2_lg.jpg",
+        imgSmallPath: "imgs/products/product_2_sm.jpg",
+        imgStorageType: "package"
+    },
+    {
+        id: UUID.genV4().toString(),
+        appID: mozapps.defaultAppData[0].id,
+        name: "Scissor Pendant",
+        description: "4 inch copper pendant on a 20 inch copper chain.",
+        price: "89.00",
+        imgLargePath: "imgs/products/product_3_lg.jpg",
+        imgSmallPath: "imgs/products/product_3_sm.jpg",
+        imgStorageType: "package"
+    },
+    {
+        id: UUID.genV4().toString(),
+        appID: mozapps.defaultAppData[0].id,
+        name: "Leather and Brass Pendant",
+        description: "4 inch leather pendant with brass details and fine chain.",
+        price: "48.00",
+        imgLargePath: "imgs/products/product_4_lg.jpg",
+        imgSmallPath: "imgs/products/product_4_sm.jpg",
+        imgStorageType: "package"
     }
 ];
 
