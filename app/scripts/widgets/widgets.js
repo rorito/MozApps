@@ -1,17 +1,26 @@
 
 window.widgets = window.widgets || {
+    carouselClassNames : ["left-out", "left-left", "left", "", "right", "right-right", "right-out"],
+    getCarouselClassNameForIndex:function(itemIndex) {
+        var className = "";
+        if (itemIndex <= window.widgets.carouselClassNames.length - 1) {
+            className = window.widgets.carouselClassNames[itemIndex];
+        }
+        return className;
+    },
     carousel: function() {
         var listItems           = [];
         var activeCount         = null;
         var activeStartIndex    = 0;
         var indexOffset         = null;
-        var activeClassNames    = ["left-out", "left-left", "left", "", "right", "right-right", "right-out"];
+        //var activeClassNames    = ["left-out", "left-left", "left", "", "right", "right-right", "right-out"];
 
         this.init = function(carouselID) {
             //console.log('init: ' + carouselID);
             
             //console.log('init: ' + radioBtns.length);
-            activeCount = activeClassNames.length;
+            //console.log(window.widgets.carouselClassNames);
+            activeCount = window.widgets.carouselClassNames.length;
             // calculate index offset
             indexOffset = Math.floor(activeCount / 2);
             
@@ -19,6 +28,10 @@ window.widgets = window.widgets || {
             // init the items
             initItems(carouselID);
         };
+
+        this.getClassNames = function() {
+            return activeClassNames;
+        }
 
         // set up the container for swipe gestures
         var initContainer = function(carouselID) {

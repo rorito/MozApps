@@ -560,6 +560,8 @@ mozapps.Views.preview = Backbone.View.extend({
     //template: Handlebars.compile($("#appViewTemplate").html()),
     template: Handlebars.getTemplate("appViewTemplate"),
     viewName: "preview",
+    classNames: window.widgets.carouselClassNames,
+    productCarousel:null,
     events: {
         'click button#back' : "back",
         'click a.link-product-temp' : "showProductDetail"
@@ -577,9 +579,16 @@ mozapps.Views.preview = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
+            var counter = 0;
             var productList = [];
             mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
                 productList.push(element.toJSON());
+                // determine classname based on index
+                // blending in some visual markup (className) with the data here
+                // TODO: this needs to be smarter if there are less than 5 items in the carousel
+                productList[productList.length - 1].className = window.widgets.getCarouselClassNameForIndex(counter);
+                // update counter
+                counter++;
             });
 
             var aboutJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
@@ -591,8 +600,18 @@ mozapps.Views.preview = Backbone.View.extend({
             });
 
             this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON, theme: themeJSON.properties.selectedTheme }));
+
+            // underscore uses setTimeout under the hood so not sure this will work on device
+            _.defer( function( view ){ view.createCarousel();}, this );
         }
         return this;
+    },
+    createCarousel: function() {
+        //console.log('create carousel !!!');
+        // callback to instantiate carousel
+        productCarousel = new window.widgets.carousel();
+        // id should be part of view
+        productCarousel.init("#productCarousel");
     }
 });
 
