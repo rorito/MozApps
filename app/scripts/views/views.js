@@ -20,7 +20,7 @@
 //TODO - disable horiz scrolling
 //TODO - header gets stuck under status bar
 //TODO - albert figure out sonny
-// elementObject.css('width', (500 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+// elementObject.css('width', (800 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
 //TODO - albert fix flex issues in css
 
 // Handlebars.getTemplate = function(name) {
@@ -118,7 +118,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                     //TODO BUG in setting the width of the accordian, selector not working
                     //try width = auto?
                     //height of accordian rows hard coded in css
-                    elementObject.css('width', (500 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+                    elementObject.css('width', (800 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
                     
                 }, this);
 

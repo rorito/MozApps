@@ -111,8 +111,70 @@ window.mozapps.Utils.removeFromCollection = function(data,db) {
 
 mozapps.templateFixtureData = [
   {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Filmstrip",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Swipe through multiple gal- leries of your images. Tap to enlarge to full detail with text.",
+    "categories": [
+      "Featured Templates",
+      "Photo & Video Templates"
+    ],
+    "imgLargePath": "imgs/templates/filmstrip_lg.jpg",
+    "imgSmallPath": "imgs/templates/filmstrip_sm.jpg"
+  },
+  {
     "id": UUID.genV4().toString(),//"0736dd0d-6f0d-4b6f-98bb-9307d61c2fc4",
-    "name": "Small Store",
+    "name": "Large Store",
     "app_components": [
       {
         "component_name": "App Name",
@@ -173,18 +235,16 @@ mozapps.templateFixtureData = [
         }
       }
     ],
-    "description": "description of small store template",
+    "description": "Large Store is an e-com- merce app that features large images and many product categories.",
     "categories": [
-      "Featured Templates",
-      "Commerce Templates",
-      "Magazine Templates",
-      "Blogging Templates",
-      "Photo & Video Templates"
-    ]
+      "Commerce Templates"
+    ],
+    "imgLargePath": "imgs/templates/large_store_lg.jpg",
+    "imgSmallPath": "imgs/templates/large_store_sm.jpg"
   },
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
-    "name": "Portfolio",
+    "name": "Small Store",
     "app_components": [
       {
         "component_name": "App Name",
@@ -236,14 +296,386 @@ mozapps.templateFixtureData = [
         }
       }
     ],
-    "description": "description of portfolio template",
+    "description": "Small Store features a customizable catalog of product photos and an e-commerce service.",
+    "categories": [
+      "Commerce Templates"
+    ],
+    "imgLargePath": "imgs/templates/small_store_lg.jpg",
+    "imgSmallPath": "imgs/templates/small_store_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Front Page",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Front Page is a great template to give equal weight to your iimages and words.",
+    "categories": [
+      "Magazine Templates",
+      "Blogging Templates"
+    ],
+    "imgLargePath": "imgs/templates/front_page_lg.jpg",
+    "imgSmallPath": "imgs/templates/front_page_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Reader",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Reader allows you to pub- lish a list of articles to the front page of you app. Include video and audio as well.",
+    "categories": [
+      "Magazine Templates",
+      "Blogging Templates"
+    ],
+    "imgLargePath": "imgs/templates/reader_lg.jpg",
+    "imgSmallPath": "imgs/templates/reader_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Triad",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "The Triad template presents three bold images as links to your top entries.",
     "categories": [
       "Featured Templates",
-      "Commerce Templates",
       "Magazine Templates",
       "Blogging Templates",
       "Photo & Video Templates"
-    ]
+    ],
+    "imgLargePath": "imgs/templates/triad_lg.jpg",
+    "imgSmallPath": "imgs/templates/triad_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Squares",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Feature your photos on the front page of your app. Perfect for portfolio use.",
+    "categories": [
+      "Featured Templates",
+      "Blogging Templates",
+      "Photo & Video Templates"
+    ],
+    "imgLargePath": "imgs/templates/squares_lg.jpg",
+    "imgSmallPath": "imgs/templates/squares_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Lightbox",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Show your pictures in an automatic slideshow, or jump to your favorites, with Lightbox.",
+    "categories": [
+      "Photo & Video Templates"
+    ],
+    "imgLargePath": "imgs/templates/lightbox_lg.jpg",
+    "imgSmallPath": "imgs/templates/lightbox_sm.jpg"
+  },
+  {
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "name": "Hot Shot",
+    "app_components": [
+      {
+        "component_name": "App Name",
+        "component_id": "name",
+        "completed": false,
+        "description": "Name your application"
+      },
+      {
+        "component_name": "About Me",
+        "component_id": "about",
+        "completed": false,
+        "description": "Introduce yourself",
+        "properties": {
+          "description": "",
+          "address": "",
+          "phone": "",
+          "email": ""
+        }
+      },
+      {
+        "component_name": "Theme",
+        "component_id": "theme",
+        "completed": false,
+        "description": "Change Themes",
+        "properties": {
+          "themes": [
+            {
+                "themeName": "Dark",
+                "themeID": "theme-01",
+                "themeImg": "images/130x200.jpg"
+            },
+            {
+                "themeName": "Light",
+                "themeID": "theme-02",
+                "themeImg": "images/130x200.jpg"
+            }
+          ],
+          "selectedTheme": "theme-01"
+        }
+      },
+      {
+        "component_name": "App Icon",
+        "component_id": "icon",
+        "completed": false,
+        "description": "Set the icon for your app",
+        "properties": {
+          "iconFilenames": ["icon-01.png", "icon-02.png"],
+          "selectedIcon": ""
+        }
+      }
+    ],
+    "description": "Feature your best images in a big, bold display with Hot Shot. Play a slideshow or swipe to browse.",
+    "categories": [
+      "Featured Templates",
+      "Photo & Video Templates"
+    ],
+    "imgLargePath": "imgs/templates/hot_shot_lg.jpg",
+    "imgSmallPath": "imgs/templates/hot_shot_sm.jpg"
   }
 ];
 
@@ -253,7 +685,7 @@ mozapps.defaultAppData = [
         "name": "Maria's Fine Crafts",
         "published": false,
         "version": "1.0",
-        "templateID": mozapps.templateFixtureData[0].id,
+        "templateID": mozapps.templateFixtureData[2].id,
         "app_components": [
           {
             "component_name": "App Name",
