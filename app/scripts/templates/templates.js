@@ -305,10 +305,10 @@ function program4(depth0,data) {
   buffer += escapeExpression(stack1) + "\" class=\"";
   stack1 = depth0.className;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\">\n                                <label>\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                    ";
-  stack1 = depth0.name;
+  buffer += escapeExpression(stack1) + "\">\n                                <label>\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                    <img src=\"";
+  stack1 = depth0.imgSmallPath;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
+  buffer += escapeExpression(stack1) + "\" />\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"link-product-temp\">";
