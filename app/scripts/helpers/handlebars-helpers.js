@@ -6,7 +6,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   
   for (var key in items) {
     count++;
-    if(count > 1) {
+    if(count > 0) {
       initItemString = "";
     }
 
