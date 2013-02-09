@@ -111,7 +111,7 @@ window.mozapps.Utils.removeFromCollection = function(data,db) {
 
 mozapps.templateFixtureData = [
   {
-    "id": "0736dd0d-6f0d-4b6f-98bb-9307d61c2fc4",
+    "id": UUID.genV4().toString(),//"0736dd0d-6f0d-4b6f-98bb-9307d61c2fc4",
     "name": "Small Store",
     "app_components": [
       {
@@ -183,7 +183,7 @@ mozapps.templateFixtureData = [
     ]
   },
   {
-    "id": "124f391c-f74a-40af-bdbd-c10deef3dab3",
+    "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Portfolio",
     "app_components": [
       {
