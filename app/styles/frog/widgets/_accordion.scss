@@ -114,6 +114,9 @@ section[data-type="accordion"] > .list > li > .list-item {
 	overflow: scroll;
 }
 
+/* no arrow in accordian any more */
+/*
 .list > li > input[type="radio"]:checked+label.list-item {
 	background: $default_secondary_color url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat  97% 50%;
 }
+*/
