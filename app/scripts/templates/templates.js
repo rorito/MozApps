@@ -273,7 +273,7 @@ function program3(depth0,data) {
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button><span class=\"icon icon-menu\">menu</span></button>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
