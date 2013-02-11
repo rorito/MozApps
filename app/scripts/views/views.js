@@ -385,6 +385,18 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
             } else {
                 this.$el.html(this.template(this.model.toJSON()));
             }
+            // once it's in the DOM, set the foucus to name input
+            setTimeout(function(){
+                var nameField = $('#nameField');
+                if (nameField.length > 0) {
+                    nameField.bind('focus', function(event){
+                        var myValue = this.value;
+                        this.value = "";
+                        this.value = myValue;
+                    });
+                    nameField.focus();
+                }
+            });
         }
         return this;
     }
