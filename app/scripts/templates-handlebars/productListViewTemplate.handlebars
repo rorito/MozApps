@@ -7,7 +7,7 @@
                         <!-- TODO: make this an add icon -->
                         <a href="#"><span class="icon icon-info">info</span></a>
                         <!-- TODO: make this an edit icon where the list is populated -->
-                        <a href="#apps/{{appID}}/product-list/add" id="link-add-product"><span class="">+</span></a>
+                        <a href="#apps/{{appID}}/cameraGallery" id="link-add-product"><span class="">+</span></a>
                     </menu>
                     <h1>Product List</h1>
                 </header>
@@ -26,9 +26,12 @@
                                 {{#each products}}
                                     <li>
                                         <a href="#apps/{{appID}}/product-list/{{this.id}}">
-                                            <figure>
-                                                <img src="styles/temp/product_list_thumb.png" />
-                                            </figure>
+                                            {{#if_eq this.imgStorageType compare="devicestorage"}}
+                                                <figure id="{{this.id}}"></figure>
+                                            {{else}}
+                                                <figure><img src="{{this.imgSmallPath}}"></figure>
+                                            {{/if_eq}}
+
                                             <figcaption>
                                                 <p>{{this.name}}}</p>
                                                 <p>{{this.description}}</p>

@@ -158,7 +158,9 @@ window.mozapps = window.mozapps || {
   },
     init: function() {
         $.when(mozapps.initAppDB(), mozapps.initTemplateDB(), mozapps.initProductDB())
-        .done(function(){
+        .done(function(){            
+
+            //mozapps.testDS();
 
             mozapps.tmplListView = new mozapps.Views.templatesListView();
             mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.templateCollection});
@@ -168,6 +170,7 @@ window.mozapps = window.mozapps || {
             Backbone.history.start(); //{ pushState: true, root: mozapps.root }
         });
     }
+    
     // ,
     // initDBJS: function(){
     //     db.open({

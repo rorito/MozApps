@@ -9,7 +9,7 @@ ADB = ./adb
 
 FOLDER = ../../dist
 #FOLDER = ../../app
-NAME = mozappsinstall5
+NAME = mozappsinstall
 
 
 #add rule to compile templates

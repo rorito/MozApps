@@ -23,9 +23,19 @@
                     <!-- content region -->
                     <section role="region" data-type="content">
                         <section role="region" data-type="detail" class="template-detail box-padded">
-                        <p class="box-unpadded">
-                          <img src="styles/temp/product_list_thumb.png" />
-                        </p>
+                        
+                            {{#if add}}
+                                <a href="#apps/{{appID}}/cameraGallery">
+                                <p class="box-unpadded" id="productDetailImage">new
+                                </p>
+                                </a>
+                            {{else}}
+                                <a href="#apps/{{appID}}/cameraGallery/{{id}}">
+                                <p class="box-unpadded" id="productDetailImage">existing
+                                </p>
+                                </a>
+                            {{/if}}
+
                         <p class="box-unpadded">
                             <label class="label-dark">Item Name</label>
                             <input id="name" name="name" type="text" value="{{name}}}" />

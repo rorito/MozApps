@@ -11,7 +11,54 @@ $(document).ready(function(){
 				console.log(dump(data));
 	    	}
 	  	); 
-  	}	 
+  	}	
+
+
+
+        // var domRequest = storage.get("DCIM/102MZLLA/IMG_0003.jpg");
+        // domRequest.onsuccess = function(){
+        //     console.log("dom request success");
+        //     var file = this.result;
+        //     console.log(file.name);
+
+        //     var img = document.createElement("img");
+        //     img.src = window.URL.createObjectURL(file);
+        //     img.height = 60;
+        //     img.onload = function(e) {
+        //         window.URL.revokeObjectURL(this.src);
+        //     }
+        //     console.log("image")
+        //     console.log(img);
+        //     console.log(document.getElementsByTagName('body')[0]);
+        //     document.getElementsByTagName('body')[0].appendChild(img);
+        // }; 
+
+
+
+
+
+         // var storage = navigator.getDeviceStorage("pictures");
+
+
+        // var domRequest = storage.get("DCIM/102MZLLA/IMG_0003.jpg");
+        // domRequest.onsuccess = function(){
+        //     console.log("dom request success");
+        //     var file = this.result;
+        //     console.log(file.name);
+
+        //     var img = document.createElement("img");
+        //     img.src = window.URL.createObjectURL(file);
+        //     img.height = 60;
+        //     img.onload = function(e) {
+        //         window.URL.revokeObjectURL(this.src);
+        //     }
+        //     console.log("image")
+        //     console.log(img);
+        //     console.log(document.getElementsByTagName('body')[0]);
+        //     document.getElementsByTagName('body')[0].appendChild(img);
+        // };  
+
+
 });
 
 /**

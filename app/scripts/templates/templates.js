@@ -348,6 +348,17 @@ templates['fake-markup'] = template(function (Handlebars,depth0,helpers,partials
 
 
   return "//alert('loading');\n//mozapps.Templates.fakeMarkupTemplate = \"<p>test</p>\";\nmozapps.Templates.fakeMarkupTemplate = \"&lt;html&gt;\\r\\\n&lt;head&gt;\\r\\\n&lt;meta charset='utf-8'&gt;\\r\\\n&lt;metahttp-equiv='X-UA-Compatible'content='IE=edge,chrome=1'&gt;\\r\\\n&lt;title&gt;&lt;/title&gt;\\r\\\n&lt;metaname='description'content=''&gt;\\r\\\n&lt;metaname='viewport'content='width=device-width,initial-scale=1.0,maximum-scale=1.0'&gt;\\r\\\n&lt;metaname='apple-mobile-web-app-capable'content='yes'&gt;\\r\\\n&lt;linkrel='stylesheet'href='styles/main.css'&gt;\\r\\\n&lt;!--temp,forliverefreshdev--&gt;\\r\\\n&lt;style&gt;\\r\\\n#templateList,#templateDetail,#appBuilderEditIcon,#appBuilder,#productList,#productListEdit,#productAddImage,#productDetailView,#productDetailEdit,#appView,appBuilderPublishSubmit,#leftNav{\\r\\\n\\tdisplay:none;\\r\\\n}\\r\\\n&lt;/style&gt;\\r\\\n&lt;styletype='text/css'charset='utf-8'&gt;/*Seelicense.txtfortermsofusage*/\\r\\\n/**resetstyling**/\\r\\\n.firebugResetStyles{\\r\\\n\\tz-index:2147483646!important;\\r\\\n\\ttop:0!important;\\r\\\n\\tleft:0!important;\\r\\\n\\t\\display:block!important;\\r\\\n\\tborder:0none!important;\\r\\\n\\tmargin:0!important;\\r\\\n\\tpadding:0!important;\\r\\\n\\toutline:0!important;\\r\\\n\\tmin-width:0!important;\\r\\\n\\tmax-width:none!important;\\r\\\n\\tmin-height:0!important;\\r\\\n\\tmax-height:none!important;\\r\\\n\\tposition:fixed!important;\\r\\\n\\ttransform:rotate(0deg)!important;\\r\\\n\\ttransform-origin:50%50%!important;\\r\\\n\\tborder-radius:0!important;\\r\\\n\\tbox-shadow:none!important;\\r\\\n\\tbackground:transparentnone!important;\\r\\\n\\tpointer-events:none!important;\\r\\\n\\twhite-space:normal!important;\\r\\\n}\\r\\\nr\\\n.firebugBlockBackgroundColor{\\r\\\n\\tbackground-color:transparent!important;\\r\\\n}\\r\\\n\\t\\r\\\n\\t\\r\\\n\\t\\r\\\n\\t\\r\\\n\\t\\r\\\n\\t\\r\\\n\";\n//console.log(\">>>>>>>>>>>>>>>>hi\");";});
+templates['imageSubView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers; data = data || {};
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div id=";
+  foundHelper = helpers.imgSmallPath;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "></div>";
+  return buffer;});
 templates['myAppsSubViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
   var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -404,6 +415,12 @@ function program7(depth0,data) {
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }});
+templates['openApp'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "<button id=\"openAppButton\">Open App</button>\n<button id=\"backButton\">Back to App Builder</button>";});
 templates['productDetailEditTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
   var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -421,7 +438,12 @@ function program3(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\">\n                        <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        <p class=\"box-unpadded\">\n                          <img src=\"styles/temp/product_list_thumb.png\" />\n                        </p>\n                        <p class=\"box-unpadded\">\n                            <label class=\"label-dark\">Item Name</label>\n                            <input id=\"name\" name=\"name\" type=\"text\" value=\"";
+  buffer += "\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\">\n                        <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        \n                            ";
+  stack1 = depth0.add;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n                        <p class=\"box-unpadded\">\n                            <label class=\"label-dark\">Item Name</label>\n                            <input id=\"name\" name=\"name\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -436,7 +458,7 @@ function program3(depth0,data) {
   buffer += escapeExpression(stack1) + "\" />\n                        </p>\n                        ";
   stack1 = depth0.add;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(14, program14, data),fn:self.program(12, program12, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                        \n                        </section>\n                    </section>\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                      <footer></footer>\n                    </section>\n              </div>\n            ";
   return buffer;}
@@ -457,10 +479,34 @@ function program6(depth0,data) {
 
 function program8(depth0,data) {
   
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                                <a href=\"#apps/";
+  foundHelper = helpers.appID;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "/cameraGallery\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\">new\n                                </p>\n                                </a>\n                            ";
+  return buffer;}
+
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                                <a href=\"#apps/";
+  foundHelper = helpers.appID;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "/cameraGallery/";
+  foundHelper = helpers.id;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\">existing\n                                </p>\n                                </a>\n                            ";
+  return buffer;}
+
+function program12(depth0,data) {
+  
   
   return "\n                        ";}
 
-function program10(depth0,data) {
+function program14(depth0,data) {
   
   
   return "\n                        <p class=\"box-margin-top box-unpadded\">\n                          <button id=\"deleteProductDetail\">Delete</button>\n                        </p>\n                        ";}
@@ -491,7 +537,7 @@ function program3(depth0,data) {
   return buffer;}
 function program4(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
+  var buffer = "", stack1, stack2, foundHelper;
   buffer += "\n                                    <li>\n                                        <a href=\"#apps/";
   foundHelper = helpers.appID;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
@@ -499,7 +545,14 @@ function program4(depth0,data) {
   buffer += escapeExpression(stack1) + "/product-list/";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\">\n                                            <figure>\n                                                <img src=\"styles/temp/product_list_thumb.png\" />\n                                            </figure>\n                                            <figcaption>\n                                                <p>";
+  buffer += escapeExpression(stack1) + "\">\n                                            ";
+  stack1 = depth0.imgStorageType;
+  stack2 = {};
+  stack2['compare'] = "devicestorage";
+  foundHelper = helpers.if_eq;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n                                            <figcaption>\n                                                <p>";
   stack1 = depth0.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n                                                <p>";
@@ -510,12 +563,29 @@ function program4(depth0,data) {
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n                                            </figcaption>\n                                            <span class=\"preview-visual\">preview</span>\n                                        </a>\n                                    </li>\n                                ";
   return buffer;}
+function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                                                <figure id=\"";
+  stack1 = depth0.id;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\"></figure>\n                                            ";
+  return buffer;}
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                                                <figure><img src=\"";
+  stack1 = depth0.imgSmallPath;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\"></figure>\n                                            ";
+  return buffer;}
 
   buffer += "<div id=\"productList\" role=\"window\">\n                <!-- title bar region -->\n                <section role=\"region\" data-type=\"header\">\n                <header>\n                    <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                    <menu type=\"toolbar\">\n                        <!-- TODO: make this an add icon -->\n                        <a href=\"#\"><span class=\"icon icon-info\">info</span></a>\n                        <!-- TODO: make this an edit icon where the list is populated -->\n                        <a href=\"#apps/";
   foundHelper = helpers.appID;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "/product-list/add\" id=\"link-add-product\"><span class=\"\">+</span></a>\n                    </menu>\n                    <h1>Product List</h1>\n                </header>\n                </section>\n\n                <!-- content region -->\n                <section role=\"region\" data-type=\"content\">\n                    <header>Products</header>\n                    <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n                        ";
+  buffer += escapeExpression(stack1) + "/cameraGallery\" id=\"link-add-product\"><span class=\"\">+</span></a>\n                    </menu>\n                    <h1>Product List</h1>\n                </header>\n                </section>\n\n                <!-- content region -->\n                <section role=\"region\" data-type=\"content\">\n                    <header>Products</header>\n                    <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n                        ";
   stack1 = depth0.products;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.length;
   stack2 = {};

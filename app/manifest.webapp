@@ -1,9 +1,10 @@
 {
   "version": "0.1",
-  "name": "Moz Apps4",
+  "name": "Moz Apps",
   "description": "Create your own apps!",
   "launch_path": "/index.html",
   "orientation": "portrait-primary",
+  "type": "privileged",
   "fullscreen": true,
   "developer": {
     "name": "Frog",
