@@ -23,7 +23,8 @@ section[data-type="accordion"] .title {
 	font-size: 2.2rem;
 	font-weight: normal;
 	line-height: 3rem;
-	color: $default_text_color;
+	/*color: $default_text_color;*/
+	color: black;
 }
 
 section[data-type="accordion"] > .list {
