@@ -1,51 +1,67 @@
 {{#if loading}}
-                <h1>Loading...</h1>
-            {{else}}
-                <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->
-                <div id="appView" role="window" class="{{theme}}">
-                    <section role="region" data-type="outer-chrome" class="outer-chrome">
-                        <button id="back">Back</button>
-                    </section>
-                    <!-- title bar region -->
-                    <section role="region" data-type="header">
-                      <header>
-                        <button><span class="icon icon-menu">menu</span></button>
-                        <menu type="toolbar">
-                          <button><span class="icon icon-cart">cart</span></button>
-                        </menu>
-                        <h1>{{model.name}}}</h1>
-                      </header>
-                    </section>
+    <h1>Loading...</h1>
+{{else}}
+    <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->
+    <div id="appView" role="window" class="{{theme}}">
+        <section role="region" data-type="outer-chrome" class="outer-chrome">
+            <button id="back">Exit Preview</button>
+        </section>
+        <!-- title bar region -->
+        <section role="region" data-type="header">
+            <header>
+                <menu type="toolbar">
+                    <button><span class="icon icon-cart">cart</span></button>
+                </menu>
+                <h1>{{model.name}}}</h1>
+            </header>
+        </section>
 
-                    <!-- content region -->
-                    <section role="region" data-type="content" class="fade">
-                      <section role="region" data-type="detail" class="template-detail box-padded">
-                        <div class="carousel">
-                          <p>carousel</p>
-                            {{#each products}}
-                                <p><a href="#" productID="{{this.id}}" class="link-product-temp">{{this.name}}</a></p>
-                                <p>{{this.description}}</p>
-                                <p>{{this.price}}</p>
-                            {{/each}}
-                        </div>
-                        <div>{{product.name}}</div>
-                        <div><button class="buy">Add to cart</button></div>
-                      </section>
-                      <footer>
-                        {{#if about.completed}}
-                            <h2>About {{model.name}}</h2>
-                            <p>{{about.properties.description}}</p>
-                            <p>{{about.properties.address}}</p>
-                            <p>{{about.properties.email}}</p>
-                            <p>{{about.properties.phone}}</p>    
-                        {{/if}}
-                      </footer>
-                    </section>
+        <!-- content region -->
+        <section role="region" data-type="content" class="fade">
+            <section role="region" data-type="detail" class="template-detail box-padded">
+                <!-- TODO: check if id needs to be unique on app level -->
+                <div id="productCarousel" class="carousel">
+                    <div>
 
-                    <!-- footer region -->
-                    <section role="region" data-type="footer">
-                      <footer></footer>
-                    </section>
+                        <ul>
+                        {{#products}}
+                           <li productID="{{this.id}}" class="{{this.className}}">
+                                <label>
+                                    <input type="radio" name="carousel-group" />
+                                    <img src="{{this.imgSmallPath}}" />
+                                </label>
+                            </li>
+                            
+                            <!--
+                            <p><a href="#" productID="{{this.id}}" class="link-product-temp">{{this.name}}</a></p>
+                            <p>{{this.description}}</p>
+                            <p>{{this.price}}</p>
+                            -->
+                        {{/products}}
+                        </ul>
+                    </div>
                 </div>
-                
+                <div>
+                    <h2 id="product-name">{{selectedProduct.name}}</h2>
+                    <h3 id="product-price">${{selectedProduct.price}}</h3>
+                </div>
+                <div><button class="buy">Add to cart</button></div>
+            </section>
+            <footer>
+            {{#if about.completed}}
+                <h2>About {{model.name}}</h2>
+                <p>{{about.properties.description}}</p>
+                <p>{{about.properties.address}}</p>
+                <p>{{about.properties.email}}</p>
+                <p>{{about.properties.phone}}</p>    
             {{/if}}
+            </footer>
+        </section>
+
+        <!-- footer region -->
+        <section role="region" data-type="footer">
+            <footer></footer>
+        </section>
+    </div>
+
+{{/if}}

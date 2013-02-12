@@ -1,49 +1,54 @@
 <div id="templateDetail" role="window">
 
-                <!-- title bar region -->
-                <section role="region" data-type="header">
-                  <header>
-                    <button id="back"><span class="icon icon-back">back</span></button>
-                    <h1>Featured Templates</h1>
-                  </header>
-                </section>
+    <!-- title bar region -->
+    <section role="region" data-type="header">
+        <header>
+            <button id="back"><span class="icon icon-back">back</span></button>
+            <h1>Featured Templates</h1>
+        </header>
+    </section>
 
-                <!-- content region -->
-                <section role="region" data-type="content">
-                  <section role="region" data-type="header" class="template-detail-header">
-                    {{#if prevTemplateId}}
-                        <button class="previous" data-id="{{prevTemplateId}}"><span class="hidden"><</span></button>
-                    {{/if}}
-                    {{#if nextTemplateId}}
-                        <button class="next" data-id="{{nextTemplateId}}"><span class="hidden">></span></button>
-                    {{/if}}
-                    <div id="templateNameList">
-                      <ul>
-                        <li>{{name}}</li>
-                      </ul>
-                    </div>
-                    <p class="template-index">{{index}} of {{count}}</p>
-                  </section>
-                  <section role="region" data-type="detail" class="template-detail cf">
-                    <img src="styles/temp/template_icon_large_store.png" alt="">
-                    <div>
-                      <p>{{name}} {{description}}</p>
-                      <button id="useButton" class="recommend">Choose</button>
-                    </div>
-                  </section>
-                  <section role="region" data-type="list">
-                    <header>Included Components</header>
-                    <ul>
-                        {{#each app_components}}
-                            <li><p>{{this.component_name}}</p>
-                            <p>{{this.description}}</p></li>
-                        {{/each}}
-                    </ul>
-                  </section>
-                </section>
+    <!-- content region -->
+    <section role="region" data-type="content">
+        <section role="region" data-type="header" class="template-detail-header">
+        {{#if prevTemplateId}}
+            <button class="previous" data-id="{{prevTemplateId}}"><span class="hidden"><</span></button>
+        {{/if}}
+        {{#if nextTemplateId}}
+            <button class="next" data-id="{{nextTemplateId}}"><span class="hidden">></span></button>
+        {{/if}}
+            <div id="templateNameList">
+                <ul>
+                    <li>{{name}}</li>
+                </ul>
+            </div>
+            <p class="template-index">{{index}} of {{count}}</p>
+        </section>
+        <section role="region" data-type="detail" class="template-detail cf">
+            <img src="styles/temp/template_icon_large_store.png" alt="">
+            <div>
+                <p>{{name}} {{description}}</p>
+            {{#if_eq isEnabled compare=true}}
+                <button id="useButton" class="recommend">Choose</button>
+            {{else}}
+                <button id="useButton" disabled>Choose</button>
+            {{/if_eq}}    
+            </div>
+        </section>
+        <section role="region" data-type="content" class="box-padded">
+            <h2>Customize</h2>
+            <p>Choose a color theme, image display style, application icon and menu style that suits your app.</p>
+            <h2>Add Content</h2>
+            <p>Add images from your phone’s camera or gallery. Tell the world about yourself or your business by adding unique pages to your app.</p>
+            <h2>Socialize</h2>
+            <p>Popularize your app by easily adding links to your favorite social networks.</p>
+            <h2>Sell</h2>
+            <p>Set up a store so you can sell directly from your application.</p>
+        </section>
+    </section>
 
-                <!-- footer region -->
-                <section role="region" data-type="footer">
-                  <footer></footer>
-                </section>
-              </div>
+    <!-- footer region -->
+    <section role="region" data-type="footer">
+    <footer></footer>
+    </section>
+</div>

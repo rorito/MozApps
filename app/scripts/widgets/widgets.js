@@ -1,24 +1,49 @@
 
 window.widgets = window.widgets || {
+    carouselClassNames : ["left-out", "left-left", "left", "", "right", "right-right", "right-out"],
+    getCarouselClassNameForIndex:function(itemIndex) {
+        var className = "";
+        var classNames = window.widgets.carouselClassNames;
+        if (itemIndex <= classNames.length - 2) {
+            className = classNames[itemIndex + 1];
+        } else {
+            // hide anything else that's to the right
+            className = classNames[classNames.length - 1];
+        }
+        return className;
+    },
     carousel: function() {
         var listItems           = [];
         var activeCount         = null;
         var activeStartIndex    = 0;
         var indexOffset         = null;
-        var activeClassNames    = ["left-out", "left-left", "left", "", "right", "right-right", "right-out"];
-
+        var self                = null;
+        
+        // initialze
         this.init = function(carouselID) {
             //console.log('init: ' + carouselID);
             
             //console.log('init: ' + radioBtns.length);
-            activeCount = activeClassNames.length;
+            //console.log(window.widgets.carouselClassNames);
+            activeCount = window.widgets.carouselClassNames.length;
             // calculate index offset
             indexOffset = Math.floor(activeCount / 2);
             
             initContainer(carouselID);
             // init the items
             initItems(carouselID);
+
+            // create reference to the carousel
+            self = this;
+            console.log('init');
+            console.log(self);
         };
+
+        // handler for when swipe it done
+        this.onSwipeDone = null;
+
+        // handler for when main item is clicked
+        this.onMainItemClicked = null;
 
         // set up the container for swipe gestures
         var initContainer = function(carouselID) {
@@ -38,7 +63,7 @@ window.widgets = window.widgets || {
                 var radioBtn = radioBtns[i];
                 radioBtn.onclick = function(event) {
                     handleRadioBtnClick(event, this);
-                }
+                };
 
                 
 
@@ -109,7 +134,12 @@ window.widgets = window.widgets || {
             if (targetIndex != activeStartIndex + indexOffset) {
                 setActiveItems(targetIndex);    
             } else {
-                alert('go to product detail');
+                console.log('go to product detail');
+                //console.log(self.onMainItemClicked);
+                //debugger;
+                if (null != self.onMainItemClicked) {
+                    self.onMainItemClicked(targetIndex, targetLI);
+                }
             }
             
         }
@@ -144,7 +174,13 @@ window.widgets = window.widgets || {
                 //alert(event);
                 // we are changing multiple properties, so just catch the
                 //console.log(event);
-                alert('update text content for li: ' + targetIndex);
+                console.log('update text content for li: ' + targetIndex);
+                console.log(self.onSwipeDone);
+                if (null != self.onSwipeDone) {
+                    // pass back element and index
+                    self.onSwipeDone(targetIndex, this);
+                }
+
             }
         }
     }

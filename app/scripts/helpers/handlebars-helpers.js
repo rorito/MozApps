@@ -1,12 +1,12 @@
 Handlebars.registerHelper('templateListViewHelper', function(items, options) {
   var out = "";
   var count = 0;
-  var tempImgUrl = "styles/temp/template_icon_store.png";
+  var tempImgUrl;//"styles/temp/template_icon_store.png";
   var initItemString = " checked";
   
   for (var key in items) {
     count++;
-    if(count > 1) {
+    if(count > 0) {
       initItemString = "";
     }
 
@@ -15,6 +15,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){
+      tempImgUrl = element.imgSmallPath;
       out += "<li class='list-item'><a href='#templates/" + element.id + "'>" + 
       "<img src=" + tempImgUrl + " class='template-thumbnail'><span>"
       + element.name + "</span></a></li>";  

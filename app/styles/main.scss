@@ -199,6 +199,10 @@ a:active { color: $default_text_color; text-decoration: none; }
     left: 100%;
 }
 
+.stage-hidden {
+    display:none;
+}
+
 .transition {
     -moz-transition-duration: .375s;
     -webkit-transition-duration: .375s;

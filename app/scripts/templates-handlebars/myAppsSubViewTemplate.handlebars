@@ -7,13 +7,13 @@
         </li>  
     {{else}}
         <li>
-        <input id="item-0" type="radio" name="radio">
+        <input id="item-0" type="radio" name="radio" checked>
           <label for="item-0" class="list-item open">My Apps</label>
           <div id="myAppsBody" class="list-item-body">
             <ul class="horizontal-list">
             {{#each myApps}}
                 <li class="list-item">
-                    <a href="#apps/{{id}}"><img src="styles/temp/template_icon_store.png" class="template-thumbnail"><span>{{name}}</span></a>
+                    <a href="#apps/{{id}}"><img src="imgs/templates/small_store_sm.jpg" class="template-thumbnail"><span>{{name}}</span></a>
                 </li>
             {{/each}}
             </ul>
