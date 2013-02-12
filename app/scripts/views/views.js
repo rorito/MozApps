@@ -801,6 +801,17 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             
 
             this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
+
+
+            // TODO: use imgLargePath
+            var imgPath = productJSON.attributes.imgSmallPath;
+            var productID = productJSON.attributes.id;
+            var containerID = "img-container-" + productID;
+            //console.log('>>>>>> try to get product ID: ' + productID);
+            //console.log('containerID: ' + containerID);
+            ///console.log('container exists?');
+            //console.log($('#' + containerID));
+            window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
         }
         return this;
     }

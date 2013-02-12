@@ -211,7 +211,7 @@ function program5(depth0,data) {
   return buffer;});
 templates['appViewProductDetailTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -220,7 +220,7 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
+  var buffer = "", stack1, stack2, foundHelper;
   buffer += "\n    <!-- represents application template screen, prefixed appTmpl\n    APPLICATION PRODUCT DETAIL with PREVIEW -->\n    <div id=\"appViewProductDetail\" role=\"window\" class=\"";
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
@@ -229,12 +229,16 @@ function program3(depth0,data) {
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n                <img src=\"";
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n            ";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgLargePath;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"img-detail\"/>\n            </section>\n            <footer>\n            <h2>\n                <span>";
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgStorageType;
+  stack2 = {};
+  stack2['compare'] = "devicestorage";
+  foundHelper = helpers.if_eq;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </section>\n            <footer>\n            <h2>\n                <span>";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
@@ -250,6 +254,28 @@ function program3(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
+  return buffer;}
+function program4(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <div id=\"img-container-";
+  stack1 = depth0.product;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.id;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\"></div>\n            ";
+  return buffer;}
+
+function program6(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <img src=\"";
+  stack1 = depth0.product;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgLargePath;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" class=\"img-detail\"/>\n            ";
   return buffer;}
 
   stack1 = depth0.loading;
