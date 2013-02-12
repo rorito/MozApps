@@ -10,6 +10,8 @@ window.mozapps = window.mozapps || {
   Utils: {},
   currentPage: {},
   isMenuOpen: false,
+  appEl: null,
+  navEl:null,
   initAppDB: function(){
     var deferred = Deferred();
 
@@ -147,7 +149,6 @@ window.mozapps = window.mozapps || {
       storeName: 'templates',
       keyPath: 'id',
       autoIncrement: true,
-      appEl: null,
       onStoreReady: function(){
         console.log('Templates IDB ObjectStore ready!');
 
@@ -199,6 +200,7 @@ window.mozapps = window.mozapps || {
 
             // menu init
             appEl = document.querySelector("#appContainer");
+            navEl = document.querySelector("#leftNav");
             isMenuOpen = false;
             $('#resetAppLink').click(function(event){
                 event.preventDefault();
@@ -255,8 +257,13 @@ window.mozapps = window.mozapps || {
     toggleSideMenu:function() {
         if (isMenuOpen) {
             $(appEl).removeClass('app-slide-right');
+            //TODO: replace with callback
+            setTimeout(function() {
+                $(leftNav).addClass('nav-hidden');
+            }, 375);
         } else {
             $(appEl).addClass('app-slide-right');    
+            $(leftNav).removeClass('nav-hidden');
         }
         isMenuOpen = !isMenuOpen;
     }

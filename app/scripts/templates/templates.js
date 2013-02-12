@@ -167,7 +167,11 @@ function program3(depth0,data) {
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h1>\n                      <div><img src=\"styles/temp/template_icon_store.png\" class=\"template-thumbnail-small\"></div>\n                      <div>\n                        <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                        <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                      </div>\n                    </section>\n                    <section role=\"region\" data-type=\"list\">\n                      <header class=\"list-header\">Edit your app components</header>\n                      <ul data-type=\"edit\" class=\"components-list\">\n                        ";
+  buffer += escapeExpression(stack1) + "</h1>\n                      <div><img src=\"styles/temp/template_icon_store.png\" class=\"template-thumbnail-small\"></div>\n                      <div>\n                        <h1>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</h1>\n                        <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                        <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                      </div>\n                    </section>\n                    <section role=\"region\" data-type=\"list\">\n                      <header class=\"list-header\">Edit your app components</header>\n                      <ul data-type=\"edit\" class=\"components-list\">\n                        ";
   stack1 = depth0.app_components;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data});

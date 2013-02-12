@@ -190,6 +190,9 @@ a:active { color: $default_text_color; text-decoration: none; }
     left:75%
 }
 
+.nav-hidden {
+    display:none;
+}
 
 .page {
     position: absolute;
