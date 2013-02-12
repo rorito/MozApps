@@ -9,7 +9,7 @@ window.mozapps = window.mozapps || {
   Templates: {},
   Utils: {},
   currentPage: {},
-
+  isMenuOpen: false,
   initAppDB: function(){
     var deferred = Deferred();
 
@@ -31,6 +31,7 @@ window.mozapps = window.mozapps || {
                 if(count > 0){
                     mozapps.appsDB.getAll(
                         function(data){
+                            console.log(">>>>>>>>>>>>>>>>>>> appDB data");
                             mozapps.appCollection = new mozapps.Collections.AppCollection(data);
                             deferred.resolve();
                         }, 
@@ -43,7 +44,17 @@ window.mozapps = window.mozapps || {
                 } else {
                     console.log(">>>>>> add default product(s)");
                     console.log(mozapps.defaultAppData)
+
+                    _.each(mozapps.defaultAppData, function(element, index, list){
+                        //TODO don't add to collection as json, make models first
+                         console.log("***** put app in db");
+                        mozapps.appsDB.put(element, function(){}, function(){});
+                    });
+
+                    console.log("*create appCollection with fixture json");
                     mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+                    
+
                     deferred.resolve();
                 }
             },
@@ -65,7 +76,7 @@ window.mozapps = window.mozapps || {
 
   initProductDB: function(){
     var deferred = Deferred();
-
+    console.log('initProductDB');
     mozapps.productsDB = new IDBStore({
       dbVersion: 1,
       storePrefix: 'mozapps-',
@@ -84,6 +95,7 @@ window.mozapps = window.mozapps || {
                 if(count > 0){
                     mozapps.productsDB.getAll(
                         function(data){
+                            console.log("product indexeddb data");
                             mozapps.productCollection = new mozapps.Collections.ProductCollection(data);
                             deferred.resolve();
                         }, 
@@ -96,8 +108,14 @@ window.mozapps = window.mozapps || {
                 } else {
                     // prepopulate with product data if we have an app already prepopulated
                     if (mozapps.appCollection.length > 0) {
+                        _.each(mozapps.defaultProductData, function(element, index, list){
+                            //TODO don't add to collection as json, make models first
+                            mozapps.productsDB.put(element, function(){}, function(){});
+                        });
+                        console.log("product default data");
                         mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
                     } else {
+                        console.log("empty collection no data");
                         mozapps.productCollection = new mozapps.Collections.ProductCollection();    
                     }
                     
@@ -129,6 +147,7 @@ window.mozapps = window.mozapps || {
       storeName: 'templates',
       keyPath: 'id',
       autoIncrement: true,
+      appEl: null,
       onStoreReady: function(){
         console.log('Templates IDB ObjectStore ready!');
 
@@ -173,9 +192,75 @@ window.mozapps = window.mozapps || {
             mozapps.appBuilderView = new mozapps.Views.appBuilderView({collection: mozapps.appCollection});
 
             mozapps.router = new mozapps.Routers.ApplicationRouter(); 
+
+
+            // backbone history breaking in chrome
             Backbone.history.start(); //{ pushState: true, root: mozapps.root }
+
+            // menu init
+            appEl = document.querySelector("#appContainer");
+            isMenuOpen = false;
+            $('#resetAppLink').click(function(event){
+                event.preventDefault();
+                console.log('reset the app here');
+                // clear the products
+                mozapps.productsDB.clear(
+                    function() {
+                        console.log('cler okay');
+                        mozapps.appsDB.clear(
+                            function() {
+                                console.log('clear app ok');
+
+                                // have to call index.html, because pacakged app on the
+                                // phone cannot route to default location from "/"
+                                window.location.href = "/index.html";
+                                
+                            },
+                            function() {
+                                alert("There was a reset error, please close the app by holding the home button.");
+                            }
+                        );
+                    },
+                    function() {
+                        alert("There was a reset error, please close the app by holding the home button.");
+                    }
+                );
+                
+                /*
+                productsClear.onsuccess = function(event) {
+                    // clear the apps
+                    var appClear = mozapps.appsDB.clear();
+                    appClear.onsuccess = function() {
+                        $.when(mozapps.initAppDB(), mozapps.initProductDB())
+                        .done(function(){
+                            //window.indexedDB.deleteDatabase("mozapps-a");
+                            console.log('app reset????');
+                            window.location.href = "/";
+                        });    
+                    };
+                    appClear.onerror = function() {
+                        alert("There was a reset error, please close the app by holding the home button.");
+                    };
+                }
+                productsClear.onerror = function(event) {
+                    alert("There was a reset error, please close the app by holding the home button.");
+                };
+                */
+
+                
+            });
+
         });
+    },
+    toggleSideMenu:function() {
+        if (isMenuOpen) {
+            $(appEl).removeClass('app-slide-right');
+        } else {
+            $(appEl).addClass('app-slide-right');    
+        }
+        isMenuOpen = !isMenuOpen;
     }
+
     // ,
     // initDBJS: function(){
     //     db.open({

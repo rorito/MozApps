@@ -137,6 +137,12 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     template: Handlebars.templates['screenViewTemplate'],
     initialize: function() {
     },
+    events: {
+        'click button#menuButton' : 'showMenu'
+    },
+    showMenu: function() {
+        mozapps.toggleSideMenu();
+    },
     render: function(eventName) {
         console.log("template list view");
         if(mozapps.currentPage == "templatesListView"){
@@ -239,8 +245,13 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         'click button#appBuilderPublish': "publish",
         'click button#appBuilderPreview': "preview"
     },
-    back : function() {
-        window.history.back();
+    back : function(event) {
+        console.log(event);
+        //event.preventDefault();
+        //window.history.back();
+        // TODO: make this smarter so it knows to go to template chooses or main view
+        console.log(">>>>>>>>>>>>>>>>>>>>>>> route to home")
+        mozapps.router.navigate("#home", true);
     },
     name: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/name",true);
@@ -323,11 +334,14 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     render: function(eventName) {
+        console.log("render app builder view");
+        console.log(mozapps.currentPage);
         if(mozapps.currentPage == "appBuilderView" && this.collection){
             this.model = this.collection.get(this.appID);
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
+                console.log(this.model.toJSON());
                 this.$el.html(this.template(this.model.toJSON()));
             }
         }

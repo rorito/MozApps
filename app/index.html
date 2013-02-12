@@ -10,8 +10,37 @@
         <!-- TODO disable pinch zoom //-->
         
     </head>
-    <body>
-        <div id="appContainer"></div>
+    <body role="application">
+        <!-- represents application screen
+           LEFT NAV -->
+
+        <nav id="leftNav">
+            <header>
+                <h1>Menu</h1>
+            </header>
+            <div class="inner">
+                <ul>
+                    <!--
+                    <li>
+                        <a href="#">Jewelry</a>
+                        <button></button>
+                    </li>
+                    <li>
+                        <a href="#">Handbags</a>
+                        <button></button>
+                    </li>
+                    <li>
+                    <a href="#">Other Items</a>
+                    <button></button>
+                    </li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Contact Proprietor</a></li>
+                    -->
+                    <li><a id="resetAppLink" href="#">Reset App</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="appContainer" class="app-slide-none"></div>
         
         <!--script src="http://10.118.118.146:9090/target/target-script-min.js#anonymous"></script-->
 

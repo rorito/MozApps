@@ -177,7 +177,19 @@ a:active { color: $default_text_color; text-decoration: none; }
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    transition-property: left;
+    transition-duration:0.375s;   
+    z-index:99; /* temp fix for chrome */
 }
+
+.app-slide-none {
+    left:0%;
+}
+
+.app-slide-right {
+    left:75%
+}
+
 
 .page {
     position: absolute;

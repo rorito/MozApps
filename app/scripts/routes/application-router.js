@@ -1,6 +1,7 @@
 mozapps.Routers.ApplicationRouter = Backbone.Router.extend({
 routes:{
         "":"templates",
+        "home":"templates",
         "templates/:id":"templateDetails",
         "apps/:id":"appBuilder",
         "apps/:id/name":"appBuilderName",
@@ -34,8 +35,14 @@ routes:{
         $(event.target).removeClass('tappable-active');
     },
 
+    templateHomeWrapper: function() {
+        console.log("home wrapper");
+        templates();
+    },
+
     templates: function(){
         mozapps.currentPage = mozapps.tmplListView.viewName;
+        console.log(" render slide templates");
         this.slidePage(
             mozapps.tmplListView.render()
         );
