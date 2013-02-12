@@ -285,7 +285,7 @@ function program6(depth0,data) {
   else { return ''; }});
 templates['appViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
@@ -322,23 +322,30 @@ function program3(depth0,data) {
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.completed;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
   return buffer;}
 function program4(depth0,data) {
   
-  var buffer = "", stack1;
+  var buffer = "", stack1, stack2, foundHelper;
   buffer += "\n                           <li productID=\"";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"";
   stack1 = depth0.className;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\">\n                                <label>\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                    <img src=\"";
-  stack1 = depth0.imgSmallPath;
+  buffer += escapeExpression(stack1) + "\">\n                                <label id=\"label-";
+  stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\" />\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
+  buffer += escapeExpression(stack1) + "\">\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                ";
+  stack1 = depth0.imgStorageType;
+  stack2 = {};
+  stack2['compare'] = "package";
+  foundHelper = helpers.if_eq;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"link-product-temp\">";
@@ -352,8 +359,16 @@ function program4(depth0,data) {
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n                            -->\n                        ";
   return buffer;}
+function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                                    <img src=\"";
+  stack1 = depth0.imgSmallPath;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" />\n                                ";
+  return buffer;}
 
-function program6(depth0,data) {
+function program7(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                <h2>About ";

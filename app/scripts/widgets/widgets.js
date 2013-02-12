@@ -1,6 +1,6 @@
 
 window.widgets = window.widgets || {
-    carouselClassNames : ["left-out", "left-left", "left", "", "right", "right-right", "right-out"],
+    carouselClassNames : ["left-off", "left-left", "left", "", "right", "right-right", "right-off"],
     getCarouselClassNameForIndex:function(itemIndex) {
         var className = "";
         var classNames = window.widgets.carouselClassNames;

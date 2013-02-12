@@ -762,6 +762,25 @@ mozapps.Views.preview = Backbone.View.extend({
                 mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
             }
         }).bind(this);
+
+
+        // add images from device storage async
+        // loop through the products
+        //console.log('loop through product list');
+        //console.log(productList);
+        for (var i=0; i<productList.length; i++) {
+            var product = productList[i];
+            //console.log("loooping: " + i);
+            //console.log(product);
+            if (product.imgStorageType === "devicestorage") {
+                var imgPath = product.imgSmallPath;
+                var containerID = "label-" + product.id;
+                //console.log('imgPath: ' + imgPath);
+                //console.log('containerID: ' + containerID);
+                window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 156);        
+            }
+        }
+        
     }
 });
 
