@@ -308,9 +308,23 @@ routes:{
         setTimeout(function() {
             // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
             $(self.currentPage.el).attr('class', 'page transition ' + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
+             
+         
+         
             // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
+
+            setTimeout(function() {
+                var stageLeftObj = $('.stage-left');
+                if (stageLeftObj.length > 0) { 
+                    stageLeftObj.addClass('stage-hidden');
+                }
+                var stageRightObj = $('.stage-right');
+                if (stageRightObj.length > 0) {
+                    stageRightObj.addClass('stage-hidden');
+                }
+            }, 375);  // 375 is harcoded css transition time, transitionend event handler finicky
         });
     }
 
