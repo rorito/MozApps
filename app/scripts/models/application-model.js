@@ -113,6 +113,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Filmstrip",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -175,6 +176,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"0736dd0d-6f0d-4b6f-98bb-9307d61c2fc4",
     "name": "Large Store",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -245,6 +247,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Small Store",
+    "isEnabled": true,
     "app_components": [
       {
         "component_name": "App Name",
@@ -306,6 +309,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Front Page",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -368,6 +372,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Reader",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -430,6 +435,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Triad",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -494,6 +500,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Squares",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -557,6 +564,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Lightbox",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",
@@ -618,6 +626,7 @@ mozapps.templateFixtureData = [
   {
     "id": UUID.genV4().toString(),//"124f391c-f74a-40af-bdbd-c10deef3dab3",
     "name": "Hot Shot",
+    "isEnabled": false,
     "app_components": [
       {
         "component_name": "App Name",

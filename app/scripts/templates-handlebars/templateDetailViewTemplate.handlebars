@@ -28,7 +28,11 @@
             <img src="styles/temp/template_icon_large_store.png" alt="">
             <div>
                 <p>{{name}} {{description}}</p>
+            {{#if_eq isEnabled compare=true}}
                 <button id="useButton" class="recommend">Choose</button>
+            {{else}}
+                <button id="useButton" disabled>Choose</button>
+            {{/if_eq}}    
             </div>
         </section>
         <section role="region" data-type="content" class="box-padded">
