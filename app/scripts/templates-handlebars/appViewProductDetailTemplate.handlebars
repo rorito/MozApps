@@ -21,7 +21,11 @@
         <!-- content region -->
         <section role="region" data-type="content" class="fade">
             <section role="region" data-type="detail" class="template-detail">
+            {{#if_eq product.attributes.imgStorageType compare="devicestorage"}}
+                <div id="img-container-{{{product.attributes.id}}"></div>
+            {{else}}
                 <img src="{{product.attributes.imgLargePath}}" class="img-detail"/>
+            {{/if_eq}}
             </section>
             <footer>
             <h2>
