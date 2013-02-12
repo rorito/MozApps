@@ -672,7 +672,7 @@ mozapps.Views.preview = Backbone.View.extend({
     productCarousel:null,
     productList: [],
     events: {
-        'click button#back' : "back"
+        'click button#back' : "back",
         'click a.link-product-temp' : "showProductDetail"
     },
     back : function() {
