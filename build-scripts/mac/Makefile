@@ -9,10 +9,8 @@ ADB = ./adb
 
 FOLDER = ../../dist
 #FOLDER = ../../app
-NAME = mozappsinstall
+NAME = mozappsinstall9
 
-
-#add rule to compile templates
 
 handlebars:
 	handlebars ../../app/scripts/templates-handlebars/*.handlebars -f ../../app/scripts/templates/templates.js

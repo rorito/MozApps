@@ -167,11 +167,11 @@ function program3(depth0,data) {
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h1>\n                      <div><img src=\"styles/temp/template_icon_store.png\" class=\"template-thumbnail-small\"></div>\n                      <div>\n                        <h1>";
-  foundHelper = helpers.name;
+  buffer += escapeExpression(stack1) + "</h1>\n                      <div><img src=\"";
+  foundHelper = helpers.imgSmallPath;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h1>\n                        <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                        <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                      </div>\n                    </section>\n                    <section role=\"region\" data-type=\"list\">\n                      <header class=\"list-header\">Edit your app components</header>\n                      <ul data-type=\"edit\" class=\"components-list\">\n                        ";
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"template-thumbnail-small\"></div>\n                      <div>\n                        <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                        <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                      </div>\n                    </section>\n                    <section role=\"region\" data-type=\"list\">\n                      <header class=\"list-header\">Edit your app components</header>\n                      <ul data-type=\"edit\" class=\"components-list\">\n                        ";
   stack1 = depth0.app_components;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data});
@@ -484,7 +484,7 @@ templates['openApp'] = template(function (Handlebars,depth0,helpers,partials,dat
   return "<button id=\"openAppButton\">Open App</button>\n<button id=\"backButton\">Back to App Builder</button>";});
 templates['productDetailEditTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -499,12 +499,14 @@ function program3(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\">\n                        <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        \n                            ";
-  stack1 = depth0.add;
+  buffer += "\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\">\n                        <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        ";
+  stack1 = depth0.imgStorageType;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
+  stack2['compare'] = "packaged";
+  foundHelper = helpers.if_eq;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                        <p class=\"box-unpadded\">\n                            <label class=\"label-dark\">Item Name</label>\n                            <input id=\"name\" name=\"name\" type=\"text\" value=\"";
+  buffer += "\n\n                            \n\n                        <p class=\"box-unpadded\">\n                            <label class=\"label-dark\">Item Name</label>\n                            <input id=\"name\" name=\"name\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -519,7 +521,7 @@ function program3(depth0,data) {
   buffer += escapeExpression(stack1) + "\" />\n                        </p>\n                        ";
   stack1 = depth0.add;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(14, program14, data),fn:self.program(12, program12, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(17, program17, data),fn:self.program(15, program15, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                        \n                        </section>\n                    </section>\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                      <footer></footer>\n                    </section>\n              </div>\n            ";
   return buffer;}
@@ -541,14 +543,34 @@ function program6(depth0,data) {
 function program8(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
+  buffer += "\n                            <figure><img src=\"";
+  foundHelper = helpers.imgSmallPath;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\"></figure>\n                        ";
+  return buffer;}
+
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n                        ";
+  stack1 = depth0.add;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(13, program13, data),fn:self.program(11, program11, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "                            \n                        ";
+  return buffer;}
+function program11(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                <a href=\"#apps/";
   foundHelper = helpers.appID;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "/cameraGallery\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\">new\n                                </p>\n                                </a>\n                            ";
+  buffer += escapeExpression(stack1) + "/cameraGallery\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\"></p>\n                                </a>\n                            ";
   return buffer;}
 
-function program10(depth0,data) {
+function program13(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
   buffer += "\n                                <a href=\"#apps/";
@@ -559,15 +581,15 @@ function program10(depth0,data) {
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\">existing\n                                </p>\n                                </a>\n                            ";
+  buffer += escapeExpression(stack1) + "\">\n                                <p class=\"box-unpadded\" id=\"productDetailImage\"></p>\n                                </a>\n                            ";
   return buffer;}
 
-function program12(depth0,data) {
+function program15(depth0,data) {
   
   
   return "\n                        ";}
 
-function program14(depth0,data) {
+function program17(depth0,data) {
   
   
   return "\n                        <p class=\"box-margin-top box-unpadded\">\n                          <button id=\"deleteProductDetail\">Delete</button>\n                        </p>\n                        ";}
@@ -642,7 +664,7 @@ function program7(depth0,data) {
   buffer += escapeExpression(stack1) + "\"></figure>\n                                            ";
   return buffer;}
 
-  buffer += "<div id=\"productList\" role=\"window\">\n                <!-- title bar region -->\n                <section role=\"region\" data-type=\"header\">\n                <header>\n                    <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                    <menu type=\"toolbar\">\n                        <!-- TODO: make this an add icon -->\n                        <a href=\"#\"><span class=\"icon icon-info\">info</span></a>\n                        <!-- TODO: make this an edit icon where the list is populated -->\n                        <a href=\"#apps/";
+  buffer += "<div id=\"productList\" role=\"window\">\n                <!-- title bar region -->\n                <section role=\"region\" data-type=\"header\">\n                <header>\n                    <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                    <menu type=\"toolbar\">\n                        <!-- TODO: make this an add icon -->\n                        <!-- TODO: make this an edit icon where the list is populated -->\n                        <a href=\"#apps/";
   foundHelper = helpers.appID;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -718,7 +740,11 @@ function program7(depth0,data) {
   foundHelper = helpers.count;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.count; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\n        </section>\n        <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n            <img src=\"styles/temp/template_icon_large_store.png\" alt=\"\">\n            <div>\n                <p>";
+  buffer += escapeExpression(stack1) + "</p>\n        </section>\n        <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n            <img src=\"";
+  foundHelper = helpers.imgSmallPath;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" alt=\"\">\n            <div>\n                <p>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }

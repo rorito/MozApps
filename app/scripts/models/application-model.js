@@ -760,7 +760,9 @@ mozapps.defaultAppData = [
           "Featured Templates",
           "User Submitted Templates",
           "Popular Templates"
-        ]
+        ],
+        "imgLargePath": "imgs/templates/small_store_lg.jpg",
+        "imgSmallPath": "imgs/templates/small_store_sm.jpg"
     }
 ];
 
