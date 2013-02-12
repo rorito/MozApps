@@ -40,7 +40,6 @@ Handlebars.registerHelper('themeSelectHelper', function(themes, selectedTheme, o
     return out;
 });
 
-
 Handlebars.registerHelper("debug", function(optionalValue) { 
   console.log("Current Context"); 
   console.log("===================="); 

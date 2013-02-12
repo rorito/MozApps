@@ -185,7 +185,7 @@ window.mozapps = window.mozapps || {
   },
     init: function() {
         $.when(mozapps.initAppDB(), mozapps.initTemplateDB(), mozapps.initProductDB())
-        .done(function(){
+        .done(function(){            
 
             mozapps.tmplListView = new mozapps.Views.templatesListView();
             mozapps.tmplDetailView = new mozapps.Views.templateDetailView({collection: mozapps.templateCollection});

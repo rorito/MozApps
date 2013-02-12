@@ -41,6 +41,19 @@
 //     return Handlebars.templates[name];
 // };
 
+mozapps.Views.imageSubView = Backbone.View.extend({
+    template: Handlebars.templates['imageSubView'],
+    initialize: function(){
+        this.listenTo(this.model, "change", this.render);
+        this.render();
+    },
+    render: function(){
+        this.$el.html(this.template(this.model));
+        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.imgSmallPath, 153);
+        return this;
+    }
+});
+
 mozapps.Views.appSubView = Backbone.View.extend({
     //template: Handlebars.compile($("#myAppsSubViewTemplate").html()),
     //template: Handlebars.getTemplate("myAppsSubViewTemplate"),
@@ -272,65 +285,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/ecommerce",true);
     },
     publish: function(){
-            console.log("try publish");
-            
-            // var sharing = new MozActivity({
-            //     name: "share",
-            //     data: {
-            //         //type: "url", // Possibly text/html in future versions,
-            //         number: 1,
-            //         url: "http://robertnyman.com"
-            //     }
-            // });
-
-            // sharing.onerror = function() { 
-            //     console.log('Failed to launch generated app with activity.'); 
-            // };
-            // sharing.onsuccess = function() { 
-            //     console.log('Launched generated app with activity.'); 
-            // };
-
-            var sharing = new MozActivity({
-                name: "share",
-                data: {
-                    //type: "url", // Possibly text/html in future versions,
-                    type: "foo",
-                    number: 1,
-                    url: "http://robertnyman.com"
-                }
-            });
-            
-            sharing.onerror = function() { 
-                console.log('Failed to launch generated app with activity.'); 
-            };
-            sharing.onsuccess = function() { 
-                console.log('Launched generated app with activity.'); 
-            };
-            
-
-        //mozapps.router.navigate("#apps/"+this.appID+"/publish",true);
+        mozapps.router.navigate("#apps/"+this.appID+"/publish/marketplace/submit",true);
     },
     preview: function(){
-        /*
-             var pick = new MozActivity({
-                 name: "pick",
-                 data: {
-                     type: ["image/png", "image/jpg", "image/jpeg"]
-                  }
-             });
-
-            pick.onsuccess = function () { 
-                var img = document.createElement("img");
-                img.src = window.URL.createObjectURL(this.result.blob);
-                var imagePresenter = document.querySelector("#image-presenter");
-                imagePresenter.appendChild(img);
-                imagePresenter.style.display = "block";
-            };
-
-            pick.onerror = function () { 
-                alert("Can't view the image!");
-            };
-        */
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     render: function(eventName) {
@@ -361,7 +318,7 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
         'click button#nameFormDone': "changeName"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     changeName: function(event){
         var self = this;
@@ -426,7 +383,7 @@ mozapps.Views.appBuilderAboutView = Backbone.View.extend({
         'click button#aboutFormDone' : "saveAbout"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     saveAbout: function(event){
         var self = this;
@@ -479,7 +436,7 @@ mozapps.Views.appBuilderTheme = Backbone.View.extend({
         'click button#themeFormDone' : "saveTheme"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     saveTheme: function(event){
         event.preventDefault();
@@ -557,14 +514,16 @@ mozapps.Views.productList = Backbone.View.extend({
     template: Handlebars.templates['productListViewTemplate'],
     viewName: "productList",
     events: {
-        'click button#back' : "back",
-        'click button#addProduct' : "addProduct"
+        'click button#back' : "back"
+        //'click #link-add-product' : "addProduct"
     },
     back : function() {
         mozapps.router.navigate("#apps/"+this.appID,true);
     },
     addProduct: function(event){
-        mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
+        console.log("add Product");
+        mozapps.router.navigate("#apps/"+this.appID+"/cameraGallery",true);
+        //mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -584,15 +543,21 @@ mozapps.Views.productList = Backbone.View.extend({
                     products: productList,
                     appID: this.appID
                 }));
+
+                productList.forEach(function(element, index, array){
+                    if(element.imgStorageType == "devicestorage" && element.imgSmallPath){
+                        //will async append an image from device storage to the given HTMLElement id (second arg)
+                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                    }
+                });
             }
         }
         return this;
     }
 });
 
+
 mozapps.Views.productListDetailEdit = Backbone.View.extend({
-    //template: Handlebars.compile($("#productDetailEditTemplate").html()),
-    //template: Handlebars.getTemplate("productDetailEditTemplate"),
     template: Handlebars.templates['productDetailEditTemplate'],
     viewName: "productListDetailEdit",
     events: {
@@ -601,7 +566,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
         'click button#deleteProductDetail' : "deleteProduct"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
     },
     deleteProduct: function(event){
         mozapps.productCollection.remove(this.model);
@@ -611,38 +576,88 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
         var self = this;
         event.preventDefault();
 
-        if(this.productID == "add"){
-            //new product
-            console.log("create new product")
-            var newProduct = new mozapps.Models.ProductModel({
-                id: UUID.genV4().toString(),
-                appID: this.appID,
-                name: $('#name').val(),
-                description: $('#description').val(),
-                price: $('#price').val()
-            });
-            mozapps.productCollection.add(newProduct);
+        console.log("save Product")
+        console.log(mozapps.productID)
+
+        if(mozapps.productID == "add"){
+                //new product
+                var prodName = $('#name').val();
+                if(!prodName || prodName == ""){
+                    prodName = "New Product";
+                }
+                console.log("create new product")
+                var newProduct = new mozapps.Models.ProductModel({
+                    id: UUID.genV4().toString(),
+                    appID: this.appID,
+                    name: prodName,
+                    description: $('#description').val(),
+                    price: $('#price').val(),
+                    imgLargePath: mozapps.productImage156.originalFilename,
+                    imgSmallPath: mozapps.productImage156.resizedFilename,
+                    imgStorageType: "devicestorage"
+                });
+                mozapps.productCollection.add(newProduct);
         } else {
             //update existing product
             console.log("updating existing product");
             this.model.set({
                 name: $('#name').val(),
                 description: $('#description').val(),
-                price: $('#price').val()
+                price: $('#price').val(),
+                imgLargePath: mozapps.productImage156.originalFilename,
+                imgSmallPath: mozapps.productImage156.resizedFilename,
+                imgStorageType: "devicestorage"
             });
         }
 
 
-        mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
+        mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list",true);
     },
     render: function(eventName) {
+        console.log("product detail edit render");
         if(mozapps.currentPage == this.viewName){
             if(!this.model || this.model == "add"){
-                this.$el.html(this.template({add: true}));
+                console.log("product detail - add new product");
+                console.log("resized filename: " + mozapps.productImage156.resizedFilename);
+                
+                //render template first so we have DOM element to inject image into on callback
+                this.$el.html(this.template({add: true, appID: this.appID}));
+                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage156.resizedFilename, 'productDetailImage', 156);
+                // var imgObj = {
+                //     filename: mozapps.productImage156.resizedFilename,
+                //     size: 156,
+                //     url: ""
+                // };
+                // $.when(window.mozapps.Utils.getImageFromDeviceStorage(imgObj))
+                // .done(function(imgObj){         
+                //     console.log("deferred done - new")
+                //     console.log(imgObj)            
+                //     this.$el.html(this.template({ model: this.model.toJSON(), imageURL: imgObj.url}));    
+                // });
+
             } else {
+                console.log("edit existing product");
                 console.log(this.model.toJSON());
+                
+                // var imgObj = {
+                //     filename: this.model.toJSON().imgSmallPath,
+                //     size: 156,
+                //     url: ""
+                // };
+
+                // $.when(window.mozapps.Utils.getImageFromDeviceStorage(imgObj))
+                // .done(function(imgObj){
+                //     var self = this;
+                //     console.log("deferred done - existing")            
+                //     console.log(imgObj)
+                //     this.$el.html(this.template({ model: this.model.toJSON(), imageURL: imgObj.url}));    
+                // });
+
                 this.$el.html(this.template(this.model.toJSON()));
+                window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, 'productDetailImage', 156);
             }
+
+            //this.imageSubView = new mozapps.Views.imageSubView({el: this.$el.find('#imageSubView'), model: this.model});
         }
         return this;
     }
@@ -658,9 +673,18 @@ mozapps.Views.preview = Backbone.View.extend({
     productList: [],
     events: {
         'click button#back' : "back"
+        'click a.link-product-temp' : "showProductDetail"
     },
     back : function() {
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
+    },
+    showProductDetail: function(event) {
+        event.preventDefault();
+        console.log(event.currentTarget);
+        var targetLink = event.currentTarget;
+        var productID = targetLink.getAttribute("productID");
+
+        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -828,11 +852,12 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
                 this.$el.html(this.template( { loading: true } ));
             } else {
                 this.$el.html(this.template(this.model.toJSON()));
-                console.log('creat sub view');
+                console.log('create sub view');
+                console.log(this.appID);
                 //console.log(this.$el.find('#publishMarkupContainer'));
                 //console.log(window.document.getElementById("publishMarkupContainer"));
                 // create and render sub view
-                this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({el: this.$el.find('#publishMarkupContainer')});
+                this.mySubView = new mozapps.Views.appBuilderPublishSubmitSubView({appID: this.appID, el: this.$el.find('#publishMarkupContainer')});
 
                 // start interval
                 this.intervalID = window.setInterval(this.handleInterval, this.intervalTime, this);
@@ -849,7 +874,9 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
             window.clearInterval(self.intervalID);
             self.intervalID = -1;
             self.counter = 0;
-            console.log(">>> do next action after publish");
+
+            //do something at end of animation here
+            mozapps.router.navigate("#apps/"+self.appID+"/publish/done",true);
         }
 
     }
@@ -867,7 +894,47 @@ mozapps.Views.appBuilderPublishSubmitSubView = Backbone.View.extend({
     },
     render: function(eventName) {
         console.log('render subview');
-        this.$el.html(mozapps.Templates.fakeMarkupTemplate);        
+        this.$el.html(this.template);        
+        return this;
+    }
+});
+
+mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
+    template: Handlebars.templates['openApp'],
+    viewName: "appBuilderPublishOpenAppView",
+    initialize: function(){
+    },
+    events: {
+        'click button#openAppButton' : "openApp",
+        'click button#backButton' : "back",
+    },
+    back : function() {
+        mozapps.router.navigate("#apps/"+this.appID,true);
+    },
+    openApp : function() {
+        var sharing = new MozActivity({
+                name: "share",
+                data: {
+                    //type: "url", // Possibly text/html in future versions,
+                    type: "foo",
+                    number: 1,
+                    url: "http://www.mozapps.com"
+                }
+            });
+            
+            sharing.onerror = function() { 
+                console.log('Failed to launch generated app with activity.'); 
+            };
+            sharing.onsuccess = function() { 
+                console.log('Launched generated app with activity.'); 
+            };
+
+    },
+    render: function(eventName) {
+        if(mozapps.currentPage == this.viewName){
+            console.log("open view render - current")
+            this.$el.html(this.template());
+        }
         return this;
     }
 });
