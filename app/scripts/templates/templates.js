@@ -12,7 +12,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <!-- represents application screen APP BUILDER NAME -->\n                <div id=\"appBuilderAbout\" role=\"window\">\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                        <header>\n                            <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                            <menu type=\"toolbar\">\n                                <button id=\"aboutFormDone\">Done</button>\n                            </menu>\n                            <h1>Describe Your App</h1>\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                        <form id=\"aboutForm\">\n                            <p>\n                                <label class=\"label-dark\">Description</label>\n                                <textarea rows=\"4\" id=\"description\">";
+  buffer += "\n                <!-- represents application screen APP BUILDER NAME -->\n                <div id=\"appBuilderAbout\" role=\"window\">\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                        <header>\n                            <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                            <menu type=\"toolbar\">\n                                <button id=\"aboutFormDone\">Done</button>\n                            </menu>\n                            <h1>About Me</h1>\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                        <form id=\"aboutForm\">\n                            <p>\n                                <label class=\"label-dark\">Description</label>\n                                <textarea rows=\"4\" id=\"description\">";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -216,35 +216,40 @@ templates['appViewProductDetailTemplate'] = template(function (Handlebars,depth0
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <!-- represents application template screen, prefixed appTmpl\n                   APPLICATION PRODUCT DETAIL with PREVIEW -->\n                <div id=\"appViewProductDetail\" role=\"window\" class=\"";
+  buffer += "\n    <!-- represents application template screen, prefixed appTmpl\n    APPLICATION PRODUCT DETAIL with PREVIEW -->\n    <div id=\"appViewProductDetail\" role=\"window\" class=\"";
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                        <button id=\"back\">Back</button>\n                    </section>\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                      <header>\n                        <button><span class=\"icon icon-menu\">menu</span></button>\n                        <menu type=\"toolbar\">\n                          <button><span class=\"icon icon-cart\">cart</span></button>\n                        </menu>\n                        <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                  <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n                      </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"fade\">\n                      <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n                        <img src=\"styles/temp/product_detail.png\" class=\"img-detail\"/>\n                      </section>\n                      <footer>\n                        <h2>\n                            <span>";
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n                <img src=\"";
+  stack1 = depth0.product;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgLargePath;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" class=\"img-detail\"/>\n            </section>\n            <footer>\n            <h2>\n                <span>";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</span>\n                            <button class=\"buy\">Add to cart</button>\n                        </h2>\n                        <h2>";
+  buffer += escapeExpression(stack1) + "</span>\n                <button class=\"buy\">Add to cart</button>\n            </h2>\n            <h2>";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.price;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h2>\n                        <p>";
+  buffer += escapeExpression(stack1) + "</h2>\n            <p>";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                      </footer>\n                    </section>\n\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                      <footer></footer>\n                    </section>\n                </div>\n                \n            ";
+  buffer += escapeExpression(stack1) + "</p>\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
   return buffer;}
 
   stack1 = depth0.loading;
@@ -254,87 +259,102 @@ function program3(depth0,data) {
   else { return ''; }});
 templates['appViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n                <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->\n                <div id=\"appView\" role=\"window\" class=\"";
+  buffer += "\n    <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->\n    <div id=\"appView\" role=\"window\" class=\"";
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                        <button id=\"back\">Back</button>\n                    </section>\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                      <header>\n                        <button><span class=\"icon icon-menu\">menu</span></button>\n                        <menu type=\"toolbar\">\n                          <button><span class=\"icon icon-cart\">cart</span></button>\n                        </menu>\n                        <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n                      </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"fade\">\n                      <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                        <div class=\"carousel\">\n                          <p>carousel</p>\n                            ";
-  stack1 = depth0.products;
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                <!-- TODO: check if id needs to be unique on app level -->\n                <div id=\"productCarousel\" class=\"carousel\">\n                    <div>\n\n                        <ul>\n                        ";
+  foundHelper = helpers.products;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  else { stack1 = depth0.products; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   stack2 = {};
-  stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if (!helpers.products) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                        </div>\n                        <div>";
-  stack1 = depth0.product;
+  buffer += "\n                        </ul>\n                    </div>\n                </div>\n                <div>\n                    <h2 id=\"product-name\">";
+  stack1 = depth0.selectedProduct;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                        <div><button class=\"buy\">Add to cart</button></div>\n                      </section>\n                      <footer>\n                        ";
+  buffer += escapeExpression(stack1) + "</h2>\n                    <h3 id=\"product-price\">$";
+  stack1 = depth0.selectedProduct;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.price;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "</h3>\n                </div>\n                <div><button class=\"buy\">Add to cart</button></div>\n            </section>\n            <footer>\n            ";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.completed;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                      </footer>\n                    </section>\n\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                      <footer></footer>\n                    </section>\n                </div>\n                \n            ";
+  buffer += "\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
   return buffer;}
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                <p><a href=\"#\" productID=\"";
+  buffer += "\n                           <li productID=\"";
+  stack1 = depth0.id;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" class=\"";
+  stack1 = depth0.className;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\">\n                                <label>\n                                    <input type=\"radio\" name=\"carousel-group\" />\n                                    <img src=\"";
+  stack1 = depth0.imgSmallPath;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "\" />\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
   stack1 = depth0.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"link-product-temp\">";
   stack1 = depth0.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</a></p>\n                                <p>";
+  buffer += escapeExpression(stack1) + "</a></p>\n                            <p>";
   stack1 = depth0.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                                <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
   stack1 = depth0.price;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            ";
+  buffer += escapeExpression(stack1) + "</p>\n                            -->\n                        ";
   return buffer;}
 
 function program6(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                            <h2>About ";
+  buffer += "\n                <h2>About ";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h2>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</h2>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.address;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.email;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.phone;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>    \n                        ";
+  buffer += escapeExpression(stack1) + "</p>    \n            ";
   return buffer;}
 
   stack1 = depth0.loading;
@@ -389,7 +409,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\">\n          <label for=\"item-0\" class=\"list-item open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
+  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
   stack1 = depth0.myApps;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
@@ -403,7 +423,7 @@ function program7(depth0,data) {
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\"><img src=\"styles/temp/template_icon_store.png\" class=\"template-thumbnail\"><span>";
+  buffer += escapeExpression(stack1) + "\"><img src=\"imgs/templates/small_store_sm.jpg\" class=\"template-thumbnail\"><span>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -603,55 +623,53 @@ templates['screenViewTemplate'] = template(function (Handlebars,depth0,helpers,p
   return "<div id=\"templateList\" role=\"window\">\n\n<!-- title bar region -->\n<section role=\"region\">\n  <header>\n    <button id=\"menuButton\"><span class=\"icon icon-menu\">menu</span></button>\n    <h1>Mozillapps</h1>\n  </header>\n</section>\n\n<!-- content region -->\n<section role=\"region\" data-type=\"accordion\">\n    <ul id=\"appList\" class=\"list\">\n\n    </ul>\n    <ul id=\"templatelist\" class=\"list\">\n\n    </ul>\n</section>\n\n<!-- footer region -->\n<section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n</section>\n</div> ";});
 templates['templateDetailViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                        <button class=\"previous\" data-id=\"";
+  buffer += "\n            <button class=\"previous\" data-id=\"";
   foundHelper = helpers.prevTemplateId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.prevTemplateId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\"><span class=\"hidden\"><</span></button>\n                    ";
+  buffer += escapeExpression(stack1) + "\"><span class=\"hidden\"><</span></button>\n        ";
   return buffer;}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                        <button class=\"next\" data-id=\"";
+  buffer += "\n            <button class=\"next\" data-id=\"";
   foundHelper = helpers.nextTemplateId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.nextTemplateId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\"><span class=\"hidden\">></span></button>\n                    ";
+  buffer += escapeExpression(stack1) + "\"><span class=\"hidden\">></span></button>\n        ";
   return buffer;}
 
 function program5(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                            <li><p>";
-  stack1 = depth0.component_name;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
-  stack1 = depth0.description;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p></li>\n                        ";
-  return buffer;}
+  
+  return "\n                <button id=\"useButton\" class=\"recommend\">Choose</button>\n            ";}
 
-  buffer += "<div id=\"templateDetail\" role=\"window\">\n\n                <!-- title bar region -->\n                <section role=\"region\" data-type=\"header\">\n                  <header>\n                    <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                    <h1>Featured Templates</h1>\n                  </header>\n                </section>\n\n                <!-- content region -->\n                <section role=\"region\" data-type=\"content\">\n                  <section role=\"region\" data-type=\"header\" class=\"template-detail-header\">\n                    ";
+function program7(depth0,data) {
+  
+  
+  return "\n                <button id=\"useButton\" disabled>Choose</button>\n            ";}
+
+  buffer += "<div id=\"templateDetail\" role=\"window\">\n\n    <!-- title bar region -->\n    <section role=\"region\" data-type=\"header\">\n        <header>\n            <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n            <h1>Featured Templates</h1>\n        </header>\n    </section>\n\n    <!-- content region -->\n    <section role=\"region\" data-type=\"content\">\n        <section role=\"region\" data-type=\"header\" class=\"template-detail-header\">\n        ";
   stack1 = depth0.prevTemplateId;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    ";
+  buffer += "\n        ";
   stack1 = depth0.nextTemplateId;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    <div id=\"templateNameList\">\n                      <ul>\n                        <li>";
+  buffer += "\n            <div id=\"templateNameList\">\n                <ul>\n                    <li>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                      </ul>\n                    </div>\n                    <p class=\"template-index\">";
+  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n            <p class=\"template-index\">";
   foundHelper = helpers.index;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.index; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -659,7 +677,7 @@ function program5(depth0,data) {
   foundHelper = helpers.count;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.count; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\n                  </section>\n                  <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n                    <img src=\"styles/temp/template_icon_large_store.png\" alt=\"\">\n                    <div>\n                      <p>";
+  buffer += escapeExpression(stack1) + "</p>\n        </section>\n        <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n            <img src=\"styles/temp/template_icon_large_store.png\" alt=\"\">\n            <div>\n                <p>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -667,12 +685,14 @@ function program5(depth0,data) {
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\n                      <button id=\"useButton\" class=\"recommend\">Choose</button>\n                    </div>\n                  </section>\n                  <section role=\"region\" data-type=\"list\">\n                    <header>Included Components</header>\n                    <ul>\n                        ";
-  stack1 = depth0.app_components;
+  buffer += escapeExpression(stack1) + "</p>\n            ";
+  stack1 = depth0.isEnabled;
   stack2 = {};
-  stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack2['compare'] = true;
+  foundHelper = helpers.if_eq;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    </ul>\n                  </section>\n                </section>\n\n                <!-- footer region -->\n                <section role=\"region\" data-type=\"footer\">\n                  <footer></footer>\n                </section>\n              </div>";
+  buffer += "    \n            </div>\n        </section>\n        <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n            <h2>Customize</h2>\n            <p>Choose a color theme, image display style, application icon and menu style that suits your app.</p>\n            <h2>Add Content</h2>\n            <p>Add images from your phone’s camera or gallery. Tell the world about yourself or your business by adding unique pages to your app.</p>\n            <h2>Socialize</h2>\n            <p>Popularize your app by easily adding links to your favorite social networks.</p>\n            <h2>Sell</h2>\n            <p>Set up a store so you can sell directly from your application.</p>\n        </section>\n    </section>\n\n    <!-- footer region -->\n    <section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n    </section>\n</div>";
   return buffer;});
 templates['templatesSubViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
