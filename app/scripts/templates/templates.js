@@ -284,11 +284,15 @@ function program3(depth0,data) {
   stack2 = {};
   if (!helpers.products) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                        </ul>\n                    </div>\n                </div>\n                <div>";
-  stack1 = depth0.product;
+  buffer += "\n                        </ul>\n                    </div>\n                </div>\n                <div>\n                    <h2 id=\"product-name\">";
+  stack1 = depth0.selectedProduct;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                <div><button class=\"buy\">Add to cart</button></div>\n            </section>\n            <footer>\n            ";
+  buffer += escapeExpression(stack1) + "</h2>\n                    <h3 id=\"product-price\">$";
+  stack1 = depth0.selectedProduct;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.price;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "</h3>\n                </div>\n                <div><button class=\"buy\">Add to cart</button></div>\n            </section>\n            <footer>\n            ";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.completed;
   stack2 = {};

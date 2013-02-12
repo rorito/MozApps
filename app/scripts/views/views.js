@@ -650,13 +650,21 @@ mozapps.Views.preview = Backbone.View.extend({
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
             var counter = 0;
+            var selectedProduct = {};
             var productList = [];
             mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
                 productList.push(element.toJSON());
                 // determine classname based on index
                 // blending in some visual markup (className) with the data here
                 // TODO: this needs to be smarter if there are less than 5 items in the carousel
-                productList[productList.length - 1].className = window.widgets.getCarouselClassNameForIndex(counter);
+                var className = window.widgets.getCarouselClassNameForIndex(counter);
+                var lastProductAdded = productList[productList.length - 1];
+                lastProductAdded.className = className;
+                if (className === "") {
+                    // empty classname is the selected one
+                    selectedProduct.name = lastProductAdded.name;
+                    selectedProduct.price = lastProductAdded.price;
+                }
                 // update counter
                 counter++;
             });
@@ -668,8 +676,16 @@ mozapps.Views.preview = Backbone.View.extend({
             var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
                 return elem.component_id == "theme";
             });
-
-            this.$el.html(this.template({model: this.model.toJSON(), products: productList, about: aboutJSON, theme: themeJSON.properties.selectedTheme }));
+            console.log(selectedProduct);
+            this.$el.html(this.template(
+                {
+                    model: this.model.toJSON(), 
+                    products: productList, 
+                    about: aboutJSON, 
+                    theme: themeJSON.properties.selectedTheme, 
+                    selectedProduct: selectedProduct 
+                })
+            );
 
             // underscore uses setTimeout under the hood so not sure this will work on device
             _.defer( function( view ){ view.createCarousel();}, this );
