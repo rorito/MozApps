@@ -641,6 +641,7 @@ mozapps.Views.preview = Backbone.View.extend({
     viewName: "preview",
     classNames: window.widgets.carouselClassNames,
     productCarousel:null,
+    productList: [],
     events: {
         'click button#back' : "back"
     },
@@ -651,7 +652,7 @@ mozapps.Views.preview = Backbone.View.extend({
         if(mozapps.currentPage == this.viewName){
             var counter = 0;
             var selectedProduct = {};
-            var productList = [];
+            productList = [];
             mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
                 productList.push(element.toJSON());
                 // determine classname based on index
@@ -676,7 +677,7 @@ mozapps.Views.preview = Backbone.View.extend({
             var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
                 return elem.component_id == "theme";
             });
-            console.log(selectedProduct);
+            //console.log(selectedProduct);
             this.$el.html(this.template(
                 {
                     model: this.model.toJSON(), 
@@ -701,11 +702,16 @@ mozapps.Views.preview = Backbone.View.extend({
         productCarousel.init("#productCarousel");
         // set callbacks
         productCarousel.onSwipeDone = (function(targetIndex, targetEl) {
-            console.log('on swipe done: ' + targetIndex);
-            console.log('on swipe done: ' + targetEl);
+            //console.log('on swipe done: ' + targetIndex);
+            //console.log('on swipe done: ' + targetEl);
 
             // get product info based on app id and product id
-            // update the dom
+            if (targetIndex < productList.length) {
+                var newSelectedProduct = productList[targetIndex];
+                // update the dom
+                $('#product-name').html(newSelectedProduct.name);
+                $('#product-price').html('$' + newSelectedProduct.price);
+            }
         }).bind(this);
         
         productCarousel.onMainItemClicked = (function(targetIndex, targetEl) {
