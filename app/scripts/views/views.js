@@ -195,6 +195,8 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         var self = this;        
         var tmpl = this.collection.get(this.templateID);
 
+        debugger;
+
         if(tmpl){
             var newMozApp = new mozapps.Models.AppModel({
                 id: UUID.genV4().toString(),
@@ -202,7 +204,9 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 published: false,
                 version: "1.0",
                 app_components: tmpl.toJSON().app_components,
-                templateID: self.templateID
+                templateID: self.templateID,
+                imgLargePath: tmpl.toJSON().imgLargePath,
+                imgSmallPath: tmpl.toJSON().imgSmallPath
             });
             mozapps.appCollection.add(newMozApp);
             console.log("app collection after add");
@@ -261,10 +265,9 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     back : function(event) {
         console.log(event);
         //event.preventDefault();
-        //window.history.back();
         // TODO: make this smarter so it knows to go to template chooses or main view
         console.log(">>>>>>>>>>>>>>>>>>>>>>> route to home")
-        mozapps.router.navigate("#home", true);
+        mozapps.router.navigate("#", true);
     },
     name: function(){
         mozapps.router.navigate("#apps/"+this.appID+"/name",true);
@@ -775,7 +778,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         'click a.link-product-temp' : "showProductDetail"
     },
     back : function() {
-        window.history.back();
+        //window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     showProductDetail: function(event) {
         event.preventDefault();

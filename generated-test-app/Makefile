@@ -5,6 +5,15 @@ ADB = ../build-scripts/mac/adb
 APP_NAME = smallstore
 FOLDER = .
 
+copyFiles:
+	mkdir -p app/scripts
+	mkdir -p app/imgs/products
+	mkdir -p app/styles
+	cp -R ../app/scripts app
+	cp -R ../app/imgs/products app/imgs
+	cp -R ../app/styles app
+	rm app/scripts/main.js
+
 package:
 	cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
 
