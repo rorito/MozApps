@@ -260,7 +260,7 @@ window.mozapps = window.mozapps || {
             //TODO: replace with callback
             setTimeout(function() {
                 $(leftNav).addClass('nav-hidden');
-            }, 375);
+            }, 250);
         } else {
             $(appEl).addClass('app-slide-right');    
             $(leftNav).removeClass('nav-hidden');

@@ -3,15 +3,13 @@
 {{else}}
     <!-- represents application template screen, prefixed appTmpl APPLICATION with PREVIEW -->
     <div id="appView" role="window" class="{{theme}}">
-        {{#if dontShowBackButton}}
-        {{else}}
-            <section role="region" data-type="outer-chrome" class="outer-chrome">
-                <button id="back">Exit Preview</button>
-            </section>
-        {{/if}}
+        <section role="region" data-type="outer-chrome" class="outer-chrome">
+            <button id="back">Back</button>
+        </section>
         <!-- title bar region -->
         <section role="region" data-type="header">
             <header>
+                <button><span class="icon icon-menu">menu</span></button>
                 <menu type="toolbar">
                     <button><span class="icon icon-cart">cart</span></button>
                 </menu>
@@ -31,9 +29,7 @@
                            <li productID="{{this.id}}" class="{{this.className}}">
                                 <label id="label-{{this.id}}">
                                     <input type="radio" name="carousel-group" />
-                                {{#if_eq this.imgStorageType compare="package"}}
-                                    <img src="{{this.imgSmallPath}}" />
-                                {{/if_eq}}
+                                    {{this.name}}
                                 </label>
                             </li>
                             
@@ -46,10 +42,7 @@
                         </ul>
                     </div>
                 </div>
-                <div>
-                    <h2 id="product-name">{{selectedProduct.name}}</h2>
-                    <h3 id="product-price">${{selectedProduct.price}}</h3>
-                </div>
+                <div>{{product.name}}</div>
                 <div><button class="buy">Add to cart</button></div>
             </section>
             <footer>

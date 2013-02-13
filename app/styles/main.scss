@@ -178,7 +178,7 @@ a:active { color: $default_text_color; text-decoration: none; }
     overflow-x: hidden;
     overflow-y: auto;
     transition-property: left;
-    transition-duration:0.375s;   
+    transition-duration:0.250s;   
     z-index:99; /* temp fix for chrome */
 }
 
@@ -187,7 +187,7 @@ a:active { color: $default_text_color; text-decoration: none; }
 }
 
 .app-slide-right {
-    left:75%
+    left:92%
 }
 
 .nav-hidden {

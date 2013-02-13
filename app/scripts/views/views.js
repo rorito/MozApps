@@ -186,7 +186,13 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     move: function(event) {
         var button = $(event.currentTarget);
-        window.location = "#templates/" + button.data('id');
+        //window.location = "#templates/" + button.data('id');
+        var nextTemplateID = button.data('id');
+        mozapps.router.navigate("#templates/" + nextTemplateID, false);
+        // reset the template ID
+        this.templateID = nextTemplateID;
+        // soft render without going through routing and slide page
+        this.render();
     },
     back : function() {
         mozapps.router.navigate("#",true);
@@ -228,6 +234,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
+                console.log('re render template');
                 //NOTE: don't need toJSON() here because we call it above when we iterate over the template
                 this.$el.html(this.template(this.model)); 
         }
@@ -763,6 +770,25 @@ mozapps.Views.preview = Backbone.View.extend({
                 mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
             }
         }).bind(this);
+
+
+        // add images from device storage async
+        // loop through the products
+        //console.log('loop through product list');
+        //console.log(productList);
+        for (var i=0; i<productList.length; i++) {
+            var product = productList[i];
+            //console.log("loooping: " + i);
+            //console.log(product);
+            if (product.imgStorageType === "devicestorage") {
+                var imgPath = product.imgSmallPath;
+                var containerID = "label-" + product.id;
+                //console.log('imgPath: ' + imgPath);
+                //console.log('containerID: ' + containerID);
+                window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 156);        
+            }
+        }
+        
     }
 });
 
