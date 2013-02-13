@@ -7,28 +7,28 @@ templates['appBuilderAboutTemplate'] = template(function (Handlebars,depth0,help
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <!-- represents application screen APP BUILDER NAME -->\n                <div id=\"appBuilderAbout\" role=\"window\">\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                        <header>\n                            <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                            <menu type=\"toolbar\">\n                                <button id=\"aboutFormDone\">Done</button>\n                            </menu>\n                            <h1>About Me</h1>\n                        </header>\n                    </section>\n\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                        <form id=\"aboutForm\">\n                            <p>\n                                <label class=\"label-dark\">Description</label>\n                                <textarea rows=\"4\" id=\"description\">";
+  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderAbout\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                <button id=\"aboutFormDone\">Done</button>\n                </menu>\n                <h1>About Me</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n            <div class=\"grey-box\">\n                <form id=\"aboutForm\">\n                    <p>\n                        <label class=\"label-padded\">Description</label>\n                        <textarea rows=\"4\" id=\"description\">";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n                            </p>\n                            <p>\n                                <label class=\"label-dark\">Address</label>\n                                <input type=\"text\" id=\"address\" value=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Address</label>\n                        <input type=\"text\" id=\"address\" value=\"";
   foundHelper = helpers.address;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.address; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                            </p>\n                            <p>\n                                <label class=\"label-dark\">Phone Number</label>\n                                <input type=\"text\" id=\"phone\" value=\"";
+  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Phone Number</label>\n                        <input type=\"text\" id=\"phone\" value=\"";
   foundHelper = helpers.phone;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.phone; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                            </p>\n                            <p>\n                                <label class=\"label-dark\">Email</label>\n                                <input type=\"text\" id=\"email\" value=\"";
+  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Email</label>\n                        <input type=\"text\" id=\"email\" value=\"";
   foundHelper = helpers.email;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.email; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                            </p>\n                        </form>\n                    </section>\n\n                    <!-- footer region -->\n                    <section role=\"region\" data-type=\"footer\">\n                    <footer></footer>\n                    </section>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                </form>\n            </div>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n";
   return buffer;}
 
   stack1 = depth0.loading;
@@ -43,16 +43,16 @@ templates['appBuilderNameViewTemplate'] = template(function (Handlebars,depth0,h
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <!-- represents application screen APP BUILDER NAME -->\n                <div id=\"appBuilderName\" role=\"window\">\n                  <!-- title bar region -->\n                  <section role=\"region\" data-type=\"header\">\n                    <header>\n                        <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                        <menu type=\"toolbar\">\n                            <button id=\"nameFormDone\">Done</button>\n                        </menu>\n                        <h1>Name Your App</h1>\n                    </header>\n                  </section>\n\n                  <!-- content region -->\n                  <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                    \n                        <div class=\"grey-box\">\n                        <form id=\"nameForm\">\n                            <label for=\"nameField\" class=\"list-header\">App Name</label>\n                            <input id=\"nameField\" name=\"nameField\" type=\"text\" value=\"";
+  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderName\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                    <button id=\"nameFormDone\">Done</button>\n                </menu>\n                <h1>Name Your App</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n\n            <div class=\"grey-box\">\n                <form id=\"nameForm\">\n                    <label for=\"nameField\" class=\"label-padded\">App Name</label>\n                    <input id=\"nameField\" name=\"nameField\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\n                        </form>\n                        </div>\n                    \n                  </section>\n\n                  <!-- footer region -->\n                  <section role=\"region\" data-type=\"footer\">\n                    <footer></footer>\n                  </section>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "\" />\n                </form>\n            </div>\n\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n";
   return buffer;}
 
   stack1 = depth0.loading;

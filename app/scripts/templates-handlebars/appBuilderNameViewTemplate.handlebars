@@ -1,34 +1,34 @@
 {{#if loading}}
-                <h1>Loading...</h1>
-            {{else}}
-                <!-- represents application screen APP BUILDER NAME -->
-                <div id="appBuilderName" role="window">
-                  <!-- title bar region -->
-                  <section role="region" data-type="header">
-                    <header>
-                        <button id="back"><span class="icon icon-back">back</span></button>
-                        <menu type="toolbar">
-                            <button id="nameFormDone">Done</button>
-                        </menu>
-                        <h1>Name Your App</h1>
-                    </header>
-                  </section>
+    <h1>Loading...</h1>
+{{else}}
+    <!-- represents application screen APP BUILDER NAME -->
+    <div id="appBuilderName" role="window">
+        <!-- title bar region -->
+        <section role="region" data-type="header">
+            <header>
+                <button id="back"><span class="icon icon-back">back</span></button>
+                <menu type="toolbar">
+                    <button id="nameFormDone">Done</button>
+                </menu>
+                <h1>Name Your App</h1>
+            </header>
+        </section>
 
-                  <!-- content region -->
-                  <section role="region" data-type="content" class="box-padded">
-                    
-                        <div class="grey-box">
-                        <form id="nameForm">
-                            <label for="nameField" class="list-header">App Name</label>
-                            <input id="nameField" name="nameField" type="text" value="{{name}}" />
-                        </form>
-                        </div>
-                    
-                  </section>
+        <!-- content region -->
+        <section role="region" data-type="content" class="box-padded-small">
 
-                  <!-- footer region -->
-                  <section role="region" data-type="footer">
-                    <footer></footer>
-                  </section>
-                </div>
-            {{/if}}
+            <div class="grey-box">
+                <form id="nameForm">
+                    <label for="nameField" class="label-padded">App Name</label>
+                    <input id="nameField" name="nameField" type="text" value="{{name}}" />
+                </form>
+            </div>
+
+        </section>
+
+        <!-- footer region -->
+        <section role="region" data-type="footer">
+            <footer></footer>
+        </section>
+    </div>
+{{/if}}
