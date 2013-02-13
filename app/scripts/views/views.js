@@ -664,7 +664,12 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 // });
 
                 this.$el.html(this.template(this.model.toJSON()));
-                window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, 'productDetailImage', 156);
+                
+                //console.log(this.model);
+                // only need to access device storage if the storage type is device storage
+                if (this.model.attributes.imgStorageType === "devicestorage") {
+                    window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, 'productDetailImage', 156);
+                }
             }
 
             //this.imageSubView = new mozapps.Views.imageSubView({el: this.$el.find('#imageSubView'), model: this.model});

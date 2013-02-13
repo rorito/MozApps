@@ -27,8 +27,12 @@
 	height:8.3rem;
 }
 
-#productDetailEdit [data-type="content"] p.box-margin-top {
-	margin:3.0rem 0 1.6rem 0;
+#productDetailEdit [data-type="content"] p.box-button-footer {
+	 margin: 2rem 0 1.2rem;
+}
+
+#productDetailEdit [data-type="content"] p.box-button-footer button {
+	margin:0rem;
 }
 
 #productDetailEdit [data-type="content"] h2 {
