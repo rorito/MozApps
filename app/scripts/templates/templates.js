@@ -12,19 +12,19 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderAbout\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                <button id=\"aboutFormDone\">Done</button>\n                </menu>\n                <h1>About Me</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n            <div class=\"grey-box\">\n                <form id=\"aboutForm\">\n                    <p>\n                        <label class=\"label-padded\">Description</label>\n                        <textarea rows=\"4\" id=\"description\">";
+  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderAbout\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                <button id=\"aboutFormDone\">Done</button>\n                </menu>\n                <h1>About Me</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n            <div class=\"grey-box\">\n                <form id=\"aboutForm\">\n                    <p>\n                        <label class=\"label-padded label-upper\">Description</label>\n                        <textarea rows=\"4\" id=\"description\">";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Address</label>\n                        <input type=\"text\" id=\"address\" value=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p>\n                        <label class=\"label-padded label-upper\">Address</label>\n                        <input type=\"text\" id=\"address\" value=\"";
   foundHelper = helpers.address;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.address; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Phone Number</label>\n                        <input type=\"text\" id=\"phone\" value=\"";
+  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded label-upper\">Phone Number</label>\n                        <input type=\"text\" id=\"phone\" value=\"";
   foundHelper = helpers.phone;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.phone; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded\">Email</label>\n                        <input type=\"text\" id=\"email\" value=\"";
+  buffer += escapeExpression(stack1) + "\">\n                    </p>\n                    <p>\n                        <label class=\"label-padded label-upper\">Email</label>\n                        <input type=\"text\" id=\"email\" value=\"";
   foundHelper = helpers.email;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.email; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -48,7 +48,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderName\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                    <button id=\"nameFormDone\">Done</button>\n                </menu>\n                <h1>Name Your App</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n\n            <div class=\"grey-box\">\n                <form id=\"nameForm\">\n                    <label for=\"nameField\" class=\"label-padded\">App Name</label>\n                    <input id=\"nameField\" name=\"nameField\" type=\"text\" value=\"";
+  buffer += "\n    <!-- represents application screen APP BUILDER NAME -->\n    <div id=\"appBuilderName\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                    <button id=\"nameFormDone\">Done</button>\n                </menu>\n                <h1>Name Your App</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"box-padded-small\">\n\n            <div class=\"grey-box\">\n                <form id=\"nameForm\">\n                    <label for=\"nameField\" class=\"label-padded label-upper\">App Name</label>\n                    <input id=\"nameField\" name=\"nameField\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -480,7 +480,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
+  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item label-dark open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
   stack1 = depth0.myApps;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
@@ -536,15 +536,15 @@ function program3(depth0,data) {
   foundHelper = helpers.if_eq;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </div>\n                <div class=\"grey-box\">\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Item Name</label>\n                        <input id=\"name\" name=\"name\" type=\"text\" value=\"";
+  buffer += "\n                </div>\n                <div class=\"grey-box\">\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Item Name</label>\n                        <input id=\"name\" name=\"name\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" />\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Description</label>\n                        <textarea id=\"description\" name=\"description\">";
+  buffer += escapeExpression(stack1) + "\" />\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Description</label>\n                        <textarea id=\"description\" name=\"description\">";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"text\" value=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"text\" value=\"";
   foundHelper = helpers.price;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.price; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
