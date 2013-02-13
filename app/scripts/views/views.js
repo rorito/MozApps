@@ -667,8 +667,6 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 });
 
 mozapps.Views.preview = Backbone.View.extend({
-    //template: Handlebars.compile($("#appViewTemplate").html()),
-    //template: Handlebars.getTemplate("appViewTemplate"),
     template: Handlebars.templates['appViewTemplate'],
     viewName: "preview",
     classNames: window.widgets.carouselClassNames,
@@ -769,25 +767,13 @@ mozapps.Views.preview = Backbone.View.extend({
 });
 
 mozapps.Views.previewProductDetailView = Backbone.View.extend({
-    //template: Handlebars.compile($("#appViewProductDetailTemplate").html()),
-    //template: Handlebars.getTemplate("appViewProductDetailTemplate"),
     template: Handlebars.templates['appViewProductDetailTemplate'],
     viewName: "previewProductDetail",
     events: {
-        'click button#back' : "back",
-        'click a.link-product-temp' : "showProductDetail"
+        'click button#back' : "back"
     },
     back : function() {
-        //window.history.back();
-        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
-    },
-    showProductDetail: function(event) {
-        event.preventDefault();
-        console.log(event.currentTarget);
-        var targetLink = event.currentTarget;
-        var productID = targetLink.getAttribute("productID");
-
-        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
+        mozapps.router.navigate("#apps/"+this.appID,true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -799,9 +785,7 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
                 return elem.component_id == "theme";
             });
             
-
             this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
-
 
             // TODO: use imgLargePath
             var imgPath = productJSON.attributes.imgSmallPath;
@@ -927,13 +911,19 @@ mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID,true);
     },
     openApp : function() {
+
+        var productList = [];
+        mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
+            productList.push(element.toJSON());
+        });
         var sharing = new MozActivity({
                 name: "share",
                 data: {
+                    type: "mozapps",
+                    appData: mozapps.appCollection.get(this.appID).toJSON(),
+                    productData: productList
                     //type: "url", // Possibly text/html in future versions,
-                    type: "foo",
-                    number: 1,
-                    url: "http://www.mozapps.com"
+                    //url: "http://www.mozapps.com"
                 }
             });
             

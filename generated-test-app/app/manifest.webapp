@@ -3,7 +3,7 @@
   "description": "An example store",
   "launch_path": "/index.html",
   "icons": {
-    "60": "/icons/60.png"
+    "60": "/imgs/icons/60.png"
   },
   "developer": {
     "name": "RoryCorp",
@@ -15,7 +15,7 @@
   },
   "activities": {
     "share": {
-      "type": "foo"
+      "type": "mozapps"
     }
   },
   "default_locale": "en"

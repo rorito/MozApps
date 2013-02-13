@@ -8,7 +8,7 @@ window.mozapps = window.mozapps || {
   Templates: {},
   Utils: {},
   currentPage: {}
-}
+};
 
 window.smallstore = window.smallstore || {
   Models: {},
@@ -18,13 +18,12 @@ window.smallstore = window.smallstore || {
   Templates: {},
   Utils: {},
   currentPage: {},
-  isMenuOpen: false,
-  appEl: null,
-  navEl:null,
+  reloadData: false,
+
   initAppDB: function(){
     var deferred = Deferred();
 
-    mozapps.appsDB = new IDBStore({
+    smallstore.appsDB = new IDBStore({
       dbVersion: 1,
       storePrefix: 'smallstore-',
       storeName: 'apps',
@@ -37,7 +36,7 @@ window.smallstore = window.smallstore || {
         //note: we're only doing an IDB count because the first time you load a page and it creates an IDB
         // database, data is returned as Array[0] instead of []. I may revert to just a getAll call later
         // and then check for Array[0] or []
-        mozapps.appsDB.count(
+        smallstore.appsDB.count(
             function(count){
                 if(count > 0){
                     smallstore.appsDB.getAll(
@@ -54,17 +53,15 @@ window.smallstore = window.smallstore || {
                     );
                 } else {
                     console.log(">>>>>> add default product(s)");
-                    console.log(mozapps.defaultAppData)
 
                     _.each(mozapps.defaultAppData, function(element, index, list){
                         //TODO don't add to collection as json, make models first
                          console.log("***** put app in db");
-                        mozapps.appsDB.put(element, function(){}, function(){});
+                        smallstore.appsDB.put(element, function(){}, function(){});
                     });
 
                     console.log("*create appCollection with fixture json");
-                    mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
-                    
+                    smallstore.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
 
                     deferred.resolve();
                 }
@@ -88,9 +85,9 @@ window.smallstore = window.smallstore || {
   initProductDB: function(){
     var deferred = Deferred();
     console.log('initProductDB');
-    mozapps.productsDB = new IDBStore({
+    smallstore.productsDB = new IDBStore({
       dbVersion: 1,
-      storePrefix: 'mozapps-',
+      storePrefix: 'smallstore-',
       storeName: 'products',
       keyPath: 'id',
       autoIncrement: true,
@@ -101,13 +98,13 @@ window.smallstore = window.smallstore || {
         //note: we're only doing an IDB count because the first time you load a page and it creates an IDB
         // database, data is returned as Array[0] instead of []. I may revert to just a getAll call later
         // and then check for Array[0] or []
-        mozapps.productsDB.count(
+        smallstore.productsDB.count(
             function(count){
                 if(count > 0){
-                    mozapps.productsDB.getAll(
+                    smallstore.productsDB.getAll(
                         function(data){
                             console.log("product indexeddb data");
-                            mozapps.productCollection = new mozapps.Collections.ProductCollection(data);
+                            smallstore.productCollection = new mozapps.Collections.ProductCollection(data);
                             deferred.resolve();
                         }, 
                         function(){
@@ -118,16 +115,16 @@ window.smallstore = window.smallstore || {
                     );
                 } else {
                     // prepopulate with product data if we have an app already prepopulated
-                    if (mozapps.appCollection.length > 0) {
+                    if (smallstore.appCollection.length > 0) {
                         _.each(mozapps.defaultProductData, function(element, index, list){
                             //TODO don't add to collection as json, make models first
-                            mozapps.productsDB.put(element, function(){}, function(){});
+                            smallstore.productsDB.put(element, function(){}, function(){});
                         });
                         console.log("product default data");
-                        mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
+                        smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
                     } else {
                         console.log("empty collection no data");
-                        mozapps.productCollection = new mozapps.Collections.ProductCollection();    
+                        smallstore.productCollection = new mozapps.Collections.ProductCollection();    
                     }
                     
                     deferred.resolve();
@@ -148,21 +145,109 @@ window.smallstore = window.smallstore || {
 
     return deferred.promise();
   },
+  handleIncomingData: function(activity){
+    console.log("handle activity callback");
+    smallstore.reloadData = true;
+  	var data = activity.source.data; 
+  	
+    //console.log(data);
+    console.log("reload: " + smallstore.reloadData);
+
+    smallstore.appsDB.clear();
+    smallstore.productsDB.clear();
+
+    //put the new data in the DB so initDB will pick it up and put it in backbone collections
+    smallstore.appsDB.put(data.appData, function(){}, function(){});
+    _.each(data.productData, function(element, index, list){
+        smallstore.productsDB.put(element, function(){}, function(){});
+    });
+
+    smallstore.initDB();
+  },
 	init: function() {
-    	if (window.navigator.mozSetMessageHandler) { 
-			console.log("moz set message");
-		    window.navigator.mozSetMessageHandler('activity', 
-		    	function handleActivity(activity) { 
-		      		console.log("handle activity callback");
-					var data = activity.source.data; 
-					console.log(dump(data));
-		    	}
-		  	); 
-  		}	
-	}
+    	if (window.navigator.mozSetMessageHandler) {
+    		window.navigator.mozSetMessageHandler('activity',
+		      function handleActivity(activity) {
+		      	smallstore.handleIncomingData(activity);
+		    });
+  		}
+
+        smallstore.initDB();
+	},
+    initDB: function(){
+        $.when(smallstore.initAppDB(), smallstore.initProductDB())
+        .done(function(){            
+            console.log("done with DB loading in small store");
+
+            smallstore.homeView = new smallstore.Views.homeView({ model: smallstore.appCollection.at(0) });
+            smallstore.homeView.appID = smallstore.homeView.model.toJSON().id;
+
+            smallstore.productDetailView = new smallstore.Views.productDetailView({ model: smallstore.appCollection.at(0) });
+            smallstore.productDetailView.appID = smallstore.productDetailView.model.toJSON().id;
+
+
+console.log("before router");
+            smallstore.router = new smallstore.Routers.ApplicationRouter();
+
+            console.log("after router"); 
+            console.log("ss reload data1");
+            console.log(smallstore.reloadData);
+            // backbone history breaking in chrome
+
+            if (!Backbone.History.started) {
+                Backbone.history.start();
+            }
+
+            console.log("ss reload data2");
+            console.log(smallstore.reloadData);
+
+            if(smallstore.reloadData) {
+                console.log("reload page")
+                smallstore.dataReload = false;
+                document.location.reload(true);
+            }
+        }); 
+    }
 };
     
 
 $(document).ready(function(){
+	console.log("document ready smallstore");
 	window.smallstore.init();
 });
+
+/**
+ * Function : dump()
+ * Arguments: The data - array,hash(associative array),object
+ *    The level - OPTIONAL
+ * Returns  : The textual representation of the array.
+ * This function was inspired by the print_r function of PHP.
+ * This will accept some data as the argument and return a
+ * text that will be a more readable version of the
+ * array/hash/object that is given.
+ * Docs: http://www.openjs.com/scripts/others/dump_function_php_print_r.php
+ */
+function dump(arr,level) {
+	var dumped_text = "";
+	if(!level) level = 0;
+	
+	//The padding given at the beginning of the line.
+	var level_padding = "";
+	for(var j=0;j<level+1;j++) level_padding += "    ";
+	
+	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
+		for(var item in arr) {
+			var value = arr[item];
+			
+			if(typeof(value) == 'object') { //If it is an array,
+				dumped_text += level_padding + "'" + item + "' ...\n";
+				dumped_text += dump(value,level+1);
+			} else {
+				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+			}
+		}
+	} else { //Stings/Chars/Numbers etc.
+		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+	}
+	return dumped_text;
+}
