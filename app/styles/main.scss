@@ -50,7 +50,7 @@ $theme_02_window_background: #c1af9b;
 }
 
 @mixin label-text {
-    color: $default_text_color !important;
+    color: $default_primary_color !important;
 }
 
 @mixin label-text-dark {
@@ -102,7 +102,6 @@ $theme_02_window_background: #c1af9b;
 @import "frog/screens/_template_details";
 @import "frog/screens/_app_builder";
 @import "frog/screens/_app_builder_edit_icon";
-@import "frog/screens/_app_builder_name";
 @import "frog/screens/_app_builder_theme_picker";
 @import "frog/screens/_app_builder_publish_submit";
 @import "frog/screens/_left_nav";

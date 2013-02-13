@@ -51,8 +51,11 @@ div[role="window"].theme-01 {
 	padding: 0 0 0 1.8rem;
 }
 
-.box-button-footer {
-	margin:3.0rem 0 0.6rem 0;
+.grey-box {
+	background-color: #bdbdbd;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px 4px 4px 4px;
+    padding: 1rem;
 }
 
 /* used for the publish progress screen */
