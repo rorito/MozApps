@@ -186,7 +186,13 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
     },
     move: function(event) {
         var button = $(event.currentTarget);
-        window.location = "#templates/" + button.data('id');
+        //window.location = "#templates/" + button.data('id');
+        var nextTemplateID = button.data('id');
+        mozapps.router.navigate("#templates/" + nextTemplateID, false);
+        // reset the template ID
+        this.templateID = nextTemplateID;
+        // soft render without going through routing and slide page
+        this.render();
     },
     back : function() {
         mozapps.router.navigate("#",true);
@@ -228,6 +234,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                         self.model = element;
                     }
                 });
+                console.log('re render template');
                 //NOTE: don't need toJSON() here because we call it above when we iterate over the template
                 this.$el.html(this.template(this.model)); 
         }
