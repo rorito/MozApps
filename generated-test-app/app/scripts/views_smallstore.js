@@ -91,6 +91,23 @@ smallstore.Views.homeView = Backbone.View.extend({
                 smallstore.router.navigate("#product/"+productID,true);
             }
         }).bind(this);
+
+        // add images from device storage async
+        // loop through the products
+        //console.log('loop through product list');
+        //console.log(productList);
+        for (var i=0; i<productList.length; i++) {
+            var product = productList[i];
+            //console.log("loooping: " + i);
+            //console.log(product);
+            if (product.imgStorageType === "devicestorage") {
+                var imgPath = product.imgSmallPath;
+                var containerID = "label-" + product.id;
+                //console.log('imgPath: ' + imgPath);
+                //console.log('containerID: ' + containerID);
+                window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 156);        
+            }
+        }
     }
 });
 
@@ -113,6 +130,16 @@ smallstore.Views.productDetailView = Backbone.View.extend({
         });
         
         this.$el.html(this.template({ dontShowBackButton: true, model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
+        
+        // TODO: use imgLargePath
+        var imgPath = productJSON.attributes.imgSmallPath;
+        var productID = productJSON.attributes.id;
+        var containerID = "img-container-" + productID;
+        //console.log('>>>>>> try to get product ID: ' + productID);
+        //console.log('containerID: ' + containerID);
+        ///console.log('container exists?');
+        //console.log($('#' + containerID));
+        window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
         
         return this;
     }
