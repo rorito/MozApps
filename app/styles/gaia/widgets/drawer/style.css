@@ -8,7 +8,7 @@ body[role="application"] section[role="region"][data-state="drawer"] {
 
 body[role="application"] > nav { 
   position: absolute;
-  width: 80%;
+  width: 92%;
   background: url(images/ui/pattern.png) repeat;
   height: 100%;
   top: 0;

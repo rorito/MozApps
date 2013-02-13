@@ -105,7 +105,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 
 .list-item-body {
 	height: 0px;
-	transition: height 1s;
+	transition: height 0.5s;
 }
 
 .list > li > input[type="radio"]:checked+label+div.list-item-body {
