@@ -54,7 +54,7 @@ $theme_02_window_background: #c1af9b;
 }
 
 @mixin label-text-dark {
-    color: $default_secondary_color !important;
+    color: $default_text_color !important;
 }
 
 @mixin input-text {

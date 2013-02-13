@@ -608,7 +608,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     appID: this.appID,
                     name: prodName,
                     description: $('#description').val(),
-                    price: ,
+                    price: price,
                     imgLargePath: mozapps.productImage156.originalFilename,
                     imgSmallPath: mozapps.productImage156.resizedFilename,
                     imgStorageType: "devicestorage"
