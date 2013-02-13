@@ -225,7 +225,12 @@ function program3(depth0,data) {
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                  <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        ";
+  stack1 = depth0.dontShowBackButton;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                  <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
@@ -236,7 +241,7 @@ function program3(depth0,data) {
   stack2 = {};
   stack2['compare'] = "devicestorage";
   foundHelper = helpers.if_eq;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </section>\n            <footer>\n            <h2>\n                <span>";
   stack1 = depth0.product;
@@ -257,6 +262,16 @@ function program3(depth0,data) {
   return buffer;}
 function program4(depth0,data) {
   
+  
+  return "\n        ";}
+
+function program6(depth0,data) {
+  
+  
+  return "\n            <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                <button id=\"back\">Exit Preview</button>\n            </section>\n        ";}
+
+function program8(depth0,data) {
+  
   var buffer = "", stack1;
   buffer += "\n                <div id=\"img-container-";
   stack1 = depth0.product;
@@ -267,7 +282,7 @@ function program4(depth0,data) {
   buffer += "\"></div>\n            ";
   return buffer;}
 
-function program6(depth0,data) {
+function program10(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                <img src=\"";
@@ -299,16 +314,21 @@ function program3(depth0,data) {
   foundHelper = helpers.theme;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.theme; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n        <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n            <button id=\"back\">Exit Preview</button>\n        </section>\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
+  buffer += escapeExpression(stack1) + "\">\n        ";
+  stack1 = depth0.dontShowBackButton;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <menu type=\"toolbar\">\n                    <button><span class=\"icon icon-cart\">cart</span></button>\n                </menu>\n                <h1>";
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                <!-- TODO: check if id needs to be unique on app level -->\n                <div id=\"productCarousel\" class=\"carousel\">\n                    <div>\n\n                        <ul>\n                        ";
   foundHelper = helpers.products;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   else { stack1 = depth0.products; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   stack2 = {};
-  if (!helpers.products) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if (!helpers.products) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                        </ul>\n                    </div>\n                </div>\n                <div>\n                    <h2 id=\"product-name\">";
   stack1 = depth0.selectedProduct;
@@ -322,11 +342,21 @@ function program3(depth0,data) {
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.completed;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </footer>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n\n";
   return buffer;}
 function program4(depth0,data) {
+  
+  
+  return "\n        ";}
+
+function program6(depth0,data) {
+  
+  
+  return "\n            <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                <button id=\"back\">Exit Preview</button>\n            </section>\n        ";}
+
+function program8(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
   buffer += "\n                           <li productID=\"";
@@ -343,7 +373,7 @@ function program4(depth0,data) {
   stack2 = {};
   stack2['compare'] = "package";
   foundHelper = helpers.if_eq;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(9, program9, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
   stack1 = depth0.id;
@@ -359,7 +389,7 @@ function program4(depth0,data) {
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n                            -->\n                        ";
   return buffer;}
-function program5(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                                    <img src=\"";
@@ -368,7 +398,7 @@ function program5(depth0,data) {
   buffer += escapeExpression(stack1) + "\" />\n                                ";
   return buffer;}
 
-function program7(depth0,data) {
+function program11(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                <h2>About ";

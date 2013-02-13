@@ -103,7 +103,8 @@ routes:{
         var pick = new MozActivity({
              name: "pick",
              data: {
-                 type: ["image/png", "image/jpg", "image/jpeg"]
+                 //type: ["image/png", "image/jpg", "image/jpeg"]
+                type: ["image/jpg", "image/jpeg"]
               }
          });
 
@@ -227,6 +228,10 @@ routes:{
         prev.appID = id;
         mozapps.appID = id;
         mozapps.currentPage = prev.viewName;
+
+        prev.appCollection = mozapps.appCollection;
+        prev.productCollection = mozapps.productCollection;
+
         this.slidePage(
             prev.render()
         );  
@@ -239,6 +244,10 @@ routes:{
         prevProductDetail.appID = id;
         prevProductDetail.productID = productID;
         mozapps.currentPage = prevProductDetail.viewName;
+
+        prevProductDetail.appCollection = mozapps.appCollection;
+        prevProductDetail.productCollection = mozapps.productCollection;
+
         this.slidePage(
             prevProductDetail.render()
         );  

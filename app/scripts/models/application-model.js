@@ -297,6 +297,15 @@ mozapps.templateFixtureData = [
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
         }
+      },
+      {
+          "component_name": "Product List",
+          "component_id": "product-list",
+          "completed": false,
+          "description": "Add products to your store",
+          "properties": {
+            "productIDs": []
+          }
       }
     ],
     "description": "Small Store features a customizable catalog of product photos and an e-commerce service.",
