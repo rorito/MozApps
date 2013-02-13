@@ -151,17 +151,21 @@ window.smallstore = window.smallstore || {
   	var data = activity.source.data; 
   	
     //console.log(data);
-    console.log("reload: " + smallstore.reloadData);
 
     smallstore.appsDB.clear();
     smallstore.productsDB.clear();
 
     //put the new data in the DB so initDB will pick it up and put it in backbone collections
+    console.log("add the app to DB")
     smallstore.appsDB.put(data.appData, function(){}, function(){});
+
+    console.log("add the products to the DB")
     _.each(data.productData, function(element, index, list){
         smallstore.productsDB.put(element, function(){}, function(){});
+        console.log(element.imgSmallPath);
     });
 
+    console.log("re-init the databases")
     smallstore.initDB();
   },
 	init: function() {
@@ -185,21 +189,12 @@ window.smallstore = window.smallstore || {
             smallstore.productDetailView = new smallstore.Views.productDetailView({ model: smallstore.appCollection.at(0) });
             smallstore.productDetailView.appID = smallstore.productDetailView.model.toJSON().id;
 
-
-console.log("before router");
             smallstore.router = new smallstore.Routers.ApplicationRouter();
 
-            console.log("after router"); 
-            console.log("ss reload data1");
-            console.log(smallstore.reloadData);
             // backbone history breaking in chrome
-
             if (!Backbone.History.started) {
                 Backbone.history.start();
             }
-
-            console.log("ss reload data2");
-            console.log(smallstore.reloadData);
 
             if(smallstore.reloadData) {
                 console.log("reload page")

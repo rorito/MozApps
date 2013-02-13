@@ -533,7 +533,6 @@ mozapps.Views.productList = Backbone.View.extend({
     addProduct: function(event){
         console.log("add Product");
         mozapps.router.navigate("#apps/"+this.appID+"/cameraGallery",true);
-        //mozapps.router.navigate("#apps/"+this.appID+"/product-list/add",true);
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -548,6 +547,11 @@ mozapps.Views.productList = Backbone.View.extend({
                 mozapps.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
                     productList.push(element.toJSON());
                 });
+
+                if(productList.length > 0){
+                    //show check mark
+                    product.completed = true;
+                }
 
                 this.$el.html(this.template({ 
                     products: productList,
@@ -595,13 +599,20 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 if(!prodName || prodName == ""){
                     prodName = "New Product";
                 }
+
+                var price = $('#price').val();
+                if(price != "" && !price.startsWith("$")){
+                    price = "$"+price;
+                }
+
+
                 console.log("create new product")
                 var newProduct = new mozapps.Models.ProductModel({
                     id: UUID.genV4().toString(),
                     appID: this.appID,
                     name: prodName,
                     description: $('#description').val(),
-                    price: $('#price').val(),
+                    price: price,
                     imgLargePath: mozapps.productImage156.originalFilename,
                     imgSmallPath: mozapps.productImage156.resizedFilename,
                     imgStorageType: "devicestorage"

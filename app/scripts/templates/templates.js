@@ -334,7 +334,7 @@ function program3(depth0,data) {
   stack1 = depth0.selectedProduct;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h2>\n                    <h3 id=\"product-price\">$";
+  buffer += escapeExpression(stack1) + "</h2>\n                    <h3 id=\"product-price\">";
   stack1 = depth0.selectedProduct;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.price;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;

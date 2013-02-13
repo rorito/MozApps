@@ -785,7 +785,7 @@ mozapps.defaultProductData = [
         "appID": mozapps.defaultAppData[0].id,
         "name": "Woven Bone and Brass Body Art",
         "description": "14 inch woven brass links and bone beads with leather fringe.",
-        "price": "200.00",
+        "price": "$200.00",
         "imgLargePath": "imgs/products/product_lg_0.jpg",
         "imgSmallPath": "imgs/products/product_sm_0.jpg",
         "imgStorageType": "package"
@@ -795,7 +795,7 @@ mozapps.defaultProductData = [
         "appID": mozapps.defaultAppData[0].id,
         "name": "Charm Pendant",
         "description": "Brass and porcelain charms on a 20 inch brass chain.",
-        "price": "75.00",
+        "price": "$75.00",
         "imgLargePath": "imgs/products/product_lg_1.jpg",
         "imgSmallPath": "imgs/products/product_sm_1.jpg",
         "imgStorageType": "package"
@@ -805,7 +805,7 @@ mozapps.defaultProductData = [
         "appID": mozapps.defaultAppData[0].id,
         "name": "Skull Pendant",
         "description": "Bone skull with chained glass beads on an 8 inch silver choker.",
-        "price": "69.00",
+        "price": "$69.00",
         "imgLargePath": "imgs/products/product_lg_2.jpg",
         "imgSmallPath": "imgs/products/product_sm_2.jpg",
         "imgStorageType": "package"
@@ -815,7 +815,7 @@ mozapps.defaultProductData = [
         "appID": mozapps.defaultAppData[0].id,
         "name": "Scissor Pendant",
         "description": "4 inch copper pendant on a 20 inch copper chain.",
-        "price": "89.00",
+        "price": "$89.00",
         "imgLargePath": "imgs/products/product_lg_3.jpg",
         "imgSmallPath": "imgs/products/product_sm_3.jpg",
         "imgStorageType": "package"
@@ -825,7 +825,7 @@ mozapps.defaultProductData = [
         "appID": mozapps.defaultAppData[0].id,
         "name": "Leather and Brass Pendant",
         "description": "4 inch leather pendant with brass details and fine chain.",
-        "price": "48.00",
+        "price": "$48.00",
         "imgLargePath": "imgs/products/product_lg_4.jpg",
         "imgSmallPath": "imgs/products/product_sm_4.jpg",
         "imgStorageType": "package"
