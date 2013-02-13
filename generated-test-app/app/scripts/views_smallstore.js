@@ -103,8 +103,8 @@ smallstore.Views.homeView = Backbone.View.extend({
             if (product.imgStorageType === "devicestorage") {
                 var imgPath = product.imgSmallPath;
                 var containerID = "label-" + product.id;
-                //console.log('imgPath: ' + imgPath);
-                //console.log('containerID: ' + containerID);
+                console.log('imgPath: ' + imgPath);
+                console.log('containerID: ' + containerID);
                 window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 156);        
             }
         }

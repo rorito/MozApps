@@ -2,7 +2,7 @@ PORT_DEVICE = 6000
 PORT_LOCAL = 6000
 XPCSHELL = ../build-scripts/mac/xulrunner-sdk/bin/xpcshell
 ADB = ../build-scripts/mac/adb
-APP_NAME = smallstore
+APP_NAME = smallstore22
 FOLDER = dist
 
 copyFiles:

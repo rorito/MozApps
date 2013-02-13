@@ -595,13 +595,20 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 if(!prodName || prodName == ""){
                     prodName = "New Product";
                 }
+
+                var price = $('#price').val();
+                if(!price.startsWith("$")){
+                    price = "$"+price;
+                }
+
+
                 console.log("create new product")
                 var newProduct = new mozapps.Models.ProductModel({
                     id: UUID.genV4().toString(),
                     appID: this.appID,
                     name: prodName,
                     description: $('#description').val(),
-                    price: $('#price').val(),
+                    price: ,
                     imgLargePath: mozapps.productImage156.originalFilename,
                     imgSmallPath: mozapps.productImage156.resizedFilename,
                     imgStorageType: "devicestorage"

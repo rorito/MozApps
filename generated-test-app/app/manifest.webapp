@@ -1,13 +1,16 @@
 {
-  "name": "Small Store",
+  "version": "0.3",
+  "name": "Small Store 4",
   "description": "An example store",
   "launch_path": "/index.html",
+  "orientation": "portrait-primary",
+  "type": "privileged",
+  "developer": {
+    "name": "Frog",
+    "url": "http://www.frogdesign.com"
+  },
   "icons": {
     "60": "/imgs/icons/60.png"
-  },
-  "developer": {
-    "name": "RoryCorp",
-    "url": "http://www.rorypetty.com"
   },
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },
@@ -18,5 +21,6 @@
       "type": "mozapps"
     }
   },
+  "installs_allowed_from": ["*"],
   "default_locale": "en"
 }
