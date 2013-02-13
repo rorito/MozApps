@@ -764,7 +764,7 @@ mozapps.Views.preview = Backbone.View.extend({
         productCarousel.init("#productCarousel");
         // set callbacks
         productCarousel.onSwipeDone = (function(targetIndex, targetEl) {
-            //console.log('on swipe done: ' + targetIndex);
+            console.log('on swipe done: ' + targetIndex);
             //console.log('on swipe done: ' + targetEl);
 
             // get product info based on app id and product id
@@ -778,7 +778,7 @@ mozapps.Views.preview = Backbone.View.extend({
         
         productCarousel.onMainItemClicked = (function(targetIndex, targetEl) {
             console.log('on main item clicked: ' + targetIndex);   
-            console.log('on main item clicked: ' + targetEl);
+            //console.log('on main item clicked: ' + targetEl);
             if (targetEl) {
                 var productID = targetEl.getAttribute("productID");
                 //console.log(this.appID);
@@ -815,7 +815,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         'click button#back' : "back"
     },
     back : function() {
-        mozapps.router.navigate("#apps/"+this.appID,true);
+        //mozapps.router.navigate("#apps/"+this.appID,true);
+        window.history.back();
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){

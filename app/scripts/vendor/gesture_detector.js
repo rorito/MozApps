@@ -357,6 +357,7 @@ var GestureDetector = (function() {
       d.switchTo(transformState, e, t);
     },
     touchmove: function(d, e, t) {
+      e.preventDefault();
       // Ignore any touches but the initial one
       // This could happen if there was still a finger down after
       // the end of a previous 2-finger gesture, e.g.
@@ -424,6 +425,7 @@ var GestureDetector = (function() {
     },
 
     touchmove: function(d, e, t) {
+      e.preventDefault();
       // Ignore any fingers other than the one we're tracking
       if (t.identifier !== d.touch1)
         return;
@@ -520,6 +522,7 @@ var GestureDetector = (function() {
     },
 
     touchmove: function(d, e, t) {
+      e.preventDefault();
       var current = coordinates(e, t);
       d.emitEvent('holdmove', {
         absolute: {
@@ -571,6 +574,7 @@ var GestureDetector = (function() {
     },
 
     touchmove: function(d, e, t) {
+      e.preventDefault();
       // Ignore touches we're not tracking
       if (t.identifier !== d.touch1 && t.identifier !== d.touch2)
         return;
