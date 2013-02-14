@@ -35,8 +35,8 @@ window.widgets = window.widgets || {
 
             // create reference to the carousel
             self = this;
-            console.log('init');
-            console.log(self);
+            //console.log('init');
+            //console.log(self);
         };
 
         // handler for when swipe it done
@@ -174,8 +174,8 @@ window.widgets = window.widgets || {
                 //alert(event);
                 // we are changing multiple properties, so just catch the
                 //console.log(event);
-                console.log('update text content for li: ' + targetIndex);
-                console.log(self.onSwipeDone);
+                //console.log('update text content for li: ' + targetIndex);
+                //console.log(self.onSwipeDone);
                 if (null != self.onSwipeDone) {
                     // pass back element and index
                     self.onSwipeDone(targetIndex, this);

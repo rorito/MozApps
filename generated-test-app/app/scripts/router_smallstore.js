@@ -73,6 +73,7 @@ routes:{
                 var stageLeftObj = $('.stage-left');
                 if (stageLeftObj.length > 0) { 
                     stageLeftObj.addClass('stage-hidden');
+                    stageLeftObj.remove();
                 }
                 var stageRightObj = $('.stage-right');
                 if (stageRightObj.length > 0) {

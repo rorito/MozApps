@@ -69,6 +69,47 @@ window.mozapps.Utils.getImageFromDeviceStorage = function(imgObj){
     return deferred.promise();
 }
 
+window.mozapps.Utils.cropResizeSave = function(blob, canvasWidth, canvasHeight){
+    var deferred = Deferred();
+
+    var image = new Image();
+    image.onload = function resizeImg() {
+        var self = this;
+
+        var canvas = document.createElement('canvas');
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        var ctx = canvas.getContext('2d');
+      
+        var size = Math.min(self.width,self.height);
+        var originX = self.width / 2 - size / 2;
+        var originY = self.height / 2 - size / 2;
+
+        ctx.drawImage(image, originX, originY, originX + size, originY + size, 0, 0, canvasWidth, canvasHeight);
+
+        canvas.toBlob(function toBlobSuccess(resized_blob) {
+            console.log("resized blob");
+            var newFilename = "mozapps-"+UUID.genV4().toString()+".jpg";
+            var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, newFilename);
+
+            domRequest.onsuccess = function(){
+                deferred.resolve(newFilename);
+            };
+
+            domRequest.onerror = function(){
+                console.log("devicestorage addNamed error");
+                console.log(domRequest.error);
+                console.log(domRequest.error.name);
+                alert("Error saving camera image");
+                deferred.fail(domRequest.error);
+            };
+        }, 'image/jpeg');
+    };
+    image.src = window.URL.createObjectURL(blob);
+
+    return deferred.promise();
+}
+
 window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo,imgSize){
 
 	var domRequest = navigator.getDeviceStorage("pictures").get(filename);
@@ -82,15 +123,13 @@ window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo
         img.src = window.URL.createObjectURL(this.result);
         img.onload = function(e) {
             window.URL.revokeObjectURL(this.src);
-        }
-
-        //TODO instead of append, swap out img tags?
-        console.log("? Found element to append to?")
-        console.log(document.getElementById(idToAppendTo))
-        document.getElementById(idToAppendTo).appendChild(img);
+            console.log("getImageFromDeviceStorage2 - append to DOM")
+            document.getElementById(idToAppendTo).appendChild(img);
+        }        
     };
     domRequest.onerror = function(){
         console.log("getImageFromDeviceStorage - callback request fail");
+        console.log(domRequest.error);
     };
 }
 

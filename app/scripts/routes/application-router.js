@@ -89,6 +89,7 @@ routes:{
     },
     cameraGalleryNoProduct: function(id){
         console.log("camera gallery no product");
+        console.log(window.location.href);
         mozapps.router.cameraGallery(id,"");
     },
     cameraGallery: function(id, productID){
@@ -103,14 +104,13 @@ routes:{
         var pick = new MozActivity({
              name: "pick",
              data: {
-                 //type: ["image/png", "image/jpg", "image/jpeg"]
                 type: ["image/jpg", "image/jpeg"]
               }
          });
 
         pick.onsuccess = function () { 
             var self = this;
-            mozapps.productImage156 = {};
+            mozapps.productImage = {};
 
             // console.log('PICK SUCCESS');
             // console.log('result: ' + this.result);
@@ -121,56 +121,98 @@ routes:{
             // console.log('blob.size: ' + this.result.blob.size);
 
             //set original filename
-            mozapps.productImage156.originalFilename = this.result.blob.name;
+            mozapps.productImage.imgOrigPath = this.result.blob.name;
 
-            mozapps.productImage156.image = new Image();
-            mozapps.productImage156.image.onload = function resizeImg() {
-                var self = this;
-              var canvas = document.createElement('canvas');
-              canvas.width = 156;
-              canvas.height = 156;
-              var ctx = canvas.getContext('2d');
-              ctx.drawImage(mozapps.productImage156.image, 0, 0, 156, 156);
-              canvas.toBlob(function toBlobSuccess(resized_blob) {
-                console.log("resized blob");
-                var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
+            $.when(
+                mozapps.Utils.cropResizeSave(this.result.blob, 156, 156),
+                mozapps.Utils.cropResizeSave(this.result.blob, 320, 320)
+            )
+            .done(function(filename156){
 
-                domRequest.onsuccess = function(){
-                    var self = this;
-                    console.log("file name");
-                    console.log(this.result);
+                console.log("done - resizing 156");
+                console.log(filename156);
+                mozapps.productImage.imgSmallPath = filename156;
+            })
+            .done(function(filename320){
+                console.log("done - resizing 320");
+                console.log(filename320);
+                mozapps.productImage.imgLargePath = filename320;               
 
-                    //set the file path for the resized image
-                    mozapps.productImage156.resizedFilename = this.result;
+                if(mozapps.productID && mozapps.productID != ""){
+                    console.log("camera gallery - existing product");
 
-                    if(mozapps.productID && mozapps.productID != ""){
-                        console.log("camera gallery - existing product");
+                    //update the model
+                    var model = mozapps.productCollection.get(mozapps.productID);
+                    model.set({ 
+                        imgOrigPath: mozapps.productImage.imgOrigPath,
+                        imgSmallPath: mozapps.productImage.imgSmallPath,
+                        imgLargePath: mozapps.productImage.imgLargePath
+                    });
 
-                        //update the model
-                        var model = mozapps.productCollection.get(mozapps.productID);
-                        model.set({ 
-                            imgLargePath: mozapps.productImage156.originalFilename,
-                            imgSmallPath: mozapps.productImage156.resizedFilename
-                        });
+                    mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+mozapps.productID,true);
+                } else {
+                    console.log("camera gallery - new product");
+                    mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
+                }
+            });
 
-                        mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+mozapps.productID,true);
-                    } else {
-                        console.log("camera gallery - new product");
-                        mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
-                    }
+            // mozapps.productImage156.image = new Image();
+            // mozapps.productImage156.image.onload = function resizeImg() {
+            //     var self = this;
+            //   var canvas = document.createElement('canvas');
+            //   canvas.width = 156;
+            //   canvas.height = 156;
+            //   var ctx = canvas.getContext('2d');
+              
+
+            //     var size = Math.min(self.width,self.height);
+
+            //     var originX = self.width / 2 - size / 2;
+            //     var originY = self.height / 2 - size / 2;
+
+            //   ctx.drawImage(mozapps.productImage156.image, originX, originY, originX + size, originY + size, 0, 0, 156, 156);
+
+            //   //ctx.drawImage(mozapps.productImage156.image, 0, 0, 156, 156);
+            //   canvas.toBlob(function toBlobSuccess(resized_blob) {
+            //     console.log("resized blob");
+            //     var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
+
+            //     domRequest.onsuccess = function(){
+            //         var self = this;
+            //         console.log("file name");
+            //         console.log(this.result);
+
+            //         //set the file path for the resized image
+            //         mozapps.productImage156.resizedFilename = this.result;
+
+            //         if(mozapps.productID && mozapps.productID != ""){
+            //             console.log("camera gallery - existing product");
+
+            //             //update the model
+            //             var model = mozapps.productCollection.get(mozapps.productID);
+            //             model.set({ 
+            //                 imgLargePath: mozapps.productImage156.originalFilename,
+            //                 imgSmallPath: mozapps.productImage156.resizedFilename
+            //             });
+
+            //             mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+mozapps.productID,true);
+            //         } else {
+            //             console.log("camera gallery - new product");
+            //             mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
+            //         }
                     
-                };
-                domRequest.onerror = function(){
-                    console.log("devicestorage addNamed error");
-                    console.log(domRequest.error);
-                    console.log(domRequest.error.name);
-                    alert("Error saving camera image");
-                    mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list",true);
-                };
-              }, 'image/jpeg');
-            };
-            //TODO figure out if we need this
-            mozapps.productImage156.image.src = window.URL.createObjectURL(this.result.blob);
+            //     };
+            //     domRequest.onerror = function(){
+            //         console.log("devicestorage addNamed error");
+            //         console.log(domRequest.error);
+            //         console.log(domRequest.error.name);
+            //         alert("Error saving camera image");
+            //         mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list",true);
+            //     };
+            //   }, 'image/jpeg');
+            // };
+            // //TODO figure out if we need this
+            // mozapps.productImage156.image.src = window.URL.createObjectURL(this.result.blob);
 
 
 
@@ -327,11 +369,13 @@ routes:{
             setTimeout(function() {
                 var stageLeftObj = $('.stage-left');
                 if (stageLeftObj.length > 0) { 
-                    stageLeftObj.addClass('stage-hidden');
+                    //stageLeftObj.addClass('stage-hidden');
+                    stageLeftObj.remove();
                 }
                 var stageRightObj = $('.stage-right');
-                if (stageRightObj.length > 0) {
-                    stageRightObj.addClass('stage-hidden');
+                if (stageRightObj.length > 0) {  //TODO just call remove on zepto obj
+                    //stageRightObj.addClass('stage-hidden');
+                    stageRightObj.remove();
                 }
             }, 375);  // 375 is harcoded css transition time, transitionend event handler finicky
         });

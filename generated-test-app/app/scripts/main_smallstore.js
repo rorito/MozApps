@@ -150,7 +150,9 @@ window.smallstore = window.smallstore || {
     smallstore.reloadData = true;
   	var data = activity.source.data; 
   	
-    //console.log(data);
+    console.log(dump(data));
+
+    $("#appContainer").empty();
 
     smallstore.appsDB.clear();
     smallstore.productsDB.clear();
@@ -183,14 +185,18 @@ window.smallstore = window.smallstore || {
         .done(function(){            
             console.log("done with DB loading in small store");
 
+
+            //destroy the views, try w/ only reouter
             smallstore.homeView = new smallstore.Views.homeView({ model: smallstore.appCollection.at(0) });
             smallstore.homeView.appID = smallstore.homeView.model.toJSON().id;
 
             smallstore.productDetailView = new smallstore.Views.productDetailView({ model: smallstore.appCollection.at(0) });
             smallstore.productDetailView.appID = smallstore.productDetailView.model.toJSON().id;
 
-            smallstore.router = new smallstore.Routers.ApplicationRouter();
+            console.log("after views");
+            smallstore.router = smallstore.router || new smallstore.Routers.ApplicationRouter();
 
+            console.log("after router")
             // backbone history breaking in chrome
             if (!Backbone.History.started) {
                 Backbone.history.start();

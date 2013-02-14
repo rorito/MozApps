@@ -176,17 +176,21 @@ a:active { color: $default_text_color; text-decoration: none; }
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    transition-property: left;
+    transform:translateX(0%);
+    transition-property: translateX;
+    /*transition-property: left;*/
     transition-duration:0.250s;   
     z-index:99; /* temp fix for chrome */
 }
 
 .app-slide-none {
-    left:0%;
+    transform:translateX(0%);
+    /*left:0%;*/
 }
 
 .app-slide-right {
-    left:92%
+    transform:translateX(92%);
+    /*left:92%;*/
 }
 
 .nav-hidden {
@@ -197,7 +201,7 @@ a:active { color: $default_text_color; text-decoration: none; }
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-transform:translate3d(0,0,0);
+    /*-webkit-transform:translate3d(0,0,0);*/
 }
 
 .stage-center {
@@ -206,17 +210,19 @@ a:active { color: $default_text_color; text-decoration: none; }
 }
 
 .stage-left {
-    left: -100%;
+    transform:translateX(-100%);
+    /*left: -100%;*/
 }
 
 .stage-right {
-    left: 100%;
+    transform:translateX(100%);
+    /*left: 100%;*/
 }
 
 .stage-hidden {
     display:none;
 }
-
+/* look into this */
 .transition {
     -moz-transition-duration: .375s;
     -webkit-transition-duration: .375s;
