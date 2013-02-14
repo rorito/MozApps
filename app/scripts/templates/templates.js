@@ -415,7 +415,7 @@ function program11(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.address;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                <!-- always the same image -->\n                <p><img src=\"imgs/products/productDetailMap.jpg\" /></p>\n                <p>";
   stack1 = depth0.about;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.email;
@@ -425,7 +425,7 @@ function program11(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.properties;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.phone;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>    \n            ";
+  buffer += escapeExpression(stack1) + "</p>\n                <!-- TODO: add social icon -->\n            ";
   return buffer;}
 
   stack1 = depth0.loading;
