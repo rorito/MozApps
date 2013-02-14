@@ -700,7 +700,7 @@ mozapps.templateFixtureData = [
 mozapps.defaultAppData = [
     {
         "id": UUID.genV4().toString(),
-        "name": "Maria's Fine Crafts",
+        "name": "Mariella's Fine Crafts",
         "published": false,
         "version": "1.0",
         "templateID": mozapps.templateFixtureData[2].id,
@@ -718,7 +718,7 @@ mozapps.defaultAppData = [
             "description": "Introduce yourself",
             "properties": {
               "description": "Maria's Fine Crafts gravitates towards the native visceral tradition of creating objects of significance and power.  It pokes fun at a culture of consumption and cannibalistic appetite and deeply desires to drag the genre of adornment far away from vain decoration.  Maria's Fine Crafts is unisex, vintage, conceptual art for wear.",
-              "address": "204 20th St, San Francisco, CA 94107",
+              "address": "Fira Gran Via, Av. Joan Carles I, 64, 08908 L’Hospitalet de Llobregat, Barcelona",
               "phone": "415-304-2842",
               "email": "info@mariascrafts.com"
             }

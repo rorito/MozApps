@@ -28,7 +28,7 @@ section[data-type="accordion"] .title {
 
 section[data-type="accordion"] > .list {
 	padding: 0px;
-	border-top: 1px solid $default_border_color;
+	/*border-top: 1px solid $default_border_color;*/
 }
 
 section[data-type="accordion"] > .list > li > .list-item {
@@ -46,6 +46,23 @@ section[data-type="accordion"] > .list > li > .list-item {
  	margin: 2rem 0 .8rem 0;
  }
 
+.template-list input[type="radio"]:checked .show-scroll {
+	overflow-x: auto;
+}
+
+.template-list .list-item-body {
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background: $default_tertiary_color;
+	box-shadow: inset 0 0 .2rem rgba(0,0,0,1);
+	border-bottom: 1px solid $default_border_color;
+}
+
+.template-list .list-item-body > .horizontal-list {
+	width: 600px;
+}
+
+/*
 #templateList .list-item-body {
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -56,11 +73,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 
 #templateList .list-item-body > .horizontal-list {
 	width: 600px;
-	/* display: flex; */
-	/* flex-direction: row; */
-	/* align-items: stretch; */
-	/* justify-content: flex-start; */
-}
+}*/
 
 .horizontal-list > .list-item {
 	width: 130px;
@@ -79,6 +92,14 @@ section[data-type="accordion"] > .list > li > .list-item {
 .horizontal-list > .list-item a:hover { color: $default_primary_color; }
 .horizontal-list > .list-item a:active { color: $default_primary_color; }
 
+/* truncate long text wtih ellipses */
+.horizontal-list > .list-item a span {
+	display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 11rem;
+}
 
 .horizontal-list > .list-item > .template-thumbnail {
 	border: 1px solid #bababa;
@@ -111,7 +132,11 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list > li > input[type="radio"]:checked+label+div.list-item-body {
 	display: block;
 	height: 20.5rem;
-	overflow: scroll;
+	/*overflow: scroll;*/
+}
+
+.list > li > input[type="radio"]:checked+label+div.show-scroll {
+	overflow-x:scroll;
 }
 
 /* no arrow in accordian any more */

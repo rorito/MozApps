@@ -59,13 +59,29 @@ mozapps.Views.appSubView = Backbone.View.extend({
     //template: Handlebars.getTemplate("myAppsSubViewTemplate"),
     template: Handlebars.templates['myAppsSubViewTemplate'],
     iscrollObjects: new Array(),
+    radioClickCallback:null,
     initialize: function(){
+        radioClickCallback = null;
+
         this.listenTo(this.collection, "reset", this.render);
         this.listenTo(this.collection, "add", this.render);
         this.listenTo(this.collection, "remove", this.render);
 
         // SK - this may be a hack?, problem with back button render
         this.render();
+    },
+    events: {
+        'click input[type="radio"]' : 'onRadioClick'
+    },
+    onRadioClick: function(event) {
+        var targetEl = $(event.currentTarget);
+        if (null != radioClickCallback) {
+            radioClickCallback(targetEl);
+        }
+    },
+    setRadioClickCallback: function(callbackHandler) {
+        console.log('set radio handler');
+        radioClickCallback = callbackHandler;
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
@@ -94,13 +110,29 @@ mozapps.Views.templateSubView = Backbone.View.extend({
     //template: Handlebars.getTemplate("templatesSubViewTemplate"),
     template: Handlebars.templates['templatesSubViewTemplate'],
     iscrollObjects: new Array(),
+    radioClickCallback:null,
     initialize: function(){
+        radioClickCallback = null;
+
         this.listenTo(this.collection, "reset", this.render);
         this.listenTo(this.collection, "add", this.render);
         this.listenTo(this.collection, "remove", this.render);
 
         // TODO SK - this may be a hack?, problem with back button render
         this.render();
+    },
+    events: {
+        'click input[type="radio"]' : 'onRadioClick'
+    },
+    onRadioClick: function(event) {
+        var targetEl = $(event.currentTarget);
+        if (null != radioClickCallback) {
+            radioClickCallback(targetEl);
+        }
+    },
+    setRadioClickCallback: function(callbackHandler) {
+        console.log('set radio handler');
+        radioClickCallback = callbackHandler;
     },
     render: function(){
         if(mozapps.currentPage == "templatesListView"){
@@ -148,7 +180,9 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     //template: Handlebars.compile($("#screenViewTemplate").html()),
     //template: Handlebars.getTemplate("screenViewTemplate"),
     template: Handlebars.templates['screenViewTemplate'],
+    selectedID: null,
     initialize: function() {
+        selectedID = null;
     },
     events: {
         'click button#menuButton' : 'showMenu'
@@ -156,12 +190,49 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     showMenu: function() {
         mozapps.toggleSideMenu();
     },
+    handleRadioClick:function(targetEl) {
+        var targetID = targetEl.attr('id');
+
+        if (selectedID != targetID) {
+            if (null != selectedID) {
+                var oldSelectedEl = $('#' + selectedID);
+                var oldTargetContainer = targetEl.next().next();
+                if (oldTargetContainer.length > 0) {
+                    oldTargetContainer.removeClass('show-scroll');
+                }
+            }
+
+            // set the selected id
+            selectedID = targetID;
+
+            // wait until animation is done to show the scroll
+            setTimeout(function(targetEl){ 
+                // assumes container is two siblings away
+                var targetContainer = targetEl.next().next();
+                if (targetContainer.length > 0) {
+                    targetContainer.addClass('show-scroll');
+                }
+            }, 
+            500, 
+            targetEl
+            );
+        }
+    },
     render: function(eventName) {
         console.log("template list view");
         if(mozapps.currentPage == "templatesListView"){
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
-            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templatelist'), collection: mozapps.templateCollection});
+            this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templateAccordianList'), collection: mozapps.templateCollection});
+
+            // set callbacks
+            this.myAppsSubView.setRadioClickCallback((function(targetEl){
+                this.handleRadioClick(targetEl);
+            }).bind(this));
+
+            this.myTemplatesSubView.setRadioClickCallback((function(targetEl){
+                this.handleRadioClick(targetEl);
+            }).bind(this));
         }
         return this;
     }
@@ -745,7 +816,7 @@ mozapps.Views.preview = Backbone.View.extend({
         productCarousel.init("#productCarousel");
         // set callbacks
         productCarousel.onSwipeDone = (function(targetIndex, targetEl) {
-            //console.log('on swipe done: ' + targetIndex);
+            console.log('on swipe done: ' + targetIndex);
             //console.log('on swipe done: ' + targetEl);
 
             // get product info based on app id and product id
@@ -759,7 +830,7 @@ mozapps.Views.preview = Backbone.View.extend({
         
         productCarousel.onMainItemClicked = (function(targetIndex, targetEl) {
             console.log('on main item clicked: ' + targetIndex);   
-            console.log('on main item clicked: ' + targetEl);
+            //console.log('on main item clicked: ' + targetEl);
             if (targetEl) {
                 var productID = targetEl.getAttribute("productID");
                 //console.log(this.appID);
@@ -799,7 +870,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         'click button#back' : "back"
     },
     back : function() {
-        mozapps.router.navigate("#apps/"+this.appID,true);
+        //mozapps.router.navigate("#apps/"+this.appID,true);
+        window.history.back();
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -972,8 +1044,10 @@ mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
-            console.log("open view render - current")
-            this.$el.html(this.template());
+            console.log("open view render - current");
+            
+            console.log(this.model.toJSON());
+            this.$el.html(this.template(this.model.toJSON()));
         }
         return this;
     }

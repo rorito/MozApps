@@ -1,2 +1,19 @@
-<button id="openAppButton">Open App</button>
-<button id="backButton">Back to App Builder</button>
+
+<!-- represents application publish uploading screen
+APPLICATION BUILDER PUBLISH SUBMIT -->
+<div id="appBuilderOpenApp" role="window">
+    <!-- content region -->
+    <section role="region" data-type="content" class="box-padded">
+    	<h2 class="half-top">{{name}}</h2>
+    	<!-- left/right padding not working on device, so put in <br/> tag to wrap text-->
+    	<p class="box-no-margin large-content-text">
+    		has been published to the 
+    		<br/> 
+    		Firefox Marketplace.
+    	</p>
+    	<p class="box-no-margin container-bottom">
+			<button id="openAppButton">Open App</button>
+			<button id="backButton">Back to App Builder</button>
+		</p>
+    </section>
+</div>

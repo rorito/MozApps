@@ -28,7 +28,6 @@ section[role="region"] textarea{
 }
 
 section[role="region"] label {
-	text-transform:uppercase;
 	@include label-text;	
 }
 
@@ -39,4 +38,12 @@ section[role="region"] label.label-dark {
 .label-padded {
 	display:block;
 	margin:0 0.2rem 0.3rem 0.2rem;
+}
+
+.label-dark {
+	@include label-text-dark;
+}
+
+.label-upper {
+	text-transform:uppercase;
 }

@@ -11,7 +11,7 @@ Handlebars.registerHelper('templateListViewHelper', function(items, options) {
     }
 
     out += "<li><input id='item-" + count + "' type='radio' name='radio' " + initItemString + ">"
-    + "<label for='item-" + count + "' class='list-item'>"+ key + "</label>";
+    + "<label for='item-" + count + "' class='list-item label-dark'>"+ key + "</label>";
     out += "<div id='" + key.toString().replace(" ","") + "Body' class='list-item-body'><ul class='horizontal-list'>";
     var templatesCategories = items[key];
     templatesCategories.forEach(function(element, index, array){

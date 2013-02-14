@@ -39,12 +39,12 @@
 #templateNameList > ul {
 	/*display: flex;*/
 	/*flex-direction: row;*/
-	width: 1000px;
+	/*width: 1000px;*/
 	padding: 0 !important;
 }
 
 #templateNameList > ul > li {
-	width: 320px;
+	/*width: 320px;*/
 	@include text-large;
 	line-height: 2.2em;
 	text-align: center;

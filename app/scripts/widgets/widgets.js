@@ -61,6 +61,7 @@ window.widgets = window.widgets || {
             var radioBtns = document.querySelectorAll(carouselID + " li input[type='radio']");
             for (var i=0; i<radioBtns.length; i++) {
                 var radioBtn = radioBtns[i];
+                
                 radioBtn.onclick = function(event) {
                     handleRadioBtnClick(event, this);
                 };
@@ -120,6 +121,7 @@ window.widgets = window.widgets || {
 
         // event handler for radio button click
         var handleRadioBtnClick = function(event, targetBtn) {
+            console.log('radio click');
             event.preventDefault();
             //alert('click');
             //console.log(targetBtn);
