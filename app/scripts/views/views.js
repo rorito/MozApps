@@ -1051,8 +1051,10 @@ mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
-            console.log("open view render - current")
-            this.$el.html(this.template());
+            console.log("open view render - current");
+            
+            console.log(this.model.toJSON());
+            this.$el.html(this.template(this.model.toJSON()));
         }
         return this;
     }

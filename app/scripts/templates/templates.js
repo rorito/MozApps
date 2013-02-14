@@ -508,10 +508,15 @@ function program7(depth0,data) {
   else { return ''; }});
 templates['openApp'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<button id=\"openAppButton\">Open App</button>\n<button id=\"backButton\">Back to App Builder</button>";});
+  buffer += "\n<!-- represents application publish uploading screen\nAPPLICATION BUILDER PUBLISH SUBMIT -->\n<div id=\"appBuilderOpenApp\" role=\"window\">\n    <!-- content region -->\n    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n    	<h2 class=\"half-top\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</h2>\n    	<!-- left/right padding not working on device, so put in <br/> tag to wrap text-->\n    	<p class=\"box-no-margin large-content-text\">\n    		has been published to the \n    		<br/> \n    		Firefox Marketplace.\n    	</p>\n    	<p class=\"box-no-margin container-bottom\">\n			<button id=\"openAppButton\">Open App</button>\n			<button id=\"backButton\">Back to App Builder</button>\n		</p>\n    </section>\n</div>";
+  return buffer;});
 templates['productDetailEditTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
   var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;

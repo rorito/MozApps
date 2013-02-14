@@ -275,7 +275,7 @@ routes:{
     },
     appBuilderOpenApp: function(id){
         console.log("router open app " + id);
-        var openApp = new mozapps.Views.appBuilderPublishOpenAppView();
+        var openApp = new mozapps.Views.appBuilderPublishOpenAppView({model: mozapps.appCollection.get(id)});
         mozapps.currentPage = openApp.viewName;
         openApp.appID = id;
         mozapps.appID = id;
