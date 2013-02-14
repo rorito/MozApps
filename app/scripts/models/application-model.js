@@ -700,7 +700,7 @@ mozapps.templateFixtureData = [
 mozapps.defaultAppData = [
     {
         "id": UUID.genV4().toString(),
-        "name": "Maria's Fine Crafts",
+        "name": "Mariella's Fine Crafts",
         "published": false,
         "version": "1.0",
         "templateID": mozapps.templateFixtureData[2].id,

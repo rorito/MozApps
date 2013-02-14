@@ -92,6 +92,14 @@ section[data-type="accordion"] > .list > li > .list-item {
 .horizontal-list > .list-item a:hover { color: $default_primary_color; }
 .horizontal-list > .list-item a:active { color: $default_primary_color; }
 
+/* truncate long text wtih ellipses */
+.horizontal-list > .list-item a span {
+	display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 11rem;
+}
 
 .horizontal-list > .list-item > .template-thumbnail {
 	border: 1px solid #bababa;
