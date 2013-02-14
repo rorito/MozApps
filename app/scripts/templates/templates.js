@@ -713,7 +713,7 @@ templates['screenViewTemplate'] = template(function (Handlebars,depth0,helpers,p
   
 
 
-  return "<div id=\"templateList\" role=\"window\">\n\n<!-- title bar region -->\n<section role=\"region\">\n  <header>\n    <button id=\"menuButton\"><span class=\"icon icon-menu\">menu</span></button>\n    <h1>Mozillapps</h1>\n  </header>\n</section>\n\n<!-- content region -->\n<section role=\"region\" data-type=\"accordion\">\n    <ul id=\"appList\" class=\"list\">\n\n    </ul>\n    <ul id=\"templatelist\" class=\"list\">\n\n    </ul>\n</section>\n\n<!-- footer region -->\n<section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n</section>\n</div> ";});
+  return "<div id=\"templateList\" role=\"window\">\n\n<!-- title bar region -->\n<section role=\"region\">\n  <header>\n    <button id=\"menuButton\"><span class=\"icon icon-menu\">menu</span></button>\n    <h1>Mozillapps</h1>\n  </header>\n</section>\n\n<!-- content region -->\n<section role=\"region\" data-type=\"accordion\">\n    <ul id=\"appList\" class=\"list template-list\">\n\n    </ul>\n    <ul id=\"templateAccordianList\" class=\"list template-list\">\n\n    </ul>\n</section>\n\n<!-- footer region -->\n<section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n</section>\n</div> ";});
 templates['templateDetailViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
