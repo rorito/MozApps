@@ -915,13 +915,16 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             ///console.log('container exists?');
             //console.log($('#' + containerID));
 
+            /*
             console.log("imgPath: " + imgPath);
             console.log("productID: " + productID);
             console.log('containerID: ' + containerID);
             console.log("mozapps.productImage.imgSmallPath: " + mozapps.productImage.imgSmallPath);
             console.log("mozapps.productImage.imgLargePath: " + mozapps.productImage.imgLargePath);
-
-            window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+            */
+            if (productJSON.attributes.imgStoragePath == "devicestorage") {
+                window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+            }
         }
         return this;
     }
