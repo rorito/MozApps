@@ -11,8 +11,6 @@ routes:{
         "apps/:id/preview":"preview",
         "apps/:id/preview/product/:productID/":"previewProductDetail",
         "apps/:id/publish":"publish",
-        "apps/:id/cameraGallery":"cameraGalleryNoProduct",
-        "apps/:id/cameraGallery/:productID":"cameraGallery",
         "apps/:id/product-list":"ProductList",
         "apps/:id/product-list/:productID":"ProductListDetailEdit",
         "apps/:id/ecommerce":"appBuilderECommerce",
@@ -89,145 +87,6 @@ routes:{
         mozapps.currentPage = theme.viewName;
         
         this.slidePage(theme.render());  
-    },
-    cameraGalleryNoProduct: function(id){
-        console.log("camera gallery no product");
-        console.log(window.location.href);
-        mozapps.router.cameraGallery(id,"");
-    },
-    cameraGallery: function(id, productID){
-        console.log(window.location.href)
-        console.log("camera gallery")
-        console.log("id: " + id);
-        console.log("product id: " + productID);
-
-        mozapps.appID = id;
-        mozapps.productID = productID;
-
-        var pick = new MozActivity({
-             name: "pick",
-             data: {
-                type: ["image/jpg", "image/jpeg"]
-              }
-         });
-
-        pick.onsuccess = function () { 
-            var self = this;
-
-            mozapps.productImage = {};
-
-            // console.log('PICK SUCCESS');
-            // console.log('result: ' + this.result);
-            // console.log('result.type: ' + this.result.type);
-            // console.log('result.blob: ' + this.result.blob);
-            // console.log('blob.type: ' + this.result.blob.type);
-            // console.log('blob.name: ' + this.result.blob.name);
-            // console.log('blob.size: ' + this.result.blob.size);
-
-            //set original filename
-            mozapps.productImage.imgOrigPath = this.result.blob.name;
-
-            $.when(
-                mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 156),
-                mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 320)
-            )
-            .done(function(){
-                console.log("************ crop Done")               
-
-                if(mozapps.productID && mozapps.productID != ""){
-                    console.log("camera gallery - existing product");
-                    console.log(mozapps.productImage.imgSmallPath)
-                    console.log(mozapps.productImage.imgLargePath)
-
-                    //update the model
-                    var model = mozapps.productCollection.get(mozapps.productID);
-                    model.set({ 
-                        imgOrigPath: mozapps.productImage.imgOrigPath,
-                        imgSmallPath: mozapps.productImage.imgSmallPath,
-                        imgLargePath: mozapps.productImage.imgLargePath
-                    });
-
-                    mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+mozapps.productID,true);
-                } else {
-                    console.log("camera gallery - new product");
-                    mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
-                }
-            });
-
-            // mozapps.productImage156.image = new Image();
-            // mozapps.productImage156.image.onload = function resizeImg() {
-            //     var self = this;
-            //   var canvas = document.createElement('canvas');
-            //   canvas.width = 156;
-            //   canvas.height = 156;
-            //   var ctx = canvas.getContext('2d');
-              
-
-            //     var size = Math.min(self.width,self.height);
-
-            //     var originX = self.width / 2 - size / 2;
-            //     var originY = self.height / 2 - size / 2;
-
-            //   ctx.drawImage(mozapps.productImage156.image, originX, originY, originX + size, originY + size, 0, 0, 156, 156);
-
-            //   //ctx.drawImage(mozapps.productImage156.image, 0, 0, 156, 156);
-            //   canvas.toBlob(function toBlobSuccess(resized_blob) {
-            //     console.log("resized blob");
-            //     var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
-
-            //     domRequest.onsuccess = function(){
-            //         var self = this;
-            //         console.log("file name");
-            //         console.log(this.result);
-
-            //         //set the file path for the resized image
-            //         mozapps.productImage156.resizedFilename = this.result;
-
-            //         if(mozapps.productID && mozapps.productID != ""){
-            //             console.log("camera gallery - existing product");
-
-            //             //update the model
-            //             var model = mozapps.productCollection.get(mozapps.productID);
-            //             model.set({ 
-            //                 imgLargePath: mozapps.productImage156.originalFilename,
-            //                 imgSmallPath: mozapps.productImage156.resizedFilename
-            //             });
-
-            //             mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+mozapps.productID,true);
-            //         } else {
-            //             console.log("camera gallery - new product");
-            //             mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
-            //         }
-                    
-            //     };
-            //     domRequest.onerror = function(){
-            //         console.log("devicestorage addNamed error");
-            //         console.log(domRequest.error);
-            //         console.log(domRequest.error.name);
-            //         alert("Error saving camera image");
-            //         mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list",true);
-            //     };
-            //   }, 'image/jpeg');
-            // };
-            // //TODO figure out if we need this
-            // mozapps.productImage156.image.src = window.URL.createObjectURL(this.result.blob);
-
-
-
-            // mozapps.productImage320 = {};
-            // mozapps.productImage156 = {};
-
-            // $.when(mozapps.Utils.canvasImageResize(mozapps.productImage320, 320, 320), mozapps.Utils.canvasImageResize(mozapps.productImage156, 156, 156))
-            // .done(function(){            
-            //     mozapps.router.navigate("#apps/"+id+"/product-list/add",true);
-            // });
-        };
-
-        pick.onerror = function () { 
-            // console.log("Can't view the image!");
-            // console.log(this.error.name + ': ' + this.error);
-            // mozapps.router.navigate("#apps/"+id+"/product-list",true);
-        };
     },
     ProductList: function(id){
         // console.log(window.location.href)

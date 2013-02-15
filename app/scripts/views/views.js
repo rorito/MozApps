@@ -593,15 +593,16 @@ mozapps.Views.productList = Backbone.View.extend({
     template: Handlebars.templates['productListViewTemplate'],
     viewName: "productList",
     events: {
-        'click button#back' : "back"
-        //'click #link-add-product' : "addProduct"
+        'click button#back' : "back",
+        'click #link-add-product' : "addProduct"
     },
     back : function() {
         mozapps.router.navigate("#apps/"+this.appID,true);
     },
     addProduct: function(event){
         console.log("add Product");
-        mozapps.router.navigate("#apps/"+this.appID+"/cameraGallery",true);
+        //mozapps.router.navigate("#apps/"+this.appID+"/cameraGallery",true);
+        mozapps.Utils.cameraGallery();
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -648,7 +649,8 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
     events: {
         'click button#back' : "back",
         'click button#productDetailEditDone' : "saveProduct",
-        'click button#deleteProductDetail' : "deleteProduct"
+        'click button#deleteProductDetail' : "deleteProduct",
+        'click #productDetailImage' : "changeImage"
     },
     back : function() {
         mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
@@ -656,6 +658,9 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
     deleteProduct: function(event){
         mozapps.productCollection.remove(this.model);
         mozapps.router.navigate("#apps/"+this.appID+"/product-list",true);
+    },
+    changeImage: function(event){
+        mozapps.Utils.cameraGallery(this.model.toJSON().id);
     },
     saveProduct: function(event){
         var self = this;
@@ -739,15 +744,10 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 
                 if (this.model.attributes.imgStorageType === "devicestorage") {
                     console.log("imgStorage type device storage")
-                    console.log(this.model.toJSON().imgSmallPath)
-                    console.log(mozapps.productImage.imgSmallPath)
+
                     window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, "productDetailImage", 156);
-                } else {
-                    console.log("imgStorage type NOT device storage")
                 }
             }
-
-            //this.imageSubView = new mozapps.Views.imageSubView({el: this.$el.find('#imageSubView'), model: this.model});
         }
         return this;
     }
@@ -882,7 +882,7 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         'click button#back' : "back"
     },
     back : function() {
-        mozapps.router.navigate("#apps/"+this.appID,true);
+        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
         //window.history.back();
     },
     render: function(eventName) {
