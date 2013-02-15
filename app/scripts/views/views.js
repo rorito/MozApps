@@ -632,7 +632,7 @@ mozapps.Views.productList = Backbone.View.extend({
                         //will async append an image from device storage to the given HTMLElement id (second arg)
                         //mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
                         console.log("******** view - device storage: " + element.imgSmallPath);
-                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.imgSmallPath, 83);
+                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
                     }
                 });
             }
@@ -727,7 +727,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 
                 this.$el.html(this.template({add: true, appID: this.appID, imgSmallPath: mozapps.productImage.imgSmallPath}));
 
-                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage.imgSmallPath, mozapps.productImage.imgSmallPath, 156);
+                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage.imgSmallPath, "productDetailImage", 156);
             } else {
                 console.log("edit existing product");
                 console.log("product detail edit app id: " + this.appID);
@@ -739,7 +739,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 
                 if (this.model.attributes.imgStorageType === "devicestorage") {
                     console.log("imgStorage type device storage")
-                    window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, this.model.toJSON().imgSmallPath, 156);
+                    window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, "productDetailImage", 156);
                 } else {
                     console.log("imgStorage type NOT device storage")
                 }
@@ -880,8 +880,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         'click button#back' : "back"
     },
     back : function() {
-        //mozapps.router.navigate("#apps/"+this.appID,true);
-        window.history.back();
+        mozapps.router.navigate("#apps/"+this.appID,true);
+        //window.history.back();
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){

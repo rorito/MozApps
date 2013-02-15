@@ -109,6 +109,7 @@ routes:{
 
         pick.onsuccess = function () { 
             var self = this;
+
             mozapps.productImage = {};
 
             // console.log('PICK SUCCESS');
@@ -126,13 +127,11 @@ routes:{
                 mozapps.Utils.cropResizeSave(this.result.blob, 156, 156),
                 mozapps.Utils.cropResizeSave(this.result.blob, 320, 320)
             )
-            .done(function(filename156){
-
+            .done(function(filename156, filename320){
                 console.log("done - resizing 156");
                 console.log(filename156);
                 mozapps.productImage.imgSmallPath = filename156;
-            })
-            .done(function(filename320){
+
                 console.log("done - resizing 320");
                 console.log(filename320);
                 mozapps.productImage.imgLargePath = filename320;               

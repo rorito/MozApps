@@ -26,7 +26,7 @@
                                     <li>
                                         <a href="#apps/{{appID}}/product-list/{{this.id}}">
                                             {{#if_eq this.imgStorageType compare="devicestorage"}}
-                                                <figure id="{{this.imgSmallPath}}"></figure>
+                                                <figure id="{{this.id}}"></figure>   <!-- this.imgSmallPath //-->
                                             {{else}}
                                                 <figure><img src="{{this.imgSmallPath}}"></figure>
                                             {{/if_eq}}

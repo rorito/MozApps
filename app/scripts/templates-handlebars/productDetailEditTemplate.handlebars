@@ -24,13 +24,28 @@
         <section role="region" data-type="content">
             <section role="region" data-type="detail" class="template-detail box-padded-small">
                 <div class="box-left-padded">
-                    {{#if add}}
+                    {{#if_eq imgStorageType compare="package"}}
+                        <p class="box-unpadded"><img src="{{imgSmallPath}}"></p>
+                    {{else}}
+                        {{#if add}}
+                        <a href="#apps/{{appID}}/cameraGallery">
+                            <p class="box-unpadded" id="productDetailImage"></p>
+                        </a>
+                        {{else}}
+                        <a href="#apps/{{appID}}/cameraGallery/{{id}}">
+                            <p class="box-unpadded" id="productDetailImage"></p>
+                        </a>
+                        {{/if}}                            
+                    {{/if_eq}}
+
+
+                    <!-- {{#if add}}
                         <p class="box-unpadded" id="{{imgSmallPath}}}"></p>
                     {{else}}
                         <a href="#apps/{{appID}}/cameraGallery/{{id}}">
                             <p class="box-unpadded" id="{{imgSmallPath}}"></p>
                         </a>
-                    {{/if}}                            
+                    {{/if}}  //-->
                 </div>
                 <div class="grey-box">
                     <p class="box-unpadded">

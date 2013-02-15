@@ -122,10 +122,14 @@ window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo
         img.width = imgSize;
         img.src = window.URL.createObjectURL(this.result);
         img.onload = function(e) {
+            //console.log("onload getImageFromDeviceStorage2 - append to DOM")
+            console.log("onload item to append to: " + document.getElementById(idToAppendTo)); 
             window.URL.revokeObjectURL(this.src);
-            console.log("getImageFromDeviceStorage2 - append to DOM")
-            document.getElementById(idToAppendTo).appendChild(img);
-        }        
+        }
+        console.log("append to: " + document.getElementById(idToAppendTo));
+        document.getElementById(idToAppendTo).appendChild(img);
+        
+       
     };
     domRequest.onerror = function(){
         console.log("getImageFromDeviceStorage - callback request fail");
