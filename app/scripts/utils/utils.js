@@ -88,11 +88,7 @@ window.mozapps.Utils.cropResizeSave = function(imgRef, blob, canvasSize){
         ctx.drawImage(image, originX, originY, originX + minSize, originY + minSize, 0, 0, canvasSize, canvasSize);
 
         canvas.toBlob(function toBlobSuccess(resized_blob) {
-            console.log("resized blob");
-
-
-
-
+            //console.log("resized blob");
             // console.log(imgRef)
             // console.log(imgRef.imgOrigPath);
             // console.log(canvasSize);
@@ -189,16 +185,22 @@ window.mozapps.Utils.cameraGallery = function(productID){
 
             if(productID && productID != ""){
                 console.log("camera gallery - existing product");
-                console.log(mozapps.productImage.imgSmallPath)
-                console.log(mozapps.productImage.imgLargePath)
+                //console.log(mozapps.productImage.imgSmallPath)
+                //console.log(mozapps.productImage.imgLargePath)
 
-                // //update the model
-                // var model = mozapps.productCollection.get(productID);
-                // model.set({ 
-                //     imgOrigPath: mozapps.productImage.imgOrigPath,
-                //     imgSmallPath: mozapps.productImage.imgSmallPath,
-                //     imgLargePath: mozapps.productImage.imgLargePath
-                // });
+
+                //update the model
+                var model = mozapps.productCollection.get(productID);
+                
+                console.log(model.toJSON())
+                model.set({ 
+                    imgOrigPath: mozapps.productImage.imgOrigPath,
+                    imgSmallPath: mozapps.productImage.imgSmallPath,
+                    imgLargePath: mozapps.productImage.imgLargePath,
+                    imgStorageType: "devicestorage"
+                });
+
+                console.log(model.toJSON())
 
                 //need to use navigate(..., false) so that we update the URL, but don't navigate and trigger the product detail edit route
                 mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+productID, false);
