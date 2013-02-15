@@ -633,7 +633,8 @@ mozapps.Views.productList = Backbone.View.extend({
                 productList.forEach(function(element, index, array){
                     if(element.imgStorageType == "devicestorage" && element.imgSmallPath){
                         //will async append an image from device storage to the given HTMLElement id (second arg)
-                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                        //mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.imgSmallPath, 83);
                     }
                 });
             }
