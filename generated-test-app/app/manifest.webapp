@@ -1,7 +1,7 @@
 {
-  "version": "0.3",
+  "version": "0.4",
   "name": "Small Store",
-  "description": "An example store",
+  "description": "An example store app",
   "launch_path": "/index.html",
   "orientation": "portrait-primary",
   "type": "privileged",
@@ -10,7 +10,7 @@
     "url": "http://www.frogdesign.com"
   },
   "icons": {
-    "60": "/imgs/icons/60.png"
+    "60": "/imgs/icons/smallstore-icon-60x60.png"
   },
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },

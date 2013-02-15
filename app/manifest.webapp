@@ -1,5 +1,5 @@
 {
-  "version": "0.2",
+  "version": "0.3",
   "name": "Moz Apps",
   "description": "Create your own apps!",
   "launch_path": "/index.html",
@@ -10,7 +10,7 @@
     "url": "http://www.frogdesign.com"
   },
   "icons": {
-        "60": "/imgs/icons/60.png"
+        "60": "/imgs/icons/mozillapp-icon-60x60.png"
     },
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },

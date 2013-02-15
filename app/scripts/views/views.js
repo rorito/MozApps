@@ -739,6 +739,8 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
 
                 if (this.model.attributes.imgStorageType === "devicestorage") {
                     console.log("imgStorage type device storage")
+                    console.log(this.model.toJSON().imgSmallPath)
+                    console.log(mozapps.productImage.imgSmallPath)
                     window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, "productDetailImage", 156);
                 } else {
                     console.log("imgStorage type NOT device storage")

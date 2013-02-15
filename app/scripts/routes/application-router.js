@@ -124,20 +124,16 @@ routes:{
             mozapps.productImage.imgOrigPath = this.result.blob.name;
 
             $.when(
-                mozapps.Utils.cropResizeSave(this.result.blob, 156, 156),
-                mozapps.Utils.cropResizeSave(this.result.blob, 320, 320)
+                mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 156),
+                mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 320)
             )
-            .done(function(filename156, filename320){
-                console.log("done - resizing 156");
-                console.log(filename156);
-                mozapps.productImage.imgSmallPath = filename156;
-
-                console.log("done - resizing 320");
-                console.log(filename320);
-                mozapps.productImage.imgLargePath = filename320;               
+            .done(function(){
+                console.log("************ crop Done")               
 
                 if(mozapps.productID && mozapps.productID != ""){
                     console.log("camera gallery - existing product");
+                    console.log(mozapps.productImage.imgSmallPath)
+                    console.log(mozapps.productImage.imgLargePath)
 
                     //update the model
                     var model = mozapps.productCollection.get(mozapps.productID);

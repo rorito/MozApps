@@ -69,7 +69,7 @@ window.mozapps.Utils.getImageFromDeviceStorage = function(imgObj){
     return deferred.promise();
 }
 
-window.mozapps.Utils.cropResizeSave = function(blob, canvasWidth, canvasHeight){
+window.mozapps.Utils.cropResizeSave = function(imgRef, blob, canvasSize){
     var deferred = Deferred();
 
     var image = new Image();
@@ -77,23 +77,40 @@ window.mozapps.Utils.cropResizeSave = function(blob, canvasWidth, canvasHeight){
         var self = this;
 
         var canvas = document.createElement('canvas');
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
         var ctx = canvas.getContext('2d');
       
-        var size = Math.min(self.width,self.height);
-        var originX = self.width / 2 - size / 2;
-        var originY = self.height / 2 - size / 2;
+        var minSize = Math.min(image.width,image.height);
+        var originX = image.width / 2 - minSize / 2;
+        var originY = image.height / 2 - minSize / 2;
 
-        ctx.drawImage(image, originX, originY, originX + size, originY + size, 0, 0, canvasWidth, canvasHeight);
+        ctx.drawImage(image, originX, originY, originX + minSize, originY + minSize, 0, 0, canvasSize, canvasSize);
 
         canvas.toBlob(function toBlobSuccess(resized_blob) {
-            //console.log("resized blob");
+            console.log("resized blob");
+
+
+
+
+            // console.log(imgRef)
+            // console.log(imgRef.imgOrigPath);
+            // console.log(canvasSize);
             var newFilename = "mozapps-"+UUID.genV4().toString()+".jpg";
             var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, newFilename);
 
             domRequest.onsuccess = function(){
-                deferred.resolve(newFilename);
+                if(canvasSize == 156){
+                    console.log("resize to 156: " + newFilename)
+                    imgRef.imgSmallPath = newFilename;
+                    //mozapps.productImage.imgSmallPath = newFilename;
+                } else if(canvasSize == 320){
+                    console.log("resize to 320: " + newFilename)
+                    imgRef.imgLargePath = newFilename;
+                    //mozapps.productImage.imgLargePath = newFilename;
+                }
+
+                deferred.resolve();
             };
 
             domRequest.onerror = function(){
@@ -103,7 +120,7 @@ window.mozapps.Utils.cropResizeSave = function(blob, canvasWidth, canvasHeight){
                 alert("Error saving camera image");
                 deferred.fail(domRequest.error);
             };
-        }, 'image/jpeg');
+        }, 'image/jpeg', imgRef, canvasSize);
     };
     image.src = window.URL.createObjectURL(blob);
 
@@ -123,11 +140,10 @@ window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo
         img.src = window.URL.createObjectURL(this.result);
         img.onload = function(e) {
             //console.log("onload getImageFromDeviceStorage2 - append to DOM")
-            console.log("onload item to append to: " + document.getElementById(idToAppendTo)); 
+            console.log("append to: " + document.getElementById(idToAppendTo).id);
+            document.getElementById(idToAppendTo).appendChild(img);
             window.URL.revokeObjectURL(this.src);
         }
-        console.log("append to: " + document.getElementById(idToAppendTo));
-        document.getElementById(idToAppendTo).appendChild(img);
         
        
     };
@@ -137,38 +153,38 @@ window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo
     };
 }
 
-window.mozapps.Utils.canvasImageResize = function(imageRef, width, height){
-	var deferred = Deferred();
+// window.mozapps.Utils.canvasImageResize = function(imageRef, width, height){
+// 	var deferred = Deferred();
 
-	imageRef = new Image();
-    imageRef.onload = function resizeImg() {
-      	var canvas = document.createElement('canvas');
-      	canvas.width = width;
-      	canvas.height = height;
+// 	imageRef = new Image();
+//     imageRef.onload = function resizeImg() {
+//       	var canvas = document.createElement('canvas');
+//       	canvas.width = width;
+//       	canvas.height = height;
       	
-      	var ctx = canvas.getContext('2d');
-      	ctx.drawImage(mozapps.productImage, 0, 0, width, height);
+//       	var ctx = canvas.getContext('2d');
+//       	ctx.drawImage(mozapps.productImage, 0, 0, width, height);
       	
-      	canvas.toBlob(function toBlobSuccess(resized_blob) {
-        	var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
+//       	canvas.toBlob(function toBlobSuccess(resized_blob) {
+//         	var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
         	
-	        domRequest.onsuccess = function(){
-	            var self = this;
-	            console.log("file name");
-	            console.log(this.result);
-	            self.imageRef.filename = this.result;
-	            deferred.resolve();
-	        };
-	        domRequest.onerror = function(){
-	            console.log("devicestorage addNamed error");
-	            console.log(domRequest.error);
-	            console.log(domRequest.error.name);
-	            deferred.resolve();
-	        };
-      	}, 'image/jpeg');
-	};
+// 	        domRequest.onsuccess = function(){
+// 	            var self = this;
+// 	            console.log("file name");
+// 	            console.log(this.result);
+// 	            self.imageRef.filename = this.result;
+// 	            deferred.resolve();
+// 	        };
+// 	        domRequest.onerror = function(){
+// 	            console.log("devicestorage addNamed error");
+// 	            console.log(domRequest.error);
+// 	            console.log(domRequest.error.name);
+// 	            deferred.resolve();
+// 	        };
+//       	}, 'image/jpeg');
+// 	};
 	
-	imageRef.src = window.URL.createObjectURL(this.result.blob);
+// 	imageRef.src = window.URL.createObjectURL(this.result.blob);
 
-	return deferred.promise();
-}
+// 	return deferred.promise();
+// }
