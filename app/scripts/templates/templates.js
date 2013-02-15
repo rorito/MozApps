@@ -124,26 +124,26 @@ templates['appBuilderThemeTemplate'] = template(function (Handlebars,depth0,help
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, stack2, stack3, foundHelper;
-  buffer += "\n                <!-- represents application screen APP PUBLISH DESTINATION -->\n                <div id=\"appBuilderThemePicker\" role=\"window\">\n                    <!-- title bar region -->\n                    <section role=\"region\" data-type=\"header\">\n                        <header>\n                            <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                            <menu type=\"toolbar\">\n                                <button id=\"themeFormDone\">Done</button>\n                            </menu>\n                            <h1>Choose Theme</h1>\n                        </header>\n                    </section>\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\">\n                        <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n                            <h1>Personalize your colors.</h1>\n                            <div class=\"light-bg round-corners box-padded-thin\">\n                                <h2>THEMES</h2>\n                                ";
+  buffer += "\n    <!-- represents application screen APP PUBLISH DESTINATION -->\n    <div id=\"appBuilderThemePicker\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <menu type=\"toolbar\">\n                    <button id=\"themeFormDone\">Done</button>\n                </menu>\n                <h1>Choose Theme</h1>\n            </header>\n        </section>\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded-small\">\n                <h1>Personalize your colors.</h1>\n                <div class=\"light-bg round-corners box-padded-super-thin\">\n                <h2>THEMES</h2>\n                ";
   stack1 = depth0.selectedTheme;
   stack2 = depth0.themes;
   stack3 = {};
   foundHelper = helpers.themeSelectHelper;
   stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:stack3,inverse:self.noop,fn:self.program(4, program4, data),data:data}) : helperMissing.call(depth0, "themeSelectHelper", stack2, stack1, {hash:stack3,inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            </div>\n                        </section>\n                    </section>\n                    \n                    \n                </div>\n            ";
+  buffer += "\n                </div>\n            </section>\n        </section>\n    </div>\n";
   return buffer;}
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                    ";
+  buffer += "\n                    ";
   stack1 = typeof depth0 === functionType ? depth0.apply(depth0) : depth0;
-  buffer += escapeExpression(stack1) + "\n                                ";
+  buffer += escapeExpression(stack1) + "\n                ";
   return buffer;}
 
   stack1 = depth0.loading;
