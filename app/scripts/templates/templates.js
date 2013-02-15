@@ -158,36 +158,36 @@ templates['appBuilderViewTemplate'] = template(function (Handlebars,depth0,helpe
 function program1(depth0,data) {
   
   
-  return "\n                <h1>Loading...</h1>\n            ";}
+  return "\n    <h1>Loading...</h1>\n";}
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n                  <!-- represents application screen\n                     APP BUILDER -->\n                <div id=\"appBuilder\" role=\"window\">\n                  <!-- title bar region -->\n                  <section role=\"region\" data-type=\"header\">\n                    <header>\n                      <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                      <h1>App Builder</h1>\n                    </header>\n                  </section>\n\n                  <!-- content region -->\n                  <section role=\"region\" data-type=\"content\">\n                    <section role=\"region\" data-type=\"detail\" class=\"template-detail cf\">\n                      <h1>";
+  buffer += "\n    <!-- represents application screen\n    APP BUILDER -->\n    <div id=\"appBuilder\" role=\"window\">\n        <!-- title bar region -->\n        <section role=\"region\" data-type=\"header\">\n            <header>\n                <button id=\"back\"><span class=\"icon icon-back\">back</span></button>\n                <h1>App Builder</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail cf box-padded-small-custom\">\n                <h1>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</h1>\n                      <div><img src=\"";
+  buffer += escapeExpression(stack1) + "</h1>\n                <div><img src=\"";
   foundHelper = helpers.imgSmallPath;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" class=\"template-thumbnail-small\"></div>\n                      <div>\n                        <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                        <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                      </div>\n                    </section>\n                    <section role=\"region\" data-type=\"list\">\n                      <header class=\"list-header\">Edit your app components</header>\n                      <ul data-type=\"edit\" class=\"components-list\">\n                        ";
+  buffer += escapeExpression(stack1) + "\" class=\"template-thumbnail-small\"></div>\n                <div>\n                    <button id=\"appBuilderPreview\" class=\"\">Preview</button>\n                    <button id=\"appBuilderPublish\" class=\"\">Publish</button>\n                </div>\n            </section>\n            <section role=\"region\" data-type=\"list\">\n                <header class=\"list-header\">Edit components</header>\n                <ul data-type=\"edit\" class=\"components-list\">\n                ";
   stack1 = depth0.app_components;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                      </ul>\n                    </section>\n                  </section>\n\n                  <!-- footer region -->\n                  <section role=\"region\" data-type=\"footer\">\n                    <footer></footer>\n                  </section>\n                </div>\n            ";
+  buffer += "\n                </ul>\n            </section>\n        </section>\n\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n";
   return buffer;}
 function program4(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n                            <li>\n                                <p>";
+  buffer += "\n                    <li>\n                        <p>";
   stack1 = depth0.component_name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                                <p>";
+  buffer += escapeExpression(stack1) + "</p>\n                        <p>";
   stack1 = depth0.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                                <button id=\"";
+  buffer += escapeExpression(stack1) + "</p>\n                        <button id=\"";
   foundHelper = helpers.component_id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.component_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -196,7 +196,7 @@ function program4(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "></button>\n                            </li>\n                        ";
+  buffer += "></button>\n                    </li>\n                ";
   return buffer;}
 function program5(depth0,data) {
   
