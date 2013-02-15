@@ -337,6 +337,14 @@ mozapps.templateFixtureData = [
         "is_enabled": false
       },
       {
+        "component_name": "Template",
+        "component_id": "template-view-details",
+        "completed": false,
+        "description": "SMALL STORE",
+        "properties": {},
+        "is_enabled": false
+      },
+      {
         "component_name": "Shopping Cart",
         "component_id": "shopping-cart",
         "completed": false,
@@ -851,6 +859,14 @@ mozapps.defaultAppData = [
             "component_id": "menu-creation",
             "completed": false,
             "description": "Choose a menu style",
+            "properties": {},
+            "is_enabled": false
+          },
+          {
+            "component_name": "Template",
+            "component_id": "template-view-details",
+            "completed": false,
+            "description": "SMALL STORE",
             "properties": {},
             "is_enabled": false
           },
