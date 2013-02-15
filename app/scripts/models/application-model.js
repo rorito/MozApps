@@ -119,7 +119,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -131,7 +132,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -152,7 +154,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -162,7 +165,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Swipe through multiple gal- leries of your images. Tap to enlarge to full detail with text.",
@@ -182,7 +186,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -194,7 +199,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -215,7 +221,18 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
+      },
+      {
+        "component_name": "Product List",
+        "component_id": "product-list",
+        "completed": false,
+        "description": "Add products to your store",
+        "properties": {
+          "productIDs": []
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -225,19 +242,10 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["images/60x60.jpg", "images/60x60.jpg"],
           "selectedIcon": ""
-        }
-      },
-      {
-        "component_name": "Product List",
-        "component_id": "product-list",
-        "completed": false,
-        "description": "Add products to your store",
-        "properties": {
-          "productIDs": []
-        }
+        },
+        "is_enabled": false
       }
     ],
-    "description": "Large Store is an e-com- merce app that features large images and many product categories.",
     "categories": [
       "Commerce"
     ],
@@ -253,7 +261,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -265,7 +274,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -286,7 +296,18 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
+      },
+      {
+          "component_name": "Product List",
+          "component_id": "product-list",
+          "completed": false,
+          "description": "Add products to your store",
+          "properties": {
+            "productIDs": []
+          },
+          "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -296,16 +317,48 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       },
       {
-          "component_name": "Product List",
-          "component_id": "product-list",
-          "completed": false,
-          "description": "Add products to your store",
-          "properties": {
-            "productIDs": []
-          }
+        "component_name": "Product Display",
+        "component_id": "product-display",
+        "completed": false,
+        "description": "Choose a display style",
+        "properties": {},
+        "is_enabled": false
+      },
+      {
+        "component_name": "Menu Creation",
+        "component_id": "menu-creation",
+        "completed": false,
+        "description": "Choose a menu style",
+        "properties": {},
+        "is_enabled": false
+      },
+      {
+        "component_name": "Template",
+        "component_id": "template-view-details",
+        "completed": false,
+        "description": "SMALL STORE",
+        "properties": {},
+        "is_enabled": false
+      },
+      {
+        "component_name": "Shopping Cart",
+        "component_id": "shopping-cart",
+        "completed": false,
+        "description": "Set up your store",
+        "properties": {},
+        "is_enabled": false
+      },
+      {
+        "component_name": "Social Sharing",
+        "component_id": "social-sharing",
+        "completed": false,
+        "description": "Add your favorite services",
+        "properties": {},
+        "is_enabled": false
       }
     ],
     "description": "Small Store features a customizable catalog of product photos and an e-commerce service.",
@@ -325,7 +378,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -337,7 +391,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -358,7 +413,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -368,7 +424,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Front Page is a great template to give equal weight to your iimages and words.",
@@ -388,7 +445,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -400,7 +458,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -421,7 +480,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -431,7 +491,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Reader allows you to pub- lish a list of articles to the front page of you app. Include video and audio as well.",
@@ -451,7 +512,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -463,7 +525,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -484,7 +547,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -494,7 +558,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "The Triad template presents three bold images as links to your top entries.",
@@ -516,7 +581,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -528,7 +594,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -549,7 +616,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -559,7 +627,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Feature your photos on the front page of your app. Perfect for portfolio use.",
@@ -580,7 +649,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -592,7 +662,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -613,7 +684,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -623,7 +695,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Show your pictures in an automatic slideshow, or jump to your favorites, with Lightbox.",
@@ -642,7 +715,8 @@ mozapps.templateFixtureData = [
         "component_name": "App Name",
         "component_id": "name",
         "completed": false,
-        "description": "Name your application"
+        "description": "Name your application",
+        "is_enabled": true
       },
       {
         "component_name": "About Me",
@@ -654,7 +728,8 @@ mozapps.templateFixtureData = [
           "address": "",
           "phone": "",
           "email": ""
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "Theme",
@@ -675,7 +750,8 @@ mozapps.templateFixtureData = [
             }
           ],
           "selectedTheme": "theme-01"
-        }
+        },
+        "is_enabled": true
       },
       {
         "component_name": "App Icon",
@@ -685,7 +761,8 @@ mozapps.templateFixtureData = [
         "properties": {
           "iconFilenames": ["icon-01.png", "icon-02.png"],
           "selectedIcon": ""
-        }
+        },
+        "is_enabled": false
       }
     ],
     "description": "Feature your best images in a big, bold display with Hot Shot. Play a slideshow or swipe to browse.",
@@ -710,7 +787,8 @@ mozapps.defaultAppData = [
             "component_name": "App Name",
             "component_id": "name",
             "completed": true,
-            "description": "Mariella's Fine Crafts"
+            "description": "Mariella's Fine Crafts",
+            "is_enabled": true
           },
           {
             "component_name": "About Me",
@@ -722,7 +800,8 @@ mozapps.defaultAppData = [
               "address": "Mariella's Fine Crafts, 217 Rua Andrade Pinto, Niterói, Rio de Janeiro, Brazil",
               "phone": "(55)(21) 2529 1122",
               "email": "Mariellascrafts@gmail.com"
-            }
+            },
+            "is_enabled": true
           },
           {
             "component_name": "Theme",
@@ -743,7 +822,18 @@ mozapps.defaultAppData = [
                 }
               ],
               "selectedTheme": "theme-01"
-            }
+            },
+            "is_enabled": true
+          },
+          {
+            "component_name": "Product List",
+            "component_id": "product-list",
+            "completed": true,
+            "description": "Add products to your store",
+            "properties": {
+              "productIDs": []
+            },
+            "is_enabled": true
           },
           {
             "component_name": "App Icon",
@@ -753,16 +843,48 @@ mozapps.defaultAppData = [
             "properties": {
               "iconFilenames": ["images/60x60.jpg", "images/60x60.jpg"],
               "selectedIcon": ""
-            }
+            },
+            "is_enabled": false
           },
           {
-            "component_name": "Product List",
-            "component_id": "product-list",
-            "completed": true,
-            "description": "Add products to your store",
-            "properties": {
-              "productIDs": []
-            }
+            "component_name": "Product Display",
+            "component_id": "product-display",
+            "completed": false,
+            "description": "Choose a display style",
+            "properties": {},
+            "is_enabled": false
+          },
+          {
+            "component_name": "Menu Creation",
+            "component_id": "menu-creation",
+            "completed": false,
+            "description": "Choose a menu style",
+            "properties": {},
+            "is_enabled": false
+          },
+          {
+            "component_name": "Template",
+            "component_id": "template-view-details",
+            "completed": false,
+            "description": "SMALL STORE",
+            "properties": {},
+            "is_enabled": false
+          },
+          {
+            "component_name": "Shopping Cart",
+            "component_id": "shopping-cart",
+            "completed": false,
+            "description": "Set up your store",
+            "properties": {},
+            "is_enabled": false
+          },
+          {
+            "component_name": "Social Sharing",
+            "component_id": "social-sharing",
+            "completed": false,
+            "description": "Add your favorite services",
+            "properties": {},
+            "is_enabled": false
           }
         ],
         "description": "description of small store template",

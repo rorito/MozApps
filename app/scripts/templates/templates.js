@@ -186,10 +186,12 @@ function program3(depth0,data) {
 function program4(depth0,data) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n                    <li>\n                        <p>";
-  stack1 = depth0.component_name;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                        <p>";
+  buffer += "\n                    <li>\n                    ";
+  stack1 = depth0.is_enabled;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                        <p>";
   stack1 = depth0.description;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "</p>\n                        <button id=\"";
@@ -199,11 +201,29 @@ function program4(depth0,data) {
   buffer += escapeExpression(stack1) + "\" ";
   stack1 = depth0.completed;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "></button>\n                    </li>\n                ";
   return buffer;}
 function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                        <p>";
+  stack1 = depth0.component_name;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "</p>\n                    ";
+  return buffer;}
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                        <p class=\"disabled-text\">";
+  stack1 = depth0.component_name;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  buffer += escapeExpression(stack1) + "</p>\n                    ";
+  return buffer;}
+
+function program9(depth0,data) {
   
   
   return "class=\"complete\"";}
@@ -485,7 +505,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item label-dark open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
+  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item label-dark open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body show-scroll\">\n            <ul class=\"horizontal-list\">\n            ";
   stack1 = depth0.myApps;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});

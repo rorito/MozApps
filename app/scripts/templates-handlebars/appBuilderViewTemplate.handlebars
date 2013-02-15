@@ -27,7 +27,11 @@
                 <ul data-type="edit" class="components-list">
                 {{#each app_components}}
                     <li>
+                    {{#if this.is_enabled}}
                         <p>{{this.component_name}}</p>
+                    {{else}}
+                        <p class="disabled-text">{{this.component_name}}</p>
+                    {{/if}}
                         <p>{{this.description}}</p>
                         <button id="{{component_id}}" {{#if this.completed}}class="complete"{{/if}}></button>
                     </li>
