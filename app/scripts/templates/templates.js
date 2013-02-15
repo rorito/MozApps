@@ -293,7 +293,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   
-  return "\n            <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                <button id=\"back\">Exit Preview</button>\n            </section>\n        ";}
+  return "\n            <section role=\"region\" data-type=\"outer-chrome\" class=\"outer-chrome\">\n                <button id=\"exitPreview\">Exit Preview</button>\n            </section>\n        ";}
 
 function program8(depth0,data) {
   
