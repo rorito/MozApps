@@ -22,12 +22,16 @@ routes:{
         "apps/:id/publish/done":"appBuilderOpenApp",
         "*path":  "templates"
     },
+    appContainer: null, // reference to app container
     initialize: function() {
         var self = this;
 
         // Keep track of the history of pages (we only store the page URL). Used to identify the direction
         // (left or right) of the sliding transition between pages.
         this.pageHistory = [];
+
+        // track the app container
+        appContainer = document.querySelector("#appContainer");
     },
 
     selectItem: function(event) {
@@ -371,6 +375,10 @@ routes:{
                     //stageRightObj.addClass('stage-hidden');
                     stageRightObj.remove();
                 }
+
+                // scroll the window to the top
+                appContainer.scrollTop = 0;
+            
             }, 375);  // 375 is harcoded css transition time, transitionend event handler finicky
         });
     }
