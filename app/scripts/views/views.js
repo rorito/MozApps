@@ -713,7 +713,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
             //update existing product
             console.log("******* updating existing product");
 
-            
+
 
             this.model.set({
                 name: $('#name').val(),
@@ -884,11 +884,14 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
     template: Handlebars.templates['appViewProductDetailTemplate'],
     viewName: "previewProductDetail",
     events: {
-        'click button#back' : "back"
+        'click button#back' : "back",
+        'click button#exitPreview': "exitPreview"
     },
     back : function() {
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
-        //window.history.back();
+    },
+    exitPreview : function(){
+        mozapps.router.navigate("#apps/"+this.appID,true);  
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
