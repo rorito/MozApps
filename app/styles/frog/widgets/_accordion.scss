@@ -10,9 +10,8 @@ section[data-type="accordion"] {
 section[data-type="accordion"], img {
 	-moz-user-select: none;
 	/*user-drag: none;*/
-	border: 1px solid white;
-    box-shadow: 0 0 4px rgba(0,0,0,0.5);
-    display: inline-block;
+	border:1px solid white;
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
 
 section[data-type="accordion"] > .list > li.header {
@@ -42,7 +41,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 	font-weight: normal;
 	font-size: 1.6rem;
 	background-color: $default_secondary_color;
-	border-bottom: 1px solid $default_secondary_color;
+	border-bottom:1px solid $default_secondary_color;
 }
 
 /* start horizontal list */
@@ -80,7 +79,7 @@ section[data-type="accordion"] > .list > li > .list-item {
 }*/
 
 .horizontal-list {
-	padding:0 0 0 2.9rem;
+	padding:0 0 0 3rem;
 }
 
 .horizontal-list > .list-item {
@@ -146,7 +145,6 @@ section[data-type="accordion"] > .list > li > .list-item {
 .list > li > input[type="radio"]:checked+label+div.show-scroll {
 	overflow-x:scroll;
 }
-
 
 .list > li > input[type="radio"]:checked+label.list-item {
 	background-color: #919191;
