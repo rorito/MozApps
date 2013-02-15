@@ -26,7 +26,8 @@
 #appBuilder [data-type="content"] .template-detail {
 	position: relative;
 	/* display: flex; */
-	padding: 2rem 2rem;
+	/*padding: 2rem 2rem;*/
+	padding:1.7rem 0.7rem;
 	/* flex-direction: row; */
 	/* justify-content: flex-start; */
 	border-top: 1px solid #525252;
@@ -34,10 +35,14 @@
 }
 
 #appBuilder [data-type="content"] .template-detail h1 {
-	font-family: "OpenSans", Sans-serif;
-	font-weight: 100;
-	font-size: 1.9rem;
-	margin: 1rem 0;
+	font-family: "OpenSans",Sans-serif;
+    font-size: 1.9rem;
+    font-weight: 100;
+    margin: 0 0 1rem 2.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 24rem;
 }
 
 #appBuilder [data-type="content"] .template-detail .template-thumbnail-small {
@@ -57,7 +62,8 @@
 }
 
 #appBuilder [data-type="content"] .template-detail > div:nth-child(2) {
-	width: 10rem !important;
+	width: 10.5rem !important;
+	margin-left:2.7rem;
 }
 
 #appBuilder [data-type="content"] .template-detail .recommend {
@@ -76,6 +82,10 @@
 	width: 2rem;
 	outline: none;
 	border: 0;
+}
+
+#appBuilder #appBuilderPreview {
+	margin:0 0 2rem 0;
 }
 
 /* ----------------------------------

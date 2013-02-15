@@ -10,6 +10,9 @@ section[data-type="accordion"] {
 section[data-type="accordion"], img {
 	-moz-user-select: none;
 	/*user-drag: none;*/
+	border: 1px solid white;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    display: inline-block;
 }
 
 section[data-type="accordion"] > .list > li.header {
@@ -35,10 +38,11 @@ section[data-type="accordion"] > .list > li > .list-item {
 	display: block;
 	padding: 1.3rem 4rem 1.3rem 3.5rem;
 	margin: 0;
-	font-family: "MozTTLight";
+	font-family: "OpenSans";
 	font-weight: normal;
-	font-size: 1.7rem;
+	font-size: 1.6rem;
 	background-color: $default_secondary_color;
+	border-bottom: 1px solid $default_secondary_color;
 }
 
 /* start horizontal list */
@@ -68,16 +72,20 @@ section[data-type="accordion"] > .list > li > .list-item {
 	overflow-y: hidden;
 	background: $default_tertiary_color;
 	box-shadow: inset 0 0 .2rem rgba(0,0,0,1);
-	border-bottom: 1px solid $default_border_color;
+	border-bottom: 1px solid #a5a5a5;
 }
 
 #templateList .list-item-body > .horizontal-list {
 	width: 600px;
 }*/
 
+.horizontal-list {
+	padding:0 0 0 2.9rem;
+}
+
 .horizontal-list > .list-item {
-	width: 130px;
-	margin-right: 2.1rem;
+	width: 120px;
+	margin-right: 1rem;
 	float: left;
 	font-family: "OpenSansLight";
 	font-size: 1.4rem;
@@ -139,9 +147,13 @@ section[data-type="accordion"] > .list > li > .list-item {
 	overflow-x:scroll;
 }
 
-/* no arrow in accordian any more */
-/*
+
 .list > li > input[type="radio"]:checked+label.list-item {
+	background-color: #919191;
+	@include label-text;
+	/* no arrow in accordian any more */
+	/*
 	background: $default_secondary_color url(frog/widgets/accordion/images/arrow_black_up.png) no-repeat  97% 50%;
+	*/
+	border-bottom: 1px solid #5A5A5A;
 }
-*/
