@@ -519,7 +519,7 @@ templates['openApp'] = template(function (Handlebars,depth0,helpers,partials,dat
   return buffer;});
 templates['productDetailEditTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -534,14 +534,12 @@ function program3(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded-small\">\n                <div class=\"box-left-padded\">\n            ";
-  stack1 = depth0.imgStorageType;
+  buffer += "\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded-small\">\n                <div class=\"box-left-padded\">\n                    ";
+  stack1 = depth0.add;
   stack2 = {};
-  stack2['compare'] = "package";
-  foundHelper = helpers.if_eq;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(10, program10, data),fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </div>\n                <div class=\"grey-box\">\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Item Name</label>\n                        <input id=\"name\" name=\"name\" type=\"text\" value=\"";
+  buffer += "                            \n                </div>\n                <div class=\"grey-box\">\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Item Name</label>\n                        <input id=\"name\" name=\"name\" type=\"text\" value=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -549,14 +547,14 @@ function program3(depth0,data) {
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded label-upper\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"text\" value=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"number\" value=\"";
   foundHelper = helpers.price;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.price; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" />\n                    </p>\n                ";
   stack1 = depth0.add;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(17, program17, data),fn:self.program(15, program15, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(14, program14, data),fn:self.program(12, program12, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                </div>\n\n            </section>\n        </section>\n        <!-- footer region -->\n        <section role=\"region\" data-type=\"footer\">\n            <footer></footer>\n        </section>\n    </div>\n";
   return buffer;}
@@ -578,37 +576,17 @@ function program6(depth0,data) {
 function program8(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <p class=\"box-unpadded\"><img src=\"";
+  buffer += "\n                        <p class=\"box-unpadded\" id=\"";
   foundHelper = helpers.imgSmallPath;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\"></p>\n            ";
+  buffer += escapeExpression(stack1) + "\"></p>\n                    ";
   return buffer;}
 
 function program10(depth0,data) {
   
-  var buffer = "", stack1, stack2;
-  buffer += "\n                ";
-  stack1 = depth0.add;
-  stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(13, program13, data),fn:self.program(11, program11, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "                            \n            ";
-  return buffer;}
-function program11(depth0,data) {
-  
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <a href=\"#apps/";
-  foundHelper = helpers.appID;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "/cameraGallery\">\n                    <p class=\"box-unpadded\" id=\"productDetailImage\"></p>\n                </a>\n                ";
-  return buffer;}
-
-function program13(depth0,data) {
-  
-  var buffer = "", stack1, foundHelper;
-  buffer += "\n                <a href=\"#apps/";
+  buffer += "\n                        <a href=\"#apps/";
   foundHelper = helpers.appID;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.appID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -616,15 +594,19 @@ function program13(depth0,data) {
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <p class=\"box-unpadded\" id=\"productDetailImage\"></p>\n                </a>\n                ";
+  buffer += escapeExpression(stack1) + "\">\n                            <p class=\"box-unpadded\" id=\"";
+  foundHelper = helpers.imgSmallPath;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\"></p>\n                        </a>\n                    ";
   return buffer;}
 
-function program15(depth0,data) {
+function program12(depth0,data) {
   
   
   return "\n                ";}
 
-function program17(depth0,data) {
+function program14(depth0,data) {
   
   
   return "\n                    <p class=\"box-unpadded box-button-footer\">\n                        <button id=\"deleteProductDetail\" class=\"danger\">Delete</button>\n                    </p>\n                ";}
@@ -685,7 +667,7 @@ function program5(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                                                <figure id=\"";
-  stack1 = depth0.id;
+  stack1 = depth0.imgSmallPath;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
   buffer += escapeExpression(stack1) + "\"></figure>\n                                            ";
   return buffer;}

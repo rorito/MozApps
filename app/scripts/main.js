@@ -308,28 +308,5 @@ window.mozapps = window.mozapps || {
 };
 
 $(document).ready(function(){
-
-    // // TEMP INSTALL
-    // var request = navigator.mozApps.getSelf();
-    // request.onsuccess = function() {
-    //   if (request.result) {
-    //     // we're installed
-    //   } else {
-    //     navigator.mozApps.install("http://localhost:3501/manifest.webapp");
-    //   }
-    // };
-    // request.onerror = function() {
-    //   alert('Error checking installation status: ' + this.error.message);
-    // };
-
    window.mozapps.init();
-
 });
-
-
-
-
-
-// Object.observe(mozapps.templateCollection, function(){
-//     console.log("templateCollection - observe call back");
-// });

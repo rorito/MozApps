@@ -282,6 +282,7 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 version: "1.0",
                 app_components: tmpl.toJSON().app_components,
                 templateID: self.templateID,
+                //imgOrigPath: tmpl,toJSON().imgOrigPath,
                 imgLargePath: tmpl.toJSON().imgLargePath,
                 imgSmallPath: tmpl.toJSON().imgSmallPath
             });
@@ -632,7 +633,8 @@ mozapps.Views.productList = Backbone.View.extend({
                 productList.forEach(function(element, index, array){
                     if(element.imgStorageType == "devicestorage" && element.imgSmallPath){
                         //will async append an image from device storage to the given HTMLElement id (second arg)
-                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                        //mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                        mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.imgSmallPath, 83);
                     }
                 });
             }
@@ -684,8 +686,9 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     name: prodName,
                     description: $('#description').val(),
                     price: price,
-                    imgLargePath: mozapps.productImage156.originalFilename,
-                    imgSmallPath: mozapps.productImage156.resizedFilename,
+                    //imgOrigPath: mozapps.productImage.imgOrigPath,
+                    imgLargePath: mozapps.productImage.imgLargePath,
+                    imgSmallPath: mozapps.productImage.imgSmallPath,
                     imgStorageType: "devicestorage"
                 });
                 mozapps.productCollection.add(newProduct);
@@ -696,8 +699,9 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 name: $('#name').val(),
                 description: $('#description').val(),
                 price: $('#price').val(),
-                imgLargePath: mozapps.productImage156.originalFilename,
-                imgSmallPath: mozapps.productImage156.resizedFilename,
+                //imgOrigPath: mozapps.productImage.imgOrigPath,
+                imgLargePath: mozapps.productImage.imgLargePath,
+                imgSmallPath: mozapps.productImage.imgSmallPath,
                 imgStorageType: "devicestorage"
             });
         }
@@ -706,51 +710,29 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list",true);
     },
     render: function(eventName) {
-        console.log("product detail edit render");
         if(mozapps.currentPage == this.viewName){
             if(!this.model || this.model == "add"){
-                console.log("product detail - add new product");
-                console.log("resized filename: " + mozapps.productImage156.resizedFilename);
                 
                 //render template first so we have DOM element to inject image into on callback
-                this.$el.html(this.template({add: true, appID: this.appID}));
-                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage156.resizedFilename, 'productDetailImage', 156);
-                // var imgObj = {
-                //     filename: mozapps.productImage156.resizedFilename,
-                //     size: 156,
-                //     url: ""
-                // };
-                // $.when(window.mozapps.Utils.getImageFromDeviceStorage(imgObj))
-                // .done(function(imgObj){         
-                //     console.log("deferred done - new")
-                //     console.log(imgObj)            
-                //     this.$el.html(this.template({ model: this.model.toJSON(), imageURL: imgObj.url}));    
-                // });
+                console.log("product detail edit app id: " + this.appID);
+                
+                this.$el.html(this.template({add: true, appID: this.appID, imgSmallPath: mozapps.productImage.imgSmallPath}));
 
+                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage.imgSmallPath, mozapps.productImage.imgSmallPath, 156);
             } else {
                 console.log("edit existing product");
-                console.log(this.model.toJSON());
-                
-                // var imgObj = {
-                //     filename: this.model.toJSON().imgSmallPath,
-                //     size: 156,
-                //     url: ""
-                // };
-
-                // $.when(window.mozapps.Utils.getImageFromDeviceStorage(imgObj))
-                // .done(function(imgObj){
-                //     var self = this;
-                //     console.log("deferred done - existing")            
-                //     console.log(imgObj)
-                //     this.$el.html(this.template({ model: this.model.toJSON(), imageURL: imgObj.url}));    
-                // });
-
+                console.log("product detail edit app id: " + this.appID);
                 this.$el.html(this.template(this.model.toJSON()));
                 
                 //console.log(this.model);
                 // only need to access device storage if the storage type is device storage
+
+
                 if (this.model.attributes.imgStorageType === "devicestorage") {
-                    window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, 'productDetailImage', 156);
+                    console.log("imgStorage type device storage")
+                    window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, this.model.toJSON().imgSmallPath, 156);
+                } else {
+                    console.log("imgStorage type NOT device storage")
                 }
             }
 
@@ -863,6 +845,9 @@ mozapps.Views.preview = Backbone.View.extend({
         // loop through the products
         //console.log('loop through product list');
         //console.log(productList);
+
+        //TODO do sequentially not 
+
         for (var i=0; i<productList.length; i++) {
             var product = productList[i];
             //console.log("loooping: " + i);
@@ -901,14 +886,23 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             
             this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
 
+            console.log(productJSON)
+            console.log(productJSON.toJSON())
+
             // TODO: use imgLargePath
-            var imgPath = productJSON.attributes.imgSmallPath;
+            var imgPath = productJSON.attributes.imgLargePath;
             var productID = productJSON.attributes.id;
             var containerID = "img-container-" + productID;
             //console.log('>>>>>> try to get product ID: ' + productID);
-            //console.log('containerID: ' + containerID);
             ///console.log('container exists?');
             //console.log($('#' + containerID));
+
+            console.log("imgPath: " + imgPath);
+            console.log("productID: " + productID);
+            console.log('containerID: ' + containerID);
+            console.log("mozapps.productImage.imgSmallPath: " + mozapps.productImage.imgSmallPath);
+            console.log("mozapps.productImage.imgLargePath: " + mozapps.productImage.imgLargePath);
+
             window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
         }
         return this;
@@ -1031,7 +1025,7 @@ mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
             productList.push(element.toJSON());
         });
         var sharing = new MozActivity({
-                name: "share",
+                name: "sharemozapps",
                 data: {
                     type: "mozapps",
                     appData: mozapps.appCollection.get(this.appID).toJSON(),
