@@ -711,15 +711,18 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 console.log("newProduct imgLargePath: " + newProduct.toJSON().imgLargePath)
         } else {
             //update existing product
-            console.log("updating existing product");
+            console.log("******* updating existing product");
+
+            
+
             this.model.set({
                 name: $('#name').val(),
                 description: $('#description').val(),
-                price: $('#price').val(),
-                //imgOrigPath: mozapps.productImage.imgOrigPath,
-                imgLargePath: mozapps.productImage.imgLargePath,
-                imgSmallPath: mozapps.productImage.imgSmallPath,
-                imgStorageType: "devicestorage"
+                price: $('#price').val()
+                // //imgOrigPath: mozapps.productImage.imgOrigPath,
+                // imgLargePath: mozapps.productImage.imgLargePath,
+                // imgSmallPath: mozapps.productImage.imgSmallPath,
+                // imgStorageType: "devicestorage"
             });
 
                 console.log("existing id: " + this.model.toJSON().id)
@@ -745,13 +748,8 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 console.log("product detail edit app id: " + this.appID);
                 this.$el.html(this.template(this.model.toJSON()));
                 
-                //console.log(this.model);
-                // only need to access device storage if the storage type is device storage
-
-
                 if (this.model.attributes.imgStorageType === "devicestorage") {
                     console.log("imgStorage type device storage")
-
                     window.mozapps.Utils.getImageFromDeviceStorage2(this.model.toJSON().imgSmallPath, "productDetailImage", 156);
                 }
             }
