@@ -9,7 +9,7 @@ ADB = ./adb
 
 FOLDER = ../../dist
 #FOLDER = ../../app
-NAME = mozappsinstall443
+NAME = mozappsinstall446
 
 
 handlebars:

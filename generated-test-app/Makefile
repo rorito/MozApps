@@ -2,7 +2,7 @@ PORT_DEVICE = 6000
 PORT_LOCAL = 6000
 XPCSHELL = ../build-scripts/mac/xulrunner-sdk/bin/xpcshell
 ADB = ../build-scripts/mac/adb
-APP_NAME = smallstore213
+APP_NAME = smallstore216
 FOLDER = dist
 
 copyFiles:
@@ -14,7 +14,7 @@ copyFiles:
 	cp -R ../app/styles app
 	rm app/scripts/main.js
 
-package:
+package: copyFiles
 	cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
 
 packaged: package

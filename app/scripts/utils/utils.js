@@ -153,6 +153,72 @@ window.mozapps.Utils.getImageFromDeviceStorage2 = function(filename,idToAppendTo
     };
 }
 
+window.mozapps.Utils.cameraGallery = function(productID){
+    console.log("camera gallery")
+        
+    var pick = new MozActivity({
+         name: "pick",
+         data: {
+            type: ["image/jpg", "image/jpeg"]
+          }
+     });
+
+    pick.onsuccess = function () { 
+        var self = this;
+
+        mozapps.productImage = {};
+
+        // console.log('PICK SUCCESS');
+        // console.log('result: ' + this.result);
+        // console.log('result.type: ' + this.result.type);
+        // console.log('result.blob: ' + this.result.blob);
+        // console.log('blob.type: ' + this.result.blob.type);
+        // console.log('blob.name: ' + this.result.blob.name);
+        // console.log('blob.size: ' + this.result.blob.size);
+
+        //set original filename
+        mozapps.productImage.imgOrigPath = this.result.blob.name;
+
+        $.when(
+            mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 156),
+            mozapps.Utils.cropResizeSave(mozapps.productImage, this.result.blob, 320)
+        )
+        .done(function(){
+            console.log("************ crop Done") 
+            console.log("appID: " + mozapps.appID);              
+
+            if(productID && productID != ""){
+                console.log("camera gallery - existing product");
+                console.log(mozapps.productImage.imgSmallPath)
+                console.log(mozapps.productImage.imgLargePath)
+
+                // //update the model
+                // var model = mozapps.productCollection.get(productID);
+                // model.set({ 
+                //     imgOrigPath: mozapps.productImage.imgOrigPath,
+                //     imgSmallPath: mozapps.productImage.imgSmallPath,
+                //     imgLargePath: mozapps.productImage.imgLargePath
+                // });
+
+                //need to use navigate(..., false) so that we update the URL, but don't navigate and trigger the product detail edit route
+                mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+productID, false);
+                //remove the existing image
+                $("#productDetailImage").empty(); 
+                window.mozapps.Utils.getImageFromDeviceStorage2(mozapps.productImage.imgSmallPath, "productDetailImage", 156);
+            } else {
+                console.log("camera gallery - new product");
+                mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/add",true);
+            }
+        });
+    };
+
+        pick.onerror = function () { 
+            console.log("Picker error");
+            // console.log(this.error.name + ': ' + this.error);
+            // mozapps.router.navigate("#apps/"+id+"/product-list",true);
+        };
+}
+
 // window.mozapps.Utils.canvasImageResize = function(imageRef, width, height){
 // 	var deferred = Deferred();
 

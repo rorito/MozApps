@@ -176,21 +176,21 @@ a:active { color: $default_text_color; text-decoration: none; }
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    transform:translateX(0%);
-    transition-property: translateX;
-    /*transition-property: left;*/
+    /*transform:translateX(0%);
+    transition-property: translateX;*/
+    transition-property: left;
     transition-duration:0.250s;   
     z-index:99; /* temp fix for chrome */
 }
 
 .app-slide-none {
-    transform:translateX(0%);
-    /*left:0%;*/
+    /*transform:translateX(0%);*/
+    left:0%;
 }
 
 .app-slide-right {
-    transform:translateX(92%);
-    /*left:92%;*/
+    /*transform:translateX(92%);*/
+    left:92%;
 }
 
 .nav-hidden {
@@ -210,13 +210,13 @@ a:active { color: $default_text_color; text-decoration: none; }
 }
 
 .stage-left {
-    transform:translateX(-100%);
-    /*left: -100%;*/
+    /*transform:translateX(-100%);*/
+    left: -100%;
 }
 
 .stage-right {
-    transform:translateX(100%);
-    /*left: 100%;*/
+    /*transform:translateX(100%);*/
+    left: 100%;
 }
 
 .stage-hidden {
