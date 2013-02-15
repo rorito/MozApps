@@ -45,7 +45,7 @@ window.mozapps = window.mozapps || {
                     );
                 } else {
                     console.log(">>>>>> add default product(s)");
-                    console.log(mozapps.defaultAppData)
+                    //console.log(mozapps.defaultAppData)
 
                     _.each(mozapps.defaultAppData, function(element, index, list){
                         //TODO don't add to collection as json, make models first

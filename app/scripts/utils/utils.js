@@ -88,7 +88,7 @@ window.mozapps.Utils.cropResizeSave = function(blob, canvasWidth, canvasHeight){
         ctx.drawImage(image, originX, originY, originX + size, originY + size, 0, 0, canvasWidth, canvasHeight);
 
         canvas.toBlob(function toBlobSuccess(resized_blob) {
-            console.log("resized blob");
+            //console.log("resized blob");
             var newFilename = "mozapps-"+UUID.genV4().toString()+".jpg";
             var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, newFilename);
 
@@ -146,7 +146,6 @@ window.mozapps.Utils.canvasImageResize = function(imageRef, width, height){
       	ctx.drawImage(mozapps.productImage, 0, 0, width, height);
       	
       	canvas.toBlob(function toBlobSuccess(resized_blob) {
-        	console.log("resized blob");
         	var domRequest = navigator.getDeviceStorage("pictures").addNamed(resized_blob, "mozapps-"+UUID.genV4().toString()+".jpg");
         	
 	        domRequest.onsuccess = function(){

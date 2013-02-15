@@ -80,7 +80,7 @@ mozapps.Views.appSubView = Backbone.View.extend({
         }
     },
     setRadioClickCallback: function(callbackHandler) {
-        console.log('set radio handler');
+        //console.log('set radio handler');
         radioClickCallback = callbackHandler;
     },
     render: function(){
@@ -88,10 +88,8 @@ mozapps.Views.appSubView = Backbone.View.extend({
             //TODO fix the double render
             //console.log("app subview - outer render");
             if(!this.collection){
-                console.log("app sub - loading");
                 this.$el.html(this.template( { loading: true } ));    
             } else {
-                console.log("RENDER: templatesListView SubView: myAppsSubViewTemplate");
                 this.$el.html(this.template( { myApps: this.collection.toJSON() } ));
             }
             this.delegateEvents();
@@ -131,7 +129,7 @@ mozapps.Views.templateSubView = Backbone.View.extend({
         }
     },
     setRadioClickCallback: function(callbackHandler) {
-        console.log('set radio handler');
+        //console.log('set radio handler');
         radioClickCallback = callbackHandler;
     },
     render: function(){
@@ -219,7 +217,6 @@ mozapps.Views.templatesListView = Backbone.View.extend({
         }
     },
     render: function(eventName) {
-        console.log("template list view");
         if(mozapps.currentPage == "templatesListView"){
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
@@ -380,7 +377,7 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                console.log(this.model.toJSON());
+                //console.log(this.model.toJSON());
                 this.$el.html(this.template(this.model.toJSON()));
             }
         }
@@ -634,6 +631,7 @@ mozapps.Views.productList = Backbone.View.extend({
                     if(element.imgStorageType == "devicestorage" && element.imgSmallPath){
                         //will async append an image from device storage to the given HTMLElement id (second arg)
                         //mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.id, 83);
+                        console.log("******** view - device storage: " + element.imgSmallPath);
                         mozapps.Utils.getImageFromDeviceStorage2(element.imgSmallPath, element.imgSmallPath, 83);
                     }
                 });
@@ -679,7 +677,10 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 }
 
 
-                console.log("create new product")
+                console.log("**** create new product")
+                console.log("small: " + mozapps.productImage.imgSmallPath);
+                console.log("large: " + mozapps.productImage.imgLargePath);
+
                 var newProduct = new mozapps.Models.ProductModel({
                     id: UUID.genV4().toString(),
                     appID: this.appID,
@@ -687,11 +688,15 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     description: $('#description').val(),
                     price: price,
                     //imgOrigPath: mozapps.productImage.imgOrigPath,
-                    imgLargePath: mozapps.productImage.imgLargePath,
                     imgSmallPath: mozapps.productImage.imgSmallPath,
+                    imgLargePath: mozapps.productImage.imgLargePath,
                     imgStorageType: "devicestorage"
                 });
                 mozapps.productCollection.add(newProduct);
+
+                console.log("newProduct id: " + newProduct.id)
+                console.log("newProduct imgSmallPath: " + newProduct.toJSON().imgSmallPath)
+                console.log("newProduct imgLargePath: " + newProduct.toJSON().imgLargePath)
         } else {
             //update existing product
             console.log("updating existing product");
@@ -704,6 +709,10 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                 imgSmallPath: mozapps.productImage.imgSmallPath,
                 imgStorageType: "devicestorage"
             });
+
+                console.log("existing id: " + this.model.toJSON().id)
+                console.log("existing imgSmallPath: " + this.model.toJSON().imgSmallPath)
+                console.log("existing imgLargePath: " + this.model.toJSON().imgLargePath)
         }
 
 

@@ -45,7 +45,6 @@ routes:{
 
     templates: function(){
         mozapps.currentPage = mozapps.tmplListView.viewName;
-        console.log(" render slide templates");
         this.slidePage(
             mozapps.tmplListView.render()
         );
@@ -232,7 +231,7 @@ routes:{
         };
     },
     ProductList: function(id){
-        console.log(window.location.href)
+        // console.log(window.location.href)
         var pl = new mozapps.Views.productList({ model: mozapps.appCollection.get(id) });
         pl.appID = id;
         mozapps.appID = id;
@@ -242,10 +241,10 @@ routes:{
         );  
     },
     ProductListDetailEdit: function(id, productID){
-        console.log(window.location.href)
-        console.log("product detail edit");
-        console.log(id);
-        console.log(productID);
+        // console.log(window.location.href)
+        // console.log("product detail edit");
+        // console.log(id);
+        // console.log(productID);
 
         mozapps.productID = productID;
         mozapps.appID = id;
@@ -265,7 +264,7 @@ routes:{
         );  
     },
     preview: function(id){
-        console.log(window.location.href)
+        // console.log(window.location.href)
         var prev = new mozapps.Views.preview({ model: mozapps.appCollection.get(id) });
         prev.appID = id;
         mozapps.appID = id;
