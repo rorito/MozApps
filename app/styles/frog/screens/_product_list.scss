@@ -42,6 +42,9 @@
 
 #productList [data-type="list"] li > a > figure > img {
 	max-width:100%;
+	border: medium none;
+	border-right:0.1rem solid #c9c9c9;
+    box-shadow: none;
 }
 
 #productList [data-type="list"] li > a > figcaption {
