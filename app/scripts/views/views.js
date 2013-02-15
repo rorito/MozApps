@@ -139,10 +139,15 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 //console.log("template sub - loading");
                 this.$el.html(this.template( { loading: true } ));
             } else {
-                //console.log("RENDER: templatesListView SubView: templatesSubViewTemplate");
+                //this is a hack - use categories property in Template collection instead of having seperate category table and using their IDs
                 var tmplByCategory = {};
-                //hack - use categories property in Template collection instead of having seperate category table and using their IDs
-                tmplByCategory.categories = [];
+                tmplByCategory.categories = {
+                    "Featured": [],
+                    "Commerce": [],
+                    "Magazine": [],
+                    "Blogging": [],
+                    "Photo & Video": []
+                };
                 _.each(this.collection.toJSON(), function(element, index, list){
                     _.each(element.categories, function(elem, idx, l){
                         if(!tmplByCategory.categories[elem.toString()]){
@@ -151,6 +156,8 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                         tmplByCategory.categories[elem.toString()].push(this);
                     }, element);
                 });
+
+                
 
                 this.$el.html(this.template( { mozTemplates: tmplByCategory } ));
                 this.delegateEvents();

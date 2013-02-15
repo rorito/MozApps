@@ -171,8 +171,8 @@ mozapps.templateFixtureData = [
     ],
     "description": "Swipe through multiple gal- leries of your images. Tap to enlarge to full detail with text.",
     "categories": [
-      "Featured Templates",
-      "Photo & Video Templates"
+      "Featured",
+      "Photo & Video"
     ],
     "imgLargePath": "imgs/templates/filmstrip_lg.jpg",
     "imgSmallPath": "imgs/templates/filmstrip_sm.jpg"
@@ -247,7 +247,7 @@ mozapps.templateFixtureData = [
       }
     ],
     "categories": [
-      "Commerce Templates"
+      "Commerce"
     ],
     "imgLargePath": "imgs/templates/large_store_lg.jpg",
     "imgSmallPath": "imgs/templates/large_store_sm.jpg"
@@ -355,7 +355,8 @@ mozapps.templateFixtureData = [
     ],
     "description": "Small Store features a customizable catalog of product photos and an e-commerce service.",
     "categories": [
-      "Commerce Templates"
+      "Featured", 
+      "Commerce"
     ],
     "imgLargePath": "imgs/templates/small_store_lg.jpg",
     "imgSmallPath": "imgs/templates/small_store_sm.jpg"
@@ -421,8 +422,8 @@ mozapps.templateFixtureData = [
     ],
     "description": "Front Page is a great template to give equal weight to your iimages and words.",
     "categories": [
-      "Magazine Templates",
-      "Blogging Templates"
+      "Magazine",
+      "Blogging"
     ],
     "imgLargePath": "imgs/templates/front_page_lg.jpg",
     "imgSmallPath": "imgs/templates/front_page_sm.jpg"
@@ -488,8 +489,8 @@ mozapps.templateFixtureData = [
     ],
     "description": "Reader allows you to pub- lish a list of articles to the front page of you app. Include video and audio as well.",
     "categories": [
-      "Magazine Templates",
-      "Blogging Templates"
+      "Magazine",
+      "Blogging"
     ],
     "imgLargePath": "imgs/templates/reader_lg.jpg",
     "imgSmallPath": "imgs/templates/reader_sm.jpg"
@@ -555,10 +556,10 @@ mozapps.templateFixtureData = [
     ],
     "description": "The Triad template presents three bold images as links to your top entries.",
     "categories": [
-      "Featured Templates",
-      "Magazine Templates",
-      "Blogging Templates",
-      "Photo & Video Templates"
+      "Featured",
+      "Magazine",
+      "Blogging",
+      "Photo & Video"
     ],
     "imgLargePath": "imgs/templates/triad_lg.jpg",
     "imgSmallPath": "imgs/templates/triad_sm.jpg"
@@ -624,9 +625,9 @@ mozapps.templateFixtureData = [
     ],
     "description": "Feature your photos on the front page of your app. Perfect for portfolio use.",
     "categories": [
-      "Featured Templates",
-      "Blogging Templates",
-      "Photo & Video Templates"
+      "Featured",
+      "Blogging",
+      "Photo & Video"
     ],
     "imgLargePath": "imgs/templates/squares_lg.jpg",
     "imgSmallPath": "imgs/templates/squares_sm.jpg"
@@ -692,7 +693,7 @@ mozapps.templateFixtureData = [
     ],
     "description": "Show your pictures in an automatic slideshow, or jump to your favorites, with Lightbox.",
     "categories": [
-      "Photo & Video Templates"
+      "Photo & Video"
     ],
     "imgLargePath": "imgs/templates/lightbox_lg.jpg",
     "imgSmallPath": "imgs/templates/lightbox_sm.jpg"
@@ -758,8 +759,8 @@ mozapps.templateFixtureData = [
     ],
     "description": "Feature your best images in a big, bold display with Hot Shot. Play a slideshow or swipe to browse.",
     "categories": [
-      "Featured Templates",
-      "Photo & Video Templates"
+      "Featured",
+      "Photo & Video"
     ],
     "imgLargePath": "imgs/templates/hot_shot_lg.jpg",
     "imgSmallPath": "imgs/templates/hot_shot_sm.jpg"
@@ -872,9 +873,7 @@ mozapps.defaultAppData = [
         ],
         "description": "description of small store template",
         "categories": [
-          "Featured Templates",
-          "User Submitted Templates",
-          "Popular Templates"
+          "Featured"
         ],
         "imgLargePath": "imgs/templates/small_store_lg.jpg",
         "imgSmallPath": "imgs/templates/small_store_sm.jpg"
