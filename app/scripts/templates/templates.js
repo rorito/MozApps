@@ -505,7 +505,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item label-dark open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body\">\n            <ul class=\"horizontal-list\">\n            ";
+  buffer += "\n        <li>\n        <input id=\"item-0\" type=\"radio\" name=\"radio\" checked>\n          <label for=\"item-0\" class=\"list-item label-dark open\">My Apps</label>\n          <div id=\"myAppsBody\" class=\"list-item-body show-scroll\">\n            <ul class=\"horizontal-list\">\n            ";
   stack1 = depth0.myApps;
   stack2 = {};
   stack1 = helpers.each.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
