@@ -709,7 +709,7 @@ mozapps.defaultAppData = [
             "component_name": "App Name",
             "component_id": "name",
             "completed": true,
-            "description": "Maria's Fine Crafts"
+            "description": "Mariella's Fine Crafts"
           },
           {
             "component_name": "About Me",
@@ -717,10 +717,10 @@ mozapps.defaultAppData = [
             "completed": true,
             "description": "Introduce yourself",
             "properties": {
-              "description": "Maria's Fine Crafts gravitates towards the native visceral tradition of creating objects of significance and power.  It pokes fun at a culture of consumption and cannibalistic appetite and deeply desires to drag the genre of adornment far away from vain decoration.  Maria's Fine Crafts is unisex, vintage, conceptual art for wear.",
-              "address": "Fira Gran Via, Av. Joan Carles I, 64, 08908 L’Hospitalet de Llobregat, Barcelona",
-              "phone": "415-304-2842",
-              "email": "info@mariascrafts.com"
+              "description": "My jewelry gravitates towards the native visceral tradition of creating objects of significance and power. It pokes fun at a culture of consumption and cannibalistic appetite and deeply desires to drag the genre of adornment far away from vain decoration. This collection is unisex, vintage, conceptual art for wear.",
+              "address": "Mariella's Fine Crafts, 217 Rua Andrade Pinto, Niterói, Rio de Janeiro, Brazil",
+              "phone": "(55)(21) 2529 1122",
+              "email": "Mariellascrafts@gmail.com"
             }
           },
           {
