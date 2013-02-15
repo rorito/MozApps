@@ -676,7 +676,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     prodName = "New Product";
                 }
 
-                var price = $('#price').val();
+                var price = $('#price').val().toString();
                 if(price != "" && !price.startsWith("$")){
                     price = "$"+price;
                 }
@@ -836,7 +836,7 @@ mozapps.Views.preview = Backbone.View.extend({
                 var newSelectedProduct = productList[targetIndex];
                 // update the dom
                 $('#product-name').html(newSelectedProduct.name);
-                $('#product-price').html('$' + newSelectedProduct.price);
+                $('#product-price').html(newSelectedProduct.price);
             }
         }).bind(this);
         

@@ -100,7 +100,7 @@ function program3(depth0,data) {
   else { return ''; }});
 templates['appBuilderPublishSumbitTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
-  var stack1, stack2, self=this;
+  var stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -109,8 +109,13 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  
-  return "\n                <!-- represents application publish uploading screen\n                APPLICATION BUILDER PUBLISH SUBMIT -->\n                <div id=\"appBuilderPublishSubmit\" class=\"dark-bg\" role=\"window\">\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                        <section role=\"region\" data-type=\"header\" class=\"medium-bg round-corners box-padded\">\n                            <div class=\"load-status\">\n                            <h2>Publishing</h2>\n                            <h3>Small Store</h3>    \n                            </div>\n                        </section>\n                        <section role=\"region\" data-type=\"detail\" class=\"box-padded\">\n                            <div class=\"scroll-window\">\n                            <h4>Building in html...</h4>\n                            <pre id=\"publishMarkupContainer\">\n                            </pre>\n                        </section>\n                    </section>\n                </div>\n            ";}
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                <!-- represents application publish uploading screen\n                APPLICATION BUILDER PUBLISH SUBMIT -->\n                <div id=\"appBuilderPublishSubmit\" class=\"dark-bg\" role=\"window\">\n                    <!-- content region -->\n                    <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n                        <section role=\"region\" data-type=\"header\" class=\"medium-bg round-corners box-padded\">\n                            <div class=\"load-status\">\n                            <h2>Publishing</h2>\n                            <h3>";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</h3>    \n                            </div>\n                        </section>\n                        <section role=\"region\" data-type=\"detail\" class=\"box-padded\">\n                            <div class=\"scroll-window\">\n                            <h4>Building in html...</h4>\n                            <pre id=\"publishMarkupContainer\">\n                            </pre>\n                        </section>\n                    </section>\n                </div>\n            ";
+  return buffer;}
 
   stack1 = depth0.loading;
   stack2 = {};
