@@ -965,10 +965,15 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
     //template: Handlebars.getTemplate("appBuilderPublishSumbitTemplate"),
     template: Handlebars.templates['appBuilderPublishSumbitTemplate'],
     viewName: "appBuilderPublishSubmitView",
+    self: null,
     maxCounter: 5,
     counter: 0,
     intervalID: -1,
     intervalTime: 500,
+    markupContainer: null,
+    initialize: function() {
+        self = this;
+    },
     events: {
         'click button#cancel' : "cancel",
     },
@@ -980,6 +985,8 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
+                var self = this;
+
                 this.$el.html(this.template(this.model.toJSON()));
                 console.log('create sub view');
                 console.log(this.appID);
@@ -990,6 +997,13 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
 
                 // start interval
                 this.intervalID = window.setInterval(this.handleInterval, this.intervalTime, this);
+
+                // 
+                setTimeout(function(){
+                    self.markupContainer = $("#publishMarkupContainer");
+                    console.log(">>>>>>>>>>> timeout");
+                    console.log(self.markupContainer);
+                });
             }
         }
         return this;
@@ -997,6 +1011,10 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
     handleInterval: function(self) {
         console.log("handle interval: animate scroll");
         //console.log(self);
+        var offsetTop = parseInt(self.markupContainer.css('top'));
+        //console.log(offsetTop);
+        var newTop = offsetTop - 320;
+        self.markupContainer.css('top', newTop + 'px');
         
         self.counter += 1;
         if ((self.counter > self.maxCounter) && (self.intervalID != -1)) { 

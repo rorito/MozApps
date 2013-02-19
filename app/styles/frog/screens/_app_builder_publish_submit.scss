@@ -37,7 +37,8 @@
 
 #appBuilderPublishSubmit h4 {
 	color:white;
-	border-bottom:1px solid #858585;	
+	border-bottom:1px solid #858585;
+	margin:1.3rem 0 0 0;
 }
 
 /*
@@ -60,4 +61,9 @@
 #appBuilderPublishSubmit div.scroll-window pre {
 	color:#858585;
 	overflow-x:hidden;
+	position:relative;
+	top:0px;
+	transition-property:top;
+	transition-duration:0.375s;
+	transition-timing-function:ease-out;
 }
