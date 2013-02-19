@@ -200,7 +200,7 @@ window.mozapps.Utils.cameraGallery = function(productID){
                     imgStorageType: "devicestorage"
                 });
 
-                console.log(model.toJSON())
+                //console.log(model.toJSON())
 
                 //need to use navigate(..., false) so that we update the URL, but don't navigate and trigger the product detail edit route
                 mozapps.router.navigate("#apps/"+mozapps.appID+"/product-list/"+productID, false);
