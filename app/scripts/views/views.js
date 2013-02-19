@@ -772,7 +772,7 @@ mozapps.Views.preview = Backbone.View.extend({
     scrollIntervalTime:null,
     initialize:function() {
         self = this;
-        targetScroll = 102;
+        targetScroll = 52;
         currentScroll = 0;
         intervalID = null;
         scrollStartDelay = 2000;
