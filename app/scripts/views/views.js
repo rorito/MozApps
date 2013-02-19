@@ -897,14 +897,13 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         if(mozapps.currentPage == this.viewName){
             var productJSON = mozapps.productCollection.get({id: this.productID});
 
-            console.log('appID: ' + this.appID);
-
             var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
                 return elem.component_id == "theme";
             });
             
             this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
 
+            console.log("previewProductDetail view")
             console.log(productJSON)
             console.log(productJSON.toJSON())
 
@@ -916,15 +915,20 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             ///console.log('container exists?');
             //console.log($('#' + containerID));
 
-            /*
+            
             console.log("imgPath: " + imgPath);
             console.log("productID: " + productID);
             console.log('containerID: ' + containerID);
-            console.log("mozapps.productImage.imgSmallPath: " + mozapps.productImage.imgSmallPath);
-            console.log("mozapps.productImage.imgLargePath: " + mozapps.productImage.imgLargePath);
-            */
-            if (productJSON.attributes.imgStoragePath == "devicestorage") {
+            console.log("mozapps.productImage.imgSmallPath: " + productJSON.attributes.imgSmallPath);
+            console.log("mozapps.productImage.imgLargePath: " + productJSON.attributes.imgLargePath);
+            console.log("imgStorageType: " + productJSON.attributes.imgStorageType)
+
+            console.log(themeJSON);
+            
+            if (productJSON.attributes.imgStorageType == "devicestorage") {
                 window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+            } else {
+                console.log("not devicestorage")
             }
         }
         return this;
