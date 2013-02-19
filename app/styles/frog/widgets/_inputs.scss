@@ -30,6 +30,7 @@ section[role="region"] textarea{
 
 section[role="region"] label {
 	@include label-text;	
+	font-size:1.4rem;
 }
 
 section[role="region"] label.label-dark {
