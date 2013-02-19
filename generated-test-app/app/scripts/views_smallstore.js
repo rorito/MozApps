@@ -77,7 +77,7 @@ smallstore.Views.homeView = Backbone.View.extend({
                 var newSelectedProduct = productList[targetIndex];
                 // update the dom
                 $('#product-name').html(newSelectedProduct.name);
-                $('#product-price').html('$' + newSelectedProduct.price);
+                $('#product-price').html(newSelectedProduct.price);
             }
         }).bind(this);
         
