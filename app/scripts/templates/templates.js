@@ -559,7 +559,11 @@ function program3(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded-small\">\n                <div class=\"box-left-padded\">\n                    ";
+  buffer += "\n            </header>\n        </section>\n";
+  foundHelper = helpers.debug;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.debug; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded-small\">\n                <div class=\"box-left-padded\">\n                    ";
   stack1 = depth0.imgStorageType;
   stack2 = {};
   stack2['compare'] = "package";
@@ -574,7 +578,7 @@ function program3(depth0,data) {
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"number\" value=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n                    </p>\n                    <p class=\"box-unpadded\">\n                        <label class=\"label-padded\">Price</label>\n                        <input id=\"price\" name=\"price\" type=\"text\" value=\"";
   foundHelper = helpers.price;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.price; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -801,10 +805,6 @@ function program7(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" alt=\"\">\n            <div>\n                <p>";
-  foundHelper = helpers.name;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + " ";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }

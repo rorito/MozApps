@@ -185,8 +185,8 @@ window.mozapps.Utils.cameraGallery = function(productID){
 
             if(productID && productID != ""){
                 console.log("camera gallery - existing product");
-                //console.log(mozapps.productImage.imgSmallPath)
-                //console.log(mozapps.productImage.imgLargePath)
+                console.log(mozapps.productImage.imgSmallPath)
+                console.log(mozapps.productImage.imgLargePath)
 
 
                 //update the model

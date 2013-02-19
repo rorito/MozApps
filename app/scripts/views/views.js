@@ -676,18 +676,17 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
         console.log("save Product")
         console.log(mozapps.productID)
 
+        var priceClean = $('#price').val().toString();
+        if(priceClean != "" && !priceClean.startsWith("$")){
+            priceClean = "$"+priceClean;
+        }
+
         if(mozapps.productID == "add"){
                 //new product
                 var prodName = $('#name').val();
                 if(!prodName || prodName == ""){
                     prodName = "New Product";
                 }
-
-                var price = $('#price').val().toString();
-                if(price != "" && !price.startsWith("$")){
-                    price = "$"+price;
-                }
-
 
                 console.log("**** create new product")
                 console.log("small: " + mozapps.productImage.imgSmallPath);
@@ -698,7 +697,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     appID: this.appID,
                     name: prodName,
                     description: $('#description').val(),
-                    price: price,
+                    price: priceClean,
                     //imgOrigPath: mozapps.productImage.imgOrigPath,
                     imgSmallPath: mozapps.productImage.imgSmallPath,
                     imgLargePath: mozapps.productImage.imgLargePath,
@@ -713,12 +712,10 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
             //update existing product
             console.log("******* updating existing product");
 
-
-
             this.model.set({
                 name: $('#name').val(),
                 description: $('#description').val(),
-                price: $('#price').val()
+                price: priceClean
                 // //imgOrigPath: mozapps.productImage.imgOrigPath,
                 // imgLargePath: mozapps.productImage.imgLargePath,
                 // imgSmallPath: mozapps.productImage.imgSmallPath,
@@ -746,6 +743,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
             } else {
                 console.log("edit existing product");
                 console.log("product detail edit app id: " + this.appID);
+                console.log(this.model.toJSON())
                 this.$el.html(this.template(this.model.toJSON()));
                 
                 if (this.model.attributes.imgStorageType === "devicestorage") {
@@ -957,16 +955,17 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         if(mozapps.currentPage == this.viewName){
             var productJSON = mozapps.productCollection.get({id: this.productID});
 
-            console.log('appID: ' + this.appID);
-
             var themeJSON = _.find(mozapps.appCollection.get(this.appID).toJSON().app_components, function(elem){
                 return elem.component_id == "theme";
             });
             
             this.$el.html(this.template({ model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
 
+            console.log("previewProductDetail view")
             console.log(productJSON)
             console.log(productJSON.toJSON())
+            console.log(productJSON.toJSON().name)
+            console.log(productJSON.toJSON().price)
 
             // TODO: use imgLargePath
             var imgPath = productJSON.attributes.imgLargePath;
@@ -976,15 +975,20 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             ///console.log('container exists?');
             //console.log($('#' + containerID));
 
-            /*
+            
             console.log("imgPath: " + imgPath);
             console.log("productID: " + productID);
             console.log('containerID: ' + containerID);
-            console.log("mozapps.productImage.imgSmallPath: " + mozapps.productImage.imgSmallPath);
-            console.log("mozapps.productImage.imgLargePath: " + mozapps.productImage.imgLargePath);
-            */
-            if (productJSON.attributes.imgStoragePath == "devicestorage") {
+            console.log("mozapps.productImage.imgSmallPath: " + productJSON.attributes.imgSmallPath);
+            console.log("mozapps.productImage.imgLargePath: " + productJSON.attributes.imgLargePath);
+            console.log("imgStorageType: " + productJSON.attributes.imgStorageType)
+
+            console.log(themeJSON);
+            
+            if (productJSON.attributes.imgStorageType == "devicestorage") {
                 window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+            } else {
+                console.log("not devicestorage")
             }
 
             // scroll out of view, only in preview (should not be in published app)
