@@ -400,19 +400,7 @@ function program8(depth0,data) {
   foundHelper = helpers.if_eq;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(9, program9, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                </label>\n                            </li>\n                            \n                            <!--\n                            <p><a href=\"#\" productID=\"";
-  stack1 = depth0.id;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"link-product-temp\">";
-  stack1 = depth0.name;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</a></p>\n                            <p>";
-  stack1 = depth0.description;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            <p>";
-  stack1 = depth0.price;
-  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</p>\n                            -->\n                        ";
+  buffer += "\n                                </label>\n                            </li>\n                        ";
   return buffer;}
 function program9(depth0,data) {
   
@@ -519,7 +507,11 @@ function program7(depth0,data) {
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\"><img src=\"imgs/templates/small_store_sm.jpg\" class=\"template-thumbnail\"><span>";
+  buffer += escapeExpression(stack1) + "\"><img src=\"";
+  foundHelper = helpers.imgSmallPath;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" class=\"template-thumbnail\"><span>";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
