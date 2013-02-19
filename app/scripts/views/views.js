@@ -762,8 +762,22 @@ mozapps.Views.preview = Backbone.View.extend({
     template: Handlebars.templates['appViewTemplate'],
     viewName: "preview",
     classNames: window.widgets.carouselClassNames,
+    self: null,
     productCarousel:null,
     productList: [],
+    targetScroll:null,
+    currentScroll:null,
+    intervalID:null,
+    scrollStartDelay:null,
+    scrollIntervalTime:null,
+    initialize:function() {
+        self = this;
+        targetScroll = 102;
+        currentScroll = 0;
+        intervalID = null;
+        scrollStartDelay = 2000;
+        scrollIntervalTime = 100;
+    },
     events: {
         'click button#back' : "back",
         'click a.link-product-temp' : "showProductDetail"
@@ -821,6 +835,9 @@ mozapps.Views.preview = Backbone.View.extend({
 
             // underscore uses setTimeout under the hood so not sure this will work on device
             _.defer( function( view ){ view.createCarousel();}, this );
+
+            // scroll out of view, only in preview (should not be in published app)
+            setTimeout(this.scrollToView, scrollStartDelay);        
         }
         return this;
     },
@@ -877,12 +894,55 @@ mozapps.Views.preview = Backbone.View.extend({
             }
         }
         
+    },
+    scrollToView: function() {
+        var actualScroll = document.querySelector("#appContainer").scrollTop;
+        //console.log(actualScroll);
+        //console.log("scroll to view v: " + targetScroll);
+        if (actualScroll == currentScroll) {
+            //console.log(intervalID);
+            //console.log(targetScroll);
+            // scrolled at the top, so start the animate off
+           // window.setInterval(this.handleInterval, this.intervalTime, this);
+            currentScroll += targetScroll / 2;
+            intervalID = window.setInterval(self.setScrollTop, scrollIntervalTime);
+            //console.log(intervalID);
+            //setScrollTop(this);
+            //console.log(self);
+        }
+    },
+    setScrollTop:function() {
+        //console.log('hey: ');
+        //console.log(intervalID, currentScroll, targetScroll);
+        //self.currentScroll = 25;
+        // this works, but doesn't animate
+        document.querySelector("#appContainer").scrollTop = currentScroll;
+        currentScroll += (targetScroll - currentScroll) / 2;
+        //console.log(self.currentScroll, self.targetScroll);
+        if (targetScroll - currentScroll <= 0.01) {
+            // clear the interval
+            window.clearInterval(intervalID);
+        }
     }
 });
 
 mozapps.Views.previewProductDetailView = Backbone.View.extend({
     template: Handlebars.templates['appViewProductDetailTemplate'],
     viewName: "previewProductDetail",
+    self:null,
+    targetScroll:null,
+    currentScroll:null,
+    intervalID:null,
+    scrollStartDelay:null,
+    scrollIntervalTime:null,
+    initialize:function() {
+        self = this;
+        targetScroll = 52;  // not sure why the target is half of the previous view?
+        currentScroll = 0;
+        intervalID = null;
+        scrollStartDelay = 2000;
+        scrollIntervalTime = 100;
+    },
     events: {
         'click button#back' : "back",
         'click button#exitPreview': "exitPreview"
@@ -930,8 +990,41 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             } else {
                 console.log("not devicestorage")
             }
+
+            // scroll out of view, only in preview (should not be in published app)
+            setTimeout(this.scrollToView, scrollStartDelay);
         }
         return this;
+    },
+    scrollToView: function() {
+        var actualScroll = document.querySelector("#appContainer").scrollTop;
+        //console.log(actualScroll);
+        //console.log("scroll to view v: " + targetScroll);
+        if (actualScroll == currentScroll) {
+            //console.log(intervalID);
+            //console.log(targetScroll);
+            // scrolled at the top, so start the animate off
+           // window.setInterval(this.handleInterval, this.intervalTime, this);
+            currentScroll += targetScroll / 2;
+            //console.log(scrollIntervalTime);
+            intervalID = window.setInterval(self.setScrollTop, scrollIntervalTime);
+            //console.log(intervalID);
+            //setScrollTop(this);
+            //console.log(self);
+        }
+    },
+    setScrollTop:function() {
+        //console.log('hey: ');
+        //console.log(intervalID, currentScroll, targetScroll);
+        //self.currentScroll = 25;
+        //console.log(currentScroll);
+        document.querySelector("#appContainer").scrollTop = currentScroll;
+        currentScroll += (targetScroll - currentScroll) / 2;
+        //console.log(self.currentScroll, self.targetScroll);
+        if (targetScroll - currentScroll <= 0.01) {
+            // clear the interval
+            window.clearInterval(intervalID);
+        }
     }
 });
 
@@ -969,10 +1062,15 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
     //template: Handlebars.getTemplate("appBuilderPublishSumbitTemplate"),
     template: Handlebars.templates['appBuilderPublishSumbitTemplate'],
     viewName: "appBuilderPublishSubmitView",
+    self: null,
     maxCounter: 5,
     counter: 0,
     intervalID: -1,
     intervalTime: 500,
+    markupContainer: null,
+    initialize: function() {
+        self = this;
+    },
     events: {
         'click button#cancel' : "cancel",
     },
@@ -984,6 +1082,8 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
+                var self = this;
+
                 this.$el.html(this.template(this.model.toJSON()));
                 console.log('create sub view');
                 console.log(this.appID);
@@ -994,6 +1094,13 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
 
                 // start interval
                 this.intervalID = window.setInterval(this.handleInterval, this.intervalTime, this);
+
+                // 
+                setTimeout(function(){
+                    self.markupContainer = $("#publishMarkupContainer");
+                    console.log(">>>>>>>>>>> timeout");
+                    console.log(self.markupContainer);
+                });
             }
         }
         return this;
@@ -1001,6 +1108,10 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
     handleInterval: function(self) {
         console.log("handle interval: animate scroll");
         //console.log(self);
+        var offsetTop = parseInt(self.markupContainer.css('top'));
+        //console.log(offsetTop);
+        var newTop = offsetTop - 320;
+        self.markupContainer.css('top', newTop + 'px');
         
         self.counter += 1;
         if ((self.counter > self.maxCounter) && (self.intervalID != -1)) { 
