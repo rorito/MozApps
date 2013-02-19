@@ -46,15 +46,30 @@ window.mozapps = window.mozapps || {
                 } else {
                     console.log(">>>>>> add default product(s)");
                     //console.log(mozapps.defaultAppData)
+                    //mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+                    mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
 
                     _.each(mozapps.defaultAppData, function(element, index, list){
                         //TODO don't add to collection as json, make models first
-                         console.log("***** put app in db");
+                        console.log("***** put app in db");
                         mozapps.appsDB.put(element, function(){}, function(){});
+
+                        var newMozApp = new mozapps.Models.AppModel({
+                            id: element.id,
+                            name: element.name,
+                            published: false,
+                            version: "1.0",
+                            app_components: element.app_components,
+                            templateID: element.templateID,
+                            //imgOrigPath: tmpl,toJSON().imgOrigPath,
+                            imgLargePath: element.imgLargePath,
+                            imgSmallPath: element.imgSmallPath
+                        });
+                        mozapps.appCollection.add(newMozApp);
                     });
 
                     console.log("*create appCollection with fixture json");
-                    mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+                    
                     
 
                     deferred.resolve();
@@ -110,12 +125,27 @@ window.mozapps = window.mozapps || {
                 } else {
                     // prepopulate with product data if we have an app already prepopulated
                     if (mozapps.appCollection.length > 0) {
+                        console.log("product fixture");
+                        //mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
+                        mozapps.productCollection = new mozapps.Collections.ProductCollection();
+
                         _.each(mozapps.defaultProductData, function(element, index, list){
                             //TODO don't add to collection as json, make models first
                             mozapps.productsDB.put(element, function(){}, function(){});
+
+                            var newProduct = new mozapps.Models.ProductModel({
+                                id: element.id,
+                                appID: element.appID,
+                                name: element.name,
+                                description: element.description,
+                                price: element.price,
+                                imgOrigPath: element.imgOrigPath,
+                                imgSmallPath: element.imgSmallPath,
+                                imgLargePath: element.imgLargePath,
+                                imgStorageType: element.imgStorageType
+                            });
+                            mozapps.productCollection.add(newProduct);
                         });
-                        console.log("product default data");
-                        mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
                     } else {
                         console.log("empty collection no data");
                         mozapps.productCollection = new mozapps.Collections.ProductCollection();    

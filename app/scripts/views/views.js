@@ -676,18 +676,17 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
         console.log("save Product")
         console.log(mozapps.productID)
 
+        var priceClean = $('#price').val().toString();
+        if(priceClean != "" && !priceClean.startsWith("$")){
+            priceClean = "$"+priceClean;
+        }
+
         if(mozapps.productID == "add"){
                 //new product
                 var prodName = $('#name').val();
                 if(!prodName || prodName == ""){
                     prodName = "New Product";
                 }
-
-                var price = $('#price').val().toString();
-                if(price != "" && !price.startsWith("$")){
-                    price = "$"+price;
-                }
-
 
                 console.log("**** create new product")
                 console.log("small: " + mozapps.productImage.imgSmallPath);
@@ -698,7 +697,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
                     appID: this.appID,
                     name: prodName,
                     description: $('#description').val(),
-                    price: price,
+                    price: priceClean,
                     //imgOrigPath: mozapps.productImage.imgOrigPath,
                     imgSmallPath: mozapps.productImage.imgSmallPath,
                     imgLargePath: mozapps.productImage.imgLargePath,
@@ -713,12 +712,10 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
             //update existing product
             console.log("******* updating existing product");
 
-
-
             this.model.set({
                 name: $('#name').val(),
                 description: $('#description').val(),
-                price: $('#price').val()
+                price: priceClean
                 // //imgOrigPath: mozapps.productImage.imgOrigPath,
                 // imgLargePath: mozapps.productImage.imgLargePath,
                 // imgSmallPath: mozapps.productImage.imgSmallPath,
@@ -746,6 +743,7 @@ mozapps.Views.productListDetailEdit = Backbone.View.extend({
             } else {
                 console.log("edit existing product");
                 console.log("product detail edit app id: " + this.appID);
+                console.log(this.model.toJSON())
                 this.$el.html(this.template(this.model.toJSON()));
                 
                 if (this.model.attributes.imgStorageType === "devicestorage") {
@@ -966,6 +964,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             console.log("previewProductDetail view")
             console.log(productJSON)
             console.log(productJSON.toJSON())
+            console.log(productJSON.toJSON().name)
+            console.log(productJSON.toJSON().price)
 
             // TODO: use imgLargePath
             var imgPath = productJSON.attributes.imgLargePath;
