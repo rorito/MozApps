@@ -132,14 +132,17 @@ smallstore.Views.productDetailView = Backbone.View.extend({
         this.$el.html(this.template({ dontShowBackButton: true, model: this.model.toJSON(), product: productJSON, theme: themeJSON.properties.selectedTheme }));
         
         // TODO: use imgLargePath
-        var imgPath = productJSON.attributes.imgSmallPath;
+        var imgPath = productJSON.attributes.imgLargePath;
         var productID = productJSON.attributes.id;
         var containerID = "img-container-" + productID;
         //console.log('>>>>>> try to get product ID: ' + productID);
         //console.log('containerID: ' + containerID);
         ///console.log('container exists?');
         //console.log($('#' + containerID));
-        window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+        //window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+        if (productJSON.attributes.imgStorageType == "devicestorage") {
+                window.mozapps.Utils.getImageFromDeviceStorage2(imgPath, containerID, 320);
+        } 
         
         return this;
     }
