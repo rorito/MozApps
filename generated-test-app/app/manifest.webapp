@@ -10,15 +10,24 @@
     "url": "http://www.frogdesign.com"
   },
   "icons": {
-    "60": "/imgs/icons/smallstore-icon-60x60.png"
+        "30": "/imgs/icons/smallstore_icon_30x30.png",
+        "32": "/imgs/icons/smallstore_icon_32x32.png",
+        "60": "/imgs/icons/smallstore_icon_60x60.png",
+        "64": "/imgs/icons/smallstore_icon_64x64.png",
+        "128": "/imgs/icons/smallstore_icon_128x128.png"
   },
   "permissions": {
-    "device-storage:pictures":{ "access": "readwrite" },
-    "camera":{}
+    "device-storage:pictures":{ 
+      "access": "readwrite", 
+      "description": "Required for accessing pictures."
+    },
+    "camera":{
+      "description": "Required for accessing the camera."
+    }
   },
   "activities": {
     "sharemozapps": {
-      "type": "mozapps"
+      "href": "index.html"
     }
   },
   "installs_allowed_from": ["*"],
