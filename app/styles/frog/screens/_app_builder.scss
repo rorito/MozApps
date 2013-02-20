@@ -49,6 +49,8 @@
 	height: 9.4rem;
 	width: 6.2rem;
 	border: 0.1rem solid #5b5b5b;
+	border:1px solid white;
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
 
 #appBuilder [data-type="content"] .template-detail > div:first-child {
