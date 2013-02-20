@@ -167,8 +167,12 @@ window.smallstore = window.smallstore || {
         console.log(element.imgSmallPath);
     });
 
-    console.log("re-init the databases")
-    smallstore.initDB();
+    //console.log("re-init the databases")
+    //smallstore.initDB();
+
+    // have to call index.html, because pacakged app on the
+    // phone cannot route to default location from "/"
+    window.location.href = "/index.html";
   },
 	init: function() {
       console.log("init")
