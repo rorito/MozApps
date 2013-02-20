@@ -27,7 +27,7 @@ window.widgets = window.widgets || {
             //console.log(window.widgets.carouselClassNames);
             activeCount = window.widgets.carouselClassNames.length;
             // calculate index offset
-            indexOffset = Math.floor(activeCount / 2);
+            indexOffset = Math.floor((activeCount - 2) / 2);
             
             initContainer(carouselID);
             // init the items
@@ -132,6 +132,8 @@ window.widgets = window.widgets || {
             //alert(targetIndex); // 2
             //alert(activeStartIndex); //0
             //alert(indexOffset); // 3
+            //console.log("targetIndex: " + targetIndex);
+            //console.log(activeStartIndex, indexOffset);
             
             if (targetIndex != activeStartIndex + indexOffset) {
                 setActiveItems(targetIndex);    

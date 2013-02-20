@@ -786,6 +786,7 @@ mozapps.Views.preview = Backbone.View.extend({
     intervalID:null,
     scrollStartDelay:null,
     scrollIntervalTime:null,
+    isScrollComplete: false,
     initialize:function() {
         self = this;
         targetScroll = 52;
@@ -793,21 +794,28 @@ mozapps.Views.preview = Backbone.View.extend({
         intervalID = null;
         scrollStartDelay = 2000;
         scrollIntervalTime = 100;
+        isScrollComplete: false;
     },
     events: {
         'click button#back' : "back",
         'click a.link-product-temp' : "showProductDetail"
     },
     back : function() {
-        mozapps.router.navigate("#apps/"+this.appID,true);
+        // don't allow events until scroll is done
+        if (isScrollComplete) {
+            mozapps.router.navigate("#apps/"+this.appID,true);
+        }
     },
     showProductDetail: function(event) {
         event.preventDefault();
-        console.log(event.currentTarget);
-        var targetLink = event.currentTarget;
-        var productID = targetLink.getAttribute("productID");
+        // don't allow events until scroll is done
+        if (isScrollComplete) {
+            console.log(event.currentTarget);
+            var targetLink = event.currentTarget;
+            var productID = targetLink.getAttribute("productID");
 
-        mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
+            mozapps.router.navigate("#apps/"+this.appID+"/preview/product/"+productID+"/",true);
+        }
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -853,6 +861,7 @@ mozapps.Views.preview = Backbone.View.extend({
             _.defer( function( view ){ view.createCarousel();}, this );
 
             // scroll out of view, only in preview (should not be in published app)
+            isScrollComplete = false;
             setTimeout(this.scrollToView, scrollStartDelay);        
         }
         return this;
@@ -881,7 +890,7 @@ mozapps.Views.preview = Backbone.View.extend({
         productCarousel.onMainItemClicked = (function(targetIndex, targetEl) {
             console.log('on main item clicked: ' + targetIndex);   
             //console.log('on main item clicked: ' + targetEl);
-            if (targetEl) {
+            if ((targetEl) && (isScrollComplete)) {
                 var productID = targetEl.getAttribute("productID");
                 //console.log(this.appID);
                 //console.log(productID);
@@ -938,6 +947,7 @@ mozapps.Views.preview = Backbone.View.extend({
         if (targetScroll - currentScroll <= 0.01) {
             // clear the interval
             window.clearInterval(intervalID);
+            isScrollComplete = true;
         }
     }
 });
@@ -951,6 +961,7 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
     intervalID:null,
     scrollStartDelay:null,
     scrollIntervalTime:null,
+    isScrollComplete: false,
     initialize:function() {
         self = this;
         targetScroll = 52;  // not sure why the target is half of the previous view?
@@ -958,16 +969,21 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         intervalID = null;
         scrollStartDelay = 2000;
         scrollIntervalTime = 100;
+        isScrollComplete = false;
     },
     events: {
         'click button#back' : "back",
         'click button#exitPreview': "exitPreview"
     },
     back : function() {
-        mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
+        if (isScrollComplete) {
+            mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
+        }
     },
     exitPreview : function(){
-        mozapps.router.navigate("#apps/"+this.appID,true);  
+        if (isScrollComplete) {
+            mozapps.router.navigate("#apps/"+this.appID,true);
+        }
     },
     render: function(eventName) {
         if(mozapps.currentPage == this.viewName){
@@ -1010,6 +1026,7 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             }
 
             // scroll out of view, only in preview (should not be in published app)
+            isScrollComplete = false;
             setTimeout(this.scrollToView, scrollStartDelay);
         }
         return this;
@@ -1042,6 +1059,7 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
         if (targetScroll - currentScroll <= 0.01) {
             // clear the interval
             window.clearInterval(intervalID);
+            isScrollComplete = true;
         }
     }
 });
