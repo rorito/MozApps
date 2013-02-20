@@ -1209,10 +1209,10 @@ mozapps.Views.appBuilderPublishOpenAppView = Backbone.View.extend({
             });
             
             sharing.onerror = function() { 
-                console.log('Failed to launch generated app with activity.'); 
+                console.log('********* Failed to launch generated app with activity.'); 
             };
             sharing.onsuccess = function() { 
-                console.log('Launched generated app with activity.'); 
+                console.log('*********  Launched generated app with activity.'); 
             };
 
     },

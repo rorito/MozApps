@@ -25,5 +25,7 @@ install:
 	${ADB} forward tcp:$(PORT_LOCAL) tcp:$(PORT_DEVICE)
 	@echo "!!! CONFIRM THE PROMPT on the phone !!!"
 	${XPCSHELL} install.js ${NAME} $(PORT_LOCAL)
+	#adb shell b2g-ps | grep -ri "Homescreen" | awk '{ print $3 }' | xargs adb shell kill -9 
+
 
 # call by: | make packaged install |
