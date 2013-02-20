@@ -259,7 +259,7 @@ function program3(depth0,data) {
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail\">\n            ";
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"fade template-detail\">\n            ";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgStorageType;
@@ -348,7 +348,7 @@ function program3(depth0,data) {
   stack1 = depth0.model;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\" class=\"fade\">\n            <section role=\"region\" data-type=\"detail\" class=\"template-detail box-padded\">\n                <!-- TODO: check if id needs to be unique on app level -->\n                <div id=\"productCarousel\" class=\"carousel\">\n                    <div>\n\n                        <ul>\n                        ";
+  buffer += escapeExpression(stack1) + "</h1>\n            </header>\n        </section>\n\n        <!-- content region -->\n        <section role=\"region\" data-type=\"content\">\n            <section role=\"region\" data-type=\"detail\" class=\"fade template-detail box-padded\">\n                <!-- TODO: check if id needs to be unique on app level -->\n                <div id=\"productCarousel\" class=\"carousel\">\n                    <div>\n\n                        <ul>\n                        ";
   foundHelper = helpers.products;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   else { stack1 = depth0.products; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
