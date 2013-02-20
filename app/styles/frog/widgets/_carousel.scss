@@ -46,6 +46,7 @@
 	transition-property: opacity, left, top, width, height;
 	transition-duration:0.5s;
 	z-index:99;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
 .carousel ul li label {
@@ -77,7 +78,7 @@
 .carousel ul li.left-left {
 	width:8rem;
 	height:8rem;
-	left:0rem;
+	left:0.3rem;
 	top:6.6rem;
 	z-index:97;
 }
@@ -101,7 +102,7 @@
 .carousel ul li.right-right {
 	width:8rem;
 	height:8rem;
-	left:18.5rem;
+	left:18.3rem;
 	top:6.6rem;
 	z-index:95;
 }

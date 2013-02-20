@@ -912,8 +912,8 @@ mozapps.defaultAppData = [
         "categories": [
           "Featured"
         ],
-        "imgLargePath": "imgs/templates/small_store_lg.jpg",
-        "imgSmallPath": "imgs/templates/small_store_sm.jpg"
+        "imgLargePath": "imgs/misc/published_app_lg.jpg",
+        "imgSmallPath": "imgs/misc/published_app_sm.jpg"
     }
 ];
 
