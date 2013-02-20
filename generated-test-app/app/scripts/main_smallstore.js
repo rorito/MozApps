@@ -45,11 +45,13 @@ window.smallstore = window.smallstore || {
                         function(data){
                             console.log(">>>>>>>>>>>>>>>>>>> appDB data");
                             smallstore.appCollection = new mozapps.Collections.AppCollection(data);
+                            smallstore.appsDBComplete = true;
                             deferred.resolve();
                         }, 
                         function(){
                             console.log("*** ERROR loading appsDB getAll");
                             //TODO throw error?
+                            smallstore.appsDBComplete = true;
                             deferred.resolve();
                         } 
                     );
@@ -125,18 +127,18 @@ window.smallstore = window.smallstore || {
                     smallstore.productsDB.getAll(
                         function(data){
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(data);
+                            smallstore.productsDBComplete = true;
                             deferred.resolve();
                         }, 
                         function(){
                             console.log("*** ERROR loading products getAll");
                             //TODO throw error?
+                            smallstore.productsDBComplete = true;
                             deferred.resolve();
                         } 
                     );
                 } else {
                     if(smallstore.incomingData && smallstore.incomingData.productData && smallstore.incomingData.productData.length > 0){
-
-
                        console.log("loading products from incoming data");
 
                        //console.log(dumpObj(smallstore.incomingData.productData))
@@ -148,16 +150,18 @@ window.smallstore = window.smallstore || {
                         });
                         
                         smallstore.productCollection = new mozapps.Collections.ProductCollection(smallstore.incomingData.productData);
-                    } else if (smallstore.appCollection.length > 0) {
-                        _.each(mozapps.defaultProductData, function(element, index, list){
-                            //TODO don't add to collection as json, make models first
-                            smallstore.productsDB.put(element, function(){}, function(){});
-                        });
-                        console.log("product default data");
-                        smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
                     } else {
-                        console.log("empty collection no data");
-                        smallstore.productCollection = new mozapps.Collections.ProductCollection();    
+                        if(mozapps.defaultProductData){
+                            _.each(mozapps.defaultProductData, function(element, index, list){
+                                //TODO don't add to collection as json, make models first
+                                smallstore.productsDB.put(element, function(){}, function(){});
+                            });
+                            console.log("product default data");
+                            smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData); 
+                        } else {
+                            smallstore.productCollection = new mozapps.Collections.ProductCollection(); 
+                        }
+
                     }
 
                     console.log("resolving products")
@@ -185,6 +189,9 @@ window.smallstore = window.smallstore || {
     smallstore.reloadData = true;
   	smallstore.incomingData = activity.source.data;
 
+    console.log("db state")
+    console.log(smallstore.appsDBComplete)
+    console.log(smallstore.productsDBComplete)
 
     if(smallstore.appsDBComplete && smallstore.productsDBComplete){
         console.log("%%%%%%% DBs exist")
