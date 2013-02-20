@@ -13,18 +13,18 @@ NAME = appbuilder3
 
 
 handlebars:
-	handlebars ../../app/scripts/templates-handlebars/*.handlebars -f ../../app/scripts/templates/templates.js
+	@handlebars ../../app/scripts/templates-handlebars/*.handlebars -f ../../app/scripts/templates/templates.js
 
 package: handlebars
-	cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
+	@cd ${FOLDER} && rm -f application.zip && rm -f manifest.appcache && zip -Xr ./application.zip ./* -x application.zip
 
 packaged: package
-	${ADB} push ${FOLDER}/application.zip /data/local/tmp/b2g/${NAME}/application.zip
+	@${ADB} push ${FOLDER}/application.zip /data/local/tmp/b2g/${NAME}/application.zip
 
 install:
-	${ADB} forward tcp:$(PORT_LOCAL) tcp:$(PORT_DEVICE)
+	@${ADB} forward tcp:$(PORT_LOCAL) tcp:$(PORT_DEVICE)
 	@echo "!!! CONFIRM THE PROMPT on the phone !!!"
-	${XPCSHELL} install.js ${NAME} $(PORT_LOCAL)
+	@${XPCSHELL} install.js ${NAME} $(PORT_LOCAL)
 	#adb shell b2g-ps | grep -ri "Homescreen" | awk '{ print $3 }' | xargs adb shell kill -9 
 
 

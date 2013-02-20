@@ -213,7 +213,6 @@ window.smallstore = window.smallstore || {
         console.log("&&&&&&&&&&&&&&&&&&&& load incoming products")
         _.each(smallstore.incomingData.productData, function(element, index, list){
             smallstore.productsDB.put(element, function(){}, function(){});
-            console.log(element.imgSmallPath);
         });
 
         smallstore.incomingData = null;
