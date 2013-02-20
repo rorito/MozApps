@@ -190,7 +190,7 @@ mozapps.templateFixtureData = [
         "is_enabled": false
       }
     ],
-    "description": "Swipe through multiple gal- leries of your images. Tap to enlarge to full detail with text.",
+    "description": "Swipe through multiple galleries of your images. Tap to enlarge to full detail with text.",
     "categories": [
       "Featured",
       "Photo & Video"
@@ -267,6 +267,7 @@ mozapps.templateFixtureData = [
         "is_enabled": false
       }
     ],
+    "description": "Large Store is an e-commerce app that features large images and many product categories.",
     "categories": [
       "Commerce"
     ],
@@ -516,7 +517,7 @@ mozapps.templateFixtureData = [
         "is_enabled": false
       }
     ],
-    "description": "Reader allows you to pub- lish a list of articles to the front page of you app. Include video and audio as well.",
+    "description": "Reader allows you to publish a list of articles to the front page of you app. Include video and audio as well.",
     "categories": [
       "Magazine",
       "Blogging"
