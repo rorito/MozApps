@@ -19,6 +19,8 @@ window.smallstore = window.smallstore || {
   Utils: {},
   currentPage: {},
   reloadData: false,
+  appsDBComplete: false,
+  productsDBComplete: false,
 
   initAppDB: function(){
     var deferred = Deferred();
@@ -52,18 +54,37 @@ window.smallstore = window.smallstore || {
                         } 
                     );
                 } else {
-                    console.log(">>>>>> add default product(s)");
-
-                    _.each(mozapps.defaultAppData, function(element, index, list){
+                    if(smallstore.incomingData && smallstore.incomingData.appData){
+                        console.log("loading app from incoming data");
                         //TODO don't add to collection as json, make models first
-                         console.log("***** put app in db");
-                        smallstore.appsDB.put(element, function(){}, function(){});
-                    });
+                          smallstore.appsDB.put(smallstore.incomingData.appData, function(data){
+                            console.log("appDB put from incoming data - success")
+                            console.log(data)
+                          }, function(data){
+                            console.log("appDB put from incoming data - fail")
+                            console.log(data)
+                          });
 
-                    console.log("*create appCollection with fixture json");
-                    smallstore.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
 
+                        smallstore.appCollection = new mozapps.Collections.AppCollection(smallstore.incomingData.appData);
+                    } else {
+                        console.log(">>>>>> add default apps(s)");
+
+                        _.each(mozapps.defaultAppData, function(element, index, list){
+                            //TODO don't add to collection as json, make models first
+                             //console.log("***** put app in db");
+                            smallstore.appsDB.put(element, function(){}, function(){});
+                        });
+
+                        console.log("*create appCollection with fixture json");
+                        smallstore.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+
+                    }
+
+                    console.log("resolving app db")
+                    smallstore.appsDBComplete = true;
                     deferred.resolve();
+                    
                 }
             },
             function(data){
@@ -103,19 +124,31 @@ window.smallstore = window.smallstore || {
                 if(count > 0){
                     smallstore.productsDB.getAll(
                         function(data){
-                            console.log("product indexeddb data");
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(data);
                             deferred.resolve();
                         }, 
                         function(){
-                            console.log("*** ERROR loading appsDB getAll");
+                            console.log("*** ERROR loading products getAll");
                             //TODO throw error?
                             deferred.resolve();
                         } 
                     );
                 } else {
-                    // prepopulate with product data if we have an app already prepopulated
-                    if (smallstore.appCollection.length > 0) {
+                    if(smallstore.incomingData && smallstore.incomingData.productData && smallstore.incomingData.productData.length > 0){
+
+
+                       console.log("loading products from incoming data");
+
+                       //console.log(dumpObj(smallstore.incomingData.productData))
+
+                       _.each(smallstore.incomingData.productData, function(element, index, list){
+                            //TODO don't add to collection as json, make models first
+                            console.log("adding product: " + element.name)
+                            smallstore.productsDB.put(element, function(){}, function(){});
+                        });
+                        
+                        smallstore.productCollection = new mozapps.Collections.ProductCollection(smallstore.incomingData.productData);
+                    } else if (smallstore.appCollection.length > 0) {
                         _.each(mozapps.defaultProductData, function(element, index, list){
                             //TODO don't add to collection as json, make models first
                             smallstore.productsDB.put(element, function(){}, function(){});
@@ -126,7 +159,9 @@ window.smallstore = window.smallstore || {
                         console.log("empty collection no data");
                         smallstore.productCollection = new mozapps.Collections.ProductCollection();    
                     }
-                    
+
+                    console.log("resolving products")
+                    smallstore.productsDBComplete = true;
                     deferred.resolve();
                 }
             },
@@ -148,31 +183,34 @@ window.smallstore = window.smallstore || {
   handleIncomingData: function(activity){
     console.log("handle activity callback");
     smallstore.reloadData = true;
-  	var data = activity.source.data; 
-  	
-    console.log(dumpObj(data));
+  	smallstore.incomingData = activity.source.data;
 
-    $("#appContainer").empty();
 
-    smallstore.appsDB.clear();
-    smallstore.productsDB.clear();
+    if(smallstore.appsDBComplete && smallstore.productsDBComplete){
+        console.log("%%%%%%% DBs exist")
+        
+        //console.log(dumpObj(smallstore.incomingData));
 
-    //put the new data in the DB so initDB will pick it up and put it in backbone collections
-    console.log("add the app to DB")
-    smallstore.appsDB.put(data.appData, function(){}, function(){});
+        $("#appContainer").empty();
 
-    console.log("add the products to the DB")
-    _.each(data.productData, function(element, index, list){
-        smallstore.productsDB.put(element, function(){}, function(){});
-        console.log(element.imgSmallPath);
-    });
+        smallstore.appsDB.clear();
+        smallstore.productsDB.clear();
 
-    //console.log("re-init the databases")
-    //smallstore.initDB();
+        smallstore.loadIncomingData();
+    } 
+  },
+  loadIncomingData: function(){
+        console.log("&&&&&&&&&&&&&&&&&&& load incoming app")
+        smallstore.appsDB.put(smallstore.incomingData.appData, function(){}, function(){});
 
-    // have to call index.html, because pacakged app on the
-    // phone cannot route to default location from "/"
-    window.location.href = "/index.html";
+        console.log("&&&&&&&&&&&&&&&&&&&& load incoming products")
+        _.each(smallstore.incomingData.productData, function(element, index, list){
+            smallstore.productsDB.put(element, function(){}, function(){});
+            console.log(element.imgSmallPath);
+        });
+
+        smallstore.incomingData = null;
+        window.location.href = "/index.html";
   },
 	init: function() {
       console.log("init")
@@ -182,18 +220,11 @@ window.smallstore = window.smallstore || {
 		      	smallstore.handleIncomingData(activity);
 		    });
   		}
-
-        //smallstore.initDB();
-        if(smallstore.reloadData) {
-          console.log("reload page")
-          smallstore.dataReload = false;
-          document.location.reload(true);
-        }
 	},
     initDB: function(){
         $.when(smallstore.initAppDB(), smallstore.initProductDB())
         .done(function(){            
-            console.log("done with DB loading in small store");
+            console.log("############### done with DB loading in small store");
 
 
             //destroy the views, try w/ only reouter
@@ -203,19 +234,11 @@ window.smallstore = window.smallstore || {
             smallstore.productDetailView = new smallstore.Views.productDetailView({ model: smallstore.appCollection.at(0) });
             smallstore.productDetailView.appID = smallstore.productDetailView.model.toJSON().id;
 
-            console.log("after views");
             smallstore.router = smallstore.router || new smallstore.Routers.ApplicationRouter();
 
-            console.log("after router")
             // backbone history breaking in chrome
             if (!Backbone.History.started) {
                 Backbone.history.start();
-            }
-
-            if(smallstore.reloadData) {
-                console.log("reload page")
-                smallstore.dataReload = false;
-                document.location.reload(true);
             }
         }); 
     }
