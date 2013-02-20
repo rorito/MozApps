@@ -792,18 +792,18 @@ function program7(depth0,data) {
   foundHelper = helpers.imgSmallPath;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.imgSmallPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" alt=\"\">\n            <div>\n                <p>";
-  foundHelper = helpers.description;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</p>\n            ";
+  buffer += escapeExpression(stack1) + "\" alt=\"\">\n            <div>\n            ";
   stack1 = depth0.isEnabled;
   stack2 = {};
   stack2['compare'] = true;
   foundHelper = helpers.if_eq;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data}) : helperMissing.call(depth0, "if_eq", stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "    \n            </div>\n        </section>\n\n        <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n            <h2>Customize</h2>\n            <p>Choose a color theme, image display style, application icon and menu style that suits your app.</p>\n            <h2>Add Content</h2>\n            <p>Add images from your phone’s camera or gallery. Tell the world about yourself or your business by adding unique pages to your app.</p>\n            <h2>Socialize</h2>\n            <p>Popularize your app by easily adding links to your favorite social networks.</p>\n            <h2>Sell</h2>\n            <p>Set up a store so you can sell directly from your application.</p>\n        </section>\n    </section>\n    \n    <!-- footer region -->\n    <section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n    </section>\n</div>";
+  buffer += "\n                <p>";
+  foundHelper = helpers.description;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "</p>\n            </div>\n        </section>\n\n        <section role=\"region\" data-type=\"content\" class=\"box-padded\">\n            <h2>Customize</h2>\n            <p>Choose a color theme, image display style, application icon and menu style that suits your app.</p>\n            <h2>Add Content</h2>\n            <p>Add images from your phone’s camera or gallery. Tell the world about yourself or your business by adding unique pages to your app.</p>\n            <h2>Socialize</h2>\n            <p>Popularize your app by easily adding links to your favorite social networks.</p>\n            <h2>Sell</h2>\n            <p>Set up a store so you can sell directly from your application.</p>\n        </section>\n    </section>\n    \n    <!-- footer region -->\n    <section role=\"region\" data-type=\"footer\">\n    <footer></footer>\n    </section>\n</div>";
   return buffer;});
 templates['templatesSubViewTemplate'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};

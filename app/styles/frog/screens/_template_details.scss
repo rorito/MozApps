@@ -53,6 +53,7 @@
 .template-index {
 	margin-top: -1.3rem;
 	font-weight: 800;
+	font-size:1.2rem;
 	text-align: center;
 }
 
@@ -70,7 +71,7 @@
 
 #templateDetail [data-type="content"] .template-detail > img {
 	float: left;
-	margin: 0 1.5rem;
+	margin: 0 2rem 0 2.3rem;
 }
 
 #templateDetail [data-type="content"] .template-detail > div {
@@ -79,13 +80,17 @@
 	/*flex-direction: column;*/
 	/*align-items: stretch;*/
 	/*justify-content: flex-start;*/
-	width: 12rem;
+	width: 13rem;
 }
 
 #templateDetail [data-type="content"] .template-detail > div > p {
 	/*flex: 1 1 auto;*/
-	margin: 0 0 2rem 0;
+	margin: 1rem 0 1rem 0;
 	font-size: 1.3rem;
+}
+
+#templateDetail [data-type="content"] .template-detail > div > button {
+	width:12rem;
 }
 
 #templateDetail [data-type="content"] .template-detail .recommend {
