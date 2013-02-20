@@ -1,6 +1,6 @@
 {
-  "version": "0.6",
-  "name": "Moz Apps",
+  "version": "0.8",
+  "name": "App Builder",
   "description": "Create your own apps!",
   "launch_path": "/index.html",
   "orientation": "portrait-primary",
@@ -10,7 +10,7 @@
     "url": "http://www.frogdesign.com"
   },
   "icons": {
-        "60": "/imgs/icons/mozillapp-icon-60x60.png"
+        "60": "/imgs/icons/appbuilder-rocket-60x60.png"
     },
   "permissions": {
     "device-storage:pictures":{ "access": "readwrite" },

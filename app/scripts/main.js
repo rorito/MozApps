@@ -46,8 +46,7 @@ window.mozapps = window.mozapps || {
                 } else {
                     console.log(">>>>>> add default product(s)");
                     //console.log(mozapps.defaultAppData)
-                    //mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
-                    mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+                    mozapps.appCollection = new mozapps.Collections.AppCollection();
 
                     _.each(mozapps.defaultAppData, function(element, index, list){
                         //TODO don't add to collection as json, make models first
@@ -67,6 +66,8 @@ window.mozapps = window.mozapps || {
                         });
                         mozapps.appCollection.add(newMozApp);
                     });
+
+                    //mozapps.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
 
                     console.log("*create appCollection with fixture json");
                     
@@ -126,7 +127,7 @@ window.mozapps = window.mozapps || {
                     // prepopulate with product data if we have an app already prepopulated
                     if (mozapps.appCollection.length > 0) {
                         console.log("product fixture");
-                        //mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
+
                         mozapps.productCollection = new mozapps.Collections.ProductCollection();
 
                         _.each(mozapps.defaultProductData, function(element, index, list){
@@ -146,6 +147,8 @@ window.mozapps = window.mozapps || {
                             });
                             mozapps.productCollection.add(newProduct);
                         });
+
+                        //mozapps.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData);
                     } else {
                         console.log("empty collection no data");
                         mozapps.productCollection = new mozapps.Collections.ProductCollection();    
@@ -186,12 +189,25 @@ window.mozapps = window.mozapps || {
             function(data){
                 if(data.length < 1){
                     console.log("loading fixture data");
+                    mozapps.templateCollection = new mozapps.Collections.TemplateCollection();
                     _.each(mozapps.templateFixtureData, function(element, index, list){
                         //TODO don't add to collection as json, make models first
                         mozapps.templatesDB.put(element, function(){}, function(){});
+
+                            var newTemplate = new mozapps.Models.TemplateModel({
+                                id: element.id,
+                                name: element.name,
+                                isEnabled: element.isEnabled,
+                                description: element.description,
+                                app_components: element.app_components,
+                                categories: element.categories,
+                                imgSmallPath: element.imgSmallPath,
+                                imgLargePath: element.imgLargePath
+                            });
+                            mozapps.templateCollection.add(newTemplate);
                     });
 
-                    mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
+                    //mozapps.templateCollection = new mozapps.Collections.TemplateCollection(mozapps.templateFixtureData);
                     deferred.resolve();
                 } else {
                     mozapps.templateCollection = new mozapps.Collections.TemplateCollection(data);

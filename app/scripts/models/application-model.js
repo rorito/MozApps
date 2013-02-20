@@ -3,7 +3,12 @@
 /***************/
 
 mozapps.Models.TemplateModel = Backbone.Model.extend({
-
+initialize: function(options){
+        this.listenTo(this, "change", this.changeModel);
+    },
+    changeModel: function(data){
+        console.log("********** template model - change model");
+    }
 });
 
 mozapps.Models.AppModel = Backbone.Model.extend({
@@ -42,7 +47,23 @@ mozapps.Models.ProductModel = Backbone.Model.extend({
 
 //TODO wire up events to save new models added to collection back to IDB
 mozapps.Collections.TemplateCollection = Backbone.Collection.extend({
-  model: mozapps.Models.TemplateModel
+  model: mozapps.Models.TemplateModel,
+  initialize: function(options) {
+      this.listenTo(this, "add", this.addedToCollection);
+      this.listenTo(this, "remove", this.removedFromCollection);
+      this.listenTo(this, "reset", this.checkReset);
+  },
+  addedToCollection: function(data){
+    //mozapps.Utils.addToCollection(data,mozapps.appsDB);
+    console.log("******* template collection add");
+  },
+  removedFromCollection: function(data){
+    //mozapps.Utils.removeFromCollection(data,mozapps.appsDB);
+    console.log("******* template collection remove");
+  },
+  checkReset: function(data){
+    console.log("******* template collection reset");
+  } 
 });
 
 //TODO use UUIDs for id?

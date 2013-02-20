@@ -163,12 +163,27 @@ mozapps.Views.templateSubView = Backbone.View.extend({
                 this.delegateEvents();
 
                 // set viewport (UL) width, SK TODO : refactor 
+                // console.log("rory")
+                // $.each($(".list-item-body"),function(element){
+                //     console.log(element)
+                //     console.log(element.$el)
+                // });
+
                 _.each(this.$el.find('.list-item-body'), function(element){
                     var elementObject = $(element).find('ul');
+
                     //TODO BUG in setting the width of the accordian, selector not working
                     //try width = auto?
                     //height of accordian rows hard coded in css
-                    elementObject.css('width', (800 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+                    //elementObject.css('width', (800 + (elementObject.find('li').length * $(elementObject.find('li')[0]).width())) + "px");
+                    //console.log("horz scroll")
+                    //console.log($(".list-item"))
+                    //console.log(elementObject)
+                    // console.log(elementObject.find('.list-item').length)
+                    // console.log($(elementObject.find('list-item')))
+                    // console.log($(elementObject.find('list-item')).width())
+                    //elementObject.css('width', (150 + (elementObject.find('li').length * $(elementObject.find('.horizontal-list > li')).width())) + "px");
+                    elementObject.css('width', (50 + (elementObject.find('li').length * 140) + "px"));
                     
                 }, this);
 
@@ -273,10 +288,13 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
         mozapps.router.navigate("#",true);
     },
     createApp: function(){
-        var self = this;        
-        var tmpl = this.collection.get(this.templateID);
+        var self = this;
+        console.log("templateID: " + this.templateID)
 
-        debugger;
+        var tmpl = mozapps.templateCollection.get(this.templateID);
+
+        console.log(tmpl.toJSON());
+        console.log(tmpl.toJSON().app_components);
 
         if(tmpl){
             var newMozApp = new mozapps.Models.AppModel({
@@ -284,14 +302,16 @@ mozapps.Views.templateDetailView = Backbone.View.extend({
                 name: tmpl.toJSON().name,
                 published: false,
                 version: "1.0",
-                app_components: tmpl.toJSON().app_components,
+                //app_components: [].concat(tmpl.toJSON().app_components),
+                app_components: JSON.parse(JSON.stringify(tmpl.toJSON().app_components)),
                 templateID: self.templateID,
                 //imgOrigPath: tmpl,toJSON().imgOrigPath,
                 imgLargePath: tmpl.toJSON().imgLargePath,
                 imgSmallPath: tmpl.toJSON().imgSmallPath
             });
             mozapps.appCollection.add(newMozApp);
-            console.log("app collection after add");
+            console.log("app collection after add: " + newMozApp.toJSON().id);
+            console.log(newMozApp.toJSON());
             mozapps.router.navigate("#apps/"+newMozApp.id,true); 
         } else {
             console.log("didn't find template in template collection");
@@ -326,8 +346,6 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
     template: Handlebars.templates['appBuilderViewTemplate'],
     viewName: "appBuilderView",
     appID: "",
-    collection: [],
-    collection: mozapps.appCollection,
     initialize: function(options) {
         // console.log(mozapps.appCollection);
         // console.log(this.collection);
@@ -346,10 +364,10 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         'click button#appBuilderPreview': "preview"
     },
     back : function(event) {
-        console.log(event);
+        //console.log(event);
         //event.preventDefault();
         // TODO: make this smarter so it knows to go to template chooses or main view
-        console.log(">>>>>>>>>>>>>>>>>>>>>>> route to home")
+        //console.log(">>>>>>>>>>>>>>>>>>>>>>> route to home")
         mozapps.router.navigate("#", true);
     },
     name: function(){
@@ -377,10 +395,10 @@ mozapps.Views.appBuilderView = Backbone.View.extend({
         mozapps.router.navigate("#apps/"+this.appID+"/preview",true);
     },
     render: function(eventName) {
-        console.log("render app builder view");
-        console.log(mozapps.currentPage);
-        if(mozapps.currentPage == "appBuilderView" && this.collection){
-            this.model = this.collection.get(this.appID);
+        //console.log("render app builder view");
+        //console.log(mozapps.currentPage);
+        if(mozapps.currentPage == "appBuilderView"){
+            this.model = mozapps.appCollection.get(this.appID);
             if(!this.model){
                 this.$el.html(this.template( { loading: true } ));
             } else {
@@ -424,8 +442,8 @@ mozapps.Views.appBuilderNameView = Backbone.View.extend({
                 element.completed = true;
             }
         });
-
-        self.model.set(nameJSON);
+        var getModel = mozapps.appCollection.get(this.appID);
+        getModel.set(nameJSON);
 
         // //TODO fix this so that the model change event does the save instead of having to explicitly do it here
         mozapps.appsDB.put(nameJSON, 
