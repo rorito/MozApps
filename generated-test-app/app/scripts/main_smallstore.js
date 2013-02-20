@@ -171,7 +171,7 @@ window.smallstore = window.smallstore || {
     //smallstore.initDB();
 
     // have to call index.html, because pacakged app on the
-    // phone cannot route to default location from "/"
+    // phone cannot route to default location from "/" 
     window.location.href = "/index.html";
   },
 	init: function() {
