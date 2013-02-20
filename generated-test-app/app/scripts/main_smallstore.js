@@ -150,7 +150,7 @@ window.smallstore = window.smallstore || {
     smallstore.reloadData = true;
   	var data = activity.source.data; 
   	
-    //console.log(dump(data));
+    console.log(dumpObj(data));
 
     $("#appContainer").empty();
 
@@ -179,7 +179,12 @@ window.smallstore = window.smallstore || {
 		    });
   		}
 
-        smallstore.initDB();
+        //smallstore.initDB();
+        if(smallstore.reloadData) {
+          console.log("reload page")
+          smallstore.dataReload = false;
+          document.location.reload(true);
+        }
 	},
     initDB: function(){
         $.when(smallstore.initAppDB(), smallstore.initProductDB())
@@ -216,4 +221,36 @@ window.smallstore = window.smallstore || {
 $(document).ready(function(){
 	console.log("document ready smallstore");
 	window.smallstore.init();
+  window.smallstore.initDB();
 });
+
+
+
+var MAX_DUMP_DEPTH = 10;
+      
+function dumpObj(obj, name, indent, depth) {
+      if (depth > MAX_DUMP_DEPTH) {
+             return indent + name + ": <Maximum Depth Reached>\n";
+      }
+      if (typeof obj == "object") {
+             var child = null;
+             var output = indent + name + "\n";
+             indent += "\t";
+             for (var item in obj)
+             {
+                   try {
+                          child = obj[item];
+                   } catch (e) {
+                          child = "<Unable to Evaluate>";
+                   }
+                   if (typeof child == "object") {
+                          output += dumpObj(child, item, indent, depth + 1);
+                   } else {
+                          output += indent + item + ": " + child + "\n";
+                   }
+             }
+             return output;
+      } else {
+             return obj;
+      }
+}

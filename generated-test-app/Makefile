@@ -11,6 +11,7 @@ copyFiles:
 	mkdir -p app/styles
 	cp -R ../app/scripts app
 	cp -R ../app/imgs/products app/imgs
+	cp -R ../app/imgs/icons app/imgs
 	cp -R ../app/styles app
 	rm app/scripts/main.js
 

@@ -1134,15 +1134,15 @@ mozapps.Views.appBuilderPublishSubmitView = Backbone.View.extend({
                 // 
                 setTimeout(function(){
                     self.markupContainer = $("#publishMarkupContainer");
-                    console.log(">>>>>>>>>>> timeout");
-                    console.log(self.markupContainer);
+                    //console.log(">>>>>>>>>>> timeout");
+                    //console.log(self.markupContainer);
                 });
             }
         }
         return this;
     },
     handleInterval: function(self) {
-        console.log("handle interval: animate scroll");
+        //console.log("handle interval: animate scroll");
         //console.log(self);
         var offsetTop = parseInt(self.markupContainer.css('top'));
         //console.log(offsetTop);
