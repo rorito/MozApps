@@ -148,7 +148,10 @@ mozapps.Views.templateSubView = Backbone.View.extend({
         'click input[type="radio"]' : 'onRadioClick'
     },
     onRadioClick: function(event) {
+        console.log(event);
         var targetEl = $(event.currentTarget);
+        console.log('click');
+        console.log(targetEl);
         if (null != radioClickCallback) {
             radioClickCallback(targetEl);
         }
@@ -256,7 +259,7 @@ mozapps.Views.templatesListView = Backbone.View.extend({
             selectedID = targetID;
 
             // wait until animation is done to show the scroll
-            setTimeout(function(targetEl){ 
+            setTimeout(function(targetEl){
                 // assumes container is two siblings away
                 var targetContainer = targetEl.next().next();
                 if (targetContainer.length > 0) {
@@ -270,6 +273,9 @@ mozapps.Views.templatesListView = Backbone.View.extend({
     },
     render: function(eventName) {
         if(mozapps.currentPage == "templatesListView"){
+            // reset none selected for accordian scrollbar tracking
+            selectedID = null;
+
             this.$el.html(this.template);
             this.myAppsSubView = new mozapps.Views.appSubView({el: this.$el.find('#appList'), collection: mozapps.appCollection});
             this.myTemplatesSubView = new mozapps.Views.templateSubView({el: this.$el.find('#templateAccordianList'), collection: mozapps.templateCollection});
