@@ -19,27 +19,35 @@ smallstore.Views.homeView = Backbone.View.extend({
         var counter = 0;
         var selectedProduct = {};
         productList = [];
-        smallstore.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
-            productList.push(element.toJSON());
-            // determine classname based on index
-            // blending in some visual markup (className) with the data here
-            // TODO: this needs to be smarter if there are less than 5 items in the carousel
-            var className = window.widgets.getCarouselClassNameForIndex(counter);
-            var lastProductAdded = productList[productList.length - 1];
-            lastProductAdded.className = className;
-            if (className === "") {
-                // empty classname is the selected one
-                selectedProduct.name = lastProductAdded.name;
-                selectedProduct.price = lastProductAdded.price;
-            }
-            // update counter
-            counter++;
-        });
+        console.log("check product collection");
+        console.log(smallstore.productCollection);
+        console.log(null == smallstore.productCollection);
+        console.log(typeof(smallstore.productCollection));
 
+        if ((null != smallstore.productCollection) && (smallstore.productCollection.length > 0)) {
+            smallstore.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
+                productList.push(element.toJSON());
+                // determine classname based on index
+                // blending in some visual markup (className) with the data here
+                // TODO: this needs to be smarter if there are less than 5 items in the carousel
+                var className = window.widgets.getCarouselClassNameForIndex(counter);
+                var lastProductAdded = productList[productList.length - 1];
+                lastProductAdded.className = className;
+                if (className === "") {
+                    // empty classname is the selected one
+                    selectedProduct.name = lastProductAdded.name;
+                    selectedProduct.price = lastProductAdded.price;
+                }
+                // update counter
+                counter++;
+            });
+        }
+
+        console.log("trry about JSON");
         var aboutJSON = _.find(smallstore.appCollection.get(this.appID).toJSON().app_components, function(elem){
             return elem.component_id == "about";
         });
-
+        console.log("trry about theme");
         var themeJSON = _.find(smallstore.appCollection.get(this.appID).toJSON().app_components, function(elem){
             return elem.component_id == "theme";
         });
