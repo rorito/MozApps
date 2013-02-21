@@ -22,7 +22,7 @@ window.smallstore = window.smallstore || {
   appsDBComplete: false,
   productsDBComplete: false,
 
-  initAppDB: function(){
+   initAppDB: function(){
     var deferred = Deferred();
 
     smallstore.appsDB = new IDBStore({
@@ -199,7 +199,9 @@ window.smallstore = window.smallstore || {
                             //console.log(mozapps.defaultProductData);
                             //console.log(dumpObj(mozapps.defaultProductData));
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData); 
-                            //console.log("productCollection set");
+                            
+                            smallstore.productsDBComplete = true;
+                            deferred.resolve();
                         } else {
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(); 
 
