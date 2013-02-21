@@ -964,6 +964,8 @@ mozapps.Views.preview = Backbone.View.extend({
             //console.log(intervalID);
             //setScrollTop(this);
             //console.log(self);
+        } else {
+            isScrollComplete = true;
         }
     },
     setScrollTop:function() {
@@ -1076,6 +1078,8 @@ mozapps.Views.previewProductDetailView = Backbone.View.extend({
             //console.log(intervalID);
             //setScrollTop(this);
             //console.log(self);
+        } else {
+            isScrollComplete = true;
         }
     },
     setScrollTop:function() {
