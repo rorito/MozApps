@@ -25,7 +25,10 @@ smallstore.Views.homeView = Backbone.View.extend({
         console.log(typeof(smallstore.productCollection));
 
         if ((null != smallstore.productCollection) && (smallstore.productCollection.length > 0)) {
+            console.log(" check products length: " + smallstore.productCollection.length);
             smallstore.productCollection.where({appID: this.appID}).forEach(function(element,index,array){
+                console.log("element");
+                console.log(element);
                 productList.push(element.toJSON());
                 // determine classname based on index
                 // blending in some visual markup (className) with the data here

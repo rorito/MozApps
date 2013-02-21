@@ -149,7 +149,7 @@ window.smallstore = window.smallstore || {
                             function(){
                                 productCounter++;
                                 if (productCounter >= totalProducts) {
-                                    console.log("may be resolving too soon here * * * * resolving products")
+                                    console.log("* * * * resolving products")
                                     smallstore.productsDBComplete = true;
                                     deferred.resolve();
                                 }
@@ -176,9 +176,24 @@ window.smallstore = window.smallstore || {
                         );
                     } else {
                         if(mozapps.defaultProductData){
+                            console.log("try loading default data");
+                            var totalProducts = mozapps.defaultProductData.length;
+                            var productCounter = 0;
                             _.each(mozapps.defaultProductData, function(element, index, list){
                                 //TODO don't add to collection as json, make models first
-                                smallstore.productsDB.put(element, function(){}, function(){});
+                                smallstore.productsDB.put(element, 
+                                    function(){
+                                        productCounter++;
+                                        if (productCounter >= totalProducts) {
+                                            console.log("* * * * resolving products")
+                                            smallstore.productsDBComplete = true;
+                                            deferred.resolve();
+                                        }
+                                    }, 
+                                    function(){
+                                        console.log("*** ERROR adding products from default data");
+                                    }
+                                );
                             });
                             //console.log("product default data");
                             //console.log(mozapps.defaultProductData);
