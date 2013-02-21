@@ -12,6 +12,7 @@ window.mozapps = window.mozapps || {
   isMenuOpen: false,
   appEl: null,
   navEl:null,
+  accordianScrollItems: [],
   initAppDB: function(){
     var deferred = Deferred();
 
@@ -297,6 +298,10 @@ window.mozapps = window.mozapps || {
 
                 
             });
+            
+            // disable touch horizontal scroll in side menu
+            window.mozapps.disableMenuHorizontalScroll();
+            
 
         });
     },
@@ -306,12 +311,26 @@ window.mozapps = window.mozapps || {
             //TODO: replace with callback
             setTimeout(function() {
                 $(leftNav).addClass('nav-hidden');
+                if (accordianScrollItems.length > 0) {
+                    accordianScrollItems.addClass("show-scroll");
+                }
             }, 250);
         } else {
             $(appEl).addClass('app-slide-right');    
             $(leftNav).removeClass('nav-hidden');
+            accordianScrollItems = $(".show-scroll");
+            accordianScrollItems.removeClass("show-scroll");
         }
         isMenuOpen = !isMenuOpen;
+    },
+    disableMenuHorizontalScroll:function() {
+        console.log('disable h scroll');
+        var container = document.querySelector("#leftNav");
+        //alert(container);
+        // capture the swipe gesture
+        new GestureDetector(container).startDetecting();
+        // disable scroll by adding empty handler
+        container.addEventListener('swipe', function(event) { return ;});
     }
 
     // ,
