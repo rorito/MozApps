@@ -6,7 +6,7 @@ smallstore.Views.homeView = Backbone.View.extend({
     events: {
         'click a.link-product-temp' : "showProductDetail"
     },
-    showProductDetail: function(event) {
+       showProductDetail: function(event) {
         event.preventDefault();
         console.log(event.currentTarget);
         var targetLink = event.currentTarget;
