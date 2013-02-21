@@ -41,7 +41,7 @@
 	text-align: center;
 }
 
-#appViewProductDetail section[data-type="detail"] img.img-detail {
+#appViewProductDetail section[data-type="detail"].fade > div > img {
 	display:block;
 }
 

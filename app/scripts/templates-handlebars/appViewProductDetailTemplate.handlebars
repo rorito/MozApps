@@ -27,7 +27,9 @@
             {{#if_eq product.attributes.imgStorageType compare="devicestorage"}}
                 <div id="img-container-{{{product.attributes.id}}"></div>
             {{else}}
-                <img src="{{product.attributes.imgLargePath}}" class="img-detail"/>
+                <div id="img-container-{{{product.attributes.id}}">
+                    <img src="{{product.attributes.imgLargePath}}" />
+                </div>
             {{/if_eq}}
             </section>
             <footer>

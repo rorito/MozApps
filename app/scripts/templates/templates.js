@@ -310,12 +310,18 @@ function program8(depth0,data) {
 function program10(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <img src=\"";
+  buffer += "\n                <div id=\"img-container-";
+  stack1 = depth0.product;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.id;
+  stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n                    <img src=\"";
   stack1 = depth0.product;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.attributes;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.imgLargePath;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"img-detail\"/>\n            ";
+  buffer += escapeExpression(stack1) + "\" />\n                </div>\n            ";
   return buffer;}
 
   stack1 = depth0.loading;
