@@ -40,52 +40,61 @@ window.smallstore = window.smallstore || {
         // and then check for Array[0] or []
         smallstore.appsDB.count(
             function(count){
-                if(count > 0){
-                    smallstore.appsDB.getAll(
+                if(smallstore.incomingData && smallstore.incomingData.appData){
+                    console.log("loading app from incoming data");
+                    //TODO don't add to collection as json, make models first
+                    smallstore.appsDB.put(smallstore.incomingData.appData, 
                         function(data){
-                            console.log(">>>>>>>>>>>>>>>>>>> appDB data");
-                            smallstore.appCollection = new mozapps.Collections.AppCollection(data);
+                            console.log("appDB put from incoming data - success")
+                            console.log(data)
+
+                            smallstore.appCollection = new mozapps.Collections.AppCollection(smallstore.incomingData.appData);
+                            console.log("resolving app db") 
                             smallstore.appsDBComplete = true;
                             deferred.resolve();
                         }, 
-                        function(){
-                            console.log("*** ERROR loading appsDB getAll");
-                            //TODO throw error?
-                            smallstore.appsDBComplete = true;
-                            deferred.resolve();
-                        } 
-                    );
-                } else {
-                    if(smallstore.incomingData && smallstore.incomingData.appData){
-                        console.log("loading app from incoming data");
-                        //TODO don't add to collection as json, make models first
-                          smallstore.appsDB.put(smallstore.incomingData.appData, function(data){
-                            console.log("appDB put from incoming data - success")
-                            console.log(data)
-                          }, function(data){
+                        function(data){
                             console.log("appDB put from incoming data - fail")
                             console.log(data)
-                          });
+                        }
+                    );
 
 
-                        smallstore.appCollection = new mozapps.Collections.AppCollection(smallstore.incomingData.appData);
+                    
+                } else {
+                    if(count > 0){
+                        smallstore.appsDB.getAll(
+                            function(data){
+                                console.log(">>>>>>>>>>>>>>>>>>> appDB data");
+                                smallstore.appCollection = new mozapps.Collections.AppCollection(data);
+                                smallstore.appsDBComplete = true;
+                                deferred.resolve();
+                            }, 
+                            function(){
+                                console.log("*** ERROR loading appsDB getAll");
+                                //TODO throw error?
+                            } 
+                        );
                     } else {
-                        console.log(">>>>>> add default apps(s)");
 
-                        _.each(mozapps.defaultAppData, function(element, index, list){
-                            //TODO don't add to collection as json, make models first
-                             //console.log("***** put app in db");
-                            smallstore.appsDB.put(element, function(){}, function(){});
-                        });
+                            console.log(">>>>>> add default apps(s)");
 
-                        console.log("*create appCollection with fixture json");
-                        smallstore.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+                            _.each(mozapps.defaultAppData, function(element, index, list){
+                                //TODO don't add to collection as json, make models first
+                                 //console.log("***** put app in db");
+                                smallstore.appsDB.put(element, function(){}, function(){});
+                            });
+
+                            console.log("*create appCollection with fixture json");
+                            smallstore.appCollection = new mozapps.Collections.AppCollection(mozapps.defaultAppData);
+
+                            console.log("resolving app db")
+                            smallstore.appsDBComplete = true;
+                            deferred.resolve();
 
                     }
 
-                    console.log("resolving app db")
-                    smallstore.appsDBComplete = true;
-                    deferred.resolve();
+                    
                     
                 }
             },
@@ -123,33 +132,48 @@ window.smallstore = window.smallstore || {
         // and then check for Array[0] or []
         smallstore.productsDB.count(
             function(count){
-                if(count > 0){
-                    smallstore.productsDB.getAll(
-                        function(data){
-                            smallstore.productCollection = new mozapps.Collections.ProductCollection(data);
-                            smallstore.productsDBComplete = true;
-                            deferred.resolve();
-                        }, 
-                        function(){
-                            console.log("*** ERROR loading products getAll");
-                            //TODO throw error?
-                            smallstore.productsDBComplete = true;
-                            deferred.resolve();
-                        } 
-                    );
+
+                console.log(">>>>>>>>>> in smallstore.productsDB.count");
+
+                if(smallstore.incomingData && smallstore.incomingData.productData && smallstore.incomingData.productData.length > 0){
+                    var totalProducts = smallstore.incomingData.productData.length;
+                    var productCounter = 0;
+                    console.log("loading products from incoming data");
+
+                    //console.log(dumpObj(smallstore.incomingData.productData))
+
+                    _.each(smallstore.incomingData.productData, function(element, index, list){
+                        //TODO don't add to collection as json, make models first
+                        console.log("adding product: " + element.name)
+                        smallstore.productsDB.put(element, 
+                            function(){
+                                productCounter++;
+                                if (productCounter >= totalProducts) {
+                                    console.log("may be resolving too soon here * * * * resolving products")
+                                    smallstore.productsDBComplete = true;
+                                    deferred.resolve();
+                                }
+                            }, 
+                            function(){
+                                console.log("*** ERROR adding products from incoming");
+                            }
+                        );
+                    });
+                    console.log(">>> try to create product collection");
+                    smallstore.productCollection = new mozapps.Collections.ProductCollection(smallstore.incomingData.productData);
                 } else {
-                    if(smallstore.incomingData && smallstore.incomingData.productData && smallstore.incomingData.productData.length > 0){
-                       console.log("loading products from incoming data");
-
-                       //console.log(dumpObj(smallstore.incomingData.productData))
-
-                       _.each(smallstore.incomingData.productData, function(element, index, list){
-                            //TODO don't add to collection as json, make models first
-                            console.log("adding product: " + element.name)
-                            smallstore.productsDB.put(element, function(){}, function(){});
-                        });
-                        
-                        smallstore.productCollection = new mozapps.Collections.ProductCollection(smallstore.incomingData.productData);
+                    if(count > 0){
+                        smallstore.productsDB.getAll(
+                            function(data){
+                                smallstore.productCollection = new mozapps.Collections.ProductCollection(data);
+                                smallstore.productsDBComplete = true;
+                                deferred.resolve();
+                            }, 
+                            function(){
+                                console.log("*** ERROR loading products getAll");
+                                //TODO throw error?
+                            } 
+                        );
                     } else {
                         if(mozapps.defaultProductData){
                             _.each(mozapps.defaultProductData, function(element, index, list){
@@ -160,13 +184,15 @@ window.smallstore = window.smallstore || {
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData); 
                         } else {
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(); 
-                        }
 
+                            console.log("resolving products")
+                            console.log(smallstore.productCollection);
+                            smallstore.productsDBComplete = true;
+                            deferred.resolve();
+                        }
                     }
 
-                    console.log("resolving products")
-                    smallstore.productsDBComplete = true;
-                    deferred.resolve();
+
                 }
             },
             function(data){
