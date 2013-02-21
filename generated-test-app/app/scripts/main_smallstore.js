@@ -180,8 +180,11 @@ window.smallstore = window.smallstore || {
                                 //TODO don't add to collection as json, make models first
                                 smallstore.productsDB.put(element, function(){}, function(){});
                             });
-                            console.log("product default data");
+                            //console.log("product default data");
+                            //console.log(mozapps.defaultProductData);
+                            //console.log(dumpObj(mozapps.defaultProductData));
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(mozapps.defaultProductData); 
+                            //console.log("productCollection set");
                         } else {
                             smallstore.productCollection = new mozapps.Collections.ProductCollection(); 
 
