@@ -270,6 +270,14 @@ mozapps.Views.templatesListView = Backbone.View.extend({
             targetEl
             );
         }
+
+        // check if the side menu is still open
+        //console.log(">>>>> menu check");
+        //console.log(window.mozapps.getIsMenuOpen());
+        if (true === window.mozapps.getIsMenuOpen()) {
+            // collapse menu if it's open
+            window.mozapps.toggleSideMenu();
+        }
     },
     render: function(eventName) {
         if(mozapps.currentPage == "templatesListView"){

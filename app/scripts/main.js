@@ -331,6 +331,9 @@ window.mozapps = window.mozapps || {
         new GestureDetector(container).startDetecting();
         // disable scroll by adding empty handler
         container.addEventListener('swipe', function(event) { return ;});
+    },
+    getIsMenuOpen:function() {
+        return isMenuOpen;
     }
 
     // ,
